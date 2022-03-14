@@ -466,7 +466,9 @@ function getBoundingClientRect(element) {
     } else {
       rect = element.getBoundingClientRect();
     }
-  } catch (e) {}
+  } catch (e) {
+	rect = {};
+  }
 
   var result = {
     left: rect.left,

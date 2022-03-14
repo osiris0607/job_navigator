@@ -589,7 +589,7 @@
 			<c:forEach items="${commonCode}" var="code">
 				<c:if test="${code.master_id == 'M000003'}">
 					if (categoryId == "${code.parent_id}") {
-						str += '<option value="${code.detail_id}">${code.name}</option>';
+						str += '<option value="${code.detail_id}"><c:out value="${code.name}"></c:out></option>';
 					}
 				</c:if>
 			</c:forEach>
@@ -602,7 +602,7 @@
 			str += '<option value="">생태계 분류</option>';
 			<c:forEach items="${commonCode}" var="code">
 				<c:if test="${code.master_id == 'M000002'}">
-					str += '<option value="${code.detail_id}">${code.name}</option>';
+					str += '<option value="${code.detail_id}"><c:out value="${code.name}"></c:out></option>';
 				</c:if>
 			</c:forEach>	
 			category.append(str);
@@ -622,7 +622,7 @@
 		str += '<option value="">생태계 분류</option>';
 		<c:forEach items="${commonCode}" var="code">
 			<c:if test="${code.master_id == 'M000002'}">
-				str += '<option value="${code.detail_id}">${code.name}</option>';
+				str += '<option value="${code.detail_id}"><c:out value="${code.name}"></c:out></option>';
 			</c:if>
 		</c:forEach>	
 		category.append(str);
