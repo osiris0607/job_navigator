@@ -68,6 +68,7 @@ public class AdminTrendController {
 	*/
 	@RequestMapping("/admin/api/notification/trend/search/paging")
 		public ModelAndView search(@ModelAttribute TrendSearchVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000004");
 		List<TrendVO> resList = trendService.searchList(vo);
 		if (resList.size() > 0) {
 			mv.addObject("result", resList);

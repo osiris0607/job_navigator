@@ -37,7 +37,6 @@ public class AdminFAQController {
 	public ModelAndView rdtDetail(@ModelAttribute FAQVO vo, ModelAndView mv) throws Exception {
 		mv.addObject("vo", vo);
 		mv.setViewName("notification/faq/detail.admin");
-		System.out.println("떳냐?");
 		return mv;
 	}
 	

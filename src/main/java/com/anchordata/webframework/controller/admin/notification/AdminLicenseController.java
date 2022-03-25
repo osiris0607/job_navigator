@@ -71,6 +71,7 @@ public class AdminLicenseController {
 	*/
 	@RequestMapping("/admin/api/notification/license/search/paging")
 		public ModelAndView search(@ModelAttribute LicenseSearchVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000004");
 		List<LicenseVO> resList = licenseService.searchList(vo);
 		if (resList.size() > 0) {
 			mv.addObject("result", resList);

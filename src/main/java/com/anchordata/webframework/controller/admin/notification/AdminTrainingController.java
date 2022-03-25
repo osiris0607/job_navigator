@@ -67,6 +67,7 @@ public class AdminTrainingController {
 	*/
 	@RequestMapping("/admin/api/notification/training/search/paging")
 		public ModelAndView search(@ModelAttribute TrainingSearchVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000004");
 		List<TrainingVO> resList = trainingService.searchList(vo);
 		if (resList.size() > 0) {
 			mv.addObject("result", resList);
