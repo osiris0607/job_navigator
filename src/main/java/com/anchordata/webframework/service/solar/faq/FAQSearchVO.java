@@ -18,7 +18,7 @@ public class FAQSearchVO {
 	private String faq_id = "";
 	private String question = "";
 	private String answer = "";
-	
+	private String job_gb = "";
 	// paging List Index
 	private String pageIndex;
 	// Paging List Order by
@@ -76,6 +76,12 @@ public class FAQSearchVO {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	public String getJob_gb() {
+		return job_gb;
+	}
+	public void setJob_gb(String job_gb) {
+		this.job_gb = job_gb;
 	}
 
 }

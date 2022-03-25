@@ -51,6 +51,15 @@ public class JobDao extends BaseDao {
 		return selectPagingList(mapper.concat("selectSearchList"), param, pageRow);
 	}
 	
+	//ESS
+	public List<JobVO> selectEssSearchList(DataMap param) throws Exception{
+		return selectPagingList(mapper.concat("selectEssSearchList"), param);
+	}
+	
+	public List<JobVO> selectEssSearchList(DataMap param, int pageRow) throws Exception{
+		return selectPagingList(mapper.concat("selectEssSearchList"), param, pageRow);
+	}
+	
 	public int insertRelativeInfo(JobRelativeVO params) throws Exception{
 		return update(mapper.concat("insertRelativeInfo"), params);
 	}
@@ -63,17 +72,34 @@ public class JobDao extends BaseDao {
 		return selectList(mapper.concat("selectAllList"));
 	}
 	
+	public List<JobVO> selectEssAllList() throws Exception{
+		return selectList(mapper.concat("selectEssAllList"));
+	}
+	
+	
 	public List<JobVO> selectSearchAllList(JobVO param) throws Exception{
 		return selectList(mapper.concat("selectSearchAllList"), param);
+	}
+	
+	public List<JobVO> selectEssSearchAllList(JobVO param) throws Exception{
+		return selectList(mapper.concat("selectEssSearchAllList"), param);
 	}
 	
 	public JobVO selectDetail(JobVO vo) throws Exception{
 		return selectOne(mapper.concat("selectDetail"), vo);
 	}
+
+	public JobVO selectEssDetail(JobVO vo) throws Exception{
+		return selectOne(mapper.concat("selectEssDetail"), vo);
+	}
 	
 	
 	public List<CommonCodeVO> selectMajorList(JobVO param) throws Exception{
 		return selectList(mapper.concat("selectMajorList"), param);
+	}
+	
+	public List<CommonCodeVO> selectEssMajorList(JobVO param) throws Exception{
+		return selectList(mapper.concat("selectEssMajorList"), param);
 	}
 	
 	///////////////////////////////////////////////////////////////////////////
@@ -85,6 +111,10 @@ public class JobDao extends BaseDao {
 	
 	public List<JobVO> allListRank() throws Exception{
 		return selectList(mapper.concat("allListRank"));
+	}
+	
+	public List<JobVO> allEssListRank() throws Exception{
+		return selectList(mapper.concat("allEssListRank"));
 	}
 	
 	

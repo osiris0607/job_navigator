@@ -6,6 +6,7 @@
 	<resultMap id="commonCode" type="CommonCodeVO">
 		<result property ="detail_index"			column="DETAIL_INDEX"	/>
 		<result property ="master_id"				column="MASTER_ID"	/>
+		<result property ="menu_id"					column="MENU_ID"	/>
 		<result property ="master_description"		column="MASTER_DESCRIPTION"	/>
 		<result property ="parent_id"				column="PARENT_ID"	/>
 		<result property ="detail_id"				column="DETAIL_ID"	/>
@@ -21,6 +22,7 @@
 		SELECT
 			M.MASTER_ID
 			,	M.MASTER_DESCRIPTION
+			,   D.MENU_ID
 			,	D.DETAIL_ID
 			,	D.DETAIL_DESCRIPTION 
 			,	D.NAME
@@ -39,6 +41,7 @@
 		SELECT
 			M.MASTER_ID
 			,	M.MASTER_DESCRIPTION
+			,   D.MENU_ID
 			,	D.DETAIL_ID
 			,	D.DETAIL_DESCRIPTION 
 			,	D.NAME

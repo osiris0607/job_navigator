@@ -19,6 +19,7 @@ public class TrendSearchVO {
 	private String title = "";
 	private String writer = "";
 	private String reg_date = "";
+	private String job_gb = "";
 	
 	// paging List Index
 	private String pageIndex;
@@ -80,8 +81,13 @@ public class TrendSearchVO {
 	public void setResult(int result) {
 		this.result = result;
 	}
-
-
+	
+	public String getJob_gb() {
+		return job_gb;
+	}
+	public void setJob_gb(String job_gb) {
+		this.job_gb = job_gb;
+	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

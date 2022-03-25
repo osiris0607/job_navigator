@@ -15,6 +15,7 @@ public class CommonCodeVO {
 
 	private int detail_index;
 	private String master_id;
+	private String menu_id;
 	private String master_description;
 	private String parent_id;
 	private String detail_id;
@@ -35,6 +36,13 @@ public class CommonCodeVO {
 	}
 	public void setMaster_id(String master_id) {
 		this.master_id = master_id;
+	}
+	
+	public String getMenu_id() {
+		return menu_id;
+	}
+	public void setMenu_id(String menu_id) {
+		this.menu_id = menu_id;
 	}
 	public String getMaster_description() {
 		return master_description;

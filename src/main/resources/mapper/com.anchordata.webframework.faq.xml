@@ -10,6 +10,7 @@
 		
 		<result property ="use_yn"					column="USE_YN"	/>
 		<result property ="reg_date"				column="REG_DATE"	/>
+		<result property ="job_gb"					column="JOB_GB"	/>
 		<result property ="total_count"				column="TOTAL_COUNT"	/>
 	</resultMap>
 	
@@ -38,6 +39,9 @@
 			FAQ A
 		WHERE
 			USE_YN = 'Y'
+			<if test='job_gb != null and job_gb != "" '>
+				AND JOB_GB = #{job_gb}
+			</if>
 			<choose>
 				<when test='question != null and question != "" and answer != null and answer != ""'>
 					AND ( QUESTION LIKE CONCAT('%',#{question},'%') OR ANSWER LIKE CONCAT('%',#{answer},'%') )
@@ -64,6 +68,9 @@
 			FAQ A
 		WHERE
 			USE_YN = 'Y'
+			<if test='job_gb != null and job_gb != "" '>
+				AND JOB_GB = #{job_gb}
+			</if>
 			<choose>
 				<when test='question != null and question != "" and answer != null and answer != ""'>
 					AND ( QUESTION LIKE CONCAT('%',#{question},'%') OR ANSWER LIKE CONCAT('%',#{answer},'%') )

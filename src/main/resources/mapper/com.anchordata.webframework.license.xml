@@ -19,6 +19,7 @@
 		<result property ="use_yn"					column="USE_YN"	/>
 		<result property ="reg_date"				column="REG_DATE"	/>
 		<result property ="total_count"				column="TOTAL_COUNT"	/>
+		<result property ="job_gb"					column="JOB_GB"	/>
 	</resultMap>
 	
 	
@@ -76,6 +77,9 @@
 			<if test='name != null and name != "" '>
 				AND ( KOR_NAME LIKE CONCAT('%',#{name},'%') OR ENG_NAME LIKE CONCAT('%',#{name},'%') )
 			</if>
+			<if test='job_gb != null and job_gb != "" '>
+				AND JOB_GB = #{job_gb}
+			</if>
 		<include refid="common.pagingPost"/>
 	</select>	
 	
@@ -100,12 +104,16 @@
 		WHERE
 			1 = 1
 			AND USE_YN = 'Y'
+			<if test='job_gb != null and job_gb != "" '>
+				AND JOB_GB = #{job_gb}
+			</if>
 			<if test='field != null and field != "" '>
 				AND FIELD = #{field}
 			</if>
 			<if test='name != null and name != "" '>
 				AND ( KOR_NAME LIKE CONCAT('%',#{name},'%') OR ENG_NAME LIKE CONCAT('%',#{name},'%') )
 			</if>
+			
 	</select>	
 	
 	
@@ -127,15 +135,16 @@
 		FROM
 			LICENSE A
 		WHERE
-		
 			USE_YN ='Y' 
+			<if test='job_gb != null and job_gb != "" '>
+				AND JOB_GB = #{job_gb}
+			</if>
 			<if test='field != null and field != "" '>
 				AND FIELD = #{field}
 			</if>
 			<if test='name != null and name != "" '>
 				AND ( KOR_NAME LIKE CONCAT('%',#{name},'%') OR ENG_NAME LIKE CONCAT('%',#{name},'%') )
 			</if>
-		
 			AND FIELD IN(
 						SELECT * FROM 
 						(
@@ -145,13 +154,15 @@
 								LICENSE 
 							WHERE 
 								USE_YN ='Y' 
+								<if test='job_gb != null and job_gb != "" '>
+									AND JOB_GB = #{job_gb}
+								</if>
 								<if test='field != null and field != "" '>
 									AND FIELD = #{field}
 								</if>
 								<if test='name != null and name != "" '>
 									AND ( KOR_NAME LIKE CONCAT('%',#{name},'%') OR ENG_NAME LIKE CONCAT('%',#{name},'%') )
 								</if>
-								
 								GROUP BY FIELD LIMIT #{start}, #{end}
 						) AS TMP 
 					 )
@@ -233,7 +244,20 @@
 			LICENSE A
 		WHERE 
 			USE_YN = 'Y'		
-			AND LICENSE_ID IN (SELECT RELATIVE_DETAIL_ID FROM JOB_RELATIVE WHERE JOB_ID = #{job_id} )	
+			AND LICENSE_ID IN (SELECT RELATIVE_DETAIL_ID FROM SUN_JOB_RELATIVE WHERE JOB_ID = #{job_id} )	
+	</select>
+	
+	<select id="selectEssRelativeJobList" parameterType="LicenseSearchVO" resultMap="license">
+		SELECT 
+			LICENSE_ID
+			,	FIELD
+			,	KOR_NAME
+			,	ENG_NAME
+		FROM
+			LICENSE A
+		WHERE 
+			USE_YN = 'Y'		
+			AND LICENSE_ID IN (SELECT RELATIVE_DETAIL_ID FROM ESS_JOB_RELATIVE WHERE JOB_ID = #{job_id} )	
 	</select>
 	
 	

@@ -51,13 +51,16 @@ public class LicenseDao extends BaseDao {
 		return selectPagingList(mapper.concat("selectSearchListMain"), param, pageRow);
 	}
 	
-	
 	public List<LicenseVO> selectAllList() throws Exception{
 		return selectList(mapper.concat("selectAllList"));
 	}
 	
 	public List<LicenseVO> selectRelativeJobList(String param) throws Exception{
 		return selectList(mapper.concat("selectRelativeJobList"), param);
+	}
+
+	public List<LicenseVO> selectEssRelativeJobList(String param) throws Exception{
+		return selectList(mapper.concat("selectEssRelativeJobList"), param);
 	}
 	
 	public List<LicenseVO> selectSearchAllList(LicenseSearchVO param) throws Exception{

@@ -28,7 +28,7 @@ public class NoticeVO {
 	private String type;
 	private String hits;
 	private String main_page_yn;
-	
+	private String job_gb;
 	@JsonIgnore
 	private MultipartFile attach_file_1;
 	private String attach_file_id_1;
@@ -148,6 +148,14 @@ public class NoticeVO {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	public String getJob_gb() {
+		return job_gb;
+	}
+	public void setJob_gb(String job_gb) {
+		this.job_gb = job_gb;
+	}
+	
+	
 	
 	
 	

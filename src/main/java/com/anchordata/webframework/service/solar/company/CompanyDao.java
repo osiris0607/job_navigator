@@ -40,21 +40,36 @@ public class CompanyDao extends BaseDao {
 	public CompanyVO selectDetail(CompanyVO vo) throws Exception{
 		return selectOne(mapper.concat("selectDetail"), vo);
 	}
+	public CompanyVO selectEssDetail(CompanyVO vo) throws Exception{
+		return selectOne(mapper.concat("selectEssDetail"), vo);
+	}
 	
 	public List<CompanyVO> selectSearchList(DataMap param) throws Exception{
 		return selectPagingList(mapper.concat("selectSearchList"), param);
+	}
+	public List<CompanyVO> selectEssSearchList(DataMap param) throws Exception{
+		return selectPagingList(mapper.concat("selectEssSearchList"), param);
 	}
 	
 	public List<CompanyVO> selectAllList() throws Exception{
 		return selectList(mapper.concat("selectAllList"));
 	}
+	public List<CompanyVO> selectEssAllList() throws Exception{
+		return selectList(mapper.concat("selectEssAllList"));
+	}
 	
 	public List<CompanyVO> selectSearchAllList(CompanySearchVO param) throws Exception{
 		return selectList(mapper.concat("selectSearchAllList"), param);
 	}
+	public List<CompanyVO> selectEssSearchAllList(CompanySearchVO param) throws Exception{
+		return selectList(mapper.concat("selectEssSearchAllList"), param);
+	}
 	
 	public List<CompanyVO> selectRegionCount(CompanySearchVO param) throws Exception{
 		return selectList(mapper.concat("selectRegionCount"), param);
+	}
+	public List<CompanyVO> selectEssRegionCount(CompanySearchVO param) throws Exception{
+		return selectList(mapper.concat("selectEssRegionCount"), param);
 	}
 	
 	

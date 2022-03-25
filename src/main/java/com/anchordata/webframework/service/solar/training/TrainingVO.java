@@ -31,6 +31,7 @@ public class TrainingVO {
 	private String upload_file_id = "";
 	private String upload_file_name = "";
 	private byte[] upload_file_image;
+	private String job_gb = "";
 	
 	@JsonIgnore
 	private MultipartFile attach_file;
@@ -137,6 +138,13 @@ public class TrainingVO {
 	}
 	public void setResult(int result) {
 		this.result = result;
+	}
+	
+	public String getJob_gb() {
+		return job_gb;
+	}
+	public void setJob_gb(String job_gb) {
+		this.job_gb = job_gb;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;

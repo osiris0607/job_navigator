@@ -10,6 +10,7 @@
 		<result property ="explanation"				column="EXPLANATION"	/>
 		<result property ="upload_file_id"			column="UPLOAD_FILE_ID"	/>
 		<result property ="upload_file_name"		column="UPLOAD_FILE_NAME"	/>
+		<result property ="job_gb"					column="JOB_GB"	/>
 		
 		<result property ="use_yn"					column="USE_YN"	/>
 		<result property ="reg_date"				column="REG_DATE"	/>
@@ -44,12 +45,22 @@
 			,	EXPLANATION
 			,	HITS
 			,	UPLOAD_FILE_ID
-			,	(SELECT NAME FROM UPLOAD_FILE WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
+			,	(SELECT NAME FROM 
+					<if test='job_gb.equals("D000004")'>
+						SUN_UPLOAD_FILE 
+					</if>
+					<if test='job_gb.equals("D000003")'>
+						ESS_UPLOAD_FILE 
+					</if>		
+				WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
 			,	DATE_FORMAT(REG_DATE,'%Y-%m-%d') AS REG_DATE
 		FROM
 			TREND A
 		WHERE
 			USE_YN = 'Y'
+			<if test='job_gb != null and job_gb != "" '>
+				AND JOB_GB = #{job_gb}
+			</if>
 			<if test='title != null and title != "" '>
 				AND TITLE LIKE CONCAT('%',#{title},'%')
 			</if>
@@ -71,12 +82,22 @@
 			,	EXPLANATION
 			,	HITS
 			,	UPLOAD_FILE_ID
-			,	(SELECT NAME FROM UPLOAD_FILE WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
+			,	(SELECT NAME FROM 
+					<if test='job_gb.equals("D000004")'>
+						SUN_UPLOAD_FILE 
+					</if>
+					<if test='job_gb.equals("D000003")'>
+						ESS_UPLOAD_FILE 
+					</if>			
+				WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
 			,	DATE_FORMAT(REG_DATE,'%Y-%m-%d') AS REG_DATE
 		FROM
 			TREND A
 		WHERE
 			USE_YN = 'Y'
+			<if test='job_gb != null and job_gb != "" '>
+				AND JOB_GB = #{job_gb}
+			</if>
 			<if test='title != null and title != "" '>
 				AND TITLE LIKE CONCAT('%',#{title},'%')
 			</if>
@@ -98,7 +119,14 @@
 			,	EXPLANATION
 			,	HITS
 			,	UPLOAD_FILE_ID
-			,	(SELECT NAME FROM UPLOAD_FILE WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
+			,	(SELECT NAME FROM SUN_UPLOAD_FILE
+					<if test='job_gb.equals("D000004")'>
+						SUN_UPLOAD_FILE 
+					</if>
+					<if test='job_gb.equals("D000003")'>
+						ESS_UPLOAD_FILE 
+					</if>	
+				WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
 			,	DATE_FORMAT(REG_DATE,'%Y-%m-%d') AS REG_DATE
 		FROM
 			TREND A
@@ -133,13 +161,23 @@
 			,	EXPLANATION
 			,	HITS
 			,	UPLOAD_FILE_ID
-			,	(SELECT NAME FROM UPLOAD_FILE WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
+			,	(SELECT NAME FROM 
+					<if test='job_gb.equals("D000004")'>
+						SUN_UPLOAD_FILE 
+					</if>
+					<if test='job_gb.equals("D000003")'>
+						ESS_UPLOAD_FILE 
+					</if>	 
+				WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
 			,	DATE_FORMAT(REG_DATE,'%Y-%m-%d') AS REG_DATE
 		FROM
 			TREND A
 		WHERE 
 			1 = 1
 			AND USE_YN = 'Y'
+			<if test='job_gb != null and job_gb != "" '>
+				AND JOB_GB = #{job_gb}
+			</if>
 			AND TREND_ID IN (
     				(SELECT TREND_ID FROM TREND WHERE TREND_ID <![CDATA[ < ]]> #{trend_id} ORDER BY TREND_ID DESC LIMIT 1),
     				(SELECT TREND_ID FROM TREND WHERE TREND_ID <![CDATA[ > ]]> #{trend_id} ORDER BY TREND_ID LIMIT 1)

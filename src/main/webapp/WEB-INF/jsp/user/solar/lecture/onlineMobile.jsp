@@ -1,8 +1,9 @@
+ <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div id="wrap">
     <header class="sub">
       <div class="headerSubWrap">
         <button class="prev" onclick="location.href='/user/rdt/solar/mobile/main/mainMobile';"></button>
-        <h1>온라인 강의</h1>
+        <h1>ì¨ë¼ì¸ ê°ì</h1>
       </div>
     </header>
 
@@ -13,7 +14,7 @@
           </div>
           <div class="videoContent">
             <p class="videoTitle">Solar Everywhere: NREL Pioneers the Future of Photovoltaics</p>
-            <p class="videoSummary">1,585 views•Jan 14, 2021</p>
+            <p class="videoSummary">1,585 viewsâ¢Jan 14, 2021</p>
             <ul class="videoOwner">
               <li>National Renewable Energy Laboratory - NREL</li>
               <li>5.9K subscribers</li>
@@ -26,7 +27,7 @@
           </div>
           <div class="videoContent">
             <p class="videoTitle">How do solar panels work? - Richard Komp</p>
-            <p class="videoSummary">4,336,425 views•Jan 6, 2016</p>
+            <p class="videoSummary">4,336,425 viewsâ¢Jan 6, 2016</p>
             <ul class="videoOwner">
               <li>TED-Ed</li>
               <li>13.3M subscribers</li>
@@ -39,7 +40,7 @@
           </div>
           <div class="videoContent">
             <p class="videoTitle">5 Inventions Showing Us the Future of Solar Energy</p>
-            <p class="videoSummary">605,837 views•May 25, 2020</p>
+            <p class="videoSummary">605,837 viewsâ¢May 25, 2020</p>
             <ul class="videoOwner">
               <li>SciShow</li>
               <li>6.51M subscribers</li>
@@ -52,7 +53,7 @@
           </div>
           <div class="videoContent">
             <p class="videoTitle">The Rise Of Solar Power</p>
-            <p class="videoSummary">1,084,804 views•Sep 22, 2019</p>
+            <p class="videoSummary">1,084,804 viewsâ¢Sep 22, 2019</p>
             <ul class="videoOwner">
               <li>CNBC</li>
               <li>2.09M subscribers</li>

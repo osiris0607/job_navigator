@@ -28,7 +28,9 @@ public class LicenseVO {
 	private String prospect;
 	private String use_yn;
 	private String reg_date;
+	private String job_gb;
 	
+
 	private int total_count;
 	private int result;
 	
@@ -111,6 +113,14 @@ public class LicenseVO {
 	public void setReg_date(String reg_date) {
 		this.reg_date = reg_date;
 	}
+	
+	public String getJob_gb() {
+		return job_gb;
+	}
+	public void setJob_gb(String job_gb) {
+		this.job_gb = job_gb;
+	}
+	
 	public int getTotal_count() {
 		return total_count;
 	}

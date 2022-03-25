@@ -82,6 +82,9 @@ public class FAQService {
 		if (  vo.getOrderby() != null && vo.getOrderby().isEmpty() != true ) {
 			search.put("orderby", vo.getOrderby());	
 		}
+		if (  vo.getJob_gb() != null && vo.getJob_gb().isEmpty() != true ) {
+			search.put("job_gb", vo.getJob_gb());	
+		}
 		
 		return faqDao.selectSearchList(new DataMap(search));
 	}

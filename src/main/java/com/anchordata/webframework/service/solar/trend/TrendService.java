@@ -115,6 +115,9 @@ public class TrendService {
 		if (  vo.getOrderby() != null && vo.getOrderby().isEmpty() != true ) {
 			search.put("orderby", vo.getOrderby());	
 		}
+		if (  vo.getJob_gb() != null && vo.getJob_gb().isEmpty() != true ) {
+			search.put("job_gb", vo.getJob_gb());	
+		}
 		
 		return trendDao.selectSearchList(new DataMap(search));
 	}
@@ -146,6 +149,9 @@ public class TrendService {
 
 		if (  vo.getTrend_id() != null && vo.getTrend_id().isEmpty() != true ) {
 			search.put("trend_id", vo.getTrend_id());	
+		}
+		if (  vo.getJob_gb() != null && vo.getJob_gb().isEmpty() != true ) {
+			search.put("job_gb", vo.getJob_gb());	
 		}
 
 		return trendDao.selectPreNextList(new DataMap(search));

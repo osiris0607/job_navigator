@@ -18,6 +18,7 @@ public class LicenseSearchVO {
 	private String license_id;
 	private String field;
 	private String name;
+	private String job_gb;
 	
 	// paging List Index
 	private String pageIndex;
@@ -47,6 +48,13 @@ public class LicenseSearchVO {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getJob_gb() {
+		return job_gb;
+	}
+	public void setJob_gb(String job_gb) {
+		this.job_gb = job_gb;
 	}
 	public String getPageIndex() {
 		return pageIndex;

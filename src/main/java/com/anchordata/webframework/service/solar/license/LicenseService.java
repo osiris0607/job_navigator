@@ -106,6 +106,9 @@ public class LicenseService {
 		if (  vo.getOrderby() != null && vo.getOrderby().isEmpty() != true ) {
 			search.put("orderby", vo.getOrderby());	
 		}
+		if (  vo.getJob_gb() != null && vo.getJob_gb().isEmpty() != true ) {
+			search.put("job_gb", vo.getJob_gb());	
+		}
 		
 		return licenseDao.selectSearchList(new DataMap(search), pageRow);
 	}	
@@ -135,6 +138,14 @@ public class LicenseService {
 	@Transactional
 	public List<LicenseVO> relativeJobList(JobVO vo) throws Exception {
 		return licenseDao.selectRelativeJobList(Integer.toString(vo.getJob_id()));
+	}
+	
+	/**
+	 * ess all List  
+	 */
+	@Transactional
+	public List<LicenseVO> relativeEssJobList(JobVO vo) throws Exception {
+		return licenseDao.selectEssRelativeJobList(Integer.toString(vo.getJob_id()));
 	}
 	
 	

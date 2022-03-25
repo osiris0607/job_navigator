@@ -135,6 +135,9 @@ public class TrainingService {
 		if (  vo.getOrderby() != null && vo.getOrderby().isEmpty() != true ) {
 			search.put("orderby", vo.getOrderby());	
 		}
+		if (  vo.getJob_gb() != null && vo.getJob_gb().isEmpty() != true ) {
+			search.put("job_gb", vo.getJob_gb());	
+		}
 		
 		return trainingDao.selectSearchList(new DataMap(search));
 	}
@@ -163,6 +166,9 @@ public class TrainingService {
 		}
 		if (  vo.getOrderby() != null && vo.getOrderby().isEmpty() != true ) {
 			search.put("orderby", vo.getOrderby());	
+		}
+		if (  vo.getJob_gb() != null && vo.getJob_gb().isEmpty() != true ) {
+			search.put("job_gb", vo.getJob_gb());	
 		}
 		
 		return trainingDao.selectSearchList(new DataMap(search), pageRow);

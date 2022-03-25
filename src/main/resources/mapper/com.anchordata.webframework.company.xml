@@ -94,15 +94,15 @@
 			, 	STAFF_NUMBER
 			, 	MAIN_PRODUCT
 			, 	ASSOCIATED_JOB_1
-			,	(SELECT NAME FROM JOB WHERE JOB_ID = A.ASSOCIATED_JOB_1) AS ASSOCIATED_JOB_1_NAME
+			,	(SELECT NAME FROM SUN_JOB WHERE JOB_ID = A.ASSOCIATED_JOB_1) AS ASSOCIATED_JOB_1_NAME
 			, 	ASSOCIATED_JOB_2
-			,	(SELECT NAME FROM JOB WHERE JOB_ID = A.ASSOCIATED_JOB_2) AS ASSOCIATED_JOB_2_NAME
+			,	(SELECT NAME FROM SUN_JOB WHERE JOB_ID = A.ASSOCIATED_JOB_2) AS ASSOCIATED_JOB_2_NAME
 			, 	ASSOCIATED_JOB_3
-			,	(SELECT NAME FROM JOB WHERE JOB_ID = A.ASSOCIATED_JOB_3) AS ASSOCIATED_JOB_3_NAME
+			,	(SELECT NAME FROM SUN_JOB WHERE JOB_ID = A.ASSOCIATED_JOB_3) AS ASSOCIATED_JOB_3_NAME
 			,	UPLOAD_FILE_ID
-			,	(SELECT NAME FROM UPLOAD_FILE WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
+			,	(SELECT NAME FROM SUN_UPLOAD_FILE WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
 		FROM
-			COMPANY A
+			SUN_COMPANY A
 		WHERE
 			1 = 1
 			AND USE_YN = 'Y'
@@ -120,21 +120,80 @@
 			</if>
 			<if test='category_id != null and category_id != "" '>
 				AND 
-				   ( (SELECT CATEGORY_ID FROM job WHERE job_id = A.ASSOCIATED_JOB_1) = #{category_id}
-					 OR (SELECT CATEGORY_ID FROM job WHERE job_id = A.ASSOCIATED_JOB_2) = #{category_id}
-					 OR (SELECT CATEGORY_ID FROM job WHERE job_id = A.ASSOCIATED_JOB_3) = #{category_id}
+				   ( (SELECT CATEGORY_ID FROM SUN_JOB WHERE job_id = A.ASSOCIATED_JOB_1) = #{category_id}
+					 OR (SELECT CATEGORY_ID FROM SUN_JOB WHERE job_id = A.ASSOCIATED_JOB_2) = #{category_id}
+					 OR (SELECT CATEGORY_ID FROM SUN_JOB WHERE job_id = A.ASSOCIATED_JOB_3) = #{category_id}
 					)
 			</if>
 			<if test='category_detail_id != null and category_detail_id != "" '>
 				AND 
-				   ( (SELECT CATEGORY_DETAIL_ID FROM job WHERE job_id = A.ASSOCIATED_JOB_1) = #{category_detail_id}
-					 OR (SELECT CATEGORY_DETAIL_ID FROM job WHERE job_id = A.ASSOCIATED_JOB_2) = #{category_detail_id}
-					 OR (SELECT CATEGORY_DETAIL_ID FROM job WHERE job_id = A.ASSOCIATED_JOB_3) = #{category_detail_id}
+				   ( (SELECT CATEGORY_DETAIL_ID FROM SUN_JOB WHERE job_id = A.ASSOCIATED_JOB_1) = #{category_detail_id}
+					 OR (SELECT CATEGORY_DETAIL_ID FROM SUN_JOB WHERE job_id = A.ASSOCIATED_JOB_2) = #{category_detail_id}
+					 OR (SELECT CATEGORY_DETAIL_ID FROM SUN_JOB WHERE job_id = A.ASSOCIATED_JOB_3) = #{category_detail_id}
 					)
 			</if>
 		<include refid="common.pagingPost"/>
 	</select>	
 	
+	<select id="selectEssSearchList" parameterType="DataMap"  resultMap="company">
+		<include refid="common.pagingPre"/>
+		SELECT
+			COMPANY_ID
+			,	SIZE
+			,	(SELECT NAME FROM COMMON_CODE_DETAIL WHERE MASTER_ID = 'M000014' AND DETAIL_ID = A.SIZE) AS SIZE_NAME
+			,	REGION
+			,	(SELECT ADDR FROM ADMINISTRATIVE_DISTRICT WHERE MASTER_ID = 'D000001' AND CODE = A.REGION) AS REGION_NAME
+			,	REGION_DETAIL
+			,	(SELECT ADDR FROM ADMINISTRATIVE_DISTRICT WHERE MASTER_ID = 'D000002' AND CODE = A.REGION_DETAIL) AS REGION_DETAIL_NAME
+			,	KSIC
+			,	(SELECT NAME FROM COMMON_CODE_DETAIL WHERE MASTER_ID = 'M000015' AND DETAIL_ID = A.KSIC) AS KSIC_NAME
+			,	NAME
+			,	ADDRESS
+			,	PHONE
+			,	HOME_PAGE
+			, 	STAFF_NUMBER
+			, 	MAIN_PRODUCT
+			, 	ASSOCIATED_JOB_1
+			,	(SELECT NAME FROM ESS_JOB WHERE JOB_ID = A.ASSOCIATED_JOB_1) AS ASSOCIATED_JOB_1_NAME
+			, 	ASSOCIATED_JOB_2
+			,	(SELECT NAME FROM ESS_JOB WHERE JOB_ID = A.ASSOCIATED_JOB_2) AS ASSOCIATED_JOB_2_NAME
+			, 	ASSOCIATED_JOB_3
+			,	(SELECT NAME FROM ESS_JOB WHERE JOB_ID = A.ASSOCIATED_JOB_3) AS ASSOCIATED_JOB_3_NAME
+			,	UPLOAD_FILE_ID
+			,	(SELECT NAME FROM ESS_UPLOAD_FILE WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
+		FROM
+			ESS_COMPANY A
+		WHERE
+			1 = 1
+			AND USE_YN = 'Y'
+			<if test='size != null and size != "" '>
+				AND SIZE = #{size}
+			</if>
+			<if test='region != null and region != "" '>
+				AND REGION = #{region}
+			</if>
+			<if test='region_detail != null and region_detail != "" '>
+				AND REGION_DETAIL = #{region_detail}
+			</if>
+			<if test='name != null and name != "" '>
+				AND NAME LIKE CONCAT('%',#{name},'%')
+			</if>
+			<if test='category_id != null and category_id != "" '>
+				AND 
+				   ( (SELECT CATEGORY_ID FROM ESS_JOB WHERE job_id = A.ASSOCIATED_JOB_1) = #{category_id}
+					 OR (SELECT CATEGORY_ID FROM ESS_JOB WHERE job_id = A.ASSOCIATED_JOB_2) = #{category_id}
+					 OR (SELECT CATEGORY_ID FROM ESS_JOB WHERE job_id = A.ASSOCIATED_JOB_3) = #{category_id}
+					)
+			</if>
+			<if test='category_detail_id != null and category_detail_id != "" '>
+				AND 
+				   ( (SELECT CATEGORY_DETAIL_ID FROM ESS_JOB WHERE job_id = A.ASSOCIATED_JOB_1) = #{category_detail_id}
+					 OR (SELECT CATEGORY_DETAIL_ID FROM ESS_JOB WHERE job_id = A.ASSOCIATED_JOB_2) = #{category_detail_id}
+					 OR (SELECT CATEGORY_DETAIL_ID FROM ESS_JOB WHERE job_id = A.ASSOCIATED_JOB_3) = #{category_detail_id}
+					)
+			</if>
+		<include refid="common.pagingPost"/>
+	</select>	
 	
 	<select id="selectSearchAllList" parameterType="DataMap"  resultMap="company">
 		SELECT
@@ -154,18 +213,18 @@
 			, 	STAFF_NUMBER
 			, 	MAIN_PRODUCT
 			, 	ASSOCIATED_JOB_1
-			,	(SELECT NAME FROM JOB WHERE JOB_ID = A.ASSOCIATED_JOB_1) AS ASSOCIATED_JOB_1_NAME
-			,	(SELECT DEFINITION FROM JOB WHERE JOB_ID = A.ASSOCIATED_JOB_1) AS ASSOCIATED_JOB_1_DEFINITION
+			,	(SELECT NAME FROM SUN_JOB WHERE JOB_ID = A.ASSOCIATED_JOB_1) AS ASSOCIATED_JOB_1_NAME
+			,	(SELECT DEFINITION FROM SUN_JOB WHERE JOB_ID = A.ASSOCIATED_JOB_1) AS ASSOCIATED_JOB_1_DEFINITION
 			, 	ASSOCIATED_JOB_2
-			,	(SELECT NAME FROM JOB WHERE JOB_ID = A.ASSOCIATED_JOB_2) AS ASSOCIATED_JOB_2_NAME
-			,	(SELECT DEFINITION FROM JOB WHERE JOB_ID = A.ASSOCIATED_JOB_2) AS ASSOCIATED_JOB_2_DEFINITION
+			,	(SELECT NAME FROM SUN_JOB WHERE JOB_ID = A.ASSOCIATED_JOB_2) AS ASSOCIATED_JOB_2_NAME
+			,	(SELECT DEFINITION FROM SUN_JOB WHERE JOB_ID = A.ASSOCIATED_JOB_2) AS ASSOCIATED_JOB_2_DEFINITION
 			, 	ASSOCIATED_JOB_3
-			,	(SELECT NAME FROM JOB WHERE JOB_ID = A.ASSOCIATED_JOB_3) AS ASSOCIATED_JOB_3_NAME
-			,	(SELECT DEFINITION FROM JOB WHERE JOB_ID = A.ASSOCIATED_JOB_3) AS ASSOCIATED_JOB_3_DEFINITION
+			,	(SELECT NAME FROM SUN_JOB WHERE JOB_ID = A.ASSOCIATED_JOB_3) AS ASSOCIATED_JOB_3_NAME
+			,	(SELECT DEFINITION FROM SUN_JOB WHERE JOB_ID = A.ASSOCIATED_JOB_3) AS ASSOCIATED_JOB_3_DEFINITION
 			,	UPLOAD_FILE_ID
-			,	(SELECT NAME FROM UPLOAD_FILE WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
+			,	(SELECT NAME FROM SUN_UPLOAD_FILE WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
 		FROM
-			COMPANY A
+			SUN_COMPANY A
 		WHERE
 			1 = 1
 			AND USE_YN = 'Y'
@@ -183,21 +242,82 @@
 			</if>
 			<if test='category_id != null and category_id != "" '>
 				AND 
-				   ( (SELECT CATEGORY_ID FROM job WHERE job_id = A.ASSOCIATED_JOB_1) = #{category_id}
-					 OR (SELECT CATEGORY_ID FROM job WHERE job_id = A.ASSOCIATED_JOB_2) = #{category_id}
-					 OR (SELECT CATEGORY_ID FROM job WHERE job_id = A.ASSOCIATED_JOB_3) = #{category_id}
+				   ( (SELECT CATEGORY_ID FROM SUN_JOB WHERE job_id = A.ASSOCIATED_JOB_1) = #{category_id}
+					 OR (SELECT CATEGORY_ID FROM SUN_JOB WHERE job_id = A.ASSOCIATED_JOB_2) = #{category_id}
+					 OR (SELECT CATEGORY_ID FROM SUN_JOB WHERE job_id = A.ASSOCIATED_JOB_3) = #{category_id}
 					)
 			</if>
 			<if test='category_detail_id != null and category_detail_id != "" '>
 				AND 
-				   ( (SELECT CATEGORY_DETAIL_ID FROM job WHERE job_id = A.ASSOCIATED_JOB_1) = #{category_detail_id}
-					 OR (SELECT CATEGORY_DETAIL_ID FROM job WHERE job_id = A.ASSOCIATED_JOB_2) = #{category_detail_id}
-					 OR (SELECT CATEGORY_DETAIL_ID FROM job WHERE job_id = A.ASSOCIATED_JOB_3) = #{category_detail_id}
+				   ( (SELECT CATEGORY_DETAIL_ID FROM SUN_JOB WHERE job_id = A.ASSOCIATED_JOB_1) = #{category_detail_id}
+					 OR (SELECT CATEGORY_DETAIL_ID FROM SUN_JOB WHERE job_id = A.ASSOCIATED_JOB_2) = #{category_detail_id}
+					 OR (SELECT CATEGORY_DETAIL_ID FROM SUN_JOB WHERE job_id = A.ASSOCIATED_JOB_3) = #{category_detail_id}
 					)
 			</if>
 			
 	</select>
 	
+	<select id="selectEssSearchAllList" parameterType="DataMap"  resultMap="company">
+		SELECT
+			COMPANY_ID
+			,	SIZE
+			,	(SELECT NAME FROM COMMON_CODE_DETAIL WHERE MASTER_ID = 'M000014' AND DETAIL_ID = A.SIZE) AS SIZE_NAME
+			,	REGION
+			,	(SELECT ADDR FROM ADMINISTRATIVE_DISTRICT WHERE MASTER_ID = 'D000001' AND CODE = A.REGION) AS REGION_NAME
+			,	REGION_DETAIL
+			,	(SELECT ADDR FROM ADMINISTRATIVE_DISTRICT WHERE MASTER_ID = 'D000002' AND CODE = A.REGION_DETAIL) AS REGION_DETAIL_NAME
+			,	KSIC
+			,	(SELECT NAME FROM COMMON_CODE_DETAIL WHERE MASTER_ID = 'M000015' AND DETAIL_ID = A.KSIC) AS KSIC_NAME
+			,	NAME
+			,	ADDRESS
+			,	PHONE
+			,	HOME_PAGE
+			, 	STAFF_NUMBER
+			, 	MAIN_PRODUCT
+			, 	ASSOCIATED_JOB_1
+			,	(SELECT NAME FROM ESS_JOB WHERE JOB_ID = A.ASSOCIATED_JOB_1) AS ASSOCIATED_JOB_1_NAME
+			,	(SELECT DEFINITION FROM ESS_JOB WHERE JOB_ID = A.ASSOCIATED_JOB_1) AS ASSOCIATED_JOB_1_DEFINITION
+			, 	ASSOCIATED_JOB_2
+			,	(SELECT NAME FROM ESS_JOB WHERE JOB_ID = A.ASSOCIATED_JOB_2) AS ASSOCIATED_JOB_2_NAME
+			,	(SELECT DEFINITION FROM ESS_JOB WHERE JOB_ID = A.ASSOCIATED_JOB_2) AS ASSOCIATED_JOB_2_DEFINITION
+			, 	ASSOCIATED_JOB_3
+			,	(SELECT NAME FROM ESS_JOB WHERE JOB_ID = A.ASSOCIATED_JOB_3) AS ASSOCIATED_JOB_3_NAME
+			,	(SELECT DEFINITION FROM ESS_JOB WHERE JOB_ID = A.ASSOCIATED_JOB_3) AS ASSOCIATED_JOB_3_DEFINITION
+			,	UPLOAD_FILE_ID
+			,	(SELECT NAME FROM ESS_UPLOAD_FILE WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
+		FROM
+			ESS_COMPANY A
+		WHERE
+			1 = 1
+			AND USE_YN = 'Y'
+			<if test='size != null and size != "" '>
+				AND SIZE = #{size}
+			</if>
+			<if test='region != null and region != "" '>
+				AND REGION = #{region}
+			</if>
+			<if test='region_detail != null and region_detail != "" '>
+				AND REGION_DETAIL = #{region_detail}
+			</if>
+			<if test='name != null and name != "" '>
+				AND NAME LIKE CONCAT('%',#{name},'%')
+			</if>
+			<if test='category_id != null and category_id != "" '>
+				AND 
+				   ( (SELECT CATEGORY_ID FROM ESS_JOB WHERE job_id = A.ASSOCIATED_JOB_1) = #{category_id}
+					 OR (SELECT CATEGORY_ID FROM ESS_JOB WHERE job_id = A.ASSOCIATED_JOB_2) = #{category_id}
+					 OR (SELECT CATEGORY_ID FROM ESS_JOB WHERE job_id = A.ASSOCIATED_JOB_3) = #{category_id}
+					)
+			</if>
+			<if test='category_detail_id != null and category_detail_id != "" '>
+				AND 
+				   ( (SELECT CATEGORY_DETAIL_ID FROM ESS_JOB WHERE job_id = A.ASSOCIATED_JOB_1) = #{category_detail_id}
+					 OR (SELECT CATEGORY_DETAIL_ID FROM ESS_JOB WHERE job_id = A.ASSOCIATED_JOB_2) = #{category_detail_id}
+					 OR (SELECT CATEGORY_DETAIL_ID FROM ESS_JOB WHERE job_id = A.ASSOCIATED_JOB_3) = #{category_detail_id}
+					)
+			</if>
+			
+	</select>
 	
 	<select id="selectDetail" parameterType="CompanyVO"  resultMap="company">
 		SELECT
@@ -217,19 +337,52 @@
 			, 	STAFF_NUMBER
 			, 	MAIN_PRODUCT
 			, 	ASSOCIATED_JOB_1
-			,	(SELECT NAME FROM JOB WHERE JOB_ID = A.ASSOCIATED_JOB_1) AS ASSOCIATED_JOB_1_NAME
+			,	(SELECT NAME FROM SUN_JOB WHERE JOB_ID = A.ASSOCIATED_JOB_1) AS ASSOCIATED_JOB_1_NAME
 			, 	ASSOCIATED_JOB_2
-			,	(SELECT NAME FROM JOB WHERE JOB_ID = A.ASSOCIATED_JOB_2) AS ASSOCIATED_JOB_2_NAME
+			,	(SELECT NAME FROM SUN_JOB WHERE JOB_ID = A.ASSOCIATED_JOB_2) AS ASSOCIATED_JOB_2_NAME
 			, 	ASSOCIATED_JOB_3
-			,	(SELECT NAME FROM JOB WHERE JOB_ID = A.ASSOCIATED_JOB_3) AS ASSOCIATED_JOB_3_NAME
+			,	(SELECT NAME FROM SUN_JOB WHERE JOB_ID = A.ASSOCIATED_JOB_3) AS ASSOCIATED_JOB_3_NAME
 			,	UPLOAD_FILE_ID
-			,	(SELECT NAME FROM UPLOAD_FILE WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
-			,	(SELECT DESCRIPTION FROM UPLOAD_FILE WHERE FILE_ID = A.UPLOAD_FILE_ID) AS ATTACH_FILE_DESCRIPTION
+			,	(SELECT NAME FROM SUN_UPLOAD_FILE WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
+			,	(SELECT DESCRIPTION FROM SUN_UPLOAD_FILE WHERE FILE_ID = A.UPLOAD_FILE_ID) AS ATTACH_FILE_DESCRIPTION
 		FROM
-			COMPANY A
+			SUN_COMPANY A
 		WHERE
 			COMPANY_ID = #{company_id}
 	</select>
+	
+	<select id="selectEssDetail" parameterType="CompanyVO"  resultMap="company">
+		SELECT
+			COMPANY_ID
+			,	SIZE
+			,	(SELECT NAME FROM COMMON_CODE_DETAIL WHERE MASTER_ID = 'M000014' AND DETAIL_ID = A.SIZE) AS SIZE_NAME
+			,	REGION
+			,	(SELECT ADDR FROM ADMINISTRATIVE_DISTRICT WHERE MASTER_ID = 'D000001' AND CODE = A.REGION) AS REGION_NAME
+			,	REGION_DETAIL
+			,	(SELECT ADDR FROM ADMINISTRATIVE_DISTRICT WHERE MASTER_ID = 'D000002' AND CODE = A.REGION_DETAIL) AS REGION_DETAIL_NAME
+			,	KSIC
+			,	(SELECT NAME FROM COMMON_CODE_DETAIL WHERE MASTER_ID = 'M000015' AND DETAIL_ID = A.KSIC) AS KSIC_NAME
+			,	NAME
+			,	ADDRESS
+			,	PHONE
+			,	HOME_PAGE
+			, 	STAFF_NUMBER
+			, 	MAIN_PRODUCT
+			, 	ASSOCIATED_JOB_1
+			,	(SELECT NAME FROM ESS_JOB WHERE JOB_ID = A.ASSOCIATED_JOB_1) AS ASSOCIATED_JOB_1_NAME
+			, 	ASSOCIATED_JOB_2
+			,	(SELECT NAME FROM ESS_JOB WHERE JOB_ID = A.ASSOCIATED_JOB_2) AS ASSOCIATED_JOB_2_NAME
+			, 	ASSOCIATED_JOB_3
+			,	(SELECT NAME FROM ESS_JOB WHERE JOB_ID = A.ASSOCIATED_JOB_3) AS ASSOCIATED_JOB_3_NAME
+			,	UPLOAD_FILE_ID
+			,	(SELECT NAME FROM ESS_UPLOAD_FILE WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
+			,	(SELECT DESCRIPTION FROM ESS_UPLOAD_FILE WHERE FILE_ID = A.UPLOAD_FILE_ID) AS ATTACH_FILE_DESCRIPTION
+		FROM
+			ESS_COMPANY A
+		WHERE
+			COMPANY_ID = #{company_id}
+	</select>
+	
 	
 	<update id="updateInfo" parameterType="CompanyVO">
 		UPDATE COMPANY SET   
@@ -255,7 +408,7 @@
 	
 	
 	<delete id="deleteInfo" parameterType="CompanyVO">
-		DELETE FROM COMPANY			
+		DELETE FROM SUN_COMPANY			
 		WHERE COMPANY_ID = #{company_id}
 	</delete>	
 	
@@ -278,7 +431,29 @@
 			, 	ASSOCIATED_JOB_3
 			,	UPLOAD_FILE_ID
 		FROM
-			COMPANY A
+			SUN_COMPANY A
+		WHERE 
+			USE_YN = 'Y'		
+	</select>
+	<select id="selectEssAllList" resultMap="company">
+		SELECT
+			COMPANY_ID
+			,	SIZE
+			,	REGION
+			,	REGION_DETAIL
+			,	KSIC
+			,	NAME
+			,	ADDRESS
+			,	PHONE
+			,	HOME_PAGE
+			, 	STAFF_NUMBER
+			, 	MAIN_PRODUCT
+			, 	ASSOCIATED_JOB_1
+			, 	ASSOCIATED_JOB_2
+			, 	ASSOCIATED_JOB_3
+			,	UPLOAD_FILE_ID
+		FROM
+			ESS_COMPANY A
 		WHERE 
 			USE_YN = 'Y'		
 	</select>
@@ -289,7 +464,7 @@
 			,	REGION
 			,	(SELECT ADDR FROM ADMINISTRATIVE_DISTRICT WHERE CODE = A.REGION) AS REGION_NAME
 		FROM
-			COMPANY A
+			SUN_COMPANY A
 		WHERE
 			1 = 1
 			AND USE_YN = 'Y'
@@ -307,16 +482,55 @@
 			</if>
 			<if test='category_id != null and category_id != "" '>
 				AND 
-				   ( (SELECT CATEGORY_ID FROM job WHERE job_id = A.ASSOCIATED_JOB_1) = #{category_id}
-					 OR (SELECT CATEGORY_ID FROM job WHERE job_id = A.ASSOCIATED_JOB_2) = #{category_id}
-					 OR (SELECT CATEGORY_ID FROM job WHERE job_id = A.ASSOCIATED_JOB_3) = #{category_id}
+				   ( (SELECT CATEGORY_ID FROM SUN_JOB WHERE job_id = A.ASSOCIATED_JOB_1) = #{category_id}
+					 OR (SELECT CATEGORY_ID FROM SUN_JOB WHERE job_id = A.ASSOCIATED_JOB_2) = #{category_id}
+					 OR (SELECT CATEGORY_ID FROM SUN_JOB WHERE job_id = A.ASSOCIATED_JOB_3) = #{category_id}
 					)
 			</if>
 			<if test='category_detail_id != null and category_detail_id != "" '>
 				AND 
-				   ( (SELECT CATEGORY_DETAIL_ID FROM job WHERE job_id = A.ASSOCIATED_JOB_1) = #{category_detail_id}
-					 OR (SELECT CATEGORY_DETAIL_ID FROM job WHERE job_id = A.ASSOCIATED_JOB_2) = #{category_detail_id}
-					 OR (SELECT CATEGORY_DETAIL_ID FROM job WHERE job_id = A.ASSOCIATED_JOB_3) = #{category_detail_id}
+				   ( (SELECT CATEGORY_DETAIL_ID FROM SUN_JOB WHERE job_id = A.ASSOCIATED_JOB_1) = #{category_detail_id}
+					 OR (SELECT CATEGORY_DETAIL_ID FROM SUN_JOB WHERE job_id = A.ASSOCIATED_JOB_2) = #{category_detail_id}
+					 OR (SELECT CATEGORY_DETAIL_ID FROM SUN_JOB WHERE job_id = A.ASSOCIATED_JOB_3) = #{category_detail_id}
+					)
+			</if>
+		GROUP BY REGION		
+	</select>
+	
+	<select id="selectEssRegionCount" resultMap="company">
+		SELECT
+			COUNT(*) AS REGION_COUNT 
+			,	REGION
+			,	(SELECT ADDR FROM ADMINISTRATIVE_DISTRICT WHERE CODE = A.REGION) AS REGION_NAME
+		FROM
+			ESS_COMPANY A
+		WHERE
+			1 = 1
+			AND USE_YN = 'Y'
+			<if test='size != null and size != "" '>
+				AND SIZE = #{size}
+			</if>
+			<if test='region != null and region != "" '>
+				AND REGION = #{region}
+			</if>
+			<if test='region_detail != null and region_detail != "" '>
+				AND REGION_DETAIL = #{region_detail}
+			</if>
+			<if test='name != null and name != "" '>
+				AND NAME LIKE CONCAT('%',#{name},'%')
+			</if>
+			<if test='category_id != null and category_id != "" '>
+				AND 
+				   ( (SELECT CATEGORY_ID FROM ESS_JOB WHERE job_id = A.ASSOCIATED_JOB_1) = #{category_id}
+					 OR (SELECT CATEGORY_ID FROM ESS_JOB WHERE job_id = A.ASSOCIATED_JOB_2) = #{category_id}
+					 OR (SELECT CATEGORY_ID FROM ESS_JOB WHERE job_id = A.ASSOCIATED_JOB_3) = #{category_id}
+					)
+			</if>
+			<if test='category_detail_id != null and category_detail_id != "" '>
+				AND 
+				   ( (SELECT CATEGORY_DETAIL_ID FROM ESS_JOB WHERE job_id = A.ASSOCIATED_JOB_1) = #{category_detail_id}
+					 OR (SELECT CATEGORY_DETAIL_ID FROM ESS_JOB WHERE job_id = A.ASSOCIATED_JOB_2) = #{category_detail_id}
+					 OR (SELECT CATEGORY_DETAIL_ID FROM ESS_JOB WHERE job_id = A.ASSOCIATED_JOB_3) = #{category_detail_id}
 					)
 			</if>
 		GROUP BY REGION		

@@ -14,7 +14,7 @@
 	</resultMap>
 	
 	<insert id="insertUploadFileInfo" useGeneratedKeys="true" keyProperty="file_id" parameterType="UploadFileVO">
-		INSERT INTO UPLOAD_FILE ( 
+		INSERT INTO SUN_UPLOAD_FILE ( 
 			NAME
 			<if test='path != null and path != "" '>
 			,	PATH
@@ -44,7 +44,7 @@
 	
 	
 	<update id="updateInfo" parameterType="UploadFileVO">
-		UPDATE UPLOAD_FILE SET 
+		UPDATE SUN_UPLOAD_FILE SET 
 			DESCRIPTION = #{description}  
 			<if test='name != null and name != "" '>
 			,	NAME = #{name}
@@ -67,7 +67,7 @@
 		SELECT
 			IFNULL(MAX(FILE_ID),0)+1 AS FILE_ID
 		FROM
-			UPLOAD_FILE
+			SUN_UPLOAD_FILE
 	</select>
 	
 	
@@ -76,14 +76,14 @@
 			NAME
 			,	BINARY_CONTENT
 		FROM
-			UPLOAD_FILE
+			SUN_UPLOAD_FILE
 		WHERE
 			FIlE_ID	= #{file_id} 
 	</select>
 	
 	
 	<delete id="deleteInfo" parameterType="UploadFileVO">
-		DELETE FROM UPLOAD_FILE			
+		DELETE FROM SUN_UPLOAD_FILE			
 		WHERE FIlE_ID = #{file_id}
 	</delete>
 	

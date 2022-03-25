@@ -114,6 +114,14 @@ public class CompanyService {
 		CompanyVO result = companyDao.selectDetail(vo);
 		return result;
 	}
+	/**
+	 * ESS 상세
+	 */
+	@Transactional
+	public CompanyVO essDetail(CompanyVO vo) throws Exception {
+		CompanyVO result = companyDao.selectEssDetail(vo);
+		return result;
+	}
 	
 	/**
 	 * 검색
@@ -153,6 +161,44 @@ public class CompanyService {
 		return companyDao.selectSearchList(new DataMap(search));
 	}
 	
+	/**
+	 * ESS 검색
+	 */
+	@Transactional
+	public List<CompanyVO> searchEssList(CompanySearchVO vo) throws Exception {
+		
+		HashMap<String, Object> search = new HashMap<String, Object>();
+		search.put("pageIndex", vo.getPageIndex());
+		
+		
+		if (  StringUtils.isEmpty(vo.getOccupation()) == false ) {
+			search.put("occupation", vo.getOccupation());	
+		}		
+		if (  StringUtils.isEmpty(vo.getCategory_id()) == false ) {
+			search.put("category_id", vo.getCategory_id());	
+		}
+		if (  StringUtils.isEmpty(vo.getCategory_detail_id()) == false ) {
+			search.put("category_detail_id", vo.getCategory_detail_id());	
+		}
+		if (  vo.getSize() != null && vo.getSize().isEmpty() != true ) {
+			search.put("size", vo.getSize());	
+		}
+		if (  vo.getRegion() != null && vo.getRegion().isEmpty() != true ) {
+			search.put("region", vo.getRegion());	
+		}
+		if (  vo.getRegion_detail() != null && vo.getRegion_detail().isEmpty() != true ) {
+			search.put("region_detail", vo.getRegion_detail());	
+		}
+		if (  vo.getName() != null && vo.getName().isEmpty() != true ) {
+			search.put("name", vo.getName());	
+		}
+		if (  vo.getOrderby() != null && vo.getOrderby().isEmpty() != true ) {
+			search.put("orderby", vo.getOrderby());	
+		}
+		
+		return companyDao.selectEssSearchList(new DataMap(search));
+	}
+	
 	
 	/**
 	 * all List  
@@ -160,6 +206,13 @@ public class CompanyService {
 	@Transactional
 	public List<CompanyVO> allList() throws Exception {
 		return companyDao.selectAllList();
+	}
+	/**
+	 * ESS all List  
+	 */
+	@Transactional
+	public List<CompanyVO> allEssList() throws Exception {
+		return companyDao.selectEssAllList();
 	}
 	
 	/**
@@ -169,6 +222,13 @@ public class CompanyService {
 	public List<CompanyVO> searchAllList(CompanySearchVO vo) throws Exception {
 		return companyDao.selectSearchAllList(vo);
 	}
+	/**
+	 * ESS Search List  
+	 */
+	@Transactional
+	public List<CompanyVO> searchEssAllList(CompanySearchVO vo) throws Exception {
+		return companyDao.selectEssSearchAllList(vo);
+	}
 	
 	
 	/**
@@ -177,6 +237,13 @@ public class CompanyService {
 	@Transactional
 	public List<CompanyVO> regionCount(CompanySearchVO vo) throws Exception {
 		return companyDao.selectRegionCount(vo);
+	}
+	/**
+	 * Ess 지역별 회사 갯수
+	 */
+	@Transactional
+	public List<CompanyVO> regionEssCount(CompanySearchVO vo) throws Exception {
+		return companyDao.selectEssRegionCount(vo);
 	}
 	
 }

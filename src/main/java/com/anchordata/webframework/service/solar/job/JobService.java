@@ -235,6 +235,82 @@ public class JobService {
 	}
 	
 	/**
+	 * ESS Search List  
+	 */
+	@Transactional
+	public List<JobVO> searchEssList(JobSearchVO vo) throws Exception {
+		
+		HashMap<String, Object> search = new HashMap<String, Object>();
+		search.put("pageIndex", vo.getPageIndex());
+
+		if (  vo.getCategory_id() != null && vo.getCategory_id().isEmpty() != true ) {
+			search.put("category_id", vo.getCategory_id());	
+		}
+		if (  vo.getCategory_detail_id() != null && vo.getCategory_detail_id().isEmpty() != true ) {
+			search.put("category_detail_id", vo.getCategory_detail_id());	
+		}
+		if (  vo.getOccupation() != null && vo.getOccupation().isEmpty() != true ) {
+			search.put("occupation", vo.getOccupation());	
+		}
+		if (  vo.getMajor() != null && vo.getMajor().isEmpty() != true ) {
+			search.put("major", vo.getMajor());	
+		}
+		if (  vo.getEducation() != null && vo.getEducation().isEmpty() != true ) {
+			search.put("education", vo.getEducation());	
+		}
+		if (  vo.getDifficulty() != null && vo.getDifficulty().isEmpty() != true ) {
+			search.put("difficulty", vo.getDifficulty());	
+		}
+		if (  vo.getName() != null && vo.getName().isEmpty() != true ) {
+			search.put("name", vo.getName());	
+		}
+		if (  vo.getOrderby() != null && vo.getOrderby().isEmpty() != true ) {
+			search.put("orderby", vo.getOrderby());	
+		}
+		
+		return JobDao.selectEssSearchList(new DataMap(search));
+	}
+	
+	
+	/**
+	 * ESS Search List  
+	 */
+	@Transactional
+	public List<JobVO> searchEssList(JobSearchVO vo, int pageRow) throws Exception {
+		
+		HashMap<String, Object> search = new HashMap<String, Object>();
+		search.put("pageIndex", vo.getPageIndex());
+
+		if (  vo.getCategory_id() != null && vo.getCategory_id().isEmpty() != true ) {
+			search.put("category_id", vo.getCategory_id());	
+		}
+		if (  vo.getCategory_detail_id() != null && vo.getCategory_detail_id().isEmpty() != true ) {
+			search.put("category_detail_id", vo.getCategory_detail_id());	
+		}
+		if (  vo.getOccupation() != null && vo.getOccupation().isEmpty() != true ) {
+			search.put("occupation", vo.getOccupation());	
+		}
+		if (  vo.getMajor() != null && vo.getMajor().isEmpty() != true ) {
+			search.put("major", vo.getMajor());	
+		}
+		if (  vo.getEducation() != null && vo.getEducation().isEmpty() != true ) {
+			search.put("education", vo.getEducation());	
+		}
+		if (  vo.getDifficulty() != null && vo.getDifficulty().isEmpty() != true ) {
+			search.put("difficulty", vo.getDifficulty());	
+		}
+		if (  vo.getName() != null && vo.getName().isEmpty() != true ) {
+			search.put("name", vo.getName());	
+		}
+		if (  vo.getOrderby() != null && vo.getOrderby().isEmpty() != true ) {
+			search.put("orderby", vo.getOrderby());	
+		}
+		
+		return JobDao.selectEssSearchList(new DataMap(search), pageRow);
+	}
+	
+	
+	/**
 	 * 일자리 all List  
 	 */
 	@Transactional
@@ -242,6 +318,13 @@ public class JobService {
 		return JobDao.selectAllList();
 	}
 	
+	/**
+	 * ESS 일자리 all List  
+	 */
+	@Transactional
+	public List<JobVO> allEssList() throws Exception {
+		return JobDao.selectEssAllList();
+	}
 	
 	/**
 	 * Search List  
@@ -249,6 +332,14 @@ public class JobService {
 	@Transactional
 	public List<JobVO> searchAllList(JobVO vo) throws Exception {
 		return JobDao.selectSearchAllList(vo);
+	}
+	
+	/**
+	 * ESS Search List  
+	 */
+	@Transactional
+	public List<JobVO> searchEssAllList(JobVO vo) throws Exception {
+		return JobDao.selectEssSearchAllList(vo);
 	}
 	
 	
@@ -261,6 +352,21 @@ public class JobService {
 		
 		List<CommonCodeVO> majorList = JobDao.selectMajorList(vo);
 		List<LicenseVO> licenseList = licenseService.relativeJobList(vo);
+		
+		result.setReturn_major_list(majorList);
+		result.setReturn_license_list(licenseList);
+		return result;
+	}
+	
+	/**
+	 * ESS Detail
+	 */
+	@Transactional
+	public JobVO essDetail(JobVO vo) throws Exception {
+		JobVO result = JobDao.selectEssDetail(vo);
+		
+		List<CommonCodeVO> majorList = JobDao.selectEssMajorList(vo);
+		List<LicenseVO> licenseList = licenseService.relativeEssJobList(vo);
 		
 		result.setReturn_major_list(majorList);
 		result.setReturn_license_list(licenseList);
@@ -286,6 +392,14 @@ public class JobService {
 	@Transactional
 	public List<JobVO> allListRank() throws Exception {
 		return JobDao.allListRank();
+	}
+	
+	/**
+	 * Ess 일자리 all List  
+	 */
+	@Transactional
+	public List<JobVO> allEssListRank() throws Exception {
+		return JobDao.allEssListRank();
 	}
 	
 	

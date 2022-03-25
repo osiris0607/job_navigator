@@ -442,7 +442,7 @@
 			categoryDetail.empty();
 			str += '<option value="">생태계 세부</option>';
 			<c:forEach items="${commonCode}" var="code">
-				<c:if test="${fn:escapeXml(code.master_id) == 'M000003'}">
+				<c:if test="${fn:escapeXml(code.master_id) == 'M000003' and fn:escapeXml(code.menu_id) == 'M000004'}">
 					if (categoryId == "${fn:escapeXml(code.parent_id)}") {
 						str += '<option value="${code.detail_id}"><c:out value="${code.name}"></c:out></option>';
 					}
@@ -456,7 +456,7 @@
 			category.empty();
 			str += '<option value="">생태계 분류</option>';
 			<c:forEach items="${commonCode}" var="code">
-				<c:if test="${code.master_id == 'M000002'}">
+				<c:if test="${code.master_id == 'M000002' and code.menu_id == 'M000004'}">
 					str += '<option value="${code.detail_id}"><c:out value="${code.name}"></c:out></option>';
 				</c:if>
 			</c:forEach>	
@@ -478,7 +478,7 @@
 		category.empty();
 		str += '<option value="">생태계 분류</option>';
 		<c:forEach items="${commonCode}" var="code">
-			<c:if test="${code.master_id == 'M000002'}">
+			<c:if test="${code.master_id == 'M000002' and code.menu_id == 'M000004'}">
 				str += '<option value="${code.detail_id}"><c:out value="${code.name}"></c:out></option>';
 			</c:if>
 		</c:forEach>	
@@ -716,8 +716,10 @@
                   <p class="province">경기도</p>
                   <span class="num" id="num_31">0</span>
                 </div>
+                <div class="scroll_map">
                 <ul class="buisList" id="card_31">
                 </ul>
+                </div>
               </div>
               <div id="Seoul" class="mapCard">
                 <p class="cardTitle" id="title_11"><em class="en">ALL</em></p>
@@ -725,8 +727,10 @@
                   <p class="province">서울</p>
                   <span class="num" id="num_11">0</span>
                 </div>
+                <div class="scroll_map">
                 <ul class="buisList" id="card_11">
                 </ul>
+                </div>
               </div>
               <div id="Incheon" class="mapCard">
                 <p class="cardTitle" id="title_23"><em class="en">ALL</em></p>
@@ -734,8 +738,10 @@
                   <p class="province">인천</p>
                   <span class="num" id="num_23">0</span>
                 </div>
+                <div class="scroll_map">
                 <ul class="buisList" id="card_23">
                 </ul>
+                </div>
               </div>
               <div id="Gangwon" class="mapCard">
                 <p class="cardTitle" id="title_32"><em class="en">ALL</em></p>
@@ -743,8 +749,10 @@
                   <p class="province">강원도</p>
                   <span class="num" id="num_32">0</span>
                 </div>
+                <div class="scroll_map">
                 <ul class="buisList" id="card_32">
                 </ul>
+                </div>
               </div>
               <div id="Chungnam" class="mapCard">
                 <p class="cardTitle" id="title_34"><em class="en">ALL</em></p>
@@ -752,8 +760,10 @@
                   <p class="province">충청남도</p>
                   <span class="num" id="num_34">0</span>
                 </div>
-                <ul class="buisList" id="card_34">
-                </ul>
+                <div class="scroll_map">
+	                <ul class="buisList" id="card_34">
+	                </ul>
+                </div>
               </div>
               <div id="Sejong" class="mapCard">
                 <p class="cardTitle" id="title_29"><em class="en">ALL</em></p>
@@ -761,8 +771,10 @@
                   <p class="province">세종</p>
                   <span class="num" id="num_29">0</span>
                 </div>
-                <ul class="buisList" id="card_29">
-                </ul>
+                <<div class="scroll_map">
+	                <ul class="buisList" id="card_29">
+	                </ul>
+                </div>
               </div>
               <div id="Daejeon" class="mapCard">
                 <p class="cardTitle" id="title_25"><em class="en">ALL</em></p>
@@ -770,8 +782,10 @@
                   <p class="province">대전</p>
                   <span class="num" id="num_25">0</span>
                 </div>
+                <div class="scroll_map">
                 <ul class="buisList" id="card_25">
                 </ul>
+                </div>
               </div>
               <div id="Chungbuk" class="mapCard">
                 <p class="cardTitle" id="title_33"><em class="en">ALL</em></p>
@@ -779,8 +793,10 @@
                   <p class="province">충청북도</p>
                   <span class="num" id="num_33">0</span>
                 </div>
+                <div class="scroll_map">
                 <ul class="buisList" id="card_33">
                 </ul>
+                </div>
               </div>
               <div id="Daegu" class="mapCard">
                 <p class="cardTitle" id="title_22"><em class="en">ALL</em></p>
@@ -788,8 +804,10 @@
                   <p class="province">대구</p>
                   <span class="num" id="num_22">0</span>
                 </div>
+                <div class="scroll_map">
                 <ul class="buisList" id="card_22">
                 </ul>
+                </div>
               </div>
               <div id="Ulsan" class="mapCard">
                 <p class="cardTitle" id="title_26"><em class="en">ALL</em></p>
@@ -797,8 +815,10 @@
                   <p class="province">울산</p>
                   <span class="num" id="num_26">0</span>
                 </div>
+                <div class="scroll_map">
                 <ul class="buisList" id="card_26">
                 </ul>
+                </div>
               </div>
               <div id="Busan" class="mapCard">
                 <p class="cardTitle" id="title_21"><em class="en">ALL</em></p>
@@ -806,8 +826,10 @@
                   <p class="province">부산</p>
                   <span class="num" id="num_21">0</span>
                 </div>
+                <div class="scroll_map">
                 <ul class="buisList" id="card_21">
                 </ul>
+                </div>
               </div>
               <div id="Gyeongbuk" class="mapCard">
                	<p class="cardTitle" id="title_37"><em class="en">ALL</em></p>
@@ -816,9 +838,11 @@
                   <p class="province">경상북도</p>
                   <span class="num" id="num_37">0</span>
                 </div>
+                <div class="scroll_map">
                 <ul class="buisList" id="card_37">
                   <!-- <li><a href="#sdi" class="open">삼성SDI</a></li> -->
                 </ul>
+                </div>
               </div>
               <div id="Gyeongnam" class="mapCard">
                 <p class="cardTitle" id="title_38"><em class="en">ALL</em></p>
@@ -826,8 +850,10 @@
                   <p class="province">경상남도</p>
                   <span class="num" id="num_38">0</span>
                 </div>
+                <div class="scroll_map">
                 <ul class="buisList" id="card_38">
                 </ul>
+                </div>
               </div>
               <div id="Jeonbuk" class="mapCard">
                 <p class="cardTitle" id="title_35"><em class="en">ALL</em></p>
@@ -835,8 +861,10 @@
                   <p class="province">전라북도</p>
                  <span class="num" id="num_35">0</span>
                 </div>
+                <div class="scroll_map">
                 <ul class="buisList" id="card_35">
                 </ul>
+                </div>
               </div>
               <div id="Jeonnam" class="mapCard">
                 <p class="cardTitle" id="title_36"><em class="en">ALL</em></p>
@@ -844,8 +872,10 @@
                   <p class="province">전라남도</p>
                   <span class="num" id="num_36">0</span>
                 </div>
+                <div class="scroll_map">
                 <ul class="buisList" id="card_36">
                 </ul>
+                </div>
               </div>
               <div id="Gwangju" class="mapCard">
                 <p class="cardTitle" id="title_24"><em class="en">ALL</em></p>
@@ -853,8 +883,10 @@
                   <p class="province">광주</p>
                   <span class="num" id="num_24">0</span>
                 </div>
+                <div class="scroll_map">
                 <ul class="buisList" id="card_24">
                 </ul>
+                </div>
               </div>
               <div id="Jeju" class="mapCard">
                 <p class="cardTitle" id="title_39"><em class="en">ALL</em></p>
@@ -862,8 +894,10 @@
                   <p class="province">제주도</p>
                   <span class="num" id="num_39">0</span>
                 </div>
+                <div class="scroll_map">
                 <ul class="buisList" id="card_39">
                 </ul>
+                </div>
               </div>
             </div>
           </div>

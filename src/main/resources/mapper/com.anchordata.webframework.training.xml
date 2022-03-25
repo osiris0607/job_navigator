@@ -20,6 +20,7 @@
 		<result property ="use_yn"					column="USE_YN"	/>
 		<result property ="reg_date"				column="REG_DATE"	/>
 		<result property ="total_count"				column="TOTAL_COUNT"	/>
+		<result property ="job_gb"					column="JOB_GB"	/>
 	</resultMap>
 	
 	
@@ -57,13 +58,37 @@
 			,	LINK
 			,	DATE_FORMAT(REG_DATE,'%Y-%m-%d') AS REG_DATE
 			,	UPLOAD_FILE_ID
-			,	(SELECT NAME FROM UPLOAD_FILE WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
-			,	(SELECT BINARY_CONTENT from UPLOAD_FILE WHERE FIlE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_IMAGE
-			,	(SELECT DESCRIPTION FROM UPLOAD_FILE WHERE FILE_ID = A.UPLOAD_FILE_ID) AS ATTACH_FILE_DESCRIPTION
+			,	(SELECT NAME FROM 
+					<if test='job_gb.equals("D000004")'>
+					SUN_UPLOAD_FILE 
+					</if>
+					<if test='job_gb.equals("D000003")'>
+					ESS_UPLOAD_FILE 
+					</if>
+				WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
+			,	(SELECT BINARY_CONTENT from 
+					<if test='job_gb.equals("D000004")'>	
+					SUN_UPLOAD_FILE 
+					</if>
+					<if test='job_gb.equals("D000003")'>
+					ESS_UPLOAD_FILE 
+					</if> 
+				WHERE FIlE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_IMAGE
+			,	(SELECT DESCRIPTION FROM 
+					<if test='job_gb.equals("D000004")'>
+					SUN_UPLOAD_FILE 
+					</if>
+					<if test='job_gb.equals("D000003")'>
+					ESS_UPLOAD_FILE 
+					</if> 
+				WHERE FILE_ID = A.UPLOAD_FILE_ID) AS ATTACH_FILE_DESCRIPTION
 		FROM
 			TRAINING A
 		WHERE
 			USE_YN = 'Y'
+			<if test='job_gb != null and job_gb != "" '>
+				AND JOB_GB = #{job_gb}
+			</if>
 			<if test='title != null and title != "" '>
 				AND TITLE LIKE CONCAT('%',#{title},'%')
 			</if>
@@ -91,13 +116,38 @@
 			,	LINK
 			,	DATE_FORMAT(REG_DATE,'%Y-%m-%d') AS REG_DATE
 			,	UPLOAD_FILE_ID
-			,	(SELECT NAME FROM UPLOAD_FILE WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
-			,	(SELECT BINARY_CONTENT from UPLOAD_FILE WHERE FIlE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_IMAGE
-			,	(SELECT DESCRIPTION FROM UPLOAD_FILE WHERE FILE_ID = A.UPLOAD_FILE_ID) AS ATTACH_FILE_DESCRIPTION
+			,	(SELECT NAME FROM 
+					<if test='job_gb.equals("D000004")'>
+					SUN_UPLOAD_FILE 
+					</if>
+					<if test='job_gb.equals("D000003")'>
+					ESS_UPLOAD_FILE 
+					</if>
+				WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
+			,	(SELECT BINARY_CONTENT from 
+					<if test='job_gb.equals("D000004")'>	
+					SUN_UPLOAD_FILE 
+					</if>
+					<if test='job_gb.equals("D000003")'>
+					ESS_UPLOAD_FILE 
+					</if> 
+				WHERE FIlE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_IMAGE
+			,	(SELECT DESCRIPTION FROM 
+					<if test='job_gb.equals("D000004")'>
+					SUN_UPLOAD_FILE 
+					</if>
+					<if test='job_gb.equals("D000003")'>
+					ESS_UPLOAD_FILE 
+					</if> 
+				WHERE FILE_ID = A.UPLOAD_FILE_ID) AS ATTACH_FILE_DESCRIPTION
 		FROM
 			TRAINING A
 		WHERE
 			USE_YN = 'Y'
+			<if test='job_gb != null and job_gb != "" '>
+				AND JOB_GB = #{job_gb}
+			</if>
+			
 			<if test='title != null and title != "" '>
 				AND TITLE LIKE CONCAT('%',#{title},'%')
 			</if>
@@ -124,9 +174,30 @@
 			,	LINK
 			,	DATE_FORMAT(REG_DATE,'%Y-%m-%d') AS REG_DATE
 			,	UPLOAD_FILE_ID
-			,	(SELECT NAME FROM UPLOAD_FILE WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
-			,	(SELECT BINARY_CONTENT from UPLOAD_FILE WHERE FIlE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_IMAGE
-			,	(SELECT DESCRIPTION FROM UPLOAD_FILE WHERE FILE_ID = A.UPLOAD_FILE_ID) AS ATTACH_FILE_DESCRIPTION
+			,	(SELECT NAME FROM 
+					<if test='job_gb.equals("D000004")'>
+					SUN_UPLOAD_FILE 
+					</if>
+					<if test='job_gb.equals("D000003")'>
+					ESS_UPLOAD_FILE 
+					</if>
+				WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
+			,	(SELECT BINARY_CONTENT from 
+					<if test='job_gb.equals("D000004")'>	
+					SUN_UPLOAD_FILE 
+					</if>
+					<if test='job_gb.equals("D000003")'>
+					ESS_UPLOAD_FILE 
+					</if> 
+				WHERE FIlE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_IMAGE
+			,	(SELECT DESCRIPTION FROM 
+					<if test='job_gb.equals("D000004")'>
+					SUN_UPLOAD_FILE 
+					</if>
+					<if test='job_gb.equals("D000003")'>
+					ESS_UPLOAD_FILE 
+					</if> 
+				WHERE FILE_ID = A.UPLOAD_FILE_ID) AS ATTACH_FILE_DESCRIPTION
 		FROM
 			TRAINING A
 		WHERE

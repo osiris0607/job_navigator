@@ -69,7 +69,7 @@ spring:
 
   datasource:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-    jdbc-url: jdbc:log4jdbc:mysql://103.55.191.104:3306/sun_job_navigator?serverTimezone=UTC&characterEncoding=UTF-8&allowMultiQueries=true
+    jdbc-url: jdbc:log4jdbc:mysql://103.55.191.104:3306/job_navigator?serverTimezone=UTC&characterEncoding=UTF-8&allowMultiQueries=true
    # jdbc-url: jdbc:log4jdbc:mysql://localhost:3306/youth?serverTimezone=UTC&characterEncoding=UTF-8&allowMultiQueries=true
     username: anchor
     password: Anchoruser0914@

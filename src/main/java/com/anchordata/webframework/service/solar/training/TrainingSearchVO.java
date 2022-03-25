@@ -20,6 +20,7 @@ public class TrainingSearchVO {
 	private String enforcement_agency = "";
 	private String reg_date = "";
 	private String address = "";
+	private String job_gb = "";
 	
 	// paging List Index
 	private String pageIndex;
@@ -88,7 +89,12 @@ public class TrainingSearchVO {
 		this.result = result;
 	}
 
-
+	public String getJob_gb() {
+		return job_gb;
+	}
+	public void setJob_gb(String job_gb) {
+		this.job_gb = job_gb;
+	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

@@ -27,6 +27,7 @@ public class TrendVO {
 	private String use_yn = "";
 	private String reg_date = "";
 	private String hits = "0";
+	private String job_gb = "";
 	
 		
 	
@@ -113,6 +114,12 @@ public class TrendVO {
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	public String getJob_gb() {
+		return job_gb;
+	}
+	public void setJob_gb(String job_gb) {
+		this.job_gb = job_gb;
 	}
 	
 	
