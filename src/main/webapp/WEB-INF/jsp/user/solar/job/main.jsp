@@ -215,11 +215,11 @@
 
 				var imageTag = "";
 				if (data.result[i].category_detail_id == "A-1") {
-					imageTag = "<img src='/assets/img/job_silicon_icon.png' alt='실리콘 이미지' title='실리콘 이미지' />";
+					imageTag = "<img src='/assets/img/job_solar_silicon_icon.png' alt='실리콘 이미지' title='실리콘 이미지' />";
 					str += "<th class='tal material2'><span>" + imageTag + "</span>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
 				}
 				else if (data.result[i].category_detail_id == "A-2") {
-					imageTag = "<img src='/assets/img/job_notsilicon_icon.png' alt='비실리콘 이미지' title='비실리콘 이미지' />";
+					imageTag = "<img src='/assets/img/job_solar_notsilicon_icon.png' alt='비실리콘 이미지' title='비실리콘 이미지' />";
 					str += "<th class='tal material2'><span>" + imageTag + "</span>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
 				}
 				else if (data.result[i].category_detail_id == "A-3") {
@@ -227,39 +227,45 @@
 					str += "<th class='tal material2'><span>" + imageTag + "</span>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
 				}
 				else if (data.result[i].category_detail_id == "B-1") {
-					imageTag = "<img src='/assets/img/job_cell_icon.png' alt='잉곳&middot;셀 이미지' title='셀 이미지' />";
+					imageTag = "<img src='/assets/img/job_solar_cell_icon.png' alt='잉곳&middot;셀 이미지' title='셀 이미지' />";
 					str += "<th class='tal production2'><span>" + imageTag + "</span>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
 				}
 				else if (data.result[i].category_detail_id == "B-2") {
-					imageTag = "<img src='/assets/img/job_module_icon.png' alt='모듈 이미지' title='모듈 이미지' />";
+					imageTag = "<img src='/assets/img/job_solar_module_icon.png' alt='모듈 이미지' title='모듈 이미지' />";
 					str += "<th class='tal production2'><span>" + imageTag + "</span>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
 				}
 				else if (data.result[i].category_detail_id == "B-3") {
-					imageTag = "<img src='/assets/img/job_equipment_icon.png' alt='장비 이미지' title='장비 이미지' />";
+					imageTag = "<img src='/assets/img/job_solar_equipment_icon.png' alt='장비 이미지' title='장비 이미지' />";
 					str += "<th class='tal production2'><span>" + imageTag + "</span>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
 				}
 				else if (data.result[i].category_detail_id == "C-1") {
-					imageTag = "<img src='/assets/img/job_part_icon.png' alt='발전부품 이미지' title='발전부품 이미지' />";
+					imageTag = "<img src='/assets/img/job_solar_part_icon.png' alt='발전부품 이미지' title='발전부품 이미지' />";
 					str += "<th class='tal system2'><span>" + imageTag + "</span>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
 				}
 				else if (data.result[i].category_detail_id == "C-2") {
-					imageTag = "<img src='/assets/img/job_facilities_icon.png' alt='발전설비 이미지' title='발전설비 이미지' />";
+					imageTag = "<img src='/assets/img/job_solar_facilities_icon.png' alt='발전설비 이미지' title='발전설비 이미지' />";
 					str += "<th class='tal system2'><span>" + imageTag + "</span>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
 				}
 				else if (data.result[i].category_detail_id == "C-3") {
-					imageTag = "<img src='/assets/img/job_recycling_icon.png' alt='리사이클링&middot;리파워링 이미지' title='리사이클링&middot;리파워링 이미지' />";
-					str += "<th class='tal system2'><span>" + imageTag + "</span>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
+					imageTag = "<img src='/assets/img/job_solar_recycling_icon.png' alt='리사이클링&middot;리파워링 이미지' title='리사이클링&middot;리파워링 이미지' />";
+					var categoryDetailName = data.result[i].category_detail_name;
+					var name1 = categoryDetailName.substr(0, 6);
+					var name2 = categoryDetailName.substr(6);
+					str += "<th class='tal system2'><span>" + imageTag + "</span>" + unescapeHtml(name1) + "<br>" + unescapeHtml(name2) + "</th>";
 				}
 				else if (data.result[i].category_detail_id == "D-1") {
-					imageTag = "<img src='/assets/img/job_consulting_icon.png' alt='사업개발&middot;컨설팅 이미지' title='사업개발&middot;컨설팅 이미지' />";
-					str += "<th class='tal business2'><span>" + imageTag + "</span>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
+					imageTag = "<img src='/assets/img/job_solar_consulting_icon.png' alt='사업개발&middot;컨설팅 이미지' title='사업개발&middot;컨설팅 이미지' />";
+					var categoryDetailName = data.result[i].category_detail_name;
+					var name1 = categoryDetailName.substr(0, 5);
+					var name2 = categoryDetailName.substr(5);
+					str += "<th class='tal business2'><span>" + imageTag + "</span>" + unescapeHtml(name1) + "<br>" + unescapeHtml(name2) + "</th>";
 				}
 				else if (data.result[i].category_detail_id == "D-2") {
-					imageTag = "<img src='/assets/img/job_consulting_icon.png' alt='설계&middot;시공 이미지' title='설계&middot;시공 이미지' />";
+					imageTag = "<img src='/assets/img/job_solar_consulting_icon.png' alt='설계&middot;시공 이미지' title='설계&middot;시공 이미지' />";
 					str += "<th class='tal business2'><span>" + imageTag + "</span>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
 				}
 				else if (data.result[i].category_detail_id == "D-3") {
-					imageTag = "<img src='/assets/img/job_operation_icon.png' alt='운영&middot;유지관리 이미지' title='운영&middot;유지관리 이미지' />";
+					imageTag = "<img src='/assets/img/job_solar_operation_icon.png' alt='운영&middot;유지관리 이미지' title='운영&middot;유지관리 이미지' />";
 					str += "<th class='tal business2'><span>" + imageTag + "</span>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
 				}
 				else if (data.result[i].category_detail_id == "D-4") {
@@ -282,16 +288,16 @@
 					// 중간에 없으면 Blank로 나온다.
 					if ( categoryDetailId == data.result[i].category_detail_id && occurptionNextId == data.result[i].occupation ) {
 						if ( occurptionNextId == "D000001") {
-							str += "	<a href='javascript:void(0)' originClass='research' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='research' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
+							str += "	<a style='height:31px;' href='javascript:void(0)' originClass='research' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='research' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
 						}
 						else if ( occurptionNextId == "D000002") {
-							str += "	<a href='javascript:void(0)' originClass='tech' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='tech' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
+							str += "	<a style='height:31px;' href='javascript:void(0)' originClass='tech' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='tech' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
 						}
 						else if ( occurptionNextId == "D000003") {
-							str += "	<a href='javascript:void(0)' originClass='func' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='func' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
+							str += "	<a style='height:31px;' href='javascript:void(0)' originClass='func' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='func' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
 						}
 						else {
-							str += "	<a href='javascript:void(0)' originClass='service' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='service' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
+							str += "	<a style='height:31px;' href='javascript:void(0)' originClass='service' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='service' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
 						}
 					}
 					else {
@@ -328,16 +334,16 @@
 					// 중간에 없으면 Blank로 나온다.
 					if ( categoryDetailId == data.result[i].category_detail_id && occurptionNextId == data.result[i].occupation ) {
 						if ( occurptionNextId == "D000001") {
-							str += "	<a href='javascript:void(0)' originClass='research' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='research' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
+							str += "	<a style='height:31px;' href='javascript:void(0)' originClass='research' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='research' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
 						}
 						else if ( occurptionNextId == "D000002") {
-							str += "	<a href='javascript:void(0)' originClass='tech' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='tech' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
+							str += "	<a style='height:31px;' href='javascript:void(0)' originClass='tech' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='tech' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
 						}
 						else if ( occurptionNextId == "D000003") {
-							str += "	<a href='javascript:void(0)' originClass='func' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='func' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
+							str += "	<a style='height:31px;' href='javascript:void(0)' originClass='func' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='func' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
 						}
 						else {
-							str += "	<a href='javascript:void(0)' originClass='service' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='service' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
+							str += "	<a style='height:31px;' href='javascript:void(0)' originClass='service' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='service' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
 						}
 					}
 					else {

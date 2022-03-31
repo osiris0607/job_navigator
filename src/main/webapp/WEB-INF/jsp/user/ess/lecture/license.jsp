@@ -173,7 +173,7 @@
 
 <div id="wrap">
   <section>
-     <div class="subVisual lecture">
+     <div class="subVisual essLecture">
        <div class="titleArea">
          <h2>자격증</h2>
          <span>ESS산업 일자리 관련 구직·재직자가 취득할 수 있는 자격증 정보를 제공합니다.</span>

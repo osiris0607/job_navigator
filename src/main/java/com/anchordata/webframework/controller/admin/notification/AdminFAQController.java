@@ -45,10 +45,11 @@ public class AdminFAQController {
 	// OPEN API 호출
 	///////////////////////////////////////////////////////////////////////////
 	/**
-	* 등록
+	* SOLAR 등록
 	*/
 	@RequestMapping("/admin/api/notification/faq/registration")
 	public ModelAndView registration(@ModelAttribute FAQVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000004");
 		mv.addObject( "result", faqService.registration(vo) );
 		mv.setViewName("jsonView");
 		return mv;
@@ -60,6 +61,7 @@ public class AdminFAQController {
 	*/
 	@RequestMapping("/admin/api/notification/faq/search/paging")
 		public ModelAndView search(@ModelAttribute FAQSearchVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000004");
 		List<FAQVO> resList = faqService.searchList(vo);
 		if (resList.size() > 0) {
 			mv.addObject("result", resList);
@@ -77,6 +79,7 @@ public class AdminFAQController {
 	*/
 	@RequestMapping("/admin/api/notification/faq/all")
 		public ModelAndView searchAll(@ModelAttribute FAQVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000004");
 		List<FAQVO> resList = faqService.allList();
 		mv.addObject("result", resList);
 		mv.setViewName("jsonView");

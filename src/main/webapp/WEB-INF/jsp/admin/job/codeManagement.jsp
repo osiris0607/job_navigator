@@ -501,7 +501,7 @@
 			selector.empty();
 			str += '	<option value="">생태계 세부분류 전체</option>';
     		<c:forEach items="${commonCode}" var="code">
-				<c:if test="${code.master_id == 'M000003'}">
+				<c:if test="${code.master_id == 'M000003' && code.menu_id == 'M000004'}">
 					if (categoryId == "${code.parent_id}") {
 						str += '<option value="${code.detail_id}">${code.name}</option>';
 					}
@@ -543,6 +543,7 @@
 			commonCodeArr.push({
 				master_id:"${code.master_id}",
 				master_description:"${code.master_description}",
+				menu_id:"${code.menu_id}",
 				parent_id:"${code.parent_id}",
 				detail_id:"${code.detail_id}",
 				name:"${code.name}",
@@ -625,6 +626,7 @@
 
 		$.each(commonCodeArr, function(index, item) 
 		{
+			console.log('==============item ::: ' ,item);
 			if ( item.master_id == 'M000002') 
 			{
 				str += '<tr>';
@@ -996,7 +998,7 @@
                             <select class="ace-select w20 fl" id="selector_category" title="생태계 분류">	
                                	<option value="">생태계 분류 전체</option>
                         		<c:forEach items="${commonCode}" var="code">
-									<c:if test="${code.master_id == 'M000002'}">
+									<c:if test="${code.master_id == 'M000002' && code.menu_id == 'M000004'}">
 										<option value="${code.detail_id}">${code.name}</option>
 									</c:if>
 								</c:forEach>
@@ -1032,7 +1034,7 @@
 								<select class="ace-select w20 fl" id="selector_category_occupation" title="생태계 분류">	
 	                               	<option value="">생태계 분류 전체</option>
 	                        		<c:forEach items="${commonCode}" var="code">
-										<c:if test="${code.master_id == 'M000002'}">
+										<c:if test="${code.master_id == 'M000002' && code.menu_id == 'M000004'}">
 											<option value="${code.detail_id}">${code.name}</option>
 										</c:if>
 									</c:forEach>

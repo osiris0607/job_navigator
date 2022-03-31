@@ -46,7 +46,7 @@
 
 <div id="wrap">
     <section>
-      <div class="subVisual promising">
+      <div class="subVisual essPromising">
         <div class="titleArea">
           <h2>ESS산업 유망 일자리</h2>
           <span>ESS산업 일자리 중 관련산업의 성장 가능성 및 파급효과 등을 고려하여<br /> 향후 유망성이 있다고 판단되는 유망 일자리에 대한 정보를 제공합니다.</span>

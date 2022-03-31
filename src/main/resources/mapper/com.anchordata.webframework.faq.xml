@@ -15,14 +15,16 @@
 	</resultMap>
 	
 	
-	<insert id="insertInfo" parameterType="FAQVO">
+	<insert id="insertInfo" useGeneratedKeys="true" keyProperty="faq_id" parameterType="FAQVO">
 		INSERT INTO  FAQ ( 
 			QUESTION
 			,	ANSWER
+			, JOB_GB
 		) 
 		VALUES (
 			#{question}
-			,	#{answer}
+			, #{answer}
+			, #{job_gb}
 		);
 	</insert>
 	

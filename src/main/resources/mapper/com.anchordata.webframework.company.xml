@@ -39,7 +39,7 @@
 	
 	
 	<insert id="insertInfo" parameterType="CompanyVO">
-		INSERT INTO COMPANY ( 
+		INSERT INTO SUN_COMPANY ( 
 			SIZE
 			,	REGION
 			,	REGION_DETAIL
@@ -385,7 +385,7 @@
 	
 	
 	<update id="updateInfo" parameterType="CompanyVO">
-		UPDATE COMPANY SET   
+		UPDATE SUN_COMPANY SET   
 			SIZE = #{size}
 			,	REGION = #{region}
 			,	REGION_DETAIL = #{region_detail}

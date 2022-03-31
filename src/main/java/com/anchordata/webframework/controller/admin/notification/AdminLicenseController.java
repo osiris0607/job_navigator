@@ -60,6 +60,7 @@ public class AdminLicenseController {
 	*/
 	@RequestMapping("/admin/api/notification/license/registration")
 	public ModelAndView registration(@ModelAttribute LicenseVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000004");
 		mv.addObject( "result", licenseService.registration(vo) );
 		mv.setViewName("jsonView");
 		return mv;

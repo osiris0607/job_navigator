@@ -46,7 +46,7 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
 			List<GrantedAuthority> updatedAuthorities = new ArrayList<>(authentication.getAuthorities());
 			for (GrantedAuthority auth : updatedAuthorities) {
 				if (auth.getAuthority().compareTo("ROLE_ADMIN") == 0 ) {
-					response.sendRedirect("/admin/rdt/home/management");
+					response.sendRedirect("/admin/rdt/gate/gate");
 					return;
 				}
 			}

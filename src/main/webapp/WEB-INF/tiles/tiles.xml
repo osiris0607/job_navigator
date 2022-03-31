@@ -125,6 +125,7 @@
 	<definition name="login/adminLogin" template="/WEB-INF/jsp/user/login/adminLogin.jsp"></definition>
 	<definition name="user/main" template="/WEB-INF/jsp/user/main/main.jsp"></definition>	
 	<definition name="user/gate" template="/WEB-INF/jsp/user/gate/gate.jsp"></definition>
+	<definition name="admin/gate" template="/WEB-INF/jsp/admin/gate/gate.jsp"></definition>
 	<definition name="user/gateMobile" template="/WEB-INF/jsp/user/gate/gateMobile.jsp"></definition>	
 	
 </tiles-definitions>

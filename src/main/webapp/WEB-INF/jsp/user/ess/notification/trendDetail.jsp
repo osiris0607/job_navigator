@@ -55,7 +55,7 @@
 <input type="hidden" id="trend_id" name="trend_id" value='<c:out value="${vo.trend_id}"/>' />
 <div id="wrap">
  <section>
-    <div class="subVisual lecture">
+    <div class="subVisual essLecture">
       <div class="titleArea">
         <h2>자료실</h2>
           <span>태양광산업 및 연관산업 동향 등의 자료를 제공합니다.</span>

@@ -17,6 +17,12 @@ public class UserLoginController {
 		return mv;
 	}
 	
+	@RequestMapping("/admin/rdt/gate/gate")
+	public ModelAndView adminGate(HttpServletRequest request, HttpServletResponse response, ModelAndView mv) throws Exception {
+		mv.setViewName("admin/gate");
+		return mv;
+	}
+	
 	
 	/**
 	 *  로그인 Success

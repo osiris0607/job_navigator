@@ -1,9 +1,9 @@
    <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
   <div id="wrap">
     <div class="main_top_info">
-	<img src="/assets/img/main_img.png" alt="태양산업 일자리 내비게이터 메인 소개 이미지" />
+	<img src="/assets/img/main_ess_img.png" alt="태양산업 일자리 내비게이터 메인 소개 이미지" />
 	<div class="main_top_info_txt">
-	  <p><span class="blue_font">ESS산업</span> <br /><span class="fw_5">일자리 내비게이터</span></p>
+	  <p><span class="yellow_font">ESS산업</span> <br /><span class="fw_5">일자리 내비게이터</span></p>
 	  <p class="main_top_info_txt_s">ESS산업 분야로의 취업 및 경력 개발을 위해<br />ESS산업의 종합적인 일자리 정보를 제공하는 플랫폼</p>
 	</div>
   </div>

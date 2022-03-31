@@ -25,7 +25,7 @@
 	
 	<!-- PJS 생성  -->
 	<!-- 2020-03-25 -->
-	<insert id="insertInfo" parameterType="LicenseVO">
+	<insert id="insertInfo" useGeneratedKeys="true" keyProperty="license_id" parameterType="LicenseVO">
 		INSERT INTO  LICENSE ( 
 			FIELD
 			,	KOR_NAME
@@ -36,6 +36,7 @@
 			,	CHANGE_PROCESS
 			,	PERFORMANCE_JOB
 			, 	PROSPECT
+			, JOB_GB
 		) 
 		VALUES (
 			#{field} 
@@ -47,6 +48,7 @@
 			,	#{change_process}
 			,	#{performance_job}
 			,	#{prospect}
+			, #{job_gb}
 		);
 	</insert>
 	

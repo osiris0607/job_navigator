@@ -20,18 +20,20 @@
 	
 	<!-- PJS 생성  -->
 	<!-- 2020-03-25 -->
-	<insert id="insertInfo" parameterType="TrendVO">
+	<insert id="insertInfo" useGeneratedKeys="true" keyProperty="trend_id" parameterType="TrendVO">
 		INSERT INTO TREND ( 
 			WRITER
 			,	TITLE
 			,	EXPLANATION
 			,	UPLOAD_FILE_ID
+			,   JOB_GB
 		) 
 		VALUES (
 			#{writer} 
 			,	#{title}
 			,	#{explanation}
 			,	#{upload_file_id}
+			,	#{job_gb}
 		);
 	</insert>
 	

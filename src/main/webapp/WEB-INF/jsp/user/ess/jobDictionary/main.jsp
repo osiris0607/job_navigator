@@ -160,7 +160,7 @@
 <div id="wrap">
 
   <section>
-    <div class="subVisual search">
+    <div class="subVisual essSearch">
       <div class="titleArea">
         <h2>ESS산업 일자리 사전</h2>
           <span>ESS산업의 일자리 검색 기능 및 일자리별 상세정보 페이지를 제공합니다.</span>

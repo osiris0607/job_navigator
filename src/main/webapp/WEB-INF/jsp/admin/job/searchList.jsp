@@ -123,7 +123,7 @@
 			categoryDetail.empty();
 			str += '<option value="">생태계 분류 전체</option>';
 			<c:forEach items="${commonCode}" var="code">
-				<c:if test="${code.master_id == 'M000003'}">
+				<c:if test="${code.master_id == 'M000003' && code.menu_id == 'M000004'}">
 					if (categoryId == "${code.parent_id}") {
 						str += '<option value="${code.detail_id}">${code.name}</option>';
 					}
@@ -137,7 +137,7 @@
 			category.empty();
 			str += '<option value="">생태계 분류 선택</option>';
 			<c:forEach items="${commonCode}" var="code">
-				<c:if test="${code.master_id == 'M000002'}">
+				<c:if test="${code.master_id == 'M000002' && code.menu_id == 'M000004'}">
 					str += '<option value="${code.detail_id}">${code.name}</option>';
 				</c:if>
 			</c:forEach>	
@@ -157,7 +157,7 @@
 		category.empty();
 		str += '<option value="">생태계 분류 선택</option>';
 		<c:forEach items="${commonCode}" var="code">
-			<c:if test="${code.master_id == 'M000002'}">
+			<c:if test="${code.master_id == 'M000002' && code.menu_id == 'M000004'}">
 				str += '<option value="${code.detail_id}">${code.name}</option>';
 			</c:if>
 		</c:forEach>	

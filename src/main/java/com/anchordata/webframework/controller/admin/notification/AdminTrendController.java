@@ -53,10 +53,11 @@ public class AdminTrendController {
 	// OPEN API 호출
 	///////////////////////////////////////////////////////////////////////////
 	/**
-	* 등록
+	* SOLAR 등록
 	*/
 	@RequestMapping("/admin/api/notification/trend/registration")
 	public ModelAndView registration(@ModelAttribute TrendVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000004");
 		mv.addObject( "result", trendService.registration(vo) );
 		mv.setViewName("jsonView");
 		return mv;

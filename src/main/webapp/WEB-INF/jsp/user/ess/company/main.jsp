@@ -517,7 +517,7 @@
 
 <div id="wrap">
     <section>
-      <div class="subVisual map">
+      <div class="subVisual essMap">
         <div class="titleArea">
           <h2>ESS산업 기업 지도</h2>
           	<span>생태계별 ESS산업 기업을 지도 형식으로 표시하여<br /> 지역별 ESS산업 기업의 분포를 확인 가능합니다.</span>

@@ -1,4 +1,6 @@
 @charset "UTF-8";
+
+
 /* 국문 */
 @font-face { font-family: 'NotoKR'; src: url("./font/NotoSansKR-100-Thin.otf"); src: url("./font/NotoSansKR-100-Thin.otf") format("opentype"); font-weight: 100; font-style: normal; }
 
@@ -374,15 +376,27 @@ section.capabilityBg { background: #fafafa;}
 /* 서브 페이지 */
 .subVisual { position: relative; width: 100%; height: 310px; }
 
+.subVisual.essJob { background: url("/assets/img/sub_visual_ess_job.png") center no-repeat; background-size: cover; }
+
 .subVisual.job { background: url("/assets/img/sub_visual_job.png") center no-repeat; background-size: cover; }
+
+.subVisual.essSearch { background: url("/assets/img/sub_visual_ess_search.png") center no-repeat; background-size: cover; }
 
 .subVisual.search { background: url("/assets/img/sub_visual_search.png") center no-repeat; background-size: cover; }
 
+.subVisual.essPromising { background: url("/assets/img/sub_visual_ess_promising.png") center no-repeat; background-size: cover; }
+
 .subVisual.promising { background: url("/assets/img/sub_visual_promising.png") center no-repeat; background-size: cover; }
+
+.subVisual.essLecture { background: url("/assets/img/sub_visual_ess_online.png") center no-repeat; background-size: cover; }
 
 .subVisual.lecture { background: url("/assets/img/sub_visual_online.png") center no-repeat; background-size: cover; }
 
+.subVisual.essNotice_top_bg{ background: url("/assets/img/sub_visual_ess_notice.png") center no-repeat; background-size: cover; }
+
 .subVisual.notice_top_bg{ background: url("/assets/img/sub_visual_notice.png") center no-repeat; background-size: cover; }
+
+.subVisual.essMap { background: url("/assets/img/sub_visual_ess_map.png") center no-repeat; background-size: cover; }
 
 .subVisual.map { background: url("/assets/img/sub_visual_map.png") center no-repeat; background-size: cover; }
 
@@ -1027,6 +1041,7 @@ button[type=button] { height: 48px; line-height: 48px; color: #999999; font-styl
 .main_top_info .main_classimg{margin-top: 50px;}
 
 .blue_font{color: #0aa0ff;}
+.yellow_font{color: #fcb122;}
 .titleArea {color: #010101 !important;width: 100%;}
 .titleArea span{text-align: left;display: block;margin-top: 20px;}
 
@@ -1051,11 +1066,12 @@ tbody .leftRadius {border-bottom: 0 !important;}
 .job_table{border-spacing: 5px !important;width: 1138px;}
 .job_table tbody .leftRadius{font-size: 24px !important; text-shadow: 1px 1px 5px rgba(22,22,22,0.3);color: #fff;}
 
-
+/* SOLAR JOB */
 .material{background-color: #95daf9;border-radius: 10px 0 0 10px;-webkit-border-radius : 10px 0 0 10px !important;-moz-border-radius : 10px 0 0 10px !important;-o-border-radius : 10px 0 0 10px !important;}
 .material2{background-color: #77aec7;color: #fff;position: relative;font-weight: 500;font-size: 16px;line-height: 18px;}
 .material2:before{content : ""; position: absolute;transform:translate(15%); left : 0; bottom : 0; height : 1px;  width : 80%;  border-bottom:1px solid #9dccdc;}
 .job_table tbody tr:last-child th:before{ content : ""; position: absolute; left : 0; bottom : 0; height : 1px;  width : 80%;  border-bottom:0 !important;}
+.material2, .production2, .system2, .business2{word-break: keep-all;}
 .material2 span, .production2 span, .system2 span, .business2 span{display: block;margin-bottom: 7px;}
 
 .production{background-color: #6cd1f4;}
@@ -1071,9 +1087,29 @@ tbody .leftRadius {border-bottom: 0 !important;}
 .business2:before{content : ""; position: absolute;transform:translate(15%); left : 0; bottom : 0; height : 1px;  width : 80%;  border-bottom:1px solid #9dccdc;}
 .edu_{padding: 10px 0;}
 
+/* ESS JOB */
+.essMaterial{background-color: #f7da77;border-radius: 10px 0 0 10px;-webkit-border-radius : 10px 0 0 10px !important;-moz-border-radius : 10px 0 0 10px !important;-o-border-radius : 10px 0 0 10px !important;}
+.essMaterial2{background-color: #debb44;color: #fff;position: relative;font-weight: 500;font-size: 16px;line-height: 18px;}
+.essMaterial2:before{content : ""; position: absolute;transform:translate(15%); left : 0; bottom : 0; height : 1px;  width : 80%;  border-bottom:1px solid #f8d76f;}
+.job_table tbody tr:last-child th:before{ content : ""; position: absolute; left : 0; bottom : 0; height : 1px;  width : 80%;  border-bottom:0 !important;}
+.essMaterial2, .essProduction2, .essSystem2, .essBusiness2{word-break: keep-all;}
+.essMaterial2 span, .production2 span, .system2 span, .business2 span{display: block;margin-bottom: 7px;}
 
-.job_table td{padding: 0 !important;padding-top: 10px !important;padding-right: 5px !important;}
-.job_table td a{width: 100% !important;font-size: 15px !important;border-radius: 0 !important;-webkit-border-radius : 0 !important;-mozborder-radius : 0 !important;-o-border-radius : 0 !important;margin: 0 !important;height: 31px;padding: 0 !important;display: block;color: #000 !important;}
+.essProduction{background-color: #f8d54a;}
+.essProduction2{background-color: #dbb41a;color: #fff;position: relative;font-weight: 500;font-size: 16px;line-height: 18px;}
+.essProduction2:before{content : ""; position: absolute;transform:translate(15%); left : 0; bottom : 0; height : 1px;  width : 80%;  border-bottom:1px solid #f8d76f;}
+
+.essSystem{background-color: #fec734;}
+.essSystem2{background-color:#dbaa27;color: #fff;position: relative;font-weight: 500;font-size: 16px;line-height: 18px;}
+.essSystem2:before{content : ""; position: absolute;transform:translate(15%); left : 0; bottom : 0; height : 1px;  width : 80%;  border-bottom:1px solid #f8d76f;}
+
+.essBusiness{background-color: #ffba35;}
+.essBusiness2{background-color: #d7950a;color: #fff;position: relative;font-weight: 500;font-size: 16px;line-height: 18px;}
+.essBusiness2:before{content : ""; position: absolute;transform:translate(15%); left : 0; bottom : 0; height : 1px;  width : 80%;  border-bottom:1px solid #f8d76f;}
+
+
+.job_table td{padding: 0 !important;padding-top: 10px !important;padding-right: 5px !important; word-break: keep-all;}
+.job_table td a{width: 100% !important;font-size: 15px !important;border-radius: 0 !important;-webkit-border-radius : 0 !important;-mozborder-radius : 0 !important;-o-border-radius : 0 !important;margin: 0 !important;padding: 0 !important;display: block;color: #000 !important; padding: 6.5px !important;line-height: 1.2em !important;}
 
 .tblJob tbody tr{border: 0 !important;}
 .tblJob tbody tr:last-child{border-bottom: 1px solid #f0f0f0 !important;}
@@ -1083,31 +1119,31 @@ tbody .leftRadius {border-bottom: 0 !important;}
 /*연구직*/
 .job_table .researcher{line-height: 70px;vertical-align: middle !important;background-image:url('/assets/img/researcher_bg.png') !important;background-size:contain !important;background-repeat:no-repeat !important;font-weight: 500;padding-left: 20px !important;}
 .job_table .researcher span{display: inline-block;}
-.tblJob tbody td a.research{background-color: #b7eede !important;border: 0;margin-bottom: 10px !important;}
+.tblJob tbody td a.research{background-color: #b7eede !important;border: 2px solid #b7eede;;margin-bottom: 10px !important;}
 /*연구직 마우스호버*/
-.tblJob tbody td a.research:hover{background-color: #6adbba !important;border: 2px solid #e3eff7;color: #fff !important;box-shadow: 0px 0px 5px 2px #cecece;line-height: 27px;font-weight: 400 !important;}
+.tblJob tbody td a.research:hover{background-color: #6adbba !important;border: 2px solid #e3eff7;color: #fff !important;box-shadow: 0px 0px 5px 2px #cecece;line-height: 28px;font-weight: 400 !important;}
 /*연구직 관련 컨텐츠 스타일*/
-.tblJob tbody td a.research_active{background-color: #fff !important;border: 2px solid #72dfbf;color: #0aa377 !important;box-shadow: 0px 0px 5px 2px #cecece;line-height: 28px !important;font-weight: 500 !important; margin-bottom:10px; margin-bottom:10px !important;}
+.tblJob tbody td a.research_active{height: 31px;background-color: #fff !important;border: 2px solid #72dfbf;color: #0aa377 !important;box-shadow: 0px 0px 5px 2px #cecece;line-height: 28px !important;font-weight: 500 !important; margin-bottom:10px; margin-bottom:10px !important;}
 
 /*기술직*/
 .job_table .technical{line-height: 70px;background-image:url('/assets/img/technical_bg.png') !important;background-size:contain !important;background-repeat:no-repeat !important;font-weight: 500;}
-.tblJob tbody td a.tech{font-size: 15px;background-color: #deebf7 !important;border: 0;margin-bottom: 10px !important;letter-spacing: -1px;}
+.tblJob tbody td a.tech{font-size: 15px;background-color: #deebf7 !important;border: 2px solid #deebf7;;margin-bottom: 10px !important;letter-spacing: -1px;}
 /*기술직 마우스호버*/
-.tblJob tbody td a.tech:hover{background-color: #9ecbf4 !important;border: 2px solid #e3eff7;color: #fff !important;box-shadow: 0px 0px 5px 2px #cecece;line-height: 27px;font-weight: 400 !important;}
+.tblJob tbody td a.tech:hover{background-color: #9ecbf4 !important;border: 2px solid #e3eff7;color: #fff !important;box-shadow: 0px 0px 5px 2px #cecece;line-height: 28px;font-weight: 400 !important;}
 /*기술직 관련 컨텐츠 스타일*/
 .tblJob tbody td a.tech_active{font-size: 15px !important;background-color: #fff !important;border: 2px solid #87cdf6;color: #3a92e3 !important;box-shadow: 0px 0px 5px 2px #cecece;font-weight: 500;line-height: 28px;padding: 0 !important;letter-spacing: -1px; margin-bottom:10px; margin-bottom:10px !important; }
 
 /*기능직*/
 .job_table .function{line-height: 70px;background-image:url('/assets/img/function_bg.png') !important;background-size:contain !important;background-repeat:no-repeat !important;}
-.tblJob tbody td a.func{background-color: #ceebc5 !important;border: 0;margin-bottom: 10px !important;}
+.tblJob tbody td a.func{background-color: #ceebc5 !important;border: 2px solid #ceebc5;;margin-bottom: 10px !important;}
 /*기능직 마우스호버*/
-.tblJob tbody td a.func:hover{background-color: #a7d997 !important;border: 2px solid #edf4eb;color: #fff !important;box-shadow: 0px 0px 5px 2px #cecece;line-height: 27px;font-weight: 400 !important;}
+.tblJob tbody td a.func:hover{background-color: #a7d997 !important;border: 2px solid #edf4eb;color: #fff !important;box-shadow: 0px 0px 5px 2px #cecece;line-height: 28px;font-weight: 400 !important;}
 /*기능직 관련 컨텐츠 스타일*/
 .tblJob tbody td a.func_active{background-color: #fff !important;border: 2px solid #95ce84;color: #5aae35 !important;box-shadow: 0px 0px 5px 2px #cecece;font-weight: 500;line-height: 28px; margin-bottom:10px; margin-bottom:10px !important;}
 
 /*서비스직*/
 .job_table .service_td{line-height: 70px;background:url('/assets/img/service_bg.png') 0 0 no-repeat !important;}
-.tblJob tbody td a.service{background-color: #dcd7eb !important;border: 0;margin-bottom: 10px !important;}
+.tblJob tbody td a.service{background-color: #dcd7eb !important;border: 2px solid #dcd7eb;;margin-bottom: 10px !important;}
 /*서비스직 호버*/
 .tblJob tbody td a.service:hover{background-color: #c3b9de !important;border: 2px solid #efeef2;color: #fff !important;box-shadow: 0px 0px 5px 2px #cecece;line-height: 28px;font-weight: 400 !important;}
 /*서비스직 관련 컨텐츠 스타일*/
@@ -1152,4 +1188,63 @@ body{overflow-x:hidden;}
 .lisenceSec .other .otherLink:before { position: absolute; top: 0; left: 0; width: 72px; height: 48px; content: ''; background: url("/assets/img/other_ci.png") 0 0 no-repeat; }
 
 .lisenceSec .other .otherLink:after { position: absolute; top: 0; right: 0; content: "\f105"; font-family: 'FontAwesome'; }
+
+/*gate*/
+.navi_index_box_area{max-width: 1920px; min-width: 1420px;position: relative;}
+.navi_index_box_area .txt{position: absolute;left: 0;top: 49.29%;width: 100%;width: 100%;text-align: center !important;}
+.navi_index_box_area .txt h3{color: #0aa0ff;font-weight: 500 !important;font-size: 52px;line-height: 62px;padding: 0;margin: 0;}
+.navi_index_box_area .txt p{color: #2874d0;font-size: 24px;line-height: 27px;margin-top: 20px;font-weight: 500;line-height: 1.2em;}
+.fw_7{font-weight: 700 !important;}
+
+/*에너지 메뉴 선택 - gate*/
+.energy_main_logo{background: url('/assets/img/logo_red.png') 0 0 no-repeat !important;}
+.navi_index_box_area{padding-top: 130px;}
+
+.navi_index_box{margin:0 auto;width: 1420px;height: 679px;background-image: url('/assets/img/index_img.png');background-size: cover;}
+.energyclass_menu_power{width: 200px;height: 220px;display: block;z-index: 999999;margin-top: 390px;margin-left: 20px;position: relative; text-indent:-10000px}
+.energyclass_menu_power:hover span{border-radius: 100px;-webkit-border-radius : 100px !important;-mozborder-radius : 100px !important;-o-border-radius : 100px !important;border: 15px solid #cfd9ff;width: 108px;height: 108px;position: absolute;left: 48px;top: 68px;}
+
+.energyclass_menu_efficiency{width: 170px;height: 200px;display: block;z-index: 999999;margin-top: 140px;margin-left: -20px;position: relative; text-indent:-10000px}
+.energyclass_menu_efficiency:hover span{border-radius: 100px;border: 15px solid #bfedbe;width: 108px;height: 108px;position: absolute;left: 19px;top:52px;}
+
+.energyclass_menu_ess{width: 170px;height: 200px;display: block;z-index: 999999;margin-top: 0px;margin-left: 100px;position: relative; text-indent:-10000px}
+.energyclass_menu_ess:hover span{border-radius: 100px;-webkit-border-radius : 100px !important;-mozborder-radius : 100px !important;-o-border-radius : 100px !important;border: 15px solid #f4e9be;width: 108px;height: 108px;position: absolute;left: 20px;top: 35px;}
+
+.energyclass_menu_sun{width: 170px;height: 200px;display: block;z-index: 999999;margin-top: 0px;margin-left: 130px;position: relative; text-indent:-10000px}
+.energyclass_menu_sun:hover span{border-radius: 100px;-webkit-border-radius : 100px !important;-mozborder-radius : 100px !important;-o-border-radius : 100px !important;border: 15px solid #aee4ff;width: 108px;height: 108px;position: absolute;left: 23px;top: 35px;}
+
+.energyclass_menu_wind {width: 160px;height: 200px;display: block;z-index: 999999;margin-top: 140px;margin-left: 95px;position: relative; text-indent:-10000px}
+.energyclass_menu_wind:hover span{border-radius: 100px;-webkit-border-radius : 100px !important;-mozborder-radius : 100px !important;-o-border-radius : 100px !important;border: 15px solid #e0efbf;width: 108px;height: 108px;position: absolute;left: 28px;top: 52px;}
+
+.energyclass_menu_battery{width: 210px;height: 200px;display: block;z-index: 999999;margin-top: 410px;margin-left: 0px;position: relative; text-indent:-10000px}
+.energyclass_menu_battery:hover span{border-radius: 100px;-webkit-border-radius : 100px !important;-mozborder-radius : 100px !important;-o-border-radius : 100px !important;border: 15px solid #afe8e5;width: 108px;height: 108px;position: absolute;left: 20px;top: 48px;}
+
+
+.navi_index li {float: left;}
+.clearfix:after{display: block;clear: both;content: '';}
+.energy_job_navi_box{background-color: #123e6b;border: 1px solid #d1d1d1;margin: auto;width: 1420px;height: 80px;text-transform: uppercase;box-sizing: border-box;}
+.energy_job_navi_box h2{color: #fff;letter-spacing: 1px;font-weight: 400;margin-left: 27px;line-height: 80px;letter-spacing: -1px;}
+.yellow_txt{color: #ffef8f;font-weight: 700;}
+.fl{float: left;}
+.s{height: 54px;}
+.hidden{display: block; position: absolute; overflow: hidden; top: -999999px; left: -999999px; width: 1px; height: 1px; font-size: 0; text-indent: -999999px; line-height: 0;}
+.energy_job_navi_box select, .energy_job_navi_box input{background: #fff;width: 460px;width:200px;margin-top: 15px;height: 54px;font-family: "NotoKR" !important;}
+.energy_job_navi_box select {width:460px;background: url('/assets/img/index_selet_icon.png') no-repeat 96% 50% #fff; box-sizing: border-box;padding: 10px;
+ padding-left: 20px; margin-right: 10px; color: #999; font-size: 14px; border:0; font-weight: 500;font-size: 18px; position: relative;border-radius: 0 !important;-webkit-border-radius : 0 !important;-mozborder-radius : 0 !important;-o-border-radius : 0 !important;}
+.energy_job_navi_box select::-ms-expand {display:none}
+ .energy_job_navi_box select option{color: #333;;}
+.energy_job_navi_box input{width: 670px;color: #999 !important;font-weight: 500;font-size: 18px;border: 0;}
+.energy_job_navi_box input::placeholder{color: #999 !important;}
+.mr24 {margin-right: 24px;}
+.ml10{margin-left: 10px;}
+.search_box{position: relative;}
+.energy_job_search_btn{color: #fff !important;display: block;width: 28px;height: 28px;background:url('/assets/img/index_search_icon.png') 0 0 no-repeat !important;position: absolute;right: 3%;top: 40%; text-indent:-10000px}
+#skip_navi {height: 0; z-index: 999;}
+#skip_navi a {z-index: 9999; position: absolute; top: -66px; left: 0; width: 100%; height: 64px; text-align: center; line-height: 64px;   background-color: #fff; border-bottom: 1px solid #ccc;}
+#skip_navi span {display: inline-block; font-size: 15px; color: #000;}
+#gate_header {position: fixed;top: 0;left: 0;z-index: 4;width: 100%;height: 80px;color: #000;transition: .5s;}
+#gate_header .headerWrap h1 {position: absolute; top: 16px; left: 20px; width: 124px; height: 48px; background: url('/assets/img/logo_red.png') 0 0 no-repeat;  background-size: cover;}
+#gate_header .headerWrap h1 > span {position: absolute; left: -9999px;}
+#gate_body{background: #fff;}
+.navi_index_box{border-bottom: 5px solid #123e6b;}
 

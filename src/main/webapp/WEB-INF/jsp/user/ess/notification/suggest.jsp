@@ -57,7 +57,7 @@
   
 <div id="wrap">
  <section>
-    <div class="subVisual lecture">
+    <div class="subVisual essLecture">
       <div class="titleArea">
         <h2>알림/정보</h2>
         생태계별 태양광산업 기업을 지도 형식으로 표시하여 지역별 태양광산업 기업의 분포 확인 가능

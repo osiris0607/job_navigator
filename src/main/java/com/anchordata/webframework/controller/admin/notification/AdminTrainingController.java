@@ -56,6 +56,7 @@ public class AdminTrainingController {
 	*/
 	@RequestMapping("/admin/api/notification/training/registration")
 	public ModelAndView registration(@ModelAttribute TrainingVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000004");
 		mv.addObject( "result", trainingService.registration(vo) );
 		mv.setViewName("jsonView");
 		return mv;
@@ -98,6 +99,7 @@ public class AdminTrainingController {
 	*/
 	@RequestMapping("/admin/api/notification/training/search/detail")
 	public ModelAndView detail(@ModelAttribute TrainingVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000004");
 		TrainingVO result = trainingService.detail(vo);
 		mv.addObject("result", result);
 		mv.setViewName("jsonView");

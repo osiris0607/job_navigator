@@ -526,7 +526,7 @@
 			categoryDetail.empty();
 			str += '<select class="jop_write_table_txt w60 ace-select"  name="selector_category_detail" id="selector_category_detail" title="생태계 세부 분류">';
     		<c:forEach items="${commonCode}" var="code">
-				<c:if test="${code.master_id == 'M000003'}">
+				<c:if test="${code.master_id == 'M000003' && code.menu_id == 'M000004'}">
 					if (categoryId == "${code.parent_id}") {
 						// 맴 처음 나오는 데이터가 Selected이며, Selected된 detail Id로 직종을 찾는다.
 						if (isSelected) {
@@ -604,7 +604,7 @@
                         		<select class="jop_write_table_txt ace-select w60" id="selector_category" title="생태계 분류">	
                                	<option value="">생태계 분류 전체</option>
                         		<c:forEach items="${commonCode}" var="code">
-									<c:if test="${code.master_id == 'M000002'}">
+									<c:if test="${code.master_id == 'M000002' && code.menu_id == 'M000004'}">
 										<option value="${code.detail_id}">${code.name}</option>
 									</c:if>
 								</c:forEach>

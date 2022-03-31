@@ -196,16 +196,16 @@
 
 					// 대분류 row span 수정
 					if (data.result[i].category_id == "A") {
-						str += "	<th class='leftRadius material' rowspan='3'>" + unescapeHtml(categoryName) + "</th>";
+						str += "	<th class='leftRadius essMaterial' rowspan='3'>" + unescapeHtml(categoryName) + "</th>";
 					}
 					if (data.result[i].category_id == "B") {
-						str += "	<th class='leftRadius production' rowspan='2'>" + unescapeHtml(categoryName) + "</th>";
+						str += "	<th class='leftRadius essProduction' rowspan='2'>" + unescapeHtml(categoryName) + "</th>";
 					}
 					if (data.result[i].category_id == "C") {
-						str += "	<th class='leftRadius system' rowspan='3'>" + unescapeHtml(categoryName) + "</th>";
+						str += "	<th class='leftRadius essSystem' rowspan='3'>" + unescapeHtml(categoryName) + "</th>";
 					}
 					if (data.result[i].category_id == "D") {
-						str += "	<th class='leftRadius business' rowspan='12'>" + unescapeHtml(categoryName) + "</th>";
+						str += "	<th class='leftRadius essBusiness' rowspan='12'>" + unescapeHtml(categoryName) + "</th>";
 					}
 				}
 				else {
@@ -216,70 +216,69 @@
 				// 카테고리명 개행을 위해 name1+name2로 출력
 				var imageTag = "";
 				if (data.result[i].category_detail_id == "A-1") {
-					imageTag = "<img src='/assets/img/job_silicon_icon.png' alt='실리콘 이미지' title='실리콘 이미지' />";
+					imageTag = "<img src='/assets/img/job_silicon_icon.png' alt='전지(리튬/비리튬) 이미지' title='전지(리튬/비리튬) 이미지' />";
 					var categoryDetailName = data.result[i].category_detail_name;
 					var name1 = categoryDetailName.substr(0, 2);
 					var name2 = categoryDetailName.substr(2);
 					
-					str += "<th class='tal material2' rowspan='2'><span>" + imageTag + "</span>" + unescapeHtml(name1) + "<br>" + unescapeHtml(name2) + "</th>";
+					str += "<th class='tal essMaterial2' rowspan='2'><span>" + imageTag + "</span>" + unescapeHtml(name1) + "<br>" + unescapeHtml(name2) + "</th>";
 				}
 				else if (data.result[i].category_detail_id == "A-2") {
 					imageTag = "<img src='/assets/img/job_notsilicon_icon.png' alt='비실리콘 이미지' title='비실리콘 이미지' />";
-					str += "<th class='tal material2'><span>" + imageTag + "</span>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
+					str += "<th class='tal essMaterial2'><span>" + imageTag + "</span>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
 				}
 				else if (data.result[i].category_detail_id == "A-3") {
 					imageTag = "<img src='/assets/img/job_wafer_icon.png' alt='잉곳&middot;웨이퍼 이미지' title='잉곳&middot;웨이퍼 이미지' />";
-					str += "<th class='tal material2'><span>" + imageTag + "</span>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
+					str += "<th class='tal essMaterial2'><span>" + imageTag + "</span>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
 				}
 				else if (data.result[i].category_detail_id == "B-1") {
 					imageTag = "<img src='/assets/img/job_cell_icon.png' alt='잉곳&middot;셀 이미지' title='셀 이미지' />";
-					str += "<th class='tal production2'><span>" + imageTag + "</span>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
+					str += "<th class='tal essProduction2'><span>" + imageTag + "</span>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
 				}
 				else if (data.result[i].category_detail_id == "B-2") {
 					imageTag = "<img src='/assets/img/job_module_icon.png' alt='모듈 이미지' title='모듈 이미지' />";
-					str += "<th class='tal production2'><span>" + imageTag + "</span>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
+					str += "<th class='tal essProduction2'><span>" + imageTag + "</span><br>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
 				}
 				else if (data.result[i].category_detail_id == "B-3") {
 					imageTag = "<img src='/assets/img/job_equipment_icon.png' alt='장비 이미지' title='장비 이미지' />";
-					str += "<th class='tal production2'><span>" + imageTag + "</span>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
+					str += "<th class='tal essProduction2'><span>" + imageTag + "</span><br>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
 				}
 				else if (data.result[i].category_detail_id == "C-1") {
 					imageTag = "<img src='/assets/img/job_part_icon.png' alt='발전부품 이미지' title='발전부품 이미지' />";
-					str += "<th class='tal system2'><span>" + imageTag + "</span>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
+					str += "<th class='tal essSystem2'><span>" + imageTag + "</span><br>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
 				}
 				else if (data.result[i].category_detail_id == "C-2") {
 					imageTag = "<img src='/assets/img/job_facilities_icon.png' alt='발전설비 이미지' title='발전설비 이미지' />";
 					var categoryDetailName = data.result[i].category_detail_name;
 					var name1 = categoryDetailName.substr(0, 4);
 					var name2 = categoryDetailName.substr(4);
-					str += "<th class='tal system2'><span>" + imageTag + "</span>" + unescapeHtml(name1) + "<br>" + unescapeHtml(name2) + "</th>";
+					str += "<th class='tal essSystem2'><span>" + imageTag + "</span><br>" + unescapeHtml(name1) + "<br>" + unescapeHtml(name2) + "</th>";
 				}
 				else if (data.result[i].category_detail_id == "C-3") {
 					imageTag = "<img src='/assets/img/job_recycling_icon.png' alt='리사이클링&middot;리파워링 이미지' title='리사이클링&middot;리파워링 이미지' />";
-					imageTag = "<img src='/assets/img/job_facilities_icon.png' alt='발전설비 이미지' title='발전설비 이미지' />";
 					var categoryDetailName = data.result[i].category_detail_name;
 					var name1 = categoryDetailName.substr(0, 7);
 					var name2 = categoryDetailName.substr(7);
-					str += "<th class='tal system2'><span>" + imageTag + "</span>" + unescapeHtml(name1) + "<br>" + unescapeHtml(name2) + "</th>";
+					str += "<th class='tal essSystem2'><span>" + imageTag + "</span><br>" + unescapeHtml(name1) + "<br>" + unescapeHtml(name2) + "</th>";
 				}
 				else if (data.result[i].category_detail_id == "D-1") {
 					imageTag = "<img src='/assets/img/job_consulting_icon.png' alt='사업개발&middot;컨설팅 이미지' title='사업개발&middot;컨설팅 이미지' />";
-					str += "<th class='tal business2' rowspan='4'><span>" + imageTag + "</span>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
+					str += "<th class='tal essBusiness2' rowspan='4'><span>" + imageTag + "</span><br>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
 				}
 				else if (data.result[i].category_detail_id == "D-2") {
-					imageTag = "<img src='/assets/img/job_consulting_icon.png' alt='설계&middot;시공 이미지' title='설계&middot;시공 이미지' />";
-					str += "<th class='tal business2' rowspan='2'><span>" + imageTag + "</span>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
+					imageTag = "<img src='/assets/img/job_construction_icon.png' alt='설계&middot;시공 이미지' title='설계&middot;시공 이미지' />";
+					str += "<th class='tal essBusiness2' rowspan='2'><span>" + imageTag + "</span><br>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
 				}
 				else if (data.result[i].category_detail_id == "D-3") {
 					imageTag = "<img src='/assets/img/job_operation_icon.png' alt='운영&middot;유지관리 이미지' title='운영&middot;유지관리 이미지' />";
 					var categoryDetailName = data.result[i].category_detail_name;
 					var name1 = categoryDetailName.substr(0, 4);
 					var name2 = categoryDetailName.substr(4);
-					str += "<th class='tal business2' rowspan='2'><span>" + imageTag + "</span>" + unescapeHtml(name1) + "<br>" + unescapeHtml(name2) + "</th>";
+					str += "<th class='tal essBusiness2' rowspan='2'><span>" + imageTag + "</span><br>" + unescapeHtml(name1) + "<br>" + unescapeHtml(name2) + "</th>";
 				}
 				else if (data.result[i].category_detail_id == "D-4") {
 					imageTag = "<img src='/assets/img/job_edu_icon.png' alt='교육 이미지' title='교육 이미지' />";
-					str += "<th class='tal business2 edu_'><span>" + imageTag + "</span>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
+					str += "<th class='tal essBusiness2 edu_'><span>" + imageTag + "</span><br>" + unescapeHtml(data.result[i].category_detail_name) + "</th>";
 				}
 
 				
@@ -535,7 +534,7 @@
 
 <div id="wrap">
 	<section>
-		<div class="subVisual job">
+		<div class="subVisual essJob">
 			<div class="titleArea">
 				<h2>ESS산업 일자리</h2>
           			<span>ESS 분야의 86개 일자리를 ESS산업 생태계와 직종별로 구분하여<br />확인할 수 있으며 일자리 클릭 시, 상세 내용을 볼 수 있습니다.</span>

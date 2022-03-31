@@ -1,7 +1,7 @@
    <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
   <div id="wrap">
     <section>
-      <div class="subVisual lecture">
+      <div class="subVisual essLecture">
         <div class="titleArea">
           <h2>온라인 강의</h2>
           <span> ESS산업 관련 온라인 강의를 제공합니다.</span>

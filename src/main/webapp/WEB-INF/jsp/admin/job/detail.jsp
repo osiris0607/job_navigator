@@ -97,7 +97,7 @@
 		var str = "";
 		str += "<option value=''>생태계 분류 전체</option>"
         <c:forEach items="${commonCode}" var="code">
-			<c:if test="${code.master_id == 'M000002'}">
+			<c:if test="${code.master_id == 'M000002' && code.menu_id == 'M000004'}">
 				if (jobDetailObject.category_id == "${code.detail_id}") {
 					str += "<option value='${code.detail_id}' selected>${code.name}</option>"
 				}
@@ -111,7 +111,7 @@
 		var selectorCategoryDetail = $("#selector_category_detail");
 		str = "";
         <c:forEach items="${commonCode}" var="code">
-			<c:if test="${code.master_id == 'M000003'}">
+			<c:if test="${code.master_id == 'M000003' && code.menu_id == 'M000004'}">
 				if (jobDetailObject.category_detail_id == "${code.detail_id}" && jobDetailObject.category_id == "${code.parent_id}") {
 					str += "<option value='${code.detail_id}' selected>${code.name}</option>"
 				}
@@ -573,7 +573,7 @@
 			var categoryDetail = $("#selector_category_detail"); 
 			categoryDetail.empty();
     		<c:forEach items="${commonCode}" var="code">
-				<c:if test="${code.master_id == 'M000003'}">
+				<c:if test="${code.master_id == 'M000003' && code.menu_id == 'M000004'}">
 					if (categoryId == "${code.parent_id}") {
 						// 맴 처음 나오는 데이터가 Selected이며, Selected된 detail Id로 직종을 찾는다.
 						if (isSelected) {

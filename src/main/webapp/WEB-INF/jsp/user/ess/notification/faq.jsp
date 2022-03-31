@@ -92,7 +92,7 @@
 
 <div id="wrap">
  	<section>
-      <div class="subVisual lecture notice_top_bg">
+      <div class="subVisual lecture essNotice_top_bg">
         <div class="titleArea">
           <h2>게시판</h2>
           <span>ESS산업 일자리 내비게이터 관련 소통 창구입니다.</span>

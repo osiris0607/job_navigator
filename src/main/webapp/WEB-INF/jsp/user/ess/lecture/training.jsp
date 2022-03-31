@@ -76,7 +76,7 @@
 
 <div id="wrap">
  <section>
-    <div class="subVisual lecture">
+    <div class="subVisual essLecture">
       <div class="titleArea">
       	<h2>훈련기관</h2>
           <span>ESS산업 일자리 관련 훈련기관 정보를 제공합니다.</span>

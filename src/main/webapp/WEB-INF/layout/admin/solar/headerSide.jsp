@@ -61,7 +61,7 @@
 <nav class="nav_bar">
 	<div class="container clearfix">	
 		<div class="logo-txt">
-			<a href="/admin/rdt/home/management" class="clearfix">
+			<a href="/admin/rdt/gate/gate" class="clearfix">
 			<span class="logo_img fl"><img src="/assets/img/logo_anchorData.png" alt="일자리내비게이터 로고"></span>
 			<span class="top-txt-c2 m10 fl">일자리 내비게이터</span>
 			<span class="top-txt-c1 fl">관리자 페이지</span>

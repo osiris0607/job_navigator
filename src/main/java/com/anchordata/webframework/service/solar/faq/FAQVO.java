@@ -19,6 +19,7 @@ public class FAQVO {
 	private String faq_id = "";
 	private String question = "";
 	private String answer = "";
+	private String job_gb = "";
 	private String use_yn = "";
 	private String reg_date = "";
 	
@@ -40,6 +41,12 @@ public class FAQVO {
 	}
 	public String getAnswer() {
 		return answer;
+	}
+	public String getJob_gb() {
+		return job_gb;
+	}
+	public void setJob_gb(String job_gb) {
+		this.job_gb = job_gb;
 	}
 	public void setAnswer(String answer) {
 		this.answer = answer;
