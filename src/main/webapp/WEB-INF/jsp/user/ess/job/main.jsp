@@ -580,7 +580,7 @@
       </div>
       <div class="sideLeft">
         <dl>
-          <dt>평균연붕</dt>
+          <dt>급여수준</dt>
           	<dd id="salary_level"></dd>
           <dt>필요경력</dt>
           	<dd id="career"></dd>

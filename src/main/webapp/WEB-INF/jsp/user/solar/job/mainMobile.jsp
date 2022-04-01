@@ -495,7 +495,7 @@
         </div>
         <div class="infoWrap">
           <dl class="jobInfo">
-            <dt>평균연봉</dt>
+            <dt>급여수준</dt>
             	<dd id="salary_level"></dd>
             <dt>필요경력</dt>
             	<dd id="career"></dd>
