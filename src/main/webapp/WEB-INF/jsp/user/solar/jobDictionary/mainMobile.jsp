@@ -158,7 +158,7 @@
 		$("#image_file").html(str);
 
 		// 연봉
-		$("#salary_level").text(jobDetail.salary_level + "만원");
+		$("#salary_level").text(jobDetail.salary_level);
 		// 경력
 		if ( jobDetail.career == "") {
 			$("#career").text("없음");

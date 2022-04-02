@@ -243,7 +243,7 @@
   
 <!--페이지 루트-->
 <div class="page-nation container">
-	<a href="/admin/rdt/solar/home/management"><i class="nav-icon fa fa-home mr5"></i>홈화면</a><span class="route_icon"></span>
+	<a href="/admin/rdt/ess/home/management"><i class="nav-icon fa fa-home mr5"></i>홈화면</a><span class="route_icon"></span>
 	<a href="javascript:void(0)">관리자</a><span class="route_icon"></span>
 	<a href="javascript:void(0)">계정 관리</a>
 </div>
@@ -258,7 +258,7 @@
 <!--리스트 검색 상단-->				
 		<div class="sub-content-box bgc-white">
 		    <div class="box_bg">
-                   <h4 class="clearfix title_icon"><img src="/assets/img/account_icon.png" class="mr5 password_icon fl" alt="자물쇠 아이콘" /><span class="fl txt">계정 관리 </span></h4>
+                   <h4 class="clearfix title_icon"><span class="fl txt">계정 관리 </span></h4>
                    <p class="border_box_p gray_p">비밀번호를 초기화 하시면 초기화된 비밀번호는 <span style="color:#2874d0">'1234'</span> 입니다.</p>
                    <div class="border_top_box">
                        <div class="fr">

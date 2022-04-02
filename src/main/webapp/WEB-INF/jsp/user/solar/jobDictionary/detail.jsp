@@ -48,7 +48,7 @@
 		// upload_file_image
 		$("#upload_file_image").html("<img src='data:image/png;base64," + jobDetail.upload_file_image +"' alt='" + unescapeHtml(jobDetail.name) + "'>");
 		// 연봉
-		$("#salary_level").text(jobDetail.salary_level + "만원");
+		$("#salary_level").text(jobDetail.salary_level);
 		// 경력
 		if ( jobDetail.career == "") {
 			$("#career").text("없음");

@@ -35,7 +35,7 @@ public class CompanyService {
 	
 	
 	/**
-	 * 등록
+	 * SOLAR COMPANY 등록
 	 */
 	@Transactional
 	public int registration(CompanyVO vo) throws Exception {
@@ -57,7 +57,29 @@ public class CompanyService {
 	}
 	
 	/**
-	 * 수정
+	 * ESS COMPANY 등록
+	 */
+	@Transactional
+	public int essRegistration(CompanyVO vo) throws Exception {
+		// 첨부 파일 1 Binary로 DB 저장		
+		if (vo.getAttach_file() != null && vo.getAttach_file().getSize() > 0 ) {
+			// 나머지 정보는 Upload File Table에 저장
+			String fileName = vo.getAttach_file().getOriginalFilename();
+			UploadFileVO uploadFileVO  = new UploadFileVO();
+			uploadFileVO.setName(fileName);
+			uploadFileVO.setDescription(vo.getAttach_file_description());
+			uploadFileVO.setBinary_content(vo.getAttach_file().getBytes());
+			uploadFileService.registration(uploadFileVO);
+			
+			vo.setUpload_file_id(Integer.toString(uploadFileVO.getFile_id()));
+		} else {
+			vo.setUpload_file_id("");
+		}
+		return companyDao.insertEssInfo(vo);
+	}
+	
+	/**
+	 * SOLAR 수정
 	 */
 	@Transactional
 	public int modification(CompanyVO vo) throws Exception {
@@ -93,7 +115,43 @@ public class CompanyService {
 	}
 	
 	/**
-	 * 삭제
+	 * ESS 수정
+	 */
+	@Transactional
+	public int essModification(CompanyVO vo) throws Exception {
+		// 첨부 파일이 있으면 변경
+		if ( StringUtils.isEmpty(vo.getUpload_file_id()) == false ) {
+			UploadFileVO uploadFileVO  = new UploadFileVO();
+			uploadFileVO.setFile_id(Integer.parseInt(vo.getUpload_file_id()));
+			uploadFileVO.setDescription(vo.getAttach_file_description());
+			
+			if (vo.getAttach_file() != null && vo.getAttach_file().getSize() > 0 ) {
+				String fileName = vo.getAttach_file().getOriginalFilename();
+				uploadFileVO.setName(fileName);
+				uploadFileVO.setBinary_content(vo.getAttach_file().getBytes());
+			}
+			
+			uploadFileService.modification(uploadFileVO);			
+		}
+		else {
+			if (vo.getAttach_file() != null && vo.getAttach_file().getSize() > 0 ) {
+				// 나머지 정보는 Upload File Table에 저장
+				String fileName = vo.getAttach_file().getOriginalFilename();
+				UploadFileVO uploadFileVO  = new UploadFileVO();
+				uploadFileVO.setName(fileName);
+				uploadFileVO.setDescription(vo.getAttach_file_description());
+				uploadFileVO.setBinary_content(vo.getAttach_file().getBytes());
+				uploadFileService.registration(uploadFileVO);
+				
+				vo.setUpload_file_id(Integer.toString(uploadFileVO.getFile_id()));
+			}
+		}
+
+		return companyDao.updateEssInfo(vo);
+	}
+	
+	/**
+	 * SOLAR 삭제
 	 */
 	@Transactional
 	public int withdrawal(CompanyVO vo) throws Exception {
@@ -104,6 +162,19 @@ public class CompanyService {
 			uploadFileService.withdrawal(uploadFileVO);
 		}
 		return companyDao.deleteInfo(vo);
+	}
+	/**
+	 * ESS 삭제
+	 */
+	@Transactional
+	public int essWithdrawal(CompanyVO vo) throws Exception {
+		// 연관된 File 삭제
+		if ( vo.getUpload_file_id() != null && vo.getUpload_file_id() != "" ) {
+			UploadFileVO uploadFileVO  = new UploadFileVO();
+			uploadFileVO.setFile_id(Integer.parseInt(vo.getUpload_file_id()));
+			uploadFileService.withdrawal(uploadFileVO);
+		}
+		return companyDao.deleteEssInfo(vo);
 	}
 	
 	/**

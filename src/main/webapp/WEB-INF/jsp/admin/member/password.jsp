@@ -51,7 +51,7 @@
   
 <!--페이지 루트-->
 <div class="page-nation container">
-	<a href="/admin/rdt/solar/home/management"><i class="nav-icon fa fa-home mr5"></i>홈화면</a><span class="route_icon"></span>
+	<a href="/admin/rdt/ess/home/management"><i class="nav-icon fa fa-home mr5"></i>홈화면</a><span class="route_icon"></span>
 	<a href="javascript:void(0)">관리자</a><span class="route_icon"></span>
 	<a href="javascript:void(0)">비밀번호 변경</a>
 </div>       
@@ -67,7 +67,7 @@
 <!--리스트 검색 상단-->				
 		<div class="sub-content-box bgc-white">
                   <div class="box_bg">
-                      <h4 class="clearfix title_icon"><img src="assets/img/password_lock_icon.png" class="mr5 password_icon fl" alt="자물쇠 아이콘" /><span class="fl txt">비밀번호 재설정 </span></h4>
+                      <h4 class="clearfix title_icon"><span class="fl txt">비밀번호 재설정 </span></h4>
                       <p class="gray_p">비밀번호 변경을 위해 현재 비밀번호와 신규 비밀번호 입력을 해주시기 바랍니다.</p>
                       <div class="border_top_box">
                           <table class="job_write">

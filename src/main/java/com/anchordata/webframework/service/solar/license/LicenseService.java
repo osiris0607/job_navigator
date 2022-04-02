@@ -21,8 +21,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.anchordata.webframework.base.util.DataMap;
 import com.anchordata.webframework.service.solar.job.JobVO;
-import com.anchordata.webframework.service.solar.training.TrainingSearchVO;
-import com.anchordata.webframework.service.solar.training.TrainingVO;
 
 @Service("LicenseService")
 public class LicenseService {

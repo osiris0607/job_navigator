@@ -299,7 +299,7 @@ public class AdminCompanyController {
 	*/
 	@RequestMapping("/admin/api/ess/company/registration")
 	public ModelAndView essRegistration(@ModelAttribute CompanyVO vo, ModelAndView mv) throws Exception {
-		mv.addObject( "result", companyService.registration(vo) );
+		mv.addObject( "result", companyService.essRegistration(vo) );
 		mv.setViewName("jsonView");
 		return mv;
 	}
@@ -352,7 +352,7 @@ public class AdminCompanyController {
 	*/
 	@RequestMapping("/admin/api/ess/company/modification")
 	public ModelAndView essModification(@ModelAttribute CompanyVO vo, ModelAndView mv) throws Exception {
-		mv.addObject( "result", companyService.modification(vo) );
+		mv.addObject( "result", companyService.essModification(vo) );
 		mv.setViewName("jsonView");
 		return mv;
 	}
@@ -363,7 +363,7 @@ public class AdminCompanyController {
 	 */
 	@RequestMapping("/admin/api/ess/company/withdrawal")
 	public ModelAndView essWithdrawal(@ModelAttribute CompanyVO vo, ModelAndView mv) throws Exception {
-		mv.addObject("result", companyService.withdrawal(vo)); //
+		mv.addObject("result", companyService.essWithdrawal(vo)); //
 		mv.setViewName("jsonView");
 		return mv;
 	}
@@ -375,7 +375,7 @@ public class AdminCompanyController {
 	@RequestMapping("/admin/api/ess/company/excelDownload")
 	public void essExcelDownload(@ModelAttribute CompanySearchVO vo, HttpServletResponse response) throws Exception {
 		//전체 회원 정보 
-		List<CompanyVO> list = companyService.searchAllList(vo);
+		List<CompanyVO> list = companyService.searchEssAllList(vo);
 		
 		// Make Excel File
 		// 워크북 생성

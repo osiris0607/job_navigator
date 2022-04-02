@@ -41,7 +41,7 @@ public class JobVO {
 	private String knowledge = "";						// 직무능력 > 지식
 	private String skill = "";							// 직무능력 > 기술
 	private String attitude = "";						// 직무능력 > 태도
-	private int salary_level = 0;						// 근무여건 > 급여수준
+	private String salary_level = "";						// 근무여건 > 급여수준
 	private String prospect = "";						// 일자리전망 > 일자리전망
 	private String ranking = "";						// 일자리전망 > 유망 일자리 순위
 	private String related_job = "";					// 기타 > 관련일자리
@@ -385,10 +385,10 @@ public class JobVO {
 	public void setAttitude(String attitude) {
 		this.attitude = attitude;
 	}
-	public int getSalary_level() {
+	public String getSalary_level() {
 		return salary_level;
 	}
-	public void setSalary_level(int salary_level) {
+	public void setSalary_level(String salary_level) {
 		this.salary_level = salary_level;
 	}
 	public String getProspect() {

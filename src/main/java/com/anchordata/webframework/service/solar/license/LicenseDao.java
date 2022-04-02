@@ -18,8 +18,6 @@ import org.springframework.stereotype.Repository;
 import com.anchordata.webframework.base.common.Constants;
 import com.anchordata.webframework.base.core.BaseDao;
 import com.anchordata.webframework.base.util.DataMap;
-import com.anchordata.webframework.service.solar.training.TrainingSearchVO;
-import com.anchordata.webframework.service.solar.training.TrainingVO;
 
 
 @Repository("LicenseDao")

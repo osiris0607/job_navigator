@@ -34,7 +34,7 @@
 			,	CONTACT
 			,	HOME_PAGE
 			,	UPLOAD_FILE_ID
-			, JOB_GB
+			, 	JOB_GB
 		) 
 		VALUES (
 			#{title} 
@@ -43,7 +43,7 @@
 			,	#{contact}
 			,	#{home_page}
 			,	#{upload_file_id}
-			, #{job_gb}
+			, 	#{job_gb}
 		);
 	</insert>
 	
@@ -68,7 +68,7 @@
 					ESS_UPLOAD_FILE 
 					</if>
 				WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
-			,	(SELECT BINARY_CONTENT from 
+			,	(SELECT BINARY_CONTENT FROM 
 					<if test='job_gb.equals("D000004")'>	
 					SUN_UPLOAD_FILE 
 					</if>
@@ -126,7 +126,7 @@
 					ESS_UPLOAD_FILE 
 					</if>
 				WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
-			,	(SELECT BINARY_CONTENT from 
+			,	(SELECT BINARY_CONTENT FROM 
 					<if test='job_gb.equals("D000004")'>	
 					SUN_UPLOAD_FILE 
 					</if>
@@ -149,7 +149,6 @@
 			<if test='job_gb != null and job_gb != "" '>
 				AND JOB_GB = #{job_gb}
 			</if>
-			
 			<if test='title != null and title != "" '>
 				AND TITLE LIKE CONCAT('%',#{title},'%')
 			</if>
@@ -184,7 +183,7 @@
 					ESS_UPLOAD_FILE 
 					</if>
 				WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
-			,	(SELECT BINARY_CONTENT from 
+			,	(SELECT BINARY_CONTENT FROM 
 					<if test='job_gb.equals("D000004")'>	
 					SUN_UPLOAD_FILE 
 					</if>

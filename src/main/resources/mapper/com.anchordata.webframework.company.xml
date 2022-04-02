@@ -74,6 +74,41 @@
 		);
 	</insert>
 	
+	<insert id="insertEssInfo" parameterType="CompanyVO">
+		INSERT INTO ESS_COMPANY ( 
+			SIZE
+			,	REGION
+			,	REGION_DETAIL
+			,	KSIC
+			,	NAME
+			,	ADDRESS
+			,	PHONE
+			,	HOME_PAGE
+			, 	STAFF_NUMBER
+			, 	MAIN_PRODUCT
+			, 	ASSOCIATED_JOB_1
+			, 	ASSOCIATED_JOB_2
+			, 	ASSOCIATED_JOB_3
+			,	UPLOAD_FILE_ID
+		) 
+		VALUES (
+			#{size} 
+			,	#{region}
+			,	#{region_detail}
+			,	#{ksic}
+			,	#{name}
+			,	#{address}
+			,	#{phone}
+			,	#{home_page}
+			,	#{staff_number}
+			,	#{main_product}
+			,	#{associated_job_1}
+			,	#{associated_job_2}
+			,	#{associated_job_3}
+			,	#{upload_file_id}
+			
+		);
+	</insert>
 	
 	<select id="selectSearchList" parameterType="DataMap"  resultMap="company">
 		<include refid="common.pagingPre"/>
@@ -405,10 +440,35 @@
 		WHERE 
 			COMPANY_ID = #{company_id}
 	</update>
+	<update id="updateEssInfo" parameterType="CompanyVO">
+		UPDATE ESS_COMPANY SET   
+			SIZE = #{size}
+			,	REGION = #{region}
+			,	REGION_DETAIL = #{region_detail}
+			,	KSIC = #{ksic}
+			,	NAME = #{name}
+			,	ADDRESS = #{address}
+			,	PHONE = #{phone}
+			,	HOME_PAGE = #{home_page}
+			,	STAFF_NUMBER = #{staff_number}
+			,	MAIN_PRODUCT = #{main_product}
+			,	ASSOCIATED_JOB_1 = #{associated_job_1}
+			,	ASSOCIATED_JOB_2 = #{associated_job_2}
+			,	ASSOCIATED_JOB_3 = #{associated_job_3}
+			<if test='upload_file_id != null and upload_file_id != "" '>
+			,	UPLOAD_FILE_ID = #{upload_file_id}
+			</if>
+		WHERE 
+			COMPANY_ID = #{company_id}
+	</update>
 	
 	
 	<delete id="deleteInfo" parameterType="CompanyVO">
 		DELETE FROM SUN_COMPANY			
+		WHERE COMPANY_ID = #{company_id}
+	</delete>	
+	<delete id="deleteEssInfo" parameterType="CompanyVO">
+		DELETE FROM ESS_COMPANY			
 		WHERE COMPANY_ID = #{company_id}
 	</delete>	
 	

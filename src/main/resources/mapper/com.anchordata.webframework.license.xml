@@ -235,7 +235,7 @@
 		FROM
 			LICENSE A
 		WHERE 
-			USE_YN = 'Y'		
+			USE_YN = 'Y'
 	</select>
 	
 	

@@ -30,13 +30,22 @@ public class JobDao extends BaseDao {
 	public int insertInfo(JobVO params) throws Exception{
 		return update(mapper.concat("insertInfo"), params);
 	}
+	public int insertEssInfo(JobVO params) throws Exception{
+		return update(mapper.concat("insertEssInfo"), params);
+	}
 	
 	public int updateInfo(JobVO params) throws Exception{
 		return update(mapper.concat("updateInfo"), params);
 	}
+	public int updateEssInfo(JobVO params) throws Exception{
+		return update(mapper.concat("updateEssInfo"), params);
+	}
 	
 	public int deleteInfo(JobVO params) throws Exception{
 		return update(mapper.concat("deleteInfo"), params);
+	}
+	public int deleteEssInfo(JobVO params) throws Exception{
+		return update(mapper.concat("deleteEssInfo"), params);
 	}
 	
 	public JobVO selectDetailView(JobVO vo) throws Exception{
@@ -63,9 +72,15 @@ public class JobDao extends BaseDao {
 	public int insertRelativeInfo(JobRelativeVO params) throws Exception{
 		return update(mapper.concat("insertRelativeInfo"), params);
 	}
+	public int insertEssRelativeInfo(JobRelativeVO params) throws Exception{
+		return update(mapper.concat("insertEssRelativeInfo"), params);
+	}
 	
 	public int deleteRelativeInfo(JobRelativeVO params) throws Exception{
 		return update(mapper.concat("deleteRelativeInfo"), params);
+	}
+	public int deleteEssRelativeInfo(JobRelativeVO params) throws Exception{
+		return update(mapper.concat("deleteEssRelativeInfo"), params);
 	}
 	
 	public List<JobVO> selectAllList() throws Exception{

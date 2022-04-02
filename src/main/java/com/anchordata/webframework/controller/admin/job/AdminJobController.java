@@ -119,7 +119,7 @@ public class AdminJobController {
 	///////////////////////////////////////////////////////////////////////////
 	/**
 	 * 
-	 * ESS JOB
+	 * SOLAR JOB
 	 * 
 	 * */
 	
@@ -422,7 +422,7 @@ public class AdminJobController {
 	*/
 	@RequestMapping("/admin/api/ess/job/registration")
 	public ModelAndView essRegistration(@ModelAttribute JobVO vo, ModelAndView mv) throws Exception {
-		mv.addObject( "result", jobService.registration(vo) );
+		mv.addObject( "result", jobService.essRegistration(vo) );
 		mv.setViewName("jsonView");
 		return mv;
 	}
@@ -432,7 +432,7 @@ public class AdminJobController {
 	*/
 	@RequestMapping("/admin/api/ess/job/modification")
 	public ModelAndView essModification(@ModelAttribute JobVO vo, ModelAndView mv) throws Exception {
-		mv.addObject( "result", jobService.modification(vo) );
+		mv.addObject( "result", jobService.essModification(vo) );
 		mv.setViewName("jsonView");
 		return mv;
 	}
@@ -442,7 +442,7 @@ public class AdminJobController {
 	 */
 	@RequestMapping("/admin/api/ess/job/withdrawal")
 	public ModelAndView essWithdrawal(@ModelAttribute JobVO vo, ModelAndView mv) throws Exception {
-		mv.addObject("result", jobService.withdrawal(vo)); //
+		mv.addObject("result", jobService.essWithdrawal(vo)); //
 		mv.setViewName("jsonView");
 		return mv;
 	}

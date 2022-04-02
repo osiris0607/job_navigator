@@ -424,7 +424,7 @@
 		str += "<em class='level'>난이도</em>"
 		$("#li_info").append(str);
 		// 연봉
-		$("#salary_level").text(jobDetail.salary_level + "만원");
+		$("#salary_level").text(jobDetail.salary_level);
 		// 경력
 		if ( jobDetail.career == "") {
 			$("#career").text("없음");

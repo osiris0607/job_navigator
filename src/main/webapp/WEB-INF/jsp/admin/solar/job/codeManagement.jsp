@@ -626,8 +626,7 @@
 
 		$.each(commonCodeArr, function(index, item) 
 		{
-			console.log('==============item ::: ' ,item);
-			if ( item.master_id == 'M000002') 
+			if ( item.master_id == 'M000002' && item.menu_id == 'M000004') 
 			{
 				str += '<tr>';
 				str += '	<td>' + item.detail_id + '</td>';

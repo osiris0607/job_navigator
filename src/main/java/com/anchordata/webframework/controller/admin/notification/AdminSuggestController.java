@@ -21,6 +21,11 @@ public class AdminSuggestController {
 	@Autowired
 	private SuggestService suggestService;
 	
+	/**
+	 * 
+	 * SOLAR SUGGEST
+	 * 
+	 * */
 	@RequestMapping("/admin/rdt/solar/notification/suggest/management")
 	public ModelAndView rdtManagement(@ModelAttribute LicenseVO vo, ModelAndView mv) throws Exception {
 		mv.setViewName("solar/notification/suggest/management.admin");
@@ -28,11 +33,22 @@ public class AdminSuggestController {
 	}
 	
 	
+	/**
+	 * 
+	 * ESS SUGGEST
+	 * 
+	 * */
+	@RequestMapping("/admin/rdt/ess/notification/suggest/management")
+	public ModelAndView rdtEssManagement(@ModelAttribute LicenseVO vo, ModelAndView mv) throws Exception {
+		mv.setViewName("ess/notification/suggest/management.ess_admin");
+		return mv;
+	}
+	
 	///////////////////////////////////////////////////////////////////////////
 	// OPEN API 호출
 	///////////////////////////////////////////////////////////////////////////
 	/**
-	* 등록
+	* SOLAR 등록
 	*/
 	@RequestMapping("/admin/api/solar/notification/suggest/registration")
 	public ModelAndView registration(@ModelAttribute SuggestVO vo, ModelAndView mv) throws Exception {
@@ -40,7 +56,7 @@ public class AdminSuggestController {
 		mv.setViewName("jsonView");
 		return mv;
 	}
-	
+
 	
 	/**
 	* 검색 List ALL

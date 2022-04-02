@@ -84,12 +84,6 @@ public class AdminTrendController {
 	///////////////////////////////////////////////////////////////////////////
 	
 	/**
-	 * 
-	 * SOLAR TREND
-	 * 
-	 * */
-	
-	/**
 	* SOLAR 등록
 	*/
 	@RequestMapping("/admin/api/solar/notification/trend/registration")

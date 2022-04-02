@@ -39,7 +39,7 @@ public class JobService {
 	private LicenseService licenseService;
 	
 	/**
-	 * 등록
+	 * SOLAR JOB 등록
 	 */
 	@Transactional
 	public int registration(JobVO vo) throws Exception {
@@ -84,7 +84,52 @@ public class JobService {
 	}
 	
 	/**
-	 * 수정
+	 * ESS JOB 등록
+	 */
+	@Transactional
+	public int essRegistration(JobVO vo) throws Exception {
+		// 첨부 파일 1 Binary로 DB 저장		
+		if (vo.getAttach_file() != null && vo.getAttach_file().getSize() > 0 ) {
+			// 나머지 정보는 Upload File Table에 저장
+			String fileName = vo.getAttach_file().getOriginalFilename();
+			UploadFileVO uploadFileVO  = new UploadFileVO();
+			uploadFileVO.setName(fileName);
+			uploadFileVO.setDescription(vo.getAttach_file_description());
+			uploadFileVO.setBinary_content(vo.getAttach_file().getBytes());
+			uploadFileService.registration(uploadFileVO);
+			vo.setUpload_file_id(Integer.toString(uploadFileVO.getFile_id()));
+		} else {
+			vo.setUpload_file_id("");
+		}
+		
+		// Member Insert
+		JobDao.insertEssInfo(vo);
+		
+		// Job 관련된 공통코드 입력 (자격증)
+		if (vo.getLicense_list().size() > 0 ) {
+			for(String id : vo.getLicense_list()){
+				JobRelativeVO jobRelativeVO = new JobRelativeVO();
+				jobRelativeVO.setJob_id(Integer.toString(vo.getJob_id()));
+				jobRelativeVO.setRelative_master_id("M000013");
+				jobRelativeVO.setRelative_detail_id(id);
+				JobDao.insertEssRelativeInfo(jobRelativeVO);
+			}
+		}
+		// Job 관련된 공통코드 입력 (전공)
+		if (vo.getMajor_list().size() > 0 ) {
+			for(String id : vo.getMajor_list()){
+				JobRelativeVO jobRelativeVO = new JobRelativeVO();
+				jobRelativeVO.setJob_id(Integer.toString(vo.getJob_id()));
+				jobRelativeVO.setRelative_master_id("M000006");
+				jobRelativeVO.setRelative_detail_id(id);
+				JobDao.insertEssRelativeInfo(jobRelativeVO);
+			}
+		}	
+		return 1;
+	}
+	
+	/**
+	 * SOLAR JOB 수정
 	 */
 	@Transactional
 	public int modification(JobVO vo) throws Exception {
@@ -144,9 +189,70 @@ public class JobService {
 		}	
 		return JobDao.updateInfo(vo);
 	}
+	/**
+	 * ESS JOB 수정
+	 */
+	@Transactional
+	public int essModification(JobVO vo) throws Exception {
+		// 첨부 파일  저장		
+		if ( StringUtils.isEmpty(vo.getUpload_file_id()) == false  ) {
+			UploadFileVO uploadFileVO  = new UploadFileVO();
+			uploadFileVO.setFile_id(Integer.parseInt(vo.getUpload_file_id()));
+			uploadFileVO.setDescription(vo.getAttach_file_description());
+			
+			if (vo.getAttach_file() != null && vo.getAttach_file().getSize() > 0 ) {
+				String fileName = vo.getAttach_file().getOriginalFilename();
+				uploadFileVO.setName(fileName);
+				uploadFileVO.setBinary_content(vo.getAttach_file().getBytes());
+			}
+			
+			uploadFileService.modification(uploadFileVO);			
+		}
+		else {
+			if (vo.getAttach_file() != null && vo.getAttach_file().getSize() > 0 ) {
+				// 나머지 정보는 Upload File Table에 저장
+				String fileName = vo.getAttach_file().getOriginalFilename();
+				UploadFileVO uploadFileVO  = new UploadFileVO();
+				uploadFileVO.setName(fileName);
+				uploadFileVO.setDescription(vo.getAttach_file_description());
+				uploadFileVO.setBinary_content(vo.getAttach_file().getBytes());
+				uploadFileService.registration(uploadFileVO);
+				
+				vo.setUpload_file_id(Integer.toString(uploadFileVO.getFile_id()));
+			}
+		}
+		
+		// Job 관련된 공통코드 입력 (자격증)
+		if (vo.getLicense_list().size() > 0 ) {
+			JobRelativeVO jobRelativeVO = new JobRelativeVO();
+			jobRelativeVO.setJob_id(Integer.toString(vo.getJob_id()));
+			jobRelativeVO.setRelative_master_id("M000013");
+			// 기존 데이터를 모두 삭제한다.
+			JobDao.deleteRelativeInfo(jobRelativeVO);
+			
+			for(String id : vo.getLicense_list()){
+				jobRelativeVO.setRelative_detail_id(id);
+				JobDao.insertEssRelativeInfo(jobRelativeVO);
+			}
+		}
+		// Job 관련된 공통코드 입력 (전공)
+		if (vo.getMajor_list().size() > 0 ) {
+			JobRelativeVO jobRelativeVO = new JobRelativeVO();
+			jobRelativeVO.setJob_id(Integer.toString(vo.getJob_id()));
+			jobRelativeVO.setRelative_master_id("M000006");
+			// 기존 데이터를 모두 삭제한다.
+			JobDao.deleteEssRelativeInfo(jobRelativeVO);
+			
+			for(String id : vo.getMajor_list()){
+				jobRelativeVO.setRelative_detail_id(id);
+				JobDao.insertEssRelativeInfo(jobRelativeVO);
+			}
+		}	
+		return JobDao.updateEssInfo(vo);
+	}
 	
 	/**
-	 * 삭제
+	 * SOLAR JOB 삭제
 	 */
 	@Transactional
 	public int withdrawal(JobVO vo) throws Exception {
@@ -157,6 +263,20 @@ public class JobService {
 			uploadFileService.withdrawal(uploadFileVO);
 		}
 		return JobDao.deleteInfo(vo);
+	}
+	
+	/**
+	 * ESS JOB 삭제
+	 */
+	@Transactional
+	public int essWithdrawal(JobVO vo) throws Exception {
+		// 연관된 File 삭제
+		if ( vo.getUpload_file_id() != null && vo.getUpload_file_id() != "" ) {
+			UploadFileVO uploadFileVO  = new UploadFileVO();
+			uploadFileVO.setFile_id(Integer.parseInt(vo.getUpload_file_id()));
+			uploadFileService.withdrawal(uploadFileVO);
+		}
+		return JobDao.deleteEssInfo(vo);
 	}
 	
 	/**

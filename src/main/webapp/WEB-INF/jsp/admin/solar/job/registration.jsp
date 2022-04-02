@@ -406,7 +406,7 @@
 		formData.append("attitude", $("#attitude").val());
 
 		if ($("#salary_level").val() == null || $("#salary_level").val() == "") {
-			formData.append("salary_level", 0);
+			formData.append("salary_level", "");
 		}
 		else {
 			formData.append("salary_level", $("#salary_level").val().replace(",", ""));
@@ -763,8 +763,7 @@
                            <th class="w20 jop_write_table_title">근무 여건</th>
                            <td class="w18 txt_r"><span class="icon_box">급여 수준</span></td>
                            <td class="w80">
-                              	<input type="text" id="salary_level" style="ime-mode:disabled"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1').replace(/\B(?=(\d{3})+(?!\d))/g, ',');" class="onlynumber ta_r form-control brc-on-focusd-inline-block w30 fl" placeholder="연봉 수준을 입력하세요.">
-                               <span class="text-95 color_9 sub_txt">(만원)</span>
+                              	<input type="text" id="salary_level" style="ime-mode:disabled" class="onlynumber ta_r form-control brc-on-focusd-inline-block w30 fl" placeholder="연봉 수준을 입력하세요.">
                            </td>
                        </tr>  
                    </table>

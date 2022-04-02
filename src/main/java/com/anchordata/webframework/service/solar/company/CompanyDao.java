@@ -28,13 +28,22 @@ public class CompanyDao extends BaseDao {
 	public int insertInfo(CompanyVO params) throws Exception{
 		return update(mapper.concat("insertInfo"), params);
 	}
+	public int insertEssInfo(CompanyVO params) throws Exception{
+		return update(mapper.concat("insertEssInfo"), params);
+	}
 	
 	public int updateInfo(CompanyVO params) throws Exception{
 		return update(mapper.concat("updateInfo"), params);
 	}
+	public int updateEssInfo(CompanyVO params) throws Exception{
+		return update(mapper.concat("updateEssInfo"), params);
+	}
 	
 	public int deleteInfo(CompanyVO params) throws Exception{
 		return delete(mapper.concat("deleteInfo"), params);
+	}
+	public int deleteEssInfo(CompanyVO params) throws Exception{
+		return delete(mapper.concat("deleteEssInfo"), params);
 	}
 	
 	public CompanyVO selectDetail(CompanyVO vo) throws Exception{

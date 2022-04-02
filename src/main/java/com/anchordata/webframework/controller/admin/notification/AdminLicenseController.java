@@ -157,11 +157,24 @@ public class AdminLicenseController {
 	}
 	
 	/**
-	* 검색 List ALL
+	* SOLAR 검색 List ALL
 	*/
 	@RequestMapping("/admin/api/solar/notification/license/all")
 		public ModelAndView searchAll(@ModelAttribute LicenseSearchVO vo, ModelAndView mv) throws Exception {
-		List<LicenseVO> resList = licenseService.allList();
+		vo.setJob_gb("D000004");
+		List<LicenseVO> resList = licenseService.searchAllList(vo);
+		mv.addObject("result", resList);
+		mv.setViewName("jsonView");
+		return mv;
+	}
+	
+	/**
+	 * ESS 검색 List ALL
+	 */
+	@RequestMapping("/admin/api/ess/notification/license/all")
+	public ModelAndView EssSearchAll(@ModelAttribute LicenseSearchVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000003");
+		List<LicenseVO> resList = licenseService.searchAllList(vo);
 		mv.addObject("result", resList);
 		mv.setViewName("jsonView");
 		return mv;
