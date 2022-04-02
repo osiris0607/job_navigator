@@ -384,6 +384,10 @@ public class JobService {
 	public int updateRank(JobVO vo) throws Exception {
 		return JobDao.updateRank(vo);
 	}
+	@Transactional
+	public int essUpdateRank(JobVO vo) throws Exception {
+		return JobDao.essUpdateRank(vo);
+	}
 	
 	
 	/**

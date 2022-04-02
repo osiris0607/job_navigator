@@ -64,7 +64,7 @@
 			<a href="/admin/rdt/gate/gate" class="clearfix">
 			<span class="logo_img fl"><img src="/assets/img/logo_anchorData.png" alt="일자리내비게이터 로고"></span>
 			<span class="top-txt-c2 m10 fl">일자리 내비게이터</span>
-			<span class="top-txt-c1 fl">관리자 페이지</span>
+			<span class="top-txt-c1 fl">태양광 관리자 페이지</span>
 			</a>
 		</div>
 		<!--<h1 class="logo"><img src="./imgs/logo.png" alt="한국에너지기술평가원 로고"></h1>		-->	             
@@ -81,41 +81,41 @@
 <div class="gnbmenu">
 	<ul id="menu" class="container">
 		<li> 
-			<a href="javascript:tabSelect('C0001', '/admin/rdt/home/management');"><i class="nav-icon fa fa-home"></i>홈화면</a>
+			<a href="javascript:tabSelect('C0001', '/admin/rdt/solar/home/management');"><i class="nav-icon fa fa-home"></i>홈화면</a>
 			<ul class="2depth arrow_box">
-				<li><a href="javascript:tabSelect('C0002', '/admin/rdt/home/management');">홈화면 관리</a></li>						
+				<li><a href="javascript:tabSelect('C0002', '/admin/rdt/solar/home/management');">홈화면 관리</a></li>						
 			</ul>
 		</li>
 		<li>
-			<a href="javascript:tabSelect('C0003', '/admin/rdt/job/search');"><i class="nav-icon fas fa-search"></i>일자리</a>
+			<a href="javascript:tabSelect('C0003', '/admin/rdt/solar/job/search');"><i class="nav-icon fas fa-search"></i>일자리</a>
 			<ul class="2depth arrow_box">
-				<li><a href="javascript:tabSelect('C0004', '/admin/rdt/job/search');">일자리 검색</a></li>
-				<li><a href="javascript:tabSelect('C0005', '/admin/rdt/job/registration');">일자리 등록</a></li>
-				<li><a href="javascript:tabSelect('C0006', '/admin/rdt/job/codeManagement');">일자리 코드 관리</a></li>
+				<li><a href="javascript:tabSelect('C0004', '/admin/rdt/solar/job/search');">일자리 검색</a></li>
+				<li><a href="javascript:tabSelect('C0005', '/admin/rdt/solar/job/registration');">일자리 등록</a></li>
+				<li><a href="javascript:tabSelect('C0006', '/admin/rdt/solar/job/codeManagement');">일자리 코드 관리</a></li>
 			</ul>
 		</li>
 		<li>
-			<a href="javascript:tabSelect('C0007', '/admin/rdt/company/searchList');"><i class="nav-icon fa fa-edit"></i>기업 관리</a>
+			<a href="javascript:tabSelect('C0007', '/admin/rdt/solar/company/searchList');"><i class="nav-icon fa fa-edit"></i>기업 관리</a>
 			<ul class="arrow_box">
-				<li><a href="javascript:tabSelect('C0008', '/admin/rdt/company/searchList');">기업 검색</a></li>
-				<li><a href="javascript:tabSelect('C0009', '/admin/rdt/company/registration');">기업 등록</a></li>
+				<li><a href="javascript:tabSelect('C0008', '/admin/rdt/solar/company/searchList');">기업 검색</a></li>
+				<li><a href="javascript:tabSelect('C0009', '/admin/rdt/solar/company/registration');">기업 등록</a></li>
 			</ul>
 		</li>
 		<li>
-			<a href="javascript:tabSelect('C0010', '/admin/rdt/jobTop/management');"><i class="nav-icon fa fa-atom"></i>유망 일자리</a>
+			<a href="javascript:tabSelect('C0010', '/admin/rdt/solar/jobTop/management');"><i class="nav-icon fa fa-atom"></i>유망 일자리</a>
 			<ul class="arrow_box">
-				<li><a href="javascript:tabSelect('C0011', '/admin/rdt/jobTop/management');">유망 일자리 관리</a></li>
+				<li><a href="javascript:tabSelect('C0011', '/admin/rdt/solar/jobTop/management');">유망 일자리 관리</a></li>
 			</ul>
 		</li>
          <!--li><a href="#"><i class="fas fa-city"></i>기업 지도</a><	/li-->
          <li>
-         	<a href="javascript:tabSelect('C0012', '/admin/rdt/notification/trend/searchList');"><i class="fas fa-bullhorn"></i>알림/정보</a>
+         	<a href="javascript:tabSelect('C0012', '/admin/rdt/solar/notification/trend/searchList');"><i class="fas fa-bullhorn"></i>알림/정보</a>
            	<ul class="arrow_box">
-				<li><a href="javascript:tabSelect('C0013', '/admin/rdt/notification/trend/searchList');">태양광산업 동향</a></li>
-				<li><a href="javascript:tabSelect('C0014', '/admin/rdt/notification/license/searchList');">자격증</a></li>
-				<li><a href="javascript:tabSelect('C0015', '/admin/rdt/notification/training/searchList');">훈련과정</a></li>
-				<li><a href="javascript:tabSelect('C0015', '/admin/rdt/notification/faq/searchList');">FAQ</a></li>
-				<li><a href="javascript:tabSelect('C0016', '/admin/rdt/notification/suggest/management');">건의하기</a></li>
+				<li><a href="javascript:tabSelect('C0013', '/admin/rdt/solar/notification/trend/searchList');">태양광산업 동향</a></li>
+				<li><a href="javascript:tabSelect('C0014', '/admin/rdt/solar/notification/license/searchList');">자격증</a></li>
+				<li><a href="javascript:tabSelect('C0015', '/admin/rdt/solar/notification/training/searchList');">훈련과정</a></li>
+				<li><a href="javascript:tabSelect('C0015', '/admin/rdt/solar/notification/faq/searchList');">FAQ</a></li>
+				<li><a href="javascript:tabSelect('C0016', '/admin/rdt/solar/notification/suggest/management');">건의하기</a></li>
 			</ul>
          </li>
          <li>

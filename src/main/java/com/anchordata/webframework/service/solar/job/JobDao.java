@@ -108,6 +108,9 @@ public class JobDao extends BaseDao {
 	public int updateRank(JobVO params) throws Exception{
 		return update(mapper.concat("updateRank"), params);
 	}
+	public int essUpdateRank(JobVO params) throws Exception{
+		return update(mapper.concat("essUpdateRank"), params);
+	}
 	
 	public List<JobVO> allListRank() throws Exception{
 		return selectList(mapper.concat("allListRank"));

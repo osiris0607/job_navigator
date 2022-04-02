@@ -25,25 +25,25 @@ public class AdminTrainingController {
 	@Autowired
 	private TrainingService trainingService;
 	
-	@RequestMapping("/admin/rdt/notification/training/registration")
+	@RequestMapping("/admin/rdt/solar/notification/training/registration")
 	public ModelAndView rdtLicenseRegistration(@ModelAttribute TrainingVO vo, ModelAndView mv) throws Exception {
 		List<CommonCodeVO> result = commonCodeService.selectListAllUseYN();
 		mv.addObject("commonCode", result);
 //		mv.addObject("headerMenuIndex", headerMenuIndex);
-		mv.setViewName("notification/training/registration.admin");
+		mv.setViewName("solar/notification/training/registration.admin");
 		return mv;
 	}
 	
-	@RequestMapping("/admin/rdt/notification/training/searchList")
+	@RequestMapping("/admin/rdt/solar/notification/training/searchList")
 	public ModelAndView rdtLicenseList(@ModelAttribute TrainingVO vo, ModelAndView mv) throws Exception {
-		mv.setViewName("notification/training/searchList.admin");
+		mv.setViewName("solar/notification/training/searchList.admin");
 		return mv;
 	}
 	
-	@RequestMapping("/admin/rdt/notification/training/detail")
+	@RequestMapping("/admin/rdt/solar/notification/training/detail")
 	public ModelAndView rdtDetail(@ModelAttribute TrainingVO vo, ModelAndView mv) throws Exception {
 		mv.addObject("vo", vo);
-		mv.setViewName("notification/training/detail.admin");
+		mv.setViewName("solar/notification/training/detail.admin");
 		return mv;
 	}
 	
@@ -54,7 +54,7 @@ public class AdminTrainingController {
 	/**
 	* 등록
 	*/
-	@RequestMapping("/admin/api/notification/training/registration")
+	@RequestMapping("/admin/api/solar/notification/training/registration")
 	public ModelAndView registration(@ModelAttribute TrainingVO vo, ModelAndView mv) throws Exception {
 		vo.setJob_gb("D000004");
 		mv.addObject( "result", trainingService.registration(vo) );
@@ -66,7 +66,7 @@ public class AdminTrainingController {
 	/**
 	* 검색 List (10개씩)
 	*/
-	@RequestMapping("/admin/api/notification/training/search/paging")
+	@RequestMapping("/admin/api/solar/notification/training/search/paging")
 		public ModelAndView search(@ModelAttribute TrainingSearchVO vo, ModelAndView mv) throws Exception {
 		vo.setJob_gb("D000004");
 		List<TrainingVO> resList = trainingService.searchList(vo);
@@ -84,7 +84,7 @@ public class AdminTrainingController {
 	/**
 	* 검색 List ALL
 	*/
-	@RequestMapping("/admin/api/notification/training/all")
+	@RequestMapping("/admin/api/solar/notification/training/all")
 		public ModelAndView searchAll(@ModelAttribute TrainingSearchVO vo, ModelAndView mv) throws Exception {
 		List<TrainingVO> resList = trainingService.allList();
 		mv.addObject("result", resList);
@@ -97,7 +97,7 @@ public class AdminTrainingController {
 	/**
 	*  상세
 	*/
-	@RequestMapping("/admin/api/notification/training/search/detail")
+	@RequestMapping("/admin/api/solar/notification/training/search/detail")
 	public ModelAndView detail(@ModelAttribute TrainingVO vo, ModelAndView mv) throws Exception {
 		vo.setJob_gb("D000004");
 		TrainingVO result = trainingService.detail(vo);
@@ -110,7 +110,7 @@ public class AdminTrainingController {
 	/**
 	* 변경
 	*/
-	@RequestMapping("/admin/api/notification/training/modification")
+	@RequestMapping("/admin/api/solar/notification/training/modification")
 	public ModelAndView modification(@ModelAttribute TrainingVO vo, ModelAndView mv) throws Exception {
 		mv.addObject( "result", trainingService.modification(vo) );
 		mv.setViewName("jsonView");
@@ -121,7 +121,7 @@ public class AdminTrainingController {
 	/**
 	 * 삭제
 	 */
-	@RequestMapping("/admin/api/notification/training/withdrawal")
+	@RequestMapping("/admin/api/solar/notification/training/withdrawal")
 	public ModelAndView withdrawal(@ModelAttribute TrainingVO vo, ModelAndView mv) throws Exception {
 		mv.addObject("result", trainingService.withdrawal(vo));
 		mv.setViewName("jsonView");

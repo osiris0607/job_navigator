@@ -243,7 +243,7 @@
   
 <!--페이지 루트-->
 <div class="page-nation container">
-	<a href="/admin/rdt/home/management"><i class="nav-icon fa fa-home mr5"></i>홈화면</a><span class="route_icon"></span>
+	<a href="/admin/rdt/solar/home/management"><i class="nav-icon fa fa-home mr5"></i>홈화면</a><span class="route_icon"></span>
 	<a href="javascript:void(0)">관리자</a><span class="route_icon"></span>
 	<a href="javascript:void(0)">계정 관리</a>
 </div>

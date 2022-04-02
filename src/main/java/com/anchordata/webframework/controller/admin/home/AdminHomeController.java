@@ -14,9 +14,25 @@ import com.anchordata.webframework.service.solar.job.JobVO;
 @Controller("AdminHomeController")
 public class AdminHomeController {
 	
-	@RequestMapping("/admin/rdt/home/management")
+	/**
+	 * 
+	 * SOLAR HOME
+	 *
+	 * */
+	@RequestMapping("/admin/rdt/solar/home/management")
 	public ModelAndView rdtManagement(@ModelAttribute JobVO vo, ModelAndView mv) throws Exception {
-		mv.setViewName("home/management.admin");
+		mv.setViewName("solar/home/management.admin");
+		return mv;
+	}
+	
+	/**
+	 * 
+	 * ESS HOME
+	 *
+	 * */
+	@RequestMapping("/admin/rdt/ess/home/management")
+	public ModelAndView rdtEssManagement(@ModelAttribute JobVO vo, ModelAndView mv) throws Exception {
+		mv.setViewName("ess/home/management.ess_admin");
 		return mv;
 	}
 	

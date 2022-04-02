@@ -23,6 +23,13 @@
 		<put-attribute name="footer"		value="/WEB-INF/layout/admin/solar/footer.jsp" />
 	</definition>
 	
+	<definition name="ess_admin" template="/WEB-INF/layout/admin/ess/template.jsp">
+		<put-attribute name="header"		value="/WEB-INF/layout/admin/ess/header.jsp" />
+		<put-attribute name="headerSide"	value="/WEB-INF/layout/admin/ess/headerSide.jsp" />
+		<put-attribute name="body" 			value="" />
+		<put-attribute name="footer"		value="/WEB-INF/layout/admin/ess/footer.jsp" />
+	</definition>
+	
 	<definition name="member" template="/WEB-INF/layout/member/template.jsp">
 		<put-attribute name="header"		value="/WEB-INF/layout/member/solar/header.jsp" />
 		<put-attribute name="headerSide"	value="/WEB-INF/layout/member/solar/headerSide.jsp" />
@@ -58,6 +65,18 @@
     
    	<definition name="*/*/*.admin" extends="admin">
         <put-attribute name="body" 			value="/WEB-INF/jsp/admin/{1}/{2}/{3}.jsp"/>
+    </definition>
+    
+   	<definition name="*/*/*/*.admin" extends="admin">
+        <put-attribute name="body" 			value="/WEB-INF/jsp/admin/{1}/{2}/{3}/{4}.jsp"/>
+    </definition>
+    
+   	<definition name="*/*/*.ess_admin" extends="ess_admin">
+        <put-attribute name="body" 			value="/WEB-INF/jsp/admin/{1}/{2}/{3}.jsp"/>
+    </definition>
+    
+   	<definition name="*/*/*/*.ess_admin" extends="ess_admin">
+        <put-attribute name="body" 			value="/WEB-INF/jsp/admin/{1}/{2}/{3}/{4}.jsp"/>
     </definition>
     
     

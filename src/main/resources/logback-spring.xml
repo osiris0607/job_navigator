@@ -64,8 +64,8 @@
 	<springProfile name="dev">
 	    <root level="INFO">
 	 		<appender-ref ref="Console"/>
-	  	    <!-- <appender-ref ref="LogFile"/>
-	        <appender-ref ref="ErrorFile"/> -->
+	  	    <!-- <appender-ref ref="LogFile"/> -->
+	        <!-- <appender-ref ref="ErrorFile"/> -->
 	    </root> 
 	 </springProfile>
 	 

@@ -21,9 +21,9 @@ public class AdminSuggestController {
 	@Autowired
 	private SuggestService suggestService;
 	
-	@RequestMapping("/admin/rdt/notification/suggest/management")
+	@RequestMapping("/admin/rdt/solar/notification/suggest/management")
 	public ModelAndView rdtManagement(@ModelAttribute LicenseVO vo, ModelAndView mv) throws Exception {
-		mv.setViewName("notification/suggest/management.admin");
+		mv.setViewName("solar/notification/suggest/management.admin");
 		return mv;
 	}
 	
@@ -34,7 +34,7 @@ public class AdminSuggestController {
 	/**
 	* 등록
 	*/
-	@RequestMapping("/admin/api/notification/suggest/registration")
+	@RequestMapping("/admin/api/solar/notification/suggest/registration")
 	public ModelAndView registration(@ModelAttribute SuggestVO vo, ModelAndView mv) throws Exception {
 		mv.addObject( "result", suggestService.registration(vo) );
 		mv.setViewName("jsonView");
@@ -45,7 +45,7 @@ public class AdminSuggestController {
 	/**
 	* 검색 List ALL
 	*/
-	@RequestMapping("/admin/api/notification/suggest/all")
+	@RequestMapping("/admin/api/solar/notification/suggest/all")
 		public ModelAndView searchAll(@ModelAttribute SuggestVO vo, ModelAndView mv) throws Exception {
 		List<SuggestVO> resList = suggestService.allList();
 		mv.addObject("result", resList);
@@ -57,7 +57,7 @@ public class AdminSuggestController {
 	/**
 	* 변경
 	*/
-	@RequestMapping("/admin/api/notification/suggest/modification")
+	@RequestMapping("/admin/api/solar/notification/suggest/modification")
 	public ModelAndView modification(@ModelAttribute SuggestVO vo, ModelAndView mv) throws Exception {
 		mv.addObject( "result", suggestService.modification(vo) );
 		mv.setViewName("jsonView");
@@ -68,7 +68,7 @@ public class AdminSuggestController {
 	/**
 	 * 삭제
 	 */
-	@RequestMapping("/admin/api/notification/suggest/withdrawal")
+	@RequestMapping("/admin/api/solar/notification/suggest/withdrawal")
 	public ModelAndView withdrawal(@ModelAttribute SuggestVO vo, ModelAndView mv) throws Exception {
 		mv.addObject("result", suggestService.withdrawal(vo));
 		mv.setViewName("jsonView");
@@ -79,7 +79,7 @@ public class AdminSuggestController {
 	/**
 	* 사용 여부 변경
 	*/
-	@RequestMapping("/admin/api/notification/suggest/useYN")
+	@RequestMapping("/admin/api/solar/notification/suggest/useYN")
 		public ModelAndView categoryUseYN(@ModelAttribute SuggestVO vo, ModelAndView mv) throws Exception {
 		mv.addObject( "result", suggestService.updateUseYN(vo) );
 		mv.setViewName("jsonView");

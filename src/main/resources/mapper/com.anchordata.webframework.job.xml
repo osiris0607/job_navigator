@@ -148,6 +148,68 @@
 		);
 	</insert>
 	
+	<insert id="insertEssInfo" useGeneratedKeys="true" keyProperty="job_id" parameterType="JobVO">
+		INSERT INTO ESS_JOB ( 
+			CATEGORY_ID
+			,	CATEGORY_DETAIL_ID
+			,	OCCUPATION
+			,	NAME
+			,	DEFINITION
+			,	DESCRIPTION
+			,	EDUCATION
+			,	MAJOR
+			,	LICENSE_ID
+			, 	CAREER
+			,	DIFFICULTY
+			,	KNOWLEDGE
+			,	SKILL
+			,	ATTITUDE
+			,	SALARY_LEVEL
+			,	PROSPECT
+			,	RANKING
+			,	RELATED_JOB
+			,	RELATED_OCCUPATION
+			,	KECO
+			,	COMPANY_1
+			,	COMPANY_2
+			,	COMPANY_3
+			,	FUTURE_CAREER_1
+			,	FUTURE_CAREER_2
+			,	FUTURE_CAREER_3
+			,	UPLOAD_FILE_ID
+						
+		) 
+		VALUES (
+			#{category_id} 
+			,	#{category_detail_id}
+			,	#{occupation}
+			,	#{name}
+			,	#{definition}
+			,	#{description}
+			,	#{education}
+			,	#{major}
+			,	#{license_id}
+			,	#{career}
+			,	#{difficulty}
+			,	#{knowledge}
+			,	#{skill}			
+			,	#{attitude}
+			,	#{salary_level}
+			,	#{prospect}
+			,	#{ranking}
+			,	#{related_job}
+			,	#{related_occupation}
+			,	#{keco}
+			,	#{company_1}
+			,	#{company_2}
+			,	#{company_3}
+			,	#{future_career_1}
+			,	#{future_career_2}
+			,	#{future_career_3}
+			,	#{upload_file_id}
+		);
+	</insert>
+	
 	
 	<insert id="insertRelativeInfo" useGeneratedKeys="true" keyProperty="relative_id" parameterType="JobRelativeVO">
 		INSERT INTO SUN_JOB_RELATIVE ( 
@@ -772,6 +834,14 @@
 	/////////////////////////////////////////////////////////////////////////// -->
 	<update id="updateRank" parameterType="JobVO">
 		UPDATE SUN_JOB SET   
+			RANKING = #{ranking}
+			,	RANK_UPDATE_DATE = NOW()
+		WHERE 
+			JOB_ID = #{job_id}
+	</update>
+	
+	<update id="essUpdateRank" parameterType="JobVO">
+		UPDATE ESS_JOB SET   
 			RANKING = #{ranking}
 			,	RANK_UPDATE_DATE = NOW()
 		WHERE 

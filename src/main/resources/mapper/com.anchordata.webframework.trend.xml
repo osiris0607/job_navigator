@@ -121,7 +121,7 @@
 			,	EXPLANATION
 			,	HITS
 			,	UPLOAD_FILE_ID
-			,	(SELECT NAME FROM SUN_UPLOAD_FILE
+			,	(SELECT NAME FROM 
 					<if test='job_gb.equals("D000004")'>
 						SUN_UPLOAD_FILE 
 					</if>

@@ -36,7 +36,7 @@
 			,	CHANGE_PROCESS
 			,	PERFORMANCE_JOB
 			, 	PROSPECT
-			, JOB_GB
+			,   JOB_GB
 		) 
 		VALUES (
 			#{field} 
@@ -48,7 +48,7 @@
 			,	#{change_process}
 			,	#{performance_job}
 			,	#{prospect}
-			, #{job_gb}
+			,   #{job_gb}
 		);
 	</insert>
 	
@@ -73,6 +73,9 @@
 		WHERE
 			1 = 1
 			AND USE_YN = 'Y'
+			<if test='job_gb != null and job_gb != "" '>
+				AND JOB_GB = #{job_gb}
+			</if>
 			<if test='field != null and field != "" '>
 				AND FIELD = #{field}
 			</if>

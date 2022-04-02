@@ -48,10 +48,10 @@
 				<li class="energyclass_menu_efficiency"><span>&nbsp;</span>에너지 효율 바로가기</li>
 
 				<!--ess-->
-				<li><a href="javascript:alert('개발중입니다. 현재는 태양광 산업 일자리 내비게이터만 이용이 가능합니다.');" class="energyclass_menu_ess" title="Ess 바로가기" target="_self">&nbsp;<span>&nbsp;</span>Ess 바로가기</a></li>
+				<li><a href="/admin/rdt/ess/home/management" class="energyclass_menu_ess" title="Ess 바로가기" target="_self">&nbsp;<span>&nbsp;</span>Ess 바로가기</a></li>
 				
 				<!--태양광-->
-				<li><a href="/admin/rdt/home/management" class="energyclass_menu_sun" title="태양광 바로가기" target="_self">&nbsp;<span>&nbsp;</span>태양광 바로가기</a></li>
+				<li><a href="/admin/rdt/solar/home/management" class="energyclass_menu_sun" title="태양광 바로가기" target="_self">&nbsp;<span>&nbsp;</span>태양광 바로가기</a></li>
 				
 				<!--풍력-->
 				<li class="energyclass_menu_wind"><span>&nbsp;</span>풍력 바로가기</li>
