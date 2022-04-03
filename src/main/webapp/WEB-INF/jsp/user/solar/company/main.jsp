@@ -190,12 +190,13 @@
 				// Info
 				var str = "";
 				var body = $("#company_info");
+				var startStr = "http";
 				body.empty();
 				str += "<dl>";
 				str += " <dt>기업명</dt>";
 				str += " 	<dd>" + value.name + "</dd>";
 				str += " <dt>표준산업분류</dt>";
-				str += " 	<dd>" + value.ksic + "</dd>";
+				str += " 	<dd>" + value.ksic_name + "</dd>";
 				str += " <dt>주소</dt>";
 				str += " 	<dd>" + value.address + "</dd>";
 				str += " <dt>주력 제품/서비스</dt>";
@@ -203,7 +204,11 @@
 				str += " <dt>대표번호</dt>";
 				str += " 	<dd>" + value.phone + "</dd>";
 				str += " <dt>홈페이지</dt>";
-				str += " 	<dd><a href='" + value.home_page + "' target='_blank'>" + value.home_page + "</a></dd>";
+				if(value.home_page.startsWith(startStr)) {
+					str += " 	<dd><a href='" + value.home_page + "' target='_blank'>" + value.home_page + "</a></dd>";
+				}else {
+					str += " 	<dd><a href='http://" + value.home_page + "' target='_blank'>" + value.home_page + "</a></dd>";
+				}
 				str += "</dl>";
 				str += "<div class='relWrap'>";
 				str += "	<h3>연관 일자리</h3>";

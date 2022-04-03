@@ -288,16 +288,16 @@
 					// 중간에 없으면 Blank로 나온다.
 					if ( categoryDetailId == data.result[i].category_detail_id && occurptionNextId == data.result[i].occupation ) {
 						if ( occurptionNextId == "D000001") {
-							str += "	<a style='height:31px;' href='javascript:void(0)' originClass='research' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='research' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
+							str += "	<a href='javascript:void(0)' originClass='research' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='research' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
 						}
 						else if ( occurptionNextId == "D000002") {
-							str += "	<a style='height:31px;' href='javascript:void(0)' originClass='tech' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='tech' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
+							str += "	<a href='javascript:void(0)' originClass='tech' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='tech' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
 						}
 						else if ( occurptionNextId == "D000003") {
-							str += "	<a style='height:31px;' href='javascript:void(0)' originClass='func' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='func' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
+							str += "	<a href='javascript:void(0)' originClass='func' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='func' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
 						}
 						else {
-							str += "	<a style='height:31px;' href='javascript:void(0)' originClass='service' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='service' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
+							str += "	<a href='javascript:void(0)' originClass='service' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='service' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
 						}
 					}
 					else {
@@ -334,16 +334,16 @@
 					// 중간에 없으면 Blank로 나온다.
 					if ( categoryDetailId == data.result[i].category_detail_id && occurptionNextId == data.result[i].occupation ) {
 						if ( occurptionNextId == "D000001") {
-							str += "	<a style='height:31px;' href='javascript:void(0)' originClass='research' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='research' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
+							str += "	<a href='javascript:void(0)' originClass='research' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='research' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
 						}
 						else if ( occurptionNextId == "D000002") {
-							str += "	<a style='height:31px;' href='javascript:void(0)' originClass='tech' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='tech' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
+							str += "	<a href='javascript:void(0)' originClass='tech' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='tech' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
 						}
 						else if ( occurptionNextId == "D000003") {
-							str += "	<a style='height:31px;' href='javascript:void(0)' originClass='func' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='func' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
+							str += "	<a href='javascript:void(0)' originClass='func' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='func' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
 						}
 						else {
-							str += "	<a style='height:31px;' href='javascript:void(0)' originClass='service' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='service' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
+							str += "	<a href='javascript:void(0)' originClass='service' id='job_"+ data.result[i].job_id +"' onMouseOut='mouseOut(this);' onMouseOver='mouseOver(this);' class='service' onclick='detailPopup(\"" + data.result[i].job_id + "\");'>" + unescapeHtml(data.result[i].name) + "</a>";
 						}
 					}
 					else {

@@ -537,7 +537,7 @@
 		<div class="subVisual essJob">
 			<div class="titleArea">
 				<h2>ESS산업 일자리</h2>
-          			<span>ESS 분야의 86개 일자리를 ESS산업 생태계와 직종별로 구분하여<br />확인할 수 있으며 일자리 클릭 시, 상세 내용을 볼 수 있습니다.</span>
+          			<span>ESS 분야의 62개 일자리를 ESS산업 생태계와 직종별로 구분하여<br />확인할 수 있으며 일자리 클릭 시, 상세 내용을 볼 수 있습니다.</span>
 			</div>
 		</div>
   	</section>

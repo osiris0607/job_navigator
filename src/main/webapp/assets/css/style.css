@@ -1108,8 +1108,8 @@ tbody .leftRadius {border-bottom: 0 !important;}
 .essBusiness2:before{content : ""; position: absolute;transform:translate(15%); left : 0; bottom : 0; height : 1px;  width : 80%;  border-bottom:1px solid #f8d76f;}
 
 
-.job_table td{padding: 0 !important;padding-top: 10px !important;padding-right: 5px !important; word-break: keep-all;}
-.job_table td a{width: 100% !important;font-size: 15px !important;border-radius: 0 !important;-webkit-border-radius : 0 !important;-mozborder-radius : 0 !important;-o-border-radius : 0 !important;margin: 0 !important;padding: 0 !important;display: block;color: #000 !important; padding: 6.5px !important;line-height: 1.2em !important;}
+.job_table td{padding: 0 !important;padding-top: 10px !important;padding-right: 5px !important;}
+.job_table td a{height: 31px;width: 100% !important;font-size: 15px !important;border-radius: 0 !important;-webkit-border-radius : 0 !important;-mozborder-radius : 0 !important;-o-border-radius : 0 !important;margin: 0 !important;padding: 0 !important;display: block;color: #000 !important; padding: 6.5px !important;line-height: 1.2em !important;}
 
 .tblJob tbody tr{border: 0 !important;}
 .tblJob tbody tr:last-child{border-bottom: 1px solid #f0f0f0 !important;}
@@ -1123,7 +1123,7 @@ tbody .leftRadius {border-bottom: 0 !important;}
 /*연구직 마우스호버*/
 .tblJob tbody td a.research:hover{background-color: #6adbba !important;border: 2px solid #e3eff7;color: #fff !important;box-shadow: 0px 0px 5px 2px #cecece;line-height: 28px;font-weight: 400 !important;}
 /*연구직 관련 컨텐츠 스타일*/
-.tblJob tbody td a.research_active{height: 31px;background-color: #fff !important;border: 2px solid #72dfbf;color: #0aa377 !important;box-shadow: 0px 0px 5px 2px #cecece;line-height: 28px !important;font-weight: 500 !important; margin-bottom:10px; margin-bottom:10px !important;}
+.tblJob tbody td a.research_active{background-color: #fff !important;border: 2px solid #72dfbf;color: #0aa377 !important;box-shadow: 0px 0px 5px 2px #cecece;line-height: 28px !important;font-weight: 500 !important; margin-bottom:10px; margin-bottom:10px !important;}
 
 /*기술직*/
 .job_table .technical{line-height: 70px;background-image:url('/assets/img/technical_bg.png') !important;background-size:contain !important;background-repeat:no-repeat !important;font-weight: 500;}

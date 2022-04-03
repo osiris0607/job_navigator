@@ -28,7 +28,7 @@
   <div id="wrap">
     <header id="gate_header">
 		<div class="headerWrap">
-		  <a href="./rdt/gate.html">
+		  <a href="/admin/rdt/gate/gate">
 			<h1 class="energy_main_logo"><span>KETEP</span></h1>
 		  </a>		  		  
 		</div>

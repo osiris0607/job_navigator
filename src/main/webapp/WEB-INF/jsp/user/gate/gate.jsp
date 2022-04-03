@@ -41,12 +41,12 @@
 		</div>
 		<div class="navi_index_box">
 			<ul class="navi_index clearfix">
-				<li><a href="javascript:alert('개발중입니다. 현재는 태양광 산업 일자리 내비게이터만 이용이 가능합니다.');" onfocus="this.blur()" class="energyclass_menu_power" title="지능형 전력망 바로가기" target="_self">&nbsp;<span>&nbsp;</span>지능형 전력망 바로가기</a></li>
-				<li><a href="javascript:alert('개발중입니다. 현재는 태양광 산업 일자리 내비게이터만 이용이 가능합니다.');" class="energyclass_menu_efficiency" title="에너지 효율 바로가기" target="_self">&nbsp;<span>&nbsp;</span>에너지 효율 바로가기</a></li>
+				<li><a href="javascript:alert('개발중입니다. 현재는 ESS와 태양광 산업 일자리 내비게이터만 이용이 가능합니다.');" onfocus="this.blur()" class="energyclass_menu_power" title="지능형 전력망 바로가기" target="_self">&nbsp;<span>&nbsp;</span>지능형 전력망 바로가기</a></li>
+				<li><a href="javascript:alert('개발중입니다. 현재는 ESS와 태양광 산업 일자리 내비게이터만 이용이 가능합니다.');" class="energyclass_menu_efficiency" title="에너지 효율 바로가기" target="_self">&nbsp;<span>&nbsp;</span>에너지 효율 바로가기</a></li>
 				<li><a href="/user/rdt/ess/main/main" class="energyclass_menu_ess" title="ESS 바로가기" target="_self">&nbsp;<span>&nbsp;</span>Ess 바로가기</a></li>
 				<li><a href="/user/rdt/solar/main/main" class="energyclass_menu_sun" title="태양광 바로가기" target="_self">&nbsp;<span>&nbsp;</span>태양광 바로가기</a></li>
-				<li><a href="javascript:alert('개발중입니다. 현재는 태양광 산업 일자리 내비게이터만 이용이 가능합니다.');" class="energyclass_menu_wind" title="풍력 바로가기" target="_self">&nbsp;<span>&nbsp;</span>풍력 바로가기</a></li>
-				<li><a href="javascript:alert('개발중입니다. 현재는 태양광 산업 일자리 내비게이터만 이용이 가능합니다.');" class="energyclass_menu_battery" title="수소&middot;연료전지" target="_self">&nbsp;<span>&nbsp;</span>수소&middot;연료전지</a></li>
+				<li><a href="javascript:alert('개발중입니다. 현재는 ESS와 태양광 산업 일자리 내비게이터만 이용이 가능합니다.');" class="energyclass_menu_wind" title="풍력 바로가기" target="_self">&nbsp;<span>&nbsp;</span>풍력 바로가기</a></li>
+				<li><a href="javascript:alert('개발중입니다. 현재는 ESS와 태양광 산업 일자리 내비게이터만 이용이 가능합니다.');" class="energyclass_menu_battery" title="수소&middot;연료전지" target="_self">&nbsp;<span>&nbsp;</span>수소&middot;연료전지</a></li>
 			</ul>
 		 </div>
     </section>
