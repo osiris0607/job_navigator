@@ -172,6 +172,7 @@ public class UserNotificationController {
 	*/
 	@RequestMapping("/user/api/solar/notification/trend/search/detail")
 	public ModelAndView detail(@ModelAttribute TrendVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000004");
 		TrendVO result = trendService.detail(vo);
 		mv.addObject("result", result);
 		mv.setViewName("jsonView");
@@ -418,6 +419,7 @@ public class UserNotificationController {
 	*/
 	@RequestMapping("/user/api/ess/notification/trend/search/detail")
 	public ModelAndView essDetail(@ModelAttribute TrendVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000003");
 		TrendVO result = trendService.detail(vo);
 		mv.addObject("result", result);
 		mv.setViewName("jsonView");
