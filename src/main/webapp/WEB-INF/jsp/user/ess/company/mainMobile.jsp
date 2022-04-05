@@ -363,6 +363,7 @@
 				// Info
 				var str = "";
 				var body = $("#company_info");
+				var startStr = "http";
 				body.empty();
 				str += "<dl>";
 				str += " <dt>기업명</dt>";
@@ -376,7 +377,11 @@
 				str += " <dt>대표번호</dt>";
 				str += " 	<dd>" + value.phone + "</dd>";
 				str += " <dt>홈페이지</dt>";
-				str += " 	<dd><a href='" + value.home_page + "' target='_blank'>" + value.home_page + "</a></dd>";
+				if(value.home_page.startsWith(startStr)) {
+					str += " 	<dd><a href='" + value.home_page + "' target='_blank'>" + value.home_page + "</a></dd>";
+				}else {
+					str += " 	<dd><a href='http://" + value.home_page + "' target='_blank'>" + value.home_page + "</a></dd>";
+				}
 				str += "</dl>";
 				body.append(str);
 				

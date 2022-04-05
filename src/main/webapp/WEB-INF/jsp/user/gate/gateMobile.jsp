@@ -47,11 +47,11 @@
 
 		<ul class="clearfix">
 			<li><a href="/user/rdt/solar/mobile/main/mainMobile" class="energyclass_menu_sun" title="태양광"><span>태양광</span><span class="img"><img src="/assets/solar/mobile/images/job_navi_index_icon1_off.png" alt="태양광" /></span></a></li>
-			<li><a href="javascript:alert('개발중입니다. 현재는 태양광 산업 일자리 내비게이터만 이용이 가능합니다.');" class="energyclass_menu_wind" title="풍력"><span>풍력</span><span class="img"><img src="/assets/solar/mobile/images/job_navi_index_icon2_off.png" alt="풍력"  /></span></a></li>
-			<li><a href="javascript:alert('개발중입니다. 현재는 태양광 산업 일자리 내비게이터만 이용이 가능합니다.');" class="energyclass_menu_battery" title="수소&middot;연료전지"><span>수소&middot;연료전지</span><span class="img"><img src="/assets/solar/mobile/images/job_navi_index_icon3_off.png" alt="수소" /></span></a></li>
-			<li><a href="javascript:alert('개발중입니다. 현재는 태양광 산업 일자리 내비게이터만 이용이 가능합니다.');" class="energyclass_menu_ess" title="ESS"><span>ESS</span><span class="img"><img src="/assets/solar/mobile/images/job_navi_index_icon4_off.png" alt="ESS"  /></span></a></li>
-			<li><a href="javascript:alert('개발중입니다. 현재는 태양광 산업 일자리 내비게이터만 이용이 가능합니다.');" class="energyclass_menu_efficiency" title="에너지효율"><span>에너지효율</span><span class="img"><img src="/assets/solar/mobile/images/job_navi_index_icon5_off.png" alt="에너지효율"  /></span></a></li>
-			<li><a href="javascript:alert('개발중입니다. 현재는 태양광 산업 일자리 내비게이터만 이용이 가능합니다.');" class="energyclass_menu_power" title="지능형전력망"><span>지능형전력망</span><span class="img"><img src="/assets/solar/mobile/images/job_navi_index_icon6_off.png" alt="지능형전력망" /></span></a></li>
+			<li><a href="javascript:alert('개발중입니다. 현재는 ESS와 태양광 산업 일자리 내비게이터만 이용이 가능합니다.');" class="energyclass_menu_wind" title="풍력"><span>풍력</span><span class="img"><img src="/assets/solar/mobile/images/job_navi_index_icon2_off.png" alt="풍력"  /></span></a></li>
+			<li><a href="javascript:alert('개발중입니다. 현재는 ESS와 태양광 산업 일자리 내비게이터만 이용이 가능합니다.');" class="energyclass_menu_battery" title="수소&middot;연료전지"><span>수소&middot;연료전지</span><span class="img"><img src="/assets/solar/mobile/images/job_navi_index_icon3_off.png" alt="수소" /></span></a></li>
+			<li><a href="/user/rdt/ess/mobile/main/mainMobile"" class="energyclass_menu_ess" title="ESS"><span>ESS</span><span class="img"><img src="/assets/solar/mobile/images/job_navi_index_icon4_off.png" alt="ESS"  /></span></a></li>
+			<li><a href="javascript:alert('개발중입니다. 현재는 ESS와 태양광 산업 일자리 내비게이터만 이용이 가능합니다.');" class="energyclass_menu_efficiency" title="에너지효율"><span>에너지효율</span><span class="img"><img src="/assets/solar/mobile/images/job_navi_index_icon5_off.png" alt="에너지효율"  /></span></a></li>
+			<li><a href="javascript:alert('개발중입니다. 현재는 ESS와 태양광 산업 일자리 내비게이터만 이용이 가능합니다.');" class="energyclass_menu_power" title="지능형전력망"><span>지능형전력망</span><span class="img"><img src="/assets/solar/mobile/images/job_navi_index_icon6_off.png" alt="지능형전력망" /></span></a></li>
 		</ul>
 	</div>  
   </section>
