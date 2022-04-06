@@ -926,7 +926,7 @@ button[type=button] { height: 48px; line-height: 48px; color: #999999; font-styl
 
 .mainimg_txt p:first-child{font-size: 1.813rem;line-height: 40px;letter-spacing: -1px;font-weight: 500;}
 .mainimg_txt p:last-child{margin-top: 85px;margin-left: 9.5%;font-weight: 500;font-size: 16px;}
-.blue_font {color: #0aa0ff;}
+.blue_font {color: #fcb122;}
 .mainimg_txt p:first-child .blue_font{font-weight: 700;}
 
 .swiper-content {background: url('../images/main01.png') 0 0 no-repeat;background-size: contain;height: 670px;}

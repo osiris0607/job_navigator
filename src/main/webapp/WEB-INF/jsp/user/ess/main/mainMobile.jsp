@@ -13,7 +13,7 @@
 
 
     <div class="swiper-container swiper-content">
-		<img src="/assets/solar/mobile/images/main01.png" alt="메인이미지" />
+		<img src="/assets/ess/mobile/images/main01.png" alt="메인이미지" />
 		<div class="mainimg_txt">
 			<p class="inwrapTitle"><span class="blue_font">ESS산업</span><br />일자리 내비게이터</p>
             <p>ESS산업  분야로의 취업 및 경력<br />개발을 위해 ESS산업의 종합적인<br />일자리 정보를 제공하는 플랫폼<br /></p>

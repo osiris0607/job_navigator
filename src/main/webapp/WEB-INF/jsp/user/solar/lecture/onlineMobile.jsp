@@ -3,7 +3,7 @@
     <header class="sub">
       <div class="headerSubWrap">
         <button class="prev" onclick="location.href='/user/rdt/solar/mobile/main/mainMobile';"></button>
-        <h1>ì¨ë¼ì¸ ê°ì</h1>
+        <h1>온라인 강의</h1>
       </div>
     </header>
 
