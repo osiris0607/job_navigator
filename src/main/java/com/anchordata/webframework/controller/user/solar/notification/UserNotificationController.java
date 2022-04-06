@@ -225,6 +225,7 @@ public class UserNotificationController {
 	public void downloadFile (@PathVariable("file_id") String fileId, HttpSession session, HttpServletResponse response) throws Exception {
 		UploadFileVO UploadFileVO = new UploadFileVO();
 		UploadFileVO.setFile_id(Integer.parseInt(fileId));
+		UploadFileVO.setJob_gb("D000004");
 		UploadFileVO = uploadFileService.selectUploadFileContent(UploadFileVO);
 		
 		response.setContentType("application/octet-stream"); 
@@ -472,6 +473,7 @@ public class UserNotificationController {
 	public void essDownloadFile (@PathVariable("file_id") String fileId, HttpSession session, HttpServletResponse response) throws Exception {
 		UploadFileVO UploadFileVO = new UploadFileVO();
 		UploadFileVO.setFile_id(Integer.parseInt(fileId));
+		UploadFileVO.setJob_gb("D000003");
 		UploadFileVO = uploadFileService.selectUploadFileContent(UploadFileVO);
 		
 		response.setContentType("application/octet-stream"); 

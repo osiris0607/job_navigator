@@ -24,6 +24,7 @@ public class UploadFileVO {
 	private String description;
 	private byte[] binary_content;
 	private MultipartFile upload_multipart_file;
+	private String job_gb;
 	
 	
 
@@ -69,6 +70,13 @@ public class UploadFileVO {
 	}
 	public void setPath(String path) {
 		this.path = path;
+	}
+	
+	public String getJob_gb() {
+		return job_gb;
+	}
+	public void setJob_gb(String job_gb) {
+		this.job_gb = job_gb;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;

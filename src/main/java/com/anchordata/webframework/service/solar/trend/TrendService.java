@@ -46,6 +46,7 @@ public class TrendService {
 			UploadFileVO uploadFileVO  = new UploadFileVO();
 			uploadFileVO.setName(fileName);
 			uploadFileVO.setBinary_content(vo.getAttach_file().getBytes());
+			uploadFileVO.setJob_gb(vo.getJob_gb());
 			uploadFileService.registration(uploadFileVO);
 			
 			vo.setUpload_file_id(Integer.toString(uploadFileVO.getFile_id()));
@@ -67,6 +68,7 @@ public class TrendService {
 			UploadFileVO uploadFileVO  = new UploadFileVO();
 			uploadFileVO.setName(fileName);
 			uploadFileVO.setBinary_content(vo.getAttach_file().getBytes());
+			uploadFileVO.setJob_gb(vo.getJob_gb());
 			uploadFileService.registration(uploadFileVO);
 			
 			vo.setUpload_file_id(Integer.toString(uploadFileVO.getFile_id()));

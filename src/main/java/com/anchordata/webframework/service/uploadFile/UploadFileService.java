@@ -32,6 +32,7 @@ public class UploadFileService {
 	 */
 	@Transactional
 	public int registration(UploadFileVO vo) throws Exception {
+		System.out.println("uploadFileVo ---> " + vo);
 		return uploadFileDao.insertUploadFileInfo(vo);
 	}
 	

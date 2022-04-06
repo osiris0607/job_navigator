@@ -47,6 +47,7 @@ public class CompanyService {
 			uploadFileVO.setName(fileName);
 			uploadFileVO.setDescription(vo.getAttach_file_description());
 			uploadFileVO.setBinary_content(vo.getAttach_file().getBytes());
+			uploadFileVO.setJob_gb("D000004");
 			uploadFileService.registration(uploadFileVO);
 			
 			vo.setUpload_file_id(Integer.toString(uploadFileVO.getFile_id()));
@@ -69,6 +70,7 @@ public class CompanyService {
 			uploadFileVO.setName(fileName);
 			uploadFileVO.setDescription(vo.getAttach_file_description());
 			uploadFileVO.setBinary_content(vo.getAttach_file().getBytes());
+			uploadFileVO.setJob_gb("D000003");
 			uploadFileService.registration(uploadFileVO);
 			
 			vo.setUpload_file_id(Integer.toString(uploadFileVO.getFile_id()));
@@ -94,7 +96,7 @@ public class CompanyService {
 				uploadFileVO.setName(fileName);
 				uploadFileVO.setBinary_content(vo.getAttach_file().getBytes());
 			}
-			
+			uploadFileVO.setJob_gb("D000004");
 			uploadFileService.modification(uploadFileVO);			
 		}
 		else {
@@ -105,6 +107,7 @@ public class CompanyService {
 				uploadFileVO.setName(fileName);
 				uploadFileVO.setDescription(vo.getAttach_file_description());
 				uploadFileVO.setBinary_content(vo.getAttach_file().getBytes());
+				uploadFileVO.setJob_gb("D000004");
 				uploadFileService.registration(uploadFileVO);
 				
 				vo.setUpload_file_id(Integer.toString(uploadFileVO.getFile_id()));
@@ -130,7 +133,7 @@ public class CompanyService {
 				uploadFileVO.setName(fileName);
 				uploadFileVO.setBinary_content(vo.getAttach_file().getBytes());
 			}
-			
+			uploadFileVO.setJob_gb("D000003");
 			uploadFileService.modification(uploadFileVO);			
 		}
 		else {
@@ -141,6 +144,7 @@ public class CompanyService {
 				uploadFileVO.setName(fileName);
 				uploadFileVO.setDescription(vo.getAttach_file_description());
 				uploadFileVO.setBinary_content(vo.getAttach_file().getBytes());
+				uploadFileVO.setJob_gb("D000003");
 				uploadFileService.registration(uploadFileVO);
 				
 				vo.setUpload_file_id(Integer.toString(uploadFileVO.getFile_id()));
@@ -159,6 +163,7 @@ public class CompanyService {
 		if ( vo.getUpload_file_id() != null && vo.getUpload_file_id() != "" ) {
 			UploadFileVO uploadFileVO  = new UploadFileVO();
 			uploadFileVO.setFile_id(Integer.parseInt(vo.getUpload_file_id()));
+			uploadFileVO.setJob_gb("D000004");
 			uploadFileService.withdrawal(uploadFileVO);
 		}
 		return companyDao.deleteInfo(vo);
@@ -172,6 +177,7 @@ public class CompanyService {
 		if ( vo.getUpload_file_id() != null && vo.getUpload_file_id() != "" ) {
 			UploadFileVO uploadFileVO  = new UploadFileVO();
 			uploadFileVO.setFile_id(Integer.parseInt(vo.getUpload_file_id()));
+			uploadFileVO.setJob_gb("D000003");
 			uploadFileService.withdrawal(uploadFileVO);
 		}
 		return companyDao.deleteEssInfo(vo);

@@ -291,7 +291,7 @@ section ul.partner li img { width: 100%; }
 
 .tabs .tablist { overflow: hidden; width: 100%; border-bottom: 1px solid #efefef; }
 
-.tabs .tablist li { float: left; width: calc(100% / 6); font-size: 16px; line-height: 48px; text-align: center; box-sizing: border-box; }
+.tabs .tablist li { float: left; width: calc(100% / 6); font-size: 15px; line-height: 48px; text-align: center; box-sizing: border-box; }
 
 .tabs .tablist li a { display: block; box-sizing: border-box; }
 
@@ -435,11 +435,11 @@ section ul.partner li img { width: 100%; }
 
 .imgBox { width: 100%;margin-bottom: 30px; height: 240px;}
 
-.imgBox img { width: 100%;height: 240px; }
+.imgBox img { width: 100%;height: 100%; }
 
 .jobList { padding: 0 12px; }
 
-.jobList li { position: relative; height: 255px;;float: left; /*width: calc(50% - 6px); margin-bottom: 20px;margin-left: 12px;  */box-sizing: border-box; }
+.jobList li { position: relative; height: auto;/*float: left; width: calc(50% - 6px); margin-bottom: 20px;margin-left: 12px;  */box-sizing: border-box; }
 
 .jobList li:nth-child(odd) { margin-left: 0; }
 
@@ -934,10 +934,10 @@ section .m-wrap.h3Cont p{padding-top: 20px;color: #333;}
 section .m-wrap.num01, section .m-wrap.num02, section .m-wrap.num03 {padding-bottom: 228px;}
 
 
-.jobList li{margin: 10px 0 10px 0;position: relative;}
-.jobList li a{}
-.jobList li a .b_bg{background-color: rgba(0,0,0, 0.5); width: 100%; height: 35%; z-index: 2; display: block; position: absolute; left: 0; bottom: 0; z-index: 2;}
-.jobList li h2 {position: absolute; bottom: 20px; left: 20px; width: calc(100% - 40px); color: #ffffff;z-index: 3;}
+.jobList li{margin: auto !important;display: block;width: 320px;height: auto;}
+.jobList li a{display: block;width: 100%;height: auto;position: relative;margin: 10px 0;}
+.jobList li a .b_bg{background-color: rgba(0,0,0, 0.5); width: 100%; height: 35%; z-index: 2; position: absolute; left: 0; bottom: 0; z-index: 2;}
+.jobList li h2 {position: absolute; bottom: 5%; left: 20px; width: calc(100% - 40px); color: #ffffff;z-index: 3;}
 /*index*/
 .job_nabi_box{padding-top: 48px;}
 .job_nabi_box h3{font-size:1.875rem;width: 100%;line-height: 38px;text-align: center;color: #0aa0ff;font-weight: 500;display: block;margin-top: 45px;letter-spacing: -0.8px;padding-left: 3.5px;}
@@ -991,33 +991,4 @@ section .m-wrap.num01, section .m-wrap.num02, section .m-wrap.num03 {padding-bot
 
 
 
-/* pjs */
-.innerMobileWrap { padding: 16px 12px 0; box-sizing: border-box; /* search */ }
-.innerMobileWrap.search { padding: 16px 0 0; }
-.innerMobileWrap.bg { padding: 16px 0 0; }
-.innerMobileWrap fieldset { padding: 0 12px; }
-.innerMobileWrap select { width: 100%; }
-.innerMobileWrap .result { margin: 25px 0 0; }
-.innerMobileWrap .result .guide, .innerWrap .result .searchFalse { padding: 40px 0; color: #999999; font-size: 13px; text-align: center; }
-.innerMobileWrap .searchResult .resultNum { padding-bottom: 12px; padding-left: 12px; font-size: 14px; line-height: 1; }
-.innerMobileWrap .searchResult .listWrap { padding-bottom: 80px; background: #fafafa; }
-.innerMobileWrap .searchResult .listWrap .jobCard { padding: 12px; }
-.innerMobileWrap .searchResult .listWrap .jobCard li { position: relative; overflow: hidden; padding: 20px; margin-bottom: 8px; background: #fff; border: 1px solid #f5f5f5; box-sizing: border-box; }
-.innerMobileWrap .searchResult .listWrap .jobCard li .jobTitle {/* padding-bottom: 20px;*/ color: #333333; font-size: 16px; font-weight: 700; line-height: 1; /*border-bottom: 1px solid #efefef;*/ }
-.innerMobileWrap .searchResult .listWrap .jobCard li dl { overflow: hidden; margin-top: 20px; color: #333333; }
-.innerMobileWrap .searchResult .listWrap .jobCard li dl dt { clear: both; float: left; font-size: 15px; font-weight: 700; line-height: 1; }
-.innerMobileWrap .searchResult .listWrap .jobCard li dl dd { margin-left: 80px; margin-bottom: 10px; font-size: 15px; line-height: 1; }
-.innerMobileWrap .searchResult .listWrap .jobCard li a { float: right; display: block; width: 76px; height: 32px; color: #d02e39; font-size: 13px; text-align: center; line-height: 32px; background: #ffffff; border: 1px solid #f6d5d7; box-sizing: border-box; }
-.innerMobileWrap .searchResult button.more { width: calc(100% - 24px); margin: 0 12px; font-size: 16px; }
-.innerMobileWrap .noc { padding-left: 12px; font-size: 14px; }
-.innerMobileWrap .noc em { font-family: 'Rubik'; font-weight: 700; }
-.innerMobileWrap .inputWrap { overflow: hidden; position: relative; padding: 8px 0; }
-.innerMobileWrap .inputWrap input[type=text] { float: left; width: calc(100% - 94px); -webkit-appearance: none; }
-.innerMobileWrap .inputWrap button[type=submit] { float: right; width: 88px; }
-.innerMobileWrap button[type=button] { width: 100%; color: #666666; font-size: 16px; }
-
-
-
-
-
-
+.scroll_map{ width: 100%;overflow-y: auto !important;height: calc(100vh - 280px);margin-top: 10px;}

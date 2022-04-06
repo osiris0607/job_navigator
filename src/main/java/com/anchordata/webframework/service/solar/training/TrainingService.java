@@ -46,6 +46,7 @@ public class TrainingService {
 			uploadFileVO.setName(fileName);
 			uploadFileVO.setDescription(vo.getAttach_file_description());
 			uploadFileVO.setBinary_content(vo.getAttach_file().getBytes());
+			uploadFileVO.setJob_gb(vo.getJob_gb());
 			uploadFileService.registration(uploadFileVO);
 			
 			vo.setUpload_file_id(Integer.toString(uploadFileVO.getFile_id()));
@@ -72,7 +73,7 @@ public class TrainingService {
 				uploadFileVO.setName(fileName);
 				uploadFileVO.setBinary_content(vo.getAttach_file().getBytes());
 			}
-			
+			uploadFileVO.setJob_gb(vo.getJob_gb());
 			uploadFileService.modification(uploadFileVO);			
 		}
 		else {
@@ -83,6 +84,7 @@ public class TrainingService {
 				uploadFileVO.setName(fileName);
 				uploadFileVO.setDescription(vo.getAttach_file_description());
 				uploadFileVO.setBinary_content(vo.getAttach_file().getBytes());
+				uploadFileVO.setJob_gb(vo.getJob_gb());
 				uploadFileService.registration(uploadFileVO);
 				
 				vo.setUpload_file_id(Integer.toString(uploadFileVO.getFile_id()));
@@ -100,6 +102,7 @@ public class TrainingService {
 		if ( vo.getUpload_file_id() != null && vo.getUpload_file_id() != "" ) {
 			UploadFileVO uploadFileVO  = new UploadFileVO();
 			uploadFileVO.setFile_id(Integer.parseInt(vo.getUpload_file_id()));
+			uploadFileVO.setJob_gb(vo.getJob_gb());
 			uploadFileService.withdrawal(uploadFileVO);
 		}
 		return trainingDao.deleteInfo(vo);

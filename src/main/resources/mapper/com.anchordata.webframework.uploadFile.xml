@@ -9,12 +9,20 @@
 		<result property ="name"				column="NAME"	/>
 		<result property ="path"				column="PATH"	/>
 		<result property ="type"				column="TYPE"	/>
+		<result property ="job_gb"				column="JOB_GB"	/>
 		<result property ="description"			column="DESCRIPTION"	/>
 		<result property ="binary_content"		column="BINARY_CONTENT"	/>
 	</resultMap>
 	
 	<insert id="insertUploadFileInfo" useGeneratedKeys="true" keyProperty="file_id" parameterType="UploadFileVO">
-		INSERT INTO SUN_UPLOAD_FILE ( 
+		INSERT INTO 
+			<if test='job_gb.equals("D000004")'>	
+				SUN_UPLOAD_FILE 
+			</if>
+			<if test='job_gb.equals("D000003")'>
+				ESS_UPLOAD_FILE 
+			</if> 
+		( 
 			NAME
 			<if test='path != null and path != "" '>
 			,	PATH
@@ -44,7 +52,14 @@
 	
 	
 	<update id="updateInfo" parameterType="UploadFileVO">
-		UPDATE SUN_UPLOAD_FILE SET 
+		UPDATE 
+		<if test='job_gb.equals("D000004")'>	
+				SUN_UPLOAD_FILE 
+			</if>
+			<if test='job_gb.equals("D000003")'>
+				ESS_UPLOAD_FILE 
+			</if> 
+		SET 
 			DESCRIPTION = #{description}  
 			<if test='name != null and name != "" '>
 			,	NAME = #{name}
@@ -67,7 +82,12 @@
 		SELECT
 			IFNULL(MAX(FILE_ID),0)+1 AS FILE_ID
 		FROM
-			SUN_UPLOAD_FILE
+			<if test='job_gb.equals("D000004")'>	
+				SUN_UPLOAD_FILE 
+			</if>
+			<if test='job_gb.equals("D000003")'>
+				ESS_UPLOAD_FILE 
+			</if> 
 	</select>
 	
 	
@@ -76,14 +96,25 @@
 			NAME
 			,	BINARY_CONTENT
 		FROM
-			SUN_UPLOAD_FILE
+			<if test='job_gb.equals("D000004")'>	
+				SUN_UPLOAD_FILE 
+			</if>
+			<if test='job_gb.equals("D000003")'>
+				ESS_UPLOAD_FILE 
+			</if> 
 		WHERE
 			FIlE_ID	= #{file_id} 
 	</select>
 	
 	
 	<delete id="deleteInfo" parameterType="UploadFileVO">
-		DELETE FROM SUN_UPLOAD_FILE			
+		DELETE FROM 
+		<if test='job_gb.equals("D000004")'>	
+				SUN_UPLOAD_FILE 
+			</if>
+			<if test='job_gb.equals("D000003")'>
+				ESS_UPLOAD_FILE 
+			</if> 			
 		WHERE FIlE_ID = #{file_id}
 	</delete>
 	

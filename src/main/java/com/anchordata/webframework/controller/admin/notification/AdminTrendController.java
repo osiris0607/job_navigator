@@ -183,7 +183,7 @@ public class AdminTrendController {
 	*/
 	@RequestMapping("/admin/api/solar/notification/trend/modification")
 	public ModelAndView modification(@ModelAttribute TrendVO vo, ModelAndView mv) throws Exception {
-		
+		vo.setJob_gb("D000004");
 		mv.addObject( "result", trendService.modification(vo) );
 		mv.setViewName("jsonView");
 		return mv;
@@ -194,7 +194,7 @@ public class AdminTrendController {
 	 */
 	@RequestMapping("/admin/api/ess/notification/trend/modification")
 	public ModelAndView essModification(@ModelAttribute TrendVO vo, ModelAndView mv) throws Exception {
-		
+		vo.setJob_gb("D000003");
 		mv.addObject( "result", trendService.modification(vo) );
 		mv.setViewName("jsonView");
 		return mv;
