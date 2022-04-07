@@ -2,7 +2,7 @@
 <div id="wrap" class="main">
     <header>
     <div class="headerWrap">
-      <a href="/user/rdt/ess/mobile/main/mainMobile">
+      <a href="/gateMobile">
         <h1><span>KETEP</span></h1>
 		<h2>ESS산업 Job-Navi</h2>
       </a>
