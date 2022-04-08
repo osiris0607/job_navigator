@@ -31,6 +31,52 @@
           </div>
         </div>
         
+        <!-- Youtube openApi -->
+        <div class="boxWrap">
+          <div class="videoThumb">
+            <iframe src='https://www.youtube.com/embed/jLPn1POu3mU' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen=''></iframe>
+          </div>
+          <div class="videoContentTest">
+          
+          </div>
+          	
+        
+        </div>
       </div>
     </section>
   </div>
+  
+  <script type="text/javascript">
+  var playlist = 'jLPn1POu3mU';
+  
+  $(document).ready(function () {
+	  $.get(
+			  "https://www.googleapis.com/youtube/v3/videos", { 
+				  part: 'snippet', 
+				  maxResults: 50, 
+				  id: playlist, 
+				  key: 'AIzaSyDP37HANaDbBKYx9s95DVj7qNZMV3DJMbU' 
+			},
+			
+			function (data) {
+				var output;
+				$.each(data.items, function (i, item) {
+					console.log('item ---> ', item);
+					vTitle = item.snippet.title; 
+					vId = item.snippet.channelId; 
+					vDe = item.snippet.description; 
+					vTh = item.snippet.channelTitle; 
+					output = '<li>' + vTitle + '<br>--videoid: ' + vId + '<br>--videodescription: ' + vDe + '<br>--videoTitles: ' + vTh + '"</li>'; 
+					/*output= '<li>'+vTitle+'<iframe src=\"//www.youtube.com/embed/'+vId+'\"></iframe></li>';*/ 
+					$(".videoContentTest").append(output);
+
+					
+					
+				})
+			}
+		);
+
+  });
+
+  
+</script>
