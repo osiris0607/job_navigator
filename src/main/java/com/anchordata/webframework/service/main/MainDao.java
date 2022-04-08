@@ -40,4 +40,18 @@ public class MainDao extends BaseDao {
 	public int updateVisitCounter() throws Exception{
 		return update(mapper.concat("updateVisitCounter"));
 	}
+	
+	/**
+	 * SOLAR 방문자수 증가
+	 */
+	public int updateSolarVisitCounter() throws Exception{
+		return update(mapper.concat("updateSolarVisitCounter"));
+	}
+	
+	/**
+	 * ESS 방문자수 증가
+	 */
+	public int updateEssVisitCounter() throws Exception{
+		return update(mapper.concat("updateEssVisitCounter"));
+	}
 }

@@ -32,5 +32,21 @@ public class MainService {
 		return mainDao.updateVisitCounter();
 	}
 	
+	/**
+	 * SOLAR 방문자수 증가
+	 */
+	@Transactional
+	public int addSolarVisitCounter() throws Exception {
+		return mainDao.updateSolarVisitCounter();
+	}
+	
+	/**
+	 * ESS 방문자수 증가
+	 */
+	@Transactional
+	public int addEssVisitCounter() throws Exception {
+		return mainDao.updateEssVisitCounter();
+	}
+	
 	
 }

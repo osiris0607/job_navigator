@@ -140,14 +140,13 @@ public class AuthController {
 		// 비교하기 위해 새로운 쿠키
         Cookie viewCookie = null;
  
-        // 쿠키가 있을 경우 
+        // 쿠키가 있을 경우 (count기록 이후 접속)
         if (cookies != null && cookies.length > 0) {
             for (int i = 0; i < cookies.length; i++) {
                 // Cookie의 name이 cookie + reviewNo와 일치하는 쿠키를 viewCookie에 넣어줌 
                 if (cookies[i].getName().equals("cookie_youth_starter")) { 
                     System.out.println("처음 쿠키가 생성한 뒤 들어옴.");
                     viewCookie = cookies[i];
-                    System.out.println("viewCookie ---> " + viewCookie);
                 }
             }
         }

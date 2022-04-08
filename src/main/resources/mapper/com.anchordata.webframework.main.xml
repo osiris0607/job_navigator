@@ -95,6 +95,13 @@
 	 				TODAY_COUNT=TODAY_COUNT+1
 	</update>
 	
+	<update id="updateSolarVisitCounter">
+		UPDATE VISIT SET SOLAR_COUNT = SOLAR_COUNT+1 WHERE TODAY_DATE = date_format(current_timestamp(),'%Y-%m-%d');
+	</update>
+	<update id="updateEssVisitCounter">
+		UPDATE VISIT SET ESS_COUNT = ESS_COUNT+1 WHERE TODAY_DATE = date_format(current_timestamp(),'%Y-%m-%d');
+	</update>
+	
 	
 	
 	
