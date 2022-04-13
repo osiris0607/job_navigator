@@ -69,7 +69,53 @@
             </ul>
           </div>
         </div>
-        
+         <!-- Youtube openApi -->
+        <div class="boxWrap">
+          <div class="videoThumb">
+            <iframe src='https://www.youtube.com/embed/od5yWB5aE0c' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen=''></iframe>
+          </div>
+          <div class="videoContentTest">
+          </div>
+        </div>
       </div>
     </section>
   </div>
+  
+  
+  <script type="text/javascript">
+  var playlist = 'od5yWB5aE0c';
+  
+  $(document).ready(function () {
+	  $.get(
+			  "https://www.googleapis.com/youtube/v3/videos", { 
+				  part: 'snippet', 
+				  maxResults: 50, 
+				  id: playlist, 
+				  key: 'AIzaSyDP37HANaDbBKYx9s95DVj7qNZMV3DJMbU' 
+			},
+			
+			function (data) {
+				var output;
+				$.each(data.items, function (i, item) {
+					console.log('item ---> ', item);
+					vTitle = item.snippet.title; 
+					vDate = item.snippet.publishedAt; 
+					vDe = item.snippet.description; 
+					vTh = item.snippet.channelTitle; 
+					
+					var vDateFormat = vDate.toString().replace('T', ' ').substring(0, 10);  //date format yyyy-mm-dd
+					console.log(vDateFormat);
+					output = '<li>' + vTitle + '<br>--vDate: ' + vDateFormat + '<br>--videodescription: ' + vDe + '<br>--videoTitles: ' + vTh + '"</li>'; 
+					/*output= '<li>'+vTitle+'<iframe src=\"//www.youtube.com/embed/'+vId+'\"></iframe></li>';*/ 
+					$(".videoContentTest").append(output);
+
+					
+					
+				})
+			}
+		);
+
+  });
+
+  
+</script>

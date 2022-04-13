@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.anchordata.webframework.online">
+
+	<resultMap id="online" type="OnlineVO">
+		<result property ="online_id"				column="ONLINE_ID"	/>
+		<result property ="url"						column="URL"	/>
+		<result property ="title"					column="TITLE"	/>
+		<result property ="writer"					column="WRITER"	/>
+		<result property ="job_gb"					column="JOB_GB"	/>
+		<result property ="reg_date"				column="REG_DATE"	/>
+	</resultMap>
+	
+	
+	<insert id="insertInfo" useGeneratedKeys="true" keyProperty="online_id" parameterType="OnlineVO">
+		INSERT INTO LECTURE_ONLINE ( 
+			URL
+			, TITLE
+			, WRITER
+			, JOB_GB
+		) 
+		VALUES (
+			#{url}
+			, #{title}
+			, #{writer}
+			, #{job_gb}
+		);
+	</insert>
+	
+	
+	<update id="updateInfo" parameterType="OnlineVO">
+		UPDATE LECTURE_ONLINE  SET   
+			URL = #{url}
+			, TITLE = #{title}
+			,	WRITER = #{writer}
+			,	REG_DATE = NOW()
+		WHERE 
+			ONLINE_ID = #{online_id}
+	</update>
+	
+	
+	<delete id="deleteInfo" parameterType="OnlineVO">
+		DELETE FROM LECTURE_ONLINE 			
+		WHERE ONLINE_ID = #{online_id}
+	</delete>	
+	
+	<select id="selectAllList" resultMap="faq">
+		SELECT
+			ONLINE_ID
+			,	TITLE
+			,	WRITER
+			,	JOB_GB
+			,	DATE_FORMAT(REG_DATE,'%Y-%m-%d') AS REG_DATE
+		FROM
+			LECTURE_ONLINE A
+	</select>
+	
+</mapper>

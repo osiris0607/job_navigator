@@ -37,10 +37,7 @@
             <iframe src='https://www.youtube.com/embed/jLPn1POu3mU' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen=''></iframe>
           </div>
           <div class="videoContentTest">
-          
           </div>
-          	
-        
         </div>
       </div>
     </section>
@@ -63,10 +60,13 @@
 				$.each(data.items, function (i, item) {
 					console.log('item ---> ', item);
 					vTitle = item.snippet.title; 
-					vId = item.snippet.channelId; 
+					vDate = item.snippet.publishedAt; 
 					vDe = item.snippet.description; 
 					vTh = item.snippet.channelTitle; 
-					output = '<li>' + vTitle + '<br>--videoid: ' + vId + '<br>--videodescription: ' + vDe + '<br>--videoTitles: ' + vTh + '"</li>'; 
+					
+					var vDateFormat = vDate.toString().replace('T', ' ').substring(0, 10);  //date format yyyy-mm-dd
+					console.log(vDateFormat);
+					output = '<li>' + vTitle + '<br>--vDate: ' + vDateFormat + '<br>--videodescription: ' + vDe + '<br>--videoTitles: ' + vTh + '"</li>'; 
 					/*output= '<li>'+vTitle+'<iframe src=\"//www.youtube.com/embed/'+vId+'\"></iframe></li>';*/ 
 					$(".videoContentTest").append(output);
 
