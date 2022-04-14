@@ -10,9 +10,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.anchordata.webframework.service.commonCode.CommonCodeService;
 import com.anchordata.webframework.service.commonCode.CommonCodeVO;
+import com.anchordata.webframework.service.solar.job.JobSearchVO;
+import com.anchordata.webframework.service.solar.job.JobVO;
 import com.anchordata.webframework.service.solar.license.LicenseSearchVO;
 import com.anchordata.webframework.service.solar.license.LicenseService;
 import com.anchordata.webframework.service.solar.license.LicenseVO;
+import com.anchordata.webframework.service.solar.online.OnlineService;
+import com.anchordata.webframework.service.solar.online.OnlineVO;
 import com.anchordata.webframework.service.notice.NoticeVO;
 import com.anchordata.webframework.service.solar.training.TrainingSearchVO;
 import com.anchordata.webframework.service.solar.training.TrainingService;
@@ -29,6 +33,8 @@ public class UserLectureController {
 	private CommonCodeService commonCodeService;
 	@Autowired
 	private LicenseService licenseService;
+	@Autowired
+	private OnlineService onlineService;
 	
 	/**
 	 * 
@@ -333,6 +339,28 @@ public class UserLectureController {
 		return mv;
 	}
 	
+	/**
+	* SOLAR 온라인강의 All List
+	*/
+	@RequestMapping("/user/api/solar/lecture/online/all")
+		public ModelAndView allOnlineSearchList(@ModelAttribute OnlineVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000004");
+		List<OnlineVO> resList = onlineService.searchAllList(vo);
+		mv.addObject("result", resList);
+		mv.setViewName("jsonView");
+		return mv;
+	}
+	/**
+	 * ESS 온라인강의 All List
+	 */
+	@RequestMapping("/user/api/ess/lecture/online/all")
+	public ModelAndView allEssOnlineSearchList(@ModelAttribute OnlineVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000003");
+		List<OnlineVO> resList = onlineService.searchAllList(vo);
+		mv.addObject("result", resList);
+		mv.setViewName("jsonView");
+		return mv;
+	}
 	
 	/**
 	 * 

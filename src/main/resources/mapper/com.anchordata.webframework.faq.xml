@@ -7,7 +7,6 @@
 		<result property ="faq_id"					column="FAQ_ID"	/>
 		<result property ="question"				column="QUESTION"	/>
 		<result property ="answer"					column="ANSWER"	/>
-		
 		<result property ="use_yn"					column="USE_YN"	/>
 		<result property ="reg_date"				column="REG_DATE"	/>
 		<result property ="job_gb"					column="JOB_GB"	/>

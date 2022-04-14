@@ -45,15 +45,44 @@
 		WHERE ONLINE_ID = #{online_id}
 	</delete>	
 	
-	<select id="selectAllList" resultMap="faq">
+	<select id="selectAllList" resultMap="online">
 		SELECT
 			ONLINE_ID
+			,   URL
 			,	TITLE
 			,	WRITER
-			,	JOB_GB
+			,	DATE_FORMAT(REG_DATE,'%Y-%m-%d') AS REG_DATE
+		FROM
+			LECTURE_ONLINE
+	</select>
+	
+	<select id="selectSearchAllList" parameterType="DataMap"  resultMap="online">
+		SELECT
+			ONLINE_ID
+			,   URL
+			,	TITLE
+			,	WRITER
 			,	DATE_FORMAT(REG_DATE,'%Y-%m-%d') AS REG_DATE
 		FROM
 			LECTURE_ONLINE A
+		WHERE
+			<if test='job_gb != null and job_gb != "" '>
+				JOB_GB = #{job_gb}
+			</if>
 	</select>
+	
+	<select id="selectDetail" parameterType="OnlineVO"  resultMap="online">
+		SELECT
+			ONLINE_ID
+			,   URL
+			,	TITLE
+			,	WRITER
+			,	DATE_FORMAT(REG_DATE,'%Y-%m-%d') AS REG_DATE
+		FROM
+			LECTURE_ONLINE A
+		WHERE
+			ONLINE_ID = #{online_id}
+	</select>
+	
 	
 </mapper>

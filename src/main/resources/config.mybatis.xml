@@ -34,6 +34,8 @@
     	<typeAlias type="com.anchordata.webframework.service.solar.faq.FAQVO" alias="FAQVO" />
     	<typeAlias type="com.anchordata.webframework.service.solar.suggest.SuggestVO" alias="SuggestVO" />
     	<typeAlias type="com.anchordata.webframework.service.util.UtilAdministrativeDistrictVO" alias="UtilAdministrativeDistrictVO" />
+    	<typeAlias type="com.anchordata.webframework.service.solar.online.OnlineVO" alias="OnlineVO" />
+    	
     </typeAliases>
 	
     <mappers>     	
@@ -53,6 +55,7 @@
     	<mapper resource="mapper/com.anchordata.webframework.training.xml" />
     	<mapper resource="mapper/com.anchordata.webframework.faq.xml" />
     	<mapper resource="mapper/com.anchordata.webframework.suggest.xml" />
+    	<mapper resource="mapper/com.anchordata.webframework.online.xml" />
     	
     	
 	</mappers>

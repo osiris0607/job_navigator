@@ -18,6 +18,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.anchordata.webframework.service.solar.faq.FAQSearchVO;
+import com.anchordata.webframework.service.solar.faq.FAQVO;
+
 
 @Service("OnlineService")
 public class OnlineService {
@@ -59,5 +62,20 @@ public class OnlineService {
 		return onlineDao.selectAllList();
 	}
 	
+	/**
+	 * Search List All
+	 */
+	@Transactional
+	public List<OnlineVO> searchAllList(OnlineVO vo) throws Exception {
+		return onlineDao.selectSearchAllList(vo);
+	}
 	
+	/**
+	 * 상세
+	 */
+	@Transactional
+	public OnlineVO detail(OnlineVO vo) throws Exception {
+		OnlineVO result = onlineDao.selectDetail(vo);
+		return result;
+	}
 }
