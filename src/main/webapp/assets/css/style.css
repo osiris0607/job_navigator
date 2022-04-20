@@ -1248,3 +1248,28 @@ body{overflow-x:hidden;}
 #gate_body{background: #fff;}
 .navi_index_box{border-bottom: 5px solid #123e6b;}
 
+/*20220414 추가*/
+.ml20{margin-left: 20px;}
+.mr20{margin-right: 20px;}
+.movie_search{margin-bottom: 30px;float: right;overflow: hidden;}
+a.moviedown_btn{width: 104px;height: 38px;line-height: 38px;margin-top: 5px;color: #fff;font-style: normal;font-size: 15px;font-weight: 700;
+background: #d02e39;overflow: hidden;display: block;text-align: center;font-family: Arial;}
+.boxWrap .videoThumb img, .boxWrap .videoThumb iframe, .videoThumb video {max-width: 240px;height: 150px;}
+.boxWrap .videoContent{height: 150px;}
+/* 전체화면 버튼 
+video::-webkit-media-controls-fullscreen-button {} */ 
+/* 일시정지, 재생 버튼
+video::-webkit-media-controls-play-button {}  */ 
+/* 재생 슬라이드
+video::-webkit-media-controls-timeline {}*/ 
+/* 음소거 버튼  
+video::-webkit-media-controls-mute-button {} */
+/* 풀스크린 
+video::-webkit-media-controls-fullscreen-button { }*/
+/* 현재 진행 시간 */ 
+video::-webkit-media-controls-current-time-display{display: none !important;} 
+/* 전체 시간 */ 
+video::-webkit-media-controls-time-remaining-display {display: none !important;} 
+/* 볼륨 조절 슬라이드 */ 
+video::-webkit-media-controls-volume-slider {display: none !important;} 
+.boxWrap .videoContent .videoTitle {display: block; margin-bottom: 10px; font-size: 16px; font-weight: 700; line-height: 1.4; color: #333; display: -webkit-box; display: -ms-flexbox; display: box; margin-top:1px; max-height:60px; overflow:hidden; vertical-align:top; text-overflow: ellipsis; word-break:break-all; -webkit-box-orient:vertical; -webkit-line-clamp:2;padding: 0;}

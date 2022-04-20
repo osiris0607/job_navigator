@@ -11,7 +11,7 @@
  *******************************************************************************/
 package com.anchordata.webframework.service.solar.online;
 
-public class OnlineVO {
+public class OnlineSearchVO {
 
 	private static final long serialVersionUID = 1L;
 
@@ -21,6 +21,11 @@ public class OnlineVO {
 	private String writer = "";
 	private String job_gb = "";
 	private String reg_date = "";
+
+	// paging List Index
+	private String pageIndex;
+	// Paging List Order by
+	private String orderby;
 
 	private int total_count;
 	private int result;
@@ -71,6 +76,22 @@ public class OnlineVO {
 
 	public void setReg_date(String reg_date) {
 		this.reg_date = reg_date;
+	}
+
+	public String getPageIndex() {
+		return pageIndex;
+	}
+
+	public void setPageIndex(String pageIndex) {
+		this.pageIndex = pageIndex;
+	}
+
+	public String getOrderby() {
+		return orderby;
+	}
+
+	public void setOrderby(String orderby) {
+		this.orderby = orderby;
 	}
 
 	public int getTotal_count() {

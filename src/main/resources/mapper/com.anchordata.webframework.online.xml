@@ -10,6 +10,8 @@
 		<result property ="writer"					column="WRITER"	/>
 		<result property ="job_gb"					column="JOB_GB"	/>
 		<result property ="reg_date"				column="REG_DATE"	/>
+		
+		<result property ="total_count"				column="TOTAL_COUNT"	/>
 	</resultMap>
 	
 	
@@ -44,6 +46,32 @@
 		DELETE FROM LECTURE_ONLINE 			
 		WHERE ONLINE_ID = #{online_id}
 	</delete>	
+	
+	
+	<select id="selectSearchList" parameterType="DataMap"  resultMap="online">
+		<include refid="common.pagingPre"/>
+		SELECT
+			ONLINE_ID
+			,   URL
+			,	TITLE
+			,	WRITER
+			,	DATE_FORMAT(REG_DATE,'%Y-%m-%d') AS REG_DATE
+		FROM
+			LECTURE_ONLINE A
+		WHERE
+			<if test='job_gb != null and job_gb != "" '>
+				JOB_GB = #{job_gb}
+			</if>
+			<if test='title != null and title != "" '>
+				AND TITLE LIKE CONCAT('%',#{title},'%')
+			</if>
+			<if test='reg_date != null and reg_date != "" '>
+				AND DATE_FORMAT(REG_DATE,'%Y-%m-%d') = #{reg_date}
+			</if>
+		<include refid="common.pagingPost"/>
+	</select>
+	
+	
 	
 	<select id="selectAllList" resultMap="online">
 		SELECT
@@ -83,6 +111,5 @@
 		WHERE
 			ONLINE_ID = #{online_id}
 	</select>
-	
 	
 </mapper>

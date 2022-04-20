@@ -17,8 +17,11 @@ import org.springframework.stereotype.Repository;
 
 import com.anchordata.webframework.base.common.Constants;
 import com.anchordata.webframework.base.core.BaseDao;
+import com.anchordata.webframework.base.util.DataMap;
 import com.anchordata.webframework.service.solar.faq.FAQSearchVO;
 import com.anchordata.webframework.service.solar.faq.FAQVO;
+import com.anchordata.webframework.service.solar.license.LicenseSearchVO;
+import com.anchordata.webframework.service.solar.training.TrainingVO;
 
 
 @Repository("OnlineDao")
@@ -38,14 +41,23 @@ public class OnlineDao extends BaseDao {
 		return delete(mapper.concat("deleteInfo"), params);
 	}
 	
+	public List<OnlineVO> selectSearchList(DataMap param) throws Exception{
+		return selectPagingList(mapper.concat("selectSearchList"), param);
+	}
+	
+	public List<OnlineVO> selectSearchList(DataMap param, int pageRow) throws Exception{
+		return selectPagingList(mapper.concat("selectSearchList"), param, pageRow);
+	}
+	
 	public List<OnlineVO> selectAllList() throws Exception{
 		return selectList(mapper.concat("selectAllList"));
 	}
 	
-	public List<OnlineVO> selectSearchAllList(OnlineVO param) throws Exception{
+	public List<OnlineVO> selectSearchAllList(OnlineSearchVO param) throws Exception{
 		return selectList(mapper.concat("selectSearchAllList"), param);
 	}
 	public OnlineVO selectDetail(OnlineVO vo) throws Exception{
 		return selectOne(mapper.concat("selectDetail"), vo);
 	}
+	
 }

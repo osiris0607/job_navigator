@@ -15,6 +15,7 @@ import com.anchordata.webframework.service.solar.job.JobVO;
 import com.anchordata.webframework.service.solar.license.LicenseSearchVO;
 import com.anchordata.webframework.service.solar.license.LicenseService;
 import com.anchordata.webframework.service.solar.license.LicenseVO;
+import com.anchordata.webframework.service.solar.online.OnlineSearchVO;
 import com.anchordata.webframework.service.solar.online.OnlineService;
 import com.anchordata.webframework.service.solar.online.OnlineVO;
 import com.anchordata.webframework.service.notice.NoticeVO;
@@ -340,10 +341,29 @@ public class UserLectureController {
 	}
 	
 	/**
+	 *SOLAR 온라인강의 검색 List (10개씩)
+	 */
+	@RequestMapping("/user/api/solar/lecture/online/search/paging")
+	public ModelAndView onlineSearch(@ModelAttribute OnlineSearchVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000003");
+		List<OnlineVO> resList = onlineService.searchList(vo, 9);
+		
+		if (resList.size() > 0) {
+			mv.addObject("result", resList);
+			mv.addObject("totalCount", resList.get(0).getTotal_count());
+		} else {
+			mv.addObject("totalCount", 0);
+		}
+		
+		mv.setViewName("jsonView");
+		return mv;
+	}
+	
+	/**
 	* SOLAR 온라인강의 All List
 	*/
 	@RequestMapping("/user/api/solar/lecture/online/all")
-		public ModelAndView allOnlineSearchList(@ModelAttribute OnlineVO vo, ModelAndView mv) throws Exception {
+		public ModelAndView allOnlineSearchList(@ModelAttribute OnlineSearchVO vo, ModelAndView mv) throws Exception {
 		vo.setJob_gb("D000004");
 		List<OnlineVO> resList = onlineService.searchAllList(vo);
 		mv.addObject("result", resList);
@@ -354,7 +374,7 @@ public class UserLectureController {
 	 * ESS 온라인강의 All List
 	 */
 	@RequestMapping("/user/api/ess/lecture/online/all")
-	public ModelAndView allEssOnlineSearchList(@ModelAttribute OnlineVO vo, ModelAndView mv) throws Exception {
+	public ModelAndView allEssOnlineSearchList(@ModelAttribute OnlineSearchVO vo, ModelAndView mv) throws Exception {
 		vo.setJob_gb("D000003");
 		List<OnlineVO> resList = onlineService.searchAllList(vo);
 		mv.addObject("result", resList);
