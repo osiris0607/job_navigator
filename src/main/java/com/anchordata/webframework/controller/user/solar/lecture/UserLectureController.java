@@ -345,6 +345,25 @@ public class UserLectureController {
 	 */
 	@RequestMapping("/user/api/solar/lecture/online/search/paging")
 	public ModelAndView onlineSearch(@ModelAttribute OnlineSearchVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000004");
+		List<OnlineVO> resList = onlineService.searchList(vo, 9);
+		
+		if (resList.size() > 0) {
+			mv.addObject("result", resList);
+			mv.addObject("totalCount", resList.get(0).getTotal_count());
+		} else {
+			mv.addObject("totalCount", 0);
+		}
+		
+		mv.setViewName("jsonView");
+		return mv;
+	}
+	
+	/**
+	 *ESS 온라인강의 검색 List (10개씩)
+	 */
+	@RequestMapping("/user/api/ess/lecture/online/search/paging")
+	public ModelAndView essOnlineSearch(@ModelAttribute OnlineSearchVO vo, ModelAndView mv) throws Exception {
 		vo.setJob_gb("D000003");
 		List<OnlineVO> resList = onlineService.searchList(vo, 9);
 		

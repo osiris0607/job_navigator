@@ -9,6 +9,10 @@
 		<result property ="title"					column="TITLE"	/>
 		<result property ="writer"					column="WRITER"	/>
 		<result property ="job_gb"					column="JOB_GB"	/>
+		<result property ="video_tp_cd"				column="VIDEO_TP_CD"	/>
+		<result property ="upload_file_id"			column="UPLOAD_FILE_ID"	/>
+		<result property ="upload_file_name"		column="UPLOAD_FILE_NAME"	/>
+		<result property ="upload_file_image"		column="UPLOAD_FILE_IMAGE"	/>
 		<result property ="reg_date"				column="REG_DATE"	/>
 		
 		<result property ="total_count"				column="TOTAL_COUNT"	/>
@@ -21,12 +25,16 @@
 			, TITLE
 			, WRITER
 			, JOB_GB
+			, VIDEO_TP_CD
+			, UPLOAD_FILE_ID
 		) 
 		VALUES (
 			#{url}
 			, #{title}
 			, #{writer}
 			, #{job_gb}
+			, #{video_tp_cd}
+			, #{upload_file_id}
 		);
 	</insert>
 	
@@ -36,6 +44,7 @@
 			URL = #{url}
 			, TITLE = #{title}
 			,	WRITER = #{writer}
+			,   VIDEO_TP_CD = #{video_tp_cd}
 			,	REG_DATE = NOW()
 		WHERE 
 			ONLINE_ID = #{online_id}
@@ -55,6 +64,7 @@
 			,   URL
 			,	TITLE
 			,	WRITER
+			,   VIDEO_TP_CD
 			,	DATE_FORMAT(REG_DATE,'%Y-%m-%d') AS REG_DATE
 		FROM
 			LECTURE_ONLINE A
@@ -79,6 +89,7 @@
 			,   URL
 			,	TITLE
 			,	WRITER
+			,   VIDEO_TP_CD
 			,	DATE_FORMAT(REG_DATE,'%Y-%m-%d') AS REG_DATE
 		FROM
 			LECTURE_ONLINE
@@ -90,6 +101,7 @@
 			,   URL
 			,	TITLE
 			,	WRITER
+			,   VIDEO_TP_CD
 			,	DATE_FORMAT(REG_DATE,'%Y-%m-%d') AS REG_DATE
 		FROM
 			LECTURE_ONLINE A
@@ -102,9 +114,10 @@
 	<select id="selectDetail" parameterType="OnlineVO"  resultMap="online">
 		SELECT
 			ONLINE_ID
-			,   URL
 			,	TITLE
 			,	WRITER
+			,   URL
+			,   VIDEO_TP_CD
 			,	DATE_FORMAT(REG_DATE,'%Y-%m-%d') AS REG_DATE
 		FROM
 			LECTURE_ONLINE A

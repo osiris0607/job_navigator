@@ -11,6 +11,10 @@
  *******************************************************************************/
 package com.anchordata.webframework.service.solar.online;
 
+import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class OnlineVO {
 
 	private static final long serialVersionUID = 1L;
@@ -20,7 +24,14 @@ public class OnlineVO {
 	private String title = "";
 	private String writer = "";
 	private String job_gb = "";
+	private String video_tp_cd = "";
+	private String upload_file_id = "";
+	private String upload_file_name = "";
+	private byte[] upload_file_image;
 	private String reg_date = "";
+	
+	@JsonIgnore
+	private MultipartFile attach_file;
 
 	private int total_count;
 	private int result;
@@ -87,6 +98,45 @@ public class OnlineVO {
 
 	public void setResult(int result) {
 		this.result = result;
+	}
+	public String getVideo_tp_cd() {
+		return video_tp_cd;
+	}
+
+	public void setVideo_tp_cd(String video_tp_cd) {
+		this.video_tp_cd = video_tp_cd;
+	}
+	
+	public MultipartFile getAttach_file() {
+		return attach_file;
+	}
+
+	public void setAttach_file(MultipartFile attach_file) {
+		this.attach_file = attach_file;
+	}
+
+	public String getUpload_file_id() {
+		return upload_file_id;
+	}
+
+	public void setUpload_file_id(String upload_file_id) {
+		this.upload_file_id = upload_file_id;
+	}
+
+	public String getUpload_file_name() {
+		return upload_file_name;
+	}
+
+	public void setUpload_file_name(String upload_file_name) {
+		this.upload_file_name = upload_file_name;
+	}
+
+	public byte[] getUpload_file_image() {
+		return upload_file_image;
+	}
+
+	public void setUpload_file_image(byte[] upload_file_image) {
+		this.upload_file_image = upload_file_image;
 	}
 
 	public static long getSerialversionuid() {

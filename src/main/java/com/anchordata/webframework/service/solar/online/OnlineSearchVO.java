@@ -20,6 +20,7 @@ public class OnlineSearchVO {
 	private String title = "";
 	private String writer = "";
 	private String job_gb = "";
+	private String video_tp_cd = "";
 	private String reg_date = "";
 
 	// paging List Index
@@ -108,6 +109,14 @@ public class OnlineSearchVO {
 
 	public void setResult(int result) {
 		this.result = result;
+	}
+	
+	public String getVideo_tp_cd() {
+		return video_tp_cd;
+	}
+
+	public void setVideo_tp_cd(String video_tp_cd) {
+		this.video_tp_cd = video_tp_cd;
 	}
 
 	public static long getSerialversionuid() {

@@ -46,7 +46,11 @@
 		}
 		$("#level_info").append(str);
 		// upload_file_image
-		$("#upload_file_image").html("<img src='data:image/png;base64," + jobDetail.upload_file_image +"' alt='" + unescapeHtml(jobDetail.name) + "'>");
+		if(jobDetail.upload_file_id == "") {
+			$("#upload_file_image").html("<img src='/assets/img/no_image.jpg' alt='" + unescapeHtml(jobDetail.name) + "'>");
+		}else {
+			$("#upload_file_image").html("<img src='data:image/png;base64," + jobDetail.upload_file_image +"' alt='" + unescapeHtml(jobDetail.name) + "'>");
+		}
 		// 연봉
 		$("#salary_level").text(jobDetail.salary_level);
 		// 경력

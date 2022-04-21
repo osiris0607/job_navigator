@@ -35,7 +35,7 @@ public class TrainingVO {
 	
 	@JsonIgnore
 	private MultipartFile attach_file;
-	private String attach_file_description = "";;
+	private String attach_file_description = "";
 	
 	
 	private int total_count;

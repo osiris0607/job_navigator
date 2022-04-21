@@ -102,17 +102,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.httpBasic().disable().csrf().disable();
 
 		/*
-		 * http.authorizeRequests() .antMatchers("/user/rdt/login/adminLogin").access(
-		 * "hasIpAddress('172.20.50.83')")
-		 * .antMatchers("/user/rdt/login/adminLogin").access(
-		 * "hasIpAddress('218.153.150.233')");
-		 * 
-		 * http.authorizeRequests()
-		 * .antMatchers("/member/**").access("hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')")
-		 * .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
-		 * .antMatchers("/admin/**").access("hasIpAddress('172.20.50.83')")
-		 * .antMatchers("/admin/**").access("hasIpAddress('218.153.150.233')");
-		 */
+		http.authorizeRequests() .antMatchers("/user/rdt/login/adminLogin")
+		.access("hasIpAddress('172.20.50.83')",
+		.access("hasIpAddress('222.106.84.35')"
+		);
+		
+		http.authorizeRequests()
+		.antMatchers("/member/**").access("hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')")
+		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+		.antMatchers("/admin/**").access("hasIpAddress('172.20.50.83')",
+		.antMatchers("/admin/**").access("hasIpAddress('222.106.84.35')"
+		
+		);
+		*/
+		
 		
 		http.antMatcher("/**").authorizeRequests()
 				.antMatchers("/", "/login", "/login/kakao/**", "/login/google", "/kakaoLogin", "/naverLogin", "/verifyEmail", "/signUp", "/error",

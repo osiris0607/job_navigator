@@ -42,7 +42,7 @@
 			}
 		}
 
-		formData.append("training_id", $("#training_id	").val());
+		formData.append("training_id", $("#training_id").val());
 		formData.append("title", $("#title").val());
 		formData.append("enforcement_agency", $("#enforcement_agency").val());
 		formData.append("address", $("#address").val());

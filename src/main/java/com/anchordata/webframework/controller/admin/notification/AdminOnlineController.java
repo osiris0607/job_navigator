@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.anchordata.webframework.service.solar.faq.FAQSearchVO;
 import com.anchordata.webframework.service.solar.faq.FAQService;
 import com.anchordata.webframework.service.solar.faq.FAQVO;
+import com.anchordata.webframework.service.solar.online.OnlineSearchVO;
 import com.anchordata.webframework.service.solar.online.OnlineService;
 import com.anchordata.webframework.service.solar.online.OnlineVO;
 
@@ -49,7 +50,7 @@ public class AdminOnlineController {
 	
 	/**
 	 * 
-	 * ESS FAQ
+	 * ESS Online
 	 * 
 	 * */
 	@RequestMapping("/admin/rdt/ess/notification/online/registration")
@@ -98,11 +99,11 @@ public class AdminOnlineController {
 	
 	/**
 	* SOLAR 검색 List (10개씩)
-	
+	*/
 	@RequestMapping("/admin/api/solar/notification/online/search/paging")
-		public ModelAndView search(@ModelAttribute OnlineVO vo, ModelAndView mv) throws Exception {
+		public ModelAndView search(@ModelAttribute OnlineSearchVO vo, ModelAndView mv) throws Exception {
 		vo.setJob_gb("D000004");
-		List<FAQVO> resList = onlineService.searchList(vo);
+		List<OnlineVO> resList = onlineService.searchList(vo);
 		if (resList.size() > 0) {
 			mv.addObject("result", resList);
 			mv.addObject("totalCount", resList.get(0).getTotal_count());
@@ -113,15 +114,15 @@ public class AdminOnlineController {
 		mv.setViewName("jsonView");
 		return mv;
 	}
-	*/
+	
 	
 	/**
 	 * ESS 검색 List (10개씩)
-	
+	 */
 	@RequestMapping("/admin/api/ess/notification/online/search/paging")
-	public ModelAndView essSearch(@ModelAttribute OnlineVO vo, ModelAndView mv) throws Exception {
+	public ModelAndView essSearch(@ModelAttribute OnlineSearchVO vo, ModelAndView mv) throws Exception {
 		vo.setJob_gb("D000003");
-		List<FAQVO> resList = onlineService.searchList(vo);
+		List<OnlineVO> resList = onlineService.searchList(vo);
 		if (resList.size() > 0) {
 			mv.addObject("result", resList);
 			mv.addObject("totalCount", resList.get(0).getTotal_count());
@@ -132,13 +133,13 @@ public class AdminOnlineController {
 		mv.setViewName("jsonView");
 		return mv;
 	}
-	 */
+	
 	
 	/**
 	* SOLAR List ALL
 	*/
 	@RequestMapping("/admin/api/solar/notification/online/all")
-		public ModelAndView searchAll(@ModelAttribute OnlineVO vo, ModelAndView mv) throws Exception {
+		public ModelAndView searchAll(@ModelAttribute OnlineSearchVO vo, ModelAndView mv) throws Exception {
 		vo.setJob_gb("D000004");
 		List<OnlineVO> resList = onlineService.searchAllList(vo);
 		mv.addObject("result", resList);
@@ -150,7 +151,7 @@ public class AdminOnlineController {
 	 * ESS List ALL
 	 */
 	@RequestMapping("/admin/api/ess/notification/online/all")
-	public ModelAndView essSearchAll(@ModelAttribute OnlineVO vo, ModelAndView mv) throws Exception {
+	public ModelAndView essSearchAll(@ModelAttribute OnlineSearchVO vo, ModelAndView mv) throws Exception {
 		vo.setJob_gb("D000003");
 		List<OnlineVO> resList = onlineService.searchAllList(vo);
 		mv.addObject("result", resList);
