@@ -35,30 +35,26 @@
 	        if($(".youtube_check").is(":checked")) {
 	            $(".custom-file-input").attr("disabled", true);
 	            $("#url").attr("disabled", false);
-	            $("#url").val(data.result.url);
 	            // radio 버튼의 value 값이 유뷰트라면 파일 비활성화
 	 
 	        }else if($(".video_check").is(":checked")) {
 	        	$(".custom-file-input").attr("disabled", false);
 	        	$("#url").attr("disabled", true);
-	        	$("#url").val('');
 	              // radio 버튼의 value 값이 비디오라면 파일 활성화
 	        }
 		
 		
-	      	//버튼 클릭 이벤트 발생 - 기존데이터 초기화, 원복   ++썸네일, 동영상 파일 name 저장되도록
+	      	//버튼 클릭 이벤트 발생 - ++썸네일, 동영상 파일 name 저장되도록
 	        $("input:radio[name=online-lecture_class]").click(function(){
 		        if($(".youtube_check").is(":checked")){
 		            // radio 버튼의 value 값이 유튜브라면 파일 비활성화
 		            $(".custom-file-input").attr("disabled", true);
 		            $("#url").attr("disabled", false);
-		            $("#url").val(data.result.url);
 		 
 		        }else if($(".video_check").is(":checked")) {
 		            // radio 버튼의 value 값이 비디오라면 파일 활성화
 		        	$(".custom-file-input").attr("disabled", false);
 		        	$("#url").attr("disabled", true);
-		        	$("#url").val('');
 		        }
 		    });
 		
@@ -168,8 +164,8 @@
                         <tr>							
                             <th class="w20 jop_write_table_title">강의 자료 유형</th>
                             <td class="w80">								
-								<input type="radio" name="online-lecture_class" class="ml10 youtube_check" id="video_tp_cd" value="T01" title="강의 자료 유형"/>YOUTUBE
-								<input type="radio" name="online-lecture_class" class="ml10 video_check" id="video_tp_cd" value="T02" title="강의 자료 유형" />VIDEO								
+								<input type="radio" name="online-lecture_class" class="ml10 youtube_check" id="video_tp_cd" value="T01" title="강의 자료 유형" disabled/>YOUTUBE
+								<input type="radio" name="online-lecture_class" class="ml10 video_check" id="video_tp_cd" value="T02" title="강의 자료 유형" disabled/>VIDEO								
                             </td>									
                         </tr>
                     </table>

@@ -59,7 +59,7 @@
 	}
 
   function searchListCB(data) {
-	 // console.log('####', data);
+	  console.log('####', data);
 		var videoList = data.result;
 	  var total = data.totalCount;
 		var body = $("#ul_body");
@@ -80,22 +80,39 @@
 			$("#search_count").text(total);
 			
 			var str = "";
-			var str2 = "";
 			var videoIdList;
 			var playlist;
 			$.each(data.result, function(key, value) {   //key : index
-				videoIdList = value.url.split('/');
-				playlist = videoIdList[videoIdList.length-1];
+				
+				
+				callApiData(playlist);
+
+				
 				
 				/* 등록된 DB count만큼 박스 출력 */
 				
-				if(playlist != null && playlist != '') {
+				if(value.video_tp_cd == 'T01') {
 					//YOUTUBE
+					
+					videoIdList = value.url.split('/');
+					playlist = videoIdList[videoIdList.length-1];
+					
+					console.log('playlist', playlist);
+					/***** youtube api 호출 *****/
+					
+					
 					str += "<div class='boxWrap'>";
 					str += "	<div class='videoThumb'>";
 					str += "	<iframe src='https://www.youtube.com/embed/"+ playlist +"' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen=''></iframe>";
 					str += "	</div>";
+					
+					
 					str += "	<div class='videoContent' id='videoContent'>";
+					str += "	<div>";
+					
+					str += "	</div>";
+					
+					
 					str += "	</div>";
 					str += "</div>";
 				
@@ -108,63 +125,58 @@
 					str += "	</div>";
 					str += "	<div class='videoContent'>";
 					str += "		<p class='videoTitle'>"+value.title+"</p>";
-					str += "		<br><br><br>"
+					str += "		<p class='videoSummary'></span><span class='en'>"+value.reg_date+"</span></p>"
+					str += "		<br>"
 					str += "		<a href='' download class='moviedown_btn'>다운로드</a>	";
+					str += "		<ul class='videoOwner'> 	";
+					str += "			<li>"+value.writer+"</li> 	";
+					str += "		</ul> 	";
 					str += "	</div>";
 					str += "</div>";
 					
 				}
-			
-			
-				/* Youtube API 호출 */
-					$.getJSON(
-							  "https://www.googleapis.com/youtube/v3/videos", { 
-								  part: 'snippet, statistics',
-								  maxResults: 50, 
-								  id: playlist,
-								  key: 'AIzaSyDP37HANaDbBKYx9s95DVj7qNZMV3DJMbU' 
-							},
 				
-				
-				
-				function (data) {
-					//if(data.items.length > 0) {
-					var output;
-						$.each(data.items, function (i, item) {
-							var a = value.url.split('/');
-							var b = a[a.length-1];
-							var c = value.online_id;
-						//	console.log(b);
-							if(item.id == b) {
-						//		console.log(item.id, c);
-								item.online_id = c;
-							}
-							
-							if(value.online_id == item.online_id) {
-								vTitle = item.snippet.title; 
-								vDate = item.snippet.publishedAt; 
-								vDe = item.snippet.description; 
-								vTh = item.snippet.channelTitle; 
-								vCnt = item.statistics.viewCount;
-								vCount = vCnt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');  //천의자리 ,추가
-								vDateFormat = vDate.toString().replace('T', ' ').substring(0, 10);  //date format yyyy-mm-dd
-								output = '<p class="videoTitle">' + vTitle + '</p><p class="videoSummary">' +vCount+' views ' + vDateFormat +  '</p><ul class="videoOwner"><li>' + vTh + '</li></ul>'; 
-								
-								if(playlist != null && playlist != '') {
-									$("#videoContent").append(output);
-								}
-							}	
-								/*output= '<li>'+vTitle+'<iframe src=\"//www.youtube.com/embed/'+vId+'\"></iframe></li>';*/ 
-								
-						}) //end each
-					//}  //end if
-				}   //end function
-			); //end getJSON
 			
 			});  //end value
 			
 			body.append(str);
 	}
+  }
+  
+  function callApiData(playlist) {
+	 // console.log('value :::: ', value);
+/* 	 var videoIdList = value.url.split('/');
+	 var playlist = videoIdList[videoIdList.length-1];
+	 var list= []; */
+	  
+	  $.getJSON(
+			  "https://www.googleapis.com/youtube/v3/videos", { 
+				  part: 'snippet, statistics',
+				  maxResults: 50, 
+				  id: playlist,
+				  key: 'AIzaSyDP37HANaDbBKYx9s95DVj7qNZMV3DJMbU' 
+			},
+			function (data) {
+				console.log(data);
+				var output;
+					//$.each(data.items, function (i, item) {
+
+						vTitle = data.items[0].snippet.title;        //제목
+						vTh = data.items[0].snippet.channelTitle; 	//채널명
+						vCnt = data.items[0].statistics.viewCount;	//조회수
+						vCount = vCnt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');  //조회수 - 천의자리 ,추가
+						vDate = data.items[0].snippet.publishedAt; //등록일자
+						vDateFormat = vDate.toString().replace('T', ' ').substring(0, 10);  //등록일자 format yyyy-mm-dd
+						
+						output = '<p class="videoTitle">' + vTitle + '</p><p class="videoSummary">' +vCount+' views ' + vDateFormat +  '</p><ul class="videoOwner"><li>' + vTh + '</li></ul>'; 
+						$("#videoContent").append(output);
+						/*영상출력 output= '<li>'+vTitle+'<iframe src=\"//www.youtube.com/embed/'+vId+'\"></iframe></li>';*/ 
+						//console.log('============================================ title : ', vTitle);
+
+					//}) //end each
+				}   //end function
+			); //end getJSON
+			
   }
 </script>
 

@@ -7,7 +7,19 @@
 	
 	$(document).ready(function() {
 		
+		//상세페이지 오픈 시 발생
+		 if($(".youtube_check").is(":checked")) {
+	            $(".custom-file-input").attr("disabled", true);
+	            $("#url").attr("disabled", false);
+	            // radio 버튼의 value 값이 유뷰트라면 파일 비활성화
+	 
+	        }else if($(".video_check").is(":checked")) {
+	        	$(".custom-file-input").attr("disabled", false);
+	        	$("#url").attr("disabled", true);
+	              // radio 버튼의 value 값이 비디오라면 파일 활성화
+	        }
 		
+		//버튼 클릭 이벤트 발생 - ++썸네일, 동영상 파일 name 저장되도록
 		$("input:radio[name=online-lecture_class]").click(function(){
 	        if($(".youtube_check").is(":checked")){
 	            // radio 버튼의 value 값이 유뷰트라면 파일 비활성화
@@ -25,9 +37,7 @@
 	
 	/* VIDEO 등록 */
 	function registrationVideo() {
-		console.log('videoooo');
-		console.log($(".video_check").is(':checked'));
-		
+		 
 		var formData = new FormData();
 		var fileData = new FormData();
 		var inputFile = $("input[name='attach_file_video']");
@@ -187,7 +197,7 @@
                         <tr>							
                             <th class="w20 jop_write_table_title">강의 자료 유형</th>
                             <td class="w80">								
-								<input type="radio" name="online-lecture_class" class="ml10 youtube_check" id="video_tp_cd" value="T01" title="강의 자료 유형"/>YOUTUBE
+								<input type="radio" name="online-lecture_class" class="ml10 youtube_check" id="video_tp_cd" value="T01" title="강의 자료 유형" checked/>YOUTUBE
 								<input type="radio" name="online-lecture_class" class="ml10 video_check" id="video_tp_cd" value="T02" title="강의 자료 유형" />VIDEO								
                             </td>									
                         </tr>

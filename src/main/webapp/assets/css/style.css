@@ -1273,3 +1273,51 @@ video::-webkit-media-controls-time-remaining-display {display: none !important;}
 /* 볼륨 조절 슬라이드 */ 
 video::-webkit-media-controls-volume-slider {display: none !important;} 
 .boxWrap .videoContent .videoTitle {display: block; margin-bottom: 10px; font-size: 16px; font-weight: 700; line-height: 1.4; color: #333; display: -webkit-box; display: -ms-flexbox; display: box; margin-top:1px; max-height:60px; overflow:hidden; vertical-align:top; text-overflow: ellipsis; word-break:break-all; -webkit-box-orient:vertical; -webkit-line-clamp:2;padding: 0;}
+
+/*20220414 추가*/
+/*온라인 강의*/
+.ml20{margin-left: 20px;}
+.mr20{margin-right: 20px;}
+.text_c{text-align: center;margin: 0;}
+.boxWrap {position: relative; overflow: hidden; width: 100%; padding: 30px; margin-bottom: 30px; border: 1px solid #d1d1d1; box-sizing: border-box;}
+.boxWrap .videoThumb {float: left; margin-right: 20px;}
+/* .boxWrap .videoThumb img, .boxWrap .videoThumb iframe, .videoThumb video {max-width: 240px; height: 150px;} */
+.boxWrap .videoThumb img, .boxWrap .videoThumb iframe, .videoThumb video {width: 300px; height: 150px;}
+.boxWrap .videoContent {position: relative; overflow: hidden; height: 150px;}
+.boxWrap .videoContent .videoSummary {color: #666666; font-size: 15px;	margin: 0;}
+.boxWrap .videoContent .videoSummary span.en {padding: 0;}
+.boxWrap .videoContent .videoOwner {position: absolute; bottom: 0; overflow: hidden; margin: 0;}
+.boxWrap .videoContent .videoTitle {display: block; margin-bottom: 10px; font-size: 16px; font-weight: 700; line-height: 1.4;color: #333;display: -webkit-box; display: -ms-flexbox;margin-top:1px; max-height:60px; overflow:hidden; vertical-align:top; text-overflow: ellipsis; word-break:break-all; -webkit-box-orient:vertical; -webkit-line-clamp:2;padding: 0;}
+.boxWrap .videoContent .videoOwner li {float: left; height: 24px; margin-right: 20px; font-size: 15px; line-height: 24px;}
+a.btn:active{transform: translateY(2px);}
+.video_table input:disabled{background-color: #eee !important;color: #848484;}
+.job_retouch_btns-box {width: 100%; padding-top: 30px; text-align: center; clear: both;}
+.online-lecture-view_btns{position: relative;padding-bottom: 50px;text-align: center;}
+.online-lecture-view_btns .del_btn{background-color: #5a6268; color: #fff; border: 1px solid #545b62;}
+.online-lecture-view_btns .del_btn:hover{background-color: #323538;}
+.popup_bg {position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #000; opacity: .7; z-index: 100;display: none;}
+.online-lecture_del_popup_box {display: none; position: absolute; top: 0; left: 0; width: 100%;height: 100%;z-index: 100000;}
+.online-lecture_del_popup {position: absolute; top: 25%; left: 50%; width: 510px; border: 2px solid #2874D0; background-color: #fff; transform: translate(-50%, -25%); z-index: 100000;}
+.close_btn {color: #fff !important; display: block; border: 1px solid #fff; padding: 3px 6px; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; position: absolute; right: 20px; top: 20px;}
+.popup_titlebox {background-color: #2874D0; padding: 20px;}
+.popup_titlebox h4 {color: #fff !important;}
+.online-lecture_del_popup h4 {color: #fff; font-size: 1.25rem;}
+.popup_txt_area {background-color: #eee; padding: 20px; text-align: center;}
+.popup_txt_area p {text-align: center; background-color: #fff; padding: 20px; border: 1px solid #d1d1d1; color: #454545;font-size: 16px;}
+.popup_button_area_center {text-align: center; margin-top: 30px;}
+.popup_button_area_center {display: inline-block;}
+.online-lecture_del_popup_box{position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10000; display: none;}
+.popup_bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #000; opacity: .7;}
+.online-lecture_del_popup_box .online-lecture_del_popup{position: absolute; top: 25%;  left: 50%;  width: 510px; border: 2px solid #2874D0; background-color: #fff; transform: translate(-50%, -25%);}
+.popup_txt_area button {float: left; margin-left: -1px; z-index: 1;}
+.datepicker_area {display: inline-block;}
+.ui-datepicker-trigger {cursor: pointer;margin-left: 1px; width: 38px; height: 38px; border-radius: 5px; -webkit-border-radius: 5px;    -moz-border-radius: 5px; background-color: #eee !important; border: 4px solid #d1d1d1; background: url('../image/calendar-alt-regular.svg') 50%/50% no-repeat;}
+.form-control { background-color: #fff; border-radius: 3px; font-family: 'Noto Sans KR',sans-serif; transition-duration: 120ms; display: inline-block;
+width: 100%; height: 2.3rem; padding: 0 0.6rem; font-size: 0.9375rem; font-weight: 400; line-height: 2rem; color: #495057; background-color: #fff; background-clip: padding-box; border: 2px solid #eee; border-radius: 0.25rem; transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; border-color: rgb(162, 197, 218) !important;}
+.ui-datepicker-title select { height: 32px !important; font-size: 13px !important; color: #333 !important; border: 2px solid #d1d1d1 !important;
+background: #fff !important; border-radius: 5px !important; padding: 0 !important; appearance: auto;}
+.datepicker_area{display: none;}
+.w_110{width: 110px !important;}
+.datepicker_area .form-control, .list_search_end_box  .ace-select, .list_search_end_box  input, .list_search_end_box  button, .list_search_end_box  .btn{height: 38px !important;}
+.custom-file-input{cursor: pointer;}
+.custom-file-input:disabled{cursor: default;}
