@@ -23,7 +23,7 @@
 					<li class="result">전체 <em id="search_count">0</em>건
 					</li>
 					<li><label for="edu_search" class="hidden">검색</label> 
-					<input type="text" id="edu_search" placeholder="검색어"></li>
+					<input type="text" id="edu_search" placeholder="검색할 제목을 입력하세요"></li>
 					<li>
 						<button type="submit" onclick="searchList(1);">검색</button>
 					</li>
@@ -80,6 +80,7 @@
 			$("#search_count").text(total);
 			
 			var str = "";
+			var str2 = "";
 			var videoIdList;
 			var playlist;
 			$.each(data.result, function(key, value) {   //key : index
@@ -87,18 +88,32 @@
 				playlist = videoIdList[videoIdList.length-1];
 				
 				/* 등록된 DB count만큼 박스 출력 */
-				str += "<div class='boxWrap'>";
-				str += "	<div class='videoThumb'>";
+				
 				if(playlist != null && playlist != '') {
+					//YOUTUBE
+					str += "<div class='boxWrap'>";
+					str += "	<div class='videoThumb'>";
 					str += "	<iframe src='https://www.youtube.com/embed/"+ playlist +"' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen=''></iframe>";
+					str += "	</div>";
+					str += "	<div class='videoContent' id='videoContent'>";
+					str += "	</div>";
+					str += "</div>";
+				
+				
 				}else {
-					//유튜브가 아닌 파일 다운로드
-					str += "<img src='/assets/img/no_image.jpg'>";
+					//VIDEO
+					str += "<div class='boxWrap'>";
+					str += "	<div class='videoThumb'>";
+					str += "		<img src='data:image/png;base64," + value.upload_file_image +"' alt='" + unescapeHtml(value.upload_file_name) + "'>";
+					str += "	</div>";
+					str += "	<div class='videoContent'>";
+					str += "		<p class='videoTitle'>"+value.title+"</p>";
+					str += "		<br><br><br>"
+					str += "		<a href='' download class='moviedown_btn'>다운로드</a>	";
+					str += "	</div>";
+					str += "</div>";
+					
 				}
-				str += "	</div>";
-				str += 		"<div class='videoContenttest' id='videoContent' value='"+value.online_id+"'>";
-				str += "	</div>";
-				str += "</div>";
 			
 			
 				/* Youtube API 호출 */
@@ -119,22 +134,13 @@
 							var a = value.url.split('/');
 							var b = a[a.length-1];
 							var c = value.online_id;
-							console.log(b);
+						//	console.log(b);
 							if(item.id == b) {
-								console.log(item.id, c);
+						//		console.log(item.id, c);
 								item.online_id = c;
-							
 							}
-							console.log(item);
-							var valueCd =  $("#videoContent").val();
-							console.log('value -----> ', $("#videoContent").val());
-							if(valueCd == '2') {
-								console.log('ddddddddddddddddd');
-							}
-							console.log('value ', value);
 							
 							if(value.online_id == item.online_id) {
-								console.log('999999999999999999');
 								vTitle = item.snippet.title; 
 								vDate = item.snippet.publishedAt; 
 								vDe = item.snippet.description; 
@@ -145,19 +151,17 @@
 								output = '<p class="videoTitle">' + vTitle + '</p><p class="videoSummary">' +vCount+' views ' + vDateFormat +  '</p><ul class="videoOwner"><li>' + vTh + '</li></ul>'; 
 								
 								if(playlist != null && playlist != '') {
-									$(".videoContenttest").append(output);
+									$("#videoContent").append(output);
 								}
 							}	
-								
 								/*output= '<li>'+vTitle+'<iframe src=\"//www.youtube.com/embed/'+vId+'\"></iframe></li>';*/ 
-								
-								
 								
 						}) //end each
 					//}  //end if
 				}   //end function
 			); //end getJSON
-			});
+			
+			});  //end value
 			
 			body.append(str);
 	}

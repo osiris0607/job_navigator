@@ -62,7 +62,8 @@
     function checkExtension(fileName,fileSize){
 
       var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
-      var maxSize = 20971520;  //20MB
+       //var maxSize = 20971520;  //20MB
+      var maxSize = 52428800;  //50MB
 
       if(fileSize >= maxSize){
         alert('파일 사이즈 초과');
@@ -100,8 +101,8 @@
           } 
           reader.readAsDataURL(f);
         }else{
-          str += '<img src="/resources/img/fileImg.png" title="'+f.name+'" width=60 height=60 />';
-          $(str).appendTo('#preview');
+         // str += '<img src="/resources/img/fileImg.png" title="'+f.name+'" width=60 height=60 />';
+         // $(str).appendTo('#preview');
         }
       });//arr.forEach
     }

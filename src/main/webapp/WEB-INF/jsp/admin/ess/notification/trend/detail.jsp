@@ -45,6 +45,7 @@
 	}
 	
 	function getDetailCB(data){
+		console.log('data --> ', data);
 		$("#title").val(data.result.title) ;
 		$("#writer").val(data.result.writer);
 		$("#explanation").html(unescapeHtml(data.result.explanation));

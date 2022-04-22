@@ -59,7 +59,8 @@
 	}
 
   function searchListCB(data) {
-		console.log('total --> ', total)
+	 // console.log('####', data);
+		var videoList = data.result;
 	  var total = data.totalCount;
 		var body = $("#ul_body");
 		body.empty();
@@ -77,65 +78,88 @@
 
 			gfnRenderPagingMain(params);
 			$("#search_count").text(total);
-		
+			
 			var str = "";
-			$.each(data.result, function(key, value) {
-				console.log(value);
-				var videoIdList = value.url.split('/');
-				var playlist = videoIdList[videoIdList.length-1];
+			var videoIdList;
+			var playlist;
+			$.each(data.result, function(key, value) {   //key : index
+				videoIdList = value.url.split('/');
+				playlist = videoIdList[videoIdList.length-1];
 				
+				/* 등록된 DB count만큼 박스 출력 */
 				str += "<div class='boxWrap'>";
 				str += "	<div class='videoThumb'>";
-				str += "		<iframe src='https://www.youtube.com/embed/"+ playlist +"' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen=''></iframe>";
+				if(playlist != null && playlist != '') {
+					str += "	<iframe src='https://www.youtube.com/embed/"+ playlist +"' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen=''></iframe>";
+				}else {
+					//유튜브가 아닌 파일 다운로드
+					str += "<img src='/assets/img/no_image.jpg'>";
+				}
 				str += "	</div>";
-				str += 		"<div class='videoContent'>";
+				str += 		"<div class='videoContenttest' id='videoContent' value='"+value.online_id+"'>";
 				str += "	</div>";
 				str += "</div>";
+			
+			
+				/* Youtube API 호출 */
+					$.getJSON(
+							  "https://www.googleapis.com/youtube/v3/videos", { 
+								  part: 'snippet, statistics',
+								  maxResults: 50, 
+								  id: playlist,
+								  key: 'AIzaSyDP37HANaDbBKYx9s95DVj7qNZMV3DJMbU' 
+							},
 				
 				
-				$.get(
-				  "https://www.googleapis.com/youtube/v3/videos", { 
-					  part: 'snippet, statistics',
-					  maxResults: 50, 
-					  id: playlist, 
-					  key: 'AIzaSyDP37HANaDbBKYx9s95DVj7qNZMV3DJMbU' 
-				},
 				
 				function (data) {
+					//if(data.items.length > 0) {
 					var output;
-					$.each(data.items, function (i, item) {
-						console.log(i);
-						console.log(item);
-						
-						vTitle = item.snippet.title; 
-						vDate = item.snippet.publishedAt; 
-						vDe = item.snippet.description; 
-						vTh = item.snippet.channelTitle; 
-						vCnt = item.statistics.viewCount;
-						vCount = vCnt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');  //천의자리 ,추가
-
-
-						
-						var vDateFormat = vDate.toString().replace('T', ' ').substring(0, 10);  //date format yyyy-mm-dd
-						
-						output = '<p class="videoTitle">' + vTitle + '</p><p class="videoSummary"><a href="" download class="moviedown_btn">다운로드</a>' +vCount+' views ' + vDateFormat +  '</p><ul class="videoOwner"><li>' + vTh + '</li></ul>'; 
-
-						/*output= '<li>'+vTitle+'<iframe src=\"//www.youtube.com/embed/'+vId+'\"></iframe></li>';*/ 
-						$(".videoContent").append(output);
-
-						
-						
-					})
-				}
-			);
-		  
+						$.each(data.items, function (i, item) {
+							var a = value.url.split('/');
+							var b = a[a.length-1];
+							var c = value.online_id;
+							console.log(b);
+							if(item.id == b) {
+								console.log(item.id, c);
+								item.online_id = c;
+							
+							}
+							console.log(item);
+							var valueCd =  $("#videoContent").val();
+							console.log('value -----> ', $("#videoContent").val());
+							if(valueCd == '2') {
+								console.log('ddddddddddddddddd');
+							}
+							console.log('value ', value);
+							
+							if(value.online_id == item.online_id) {
+								console.log('999999999999999999');
+								vTitle = item.snippet.title; 
+								vDate = item.snippet.publishedAt; 
+								vDe = item.snippet.description; 
+								vTh = item.snippet.channelTitle; 
+								vCnt = item.statistics.viewCount;
+								vCount = vCnt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');  //천의자리 ,추가
+								vDateFormat = vDate.toString().replace('T', ' ').substring(0, 10);  //date format yyyy-mm-dd
+								output = '<p class="videoTitle">' + vTitle + '</p><p class="videoSummary">' +vCount+' views ' + vDateFormat +  '</p><ul class="videoOwner"><li>' + vTh + '</li></ul>'; 
+								
+								if(playlist != null && playlist != '') {
+									$(".videoContenttest").append(output);
+								}
+							}	
+								
+								/*output= '<li>'+vTitle+'<iframe src=\"//www.youtube.com/embed/'+vId+'\"></iframe></li>';*/ 
+								
+								
+								
+						}) //end each
+					//}  //end if
+				}   //end function
+			); //end getJSON
 			});
+			
 			body.append(str);
 	}
   }
 </script>
-<style>
-.scroll_de {
-	overflow-y: auto; max-height: 80px; border:1px solid black;
-}
-</style>

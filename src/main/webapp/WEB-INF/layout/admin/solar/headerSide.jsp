@@ -112,17 +112,18 @@
          	<a href="javascript:tabSelect('C0012', '/admin/rdt/solar/notification/trend/searchList');"><i class="fas fa-bullhorn"></i>알림/정보</a>
            	<ul class="arrow_box">
 				<li><a href="javascript:tabSelect('C0013', '/admin/rdt/solar/notification/trend/searchList');">태양광산업 동향</a></li>
-				<li><a href="javascript:tabSelect('C0014', '/admin/rdt/solar/notification/license/searchList');">자격증</a></li>
-				<li><a href="javascript:tabSelect('C0015', '/admin/rdt/solar/notification/training/searchList');">훈련과정</a></li>
-				<li><a href="javascript:tabSelect('C0015', '/admin/rdt/solar/notification/faq/searchList');">FAQ</a></li>
+				<li><a href="javascript:tabSelect('C0014', '/admin/rdt/solar/notification/online/searchList');">온라인 강의</a></li>
+				<li><a href="javascript:tabSelect('C0015', '/admin/rdt/solar/notification/license/searchList');">자격증</a></li>
+				<li><a href="javascript:tabSelect('C0016', '/admin/rdt/solar/notification/training/searchList');">훈련과정</a></li>
+				<li><a href="javascript:tabSelect('C0017', '/admin/rdt/solar/notification/faq/searchList');">FAQ</a></li>
 				<!-- <li><a href="javascript:tabSelect('C0016', '/admin/rdt/solar/notification/suggest/management');">건의하기</a></li> -->
 			</ul>
          </li>
          <li>
-         	<a href="javascript:tabSelect('C0017', '/admin/rdt/member/password');"><i class="fas fa-user-cog"></i>관리자</a>
+         	<a href="javascript:tabSelect('C0018', '/admin/rdt/member/password');"><i class="fas fa-user-cog"></i>관리자</a>
 			<ul class="arrow_box">
-			 	<li><a href="javascript:tabSelect('C0018', '/admin/rdt/member/password');">비밀번호 변경</a></li>
-				<li><a href="javascript:tabSelect('C0019', '/admin/rdt/member/management');">계정 관리</a></li>
+			 	<li><a href="javascript:tabSelect('C0019', '/admin/rdt/member/password');">비밀번호 변경</a></li>
+				<li><a href="javascript:tabSelect('C0020', '/admin/rdt/member/management');">계정 관리</a></li>
 	       </ul>
 		</li>
 	

@@ -102,6 +102,7 @@ public class TrainingService {
 		if ( vo.getUpload_file_id() != null && vo.getUpload_file_id() != "" ) {
 			UploadFileVO uploadFileVO  = new UploadFileVO();
 			uploadFileVO.setFile_id(Integer.parseInt(vo.getUpload_file_id()));
+			System.out.println("vo.getJob_gb()" + vo.getJob_gb());
 			uploadFileVO.setJob_gb(vo.getJob_gb());
 			uploadFileService.withdrawal(uploadFileVO);
 		}

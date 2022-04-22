@@ -20,6 +20,7 @@
 	}
 	
 	function getDetailCB(data){
+		console.log('data --> ', data);
 		$("#title").val(data.result.title) ;
 		$("#enforcement_agency").val(data.result.enforcement_agency);
 		$("#address").val(data.result.address);

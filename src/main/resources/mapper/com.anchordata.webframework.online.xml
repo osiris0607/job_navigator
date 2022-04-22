@@ -46,6 +46,9 @@
 			,	WRITER = #{writer}
 			,   VIDEO_TP_CD = #{video_tp_cd}
 			,	REG_DATE = NOW()
+			<if test="upload_file_id != null and upload_file_id != '' ">
+				,	UPLOAD_FILE_ID = #{upload_file_id}
+			</if>
 		WHERE 
 			ONLINE_ID = #{online_id}
 	</update>
@@ -66,6 +69,23 @@
 			,	WRITER
 			,   VIDEO_TP_CD
 			,	DATE_FORMAT(REG_DATE,'%Y-%m-%d') AS REG_DATE
+			,	UPLOAD_FILE_ID
+			,	(SELECT NAME FROM 
+					<if test='job_gb.equals("D000004")'>
+					SUN_UPLOAD_FILE 
+					</if>
+					<if test='job_gb.equals("D000003")'>
+					ESS_UPLOAD_FILE 
+					</if>
+				WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
+			,	(SELECT BINARY_CONTENT FROM 
+					<if test='job_gb.equals("D000004")'>	
+					SUN_UPLOAD_FILE 
+					</if>
+					<if test='job_gb.equals("D000003")'>
+					ESS_UPLOAD_FILE 
+					</if> 
+				WHERE FIlE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_IMAGE
 		FROM
 			LECTURE_ONLINE A
 		WHERE
@@ -103,6 +123,22 @@
 			,	WRITER
 			,   VIDEO_TP_CD
 			,	DATE_FORMAT(REG_DATE,'%Y-%m-%d') AS REG_DATE
+			,	(SELECT NAME FROM 
+					<if test='job_gb.equals("D000004")'>
+					SUN_UPLOAD_FILE 
+					</if>
+					<if test='job_gb.equals("D000003")'>
+					ESS_UPLOAD_FILE 
+					</if>
+				WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
+			,	(SELECT BINARY_CONTENT FROM 
+					<if test='job_gb.equals("D000004")'>	
+					SUN_UPLOAD_FILE 
+					</if>
+					<if test='job_gb.equals("D000003")'>
+					ESS_UPLOAD_FILE 
+					</if> 
+				WHERE FIlE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_IMAGE
 		FROM
 			LECTURE_ONLINE A
 		WHERE
@@ -119,6 +155,23 @@
 			,   URL
 			,   VIDEO_TP_CD
 			,	DATE_FORMAT(REG_DATE,'%Y-%m-%d') AS REG_DATE
+			,	UPLOAD_FILE_ID
+			,	(SELECT NAME FROM 
+					<if test='job_gb.equals("D000004")'>
+					SUN_UPLOAD_FILE 
+					</if>
+					<if test='job_gb.equals("D000003")'>
+					ESS_UPLOAD_FILE 
+					</if>
+				WHERE FILE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_NAME
+			,	(SELECT BINARY_CONTENT FROM 
+					<if test='job_gb.equals("D000004")'>	
+					SUN_UPLOAD_FILE 
+					</if>
+					<if test='job_gb.equals("D000003")'>
+					ESS_UPLOAD_FILE 
+					</if> 
+				WHERE FIlE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_IMAGE
 		FROM
 			LECTURE_ONLINE A
 		WHERE

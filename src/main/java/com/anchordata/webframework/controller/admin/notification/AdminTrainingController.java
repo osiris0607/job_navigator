@@ -186,6 +186,7 @@ public class AdminTrainingController {
 	*/
 	@RequestMapping("/admin/api/solar/notification/training/modification")
 	public ModelAndView modification(@ModelAttribute TrainingVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000004");
 		mv.addObject( "result", trainingService.modification(vo) );
 		mv.setViewName("jsonView");
 		return mv;
@@ -196,6 +197,7 @@ public class AdminTrainingController {
 	 */
 	@RequestMapping("/admin/api/ess/notification/training/modification")
 	public ModelAndView essModification(@ModelAttribute TrainingVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000003");
 		mv.addObject( "result", trainingService.modification(vo) );
 		mv.setViewName("jsonView");
 		return mv;
@@ -207,6 +209,7 @@ public class AdminTrainingController {
 	 */
 	@RequestMapping("/admin/api/solar/notification/training/withdrawal")
 	public ModelAndView withdrawal(@ModelAttribute TrainingVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000004");
 		mv.addObject("result", trainingService.withdrawal(vo));
 		mv.setViewName("jsonView");
 		return mv;
@@ -217,6 +220,7 @@ public class AdminTrainingController {
 	 */
 	@RequestMapping("/admin/api/ess/notification/training/withdrawal")
 	public ModelAndView essWithdrawal(@ModelAttribute TrainingVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000003");
 		mv.addObject("result", trainingService.withdrawal(vo));
 		mv.setViewName("jsonView");
 		return mv;

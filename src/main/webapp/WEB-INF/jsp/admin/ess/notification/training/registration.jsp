@@ -35,7 +35,7 @@
 			formData.append("attach_file", $("#attach_file")[0].files[0]);
 		}
 		
-
+		console.log('attach_file : ', $("#attach_file")[0].files[0]);
 		if (confirm('등록 하시겠습니까?')) {
 			$.ajax({
 			    type : "POST",
@@ -121,7 +121,7 @@
 			   <tr>							
 					<th class="w20 jop_write_table_title"><span class="icon_box"><span class="necessary_icon">*</span>훈련과정명</span></th>
 					<td class="w80">
-						<input type="text" class="form-control brc-on-focusd-inline-block w90" id="title"/>                              
+						<input type="text" class="form-control brc-on-focusd-inline-block w90" id="title" title="훈련과정명"/>                              
 					</td>									
 			   </tr>
 			</tbody>

@@ -2,26 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
-  
 <script type='text/javascript'>
 
 	$(document).ready(function() {
-
 		getDetail();
-		
-		$("input:radio[name=online-lecture_class]").click(function(){
-	        if($(".youtube_check:checked").val() == "T01"){
-	            $(".custom-file-input").attr("disabled", true);
-	            $("#url").attr("disabled", false);
-	            // radio 버튼의 value 값이 유뷰트라면 파일 비활성화
-	 
-	        }else{
-	        	$(".custom-file-input").attr("disabled", false);
-	        	$("#url").attr("disabled", true);
-	              // radio 버튼의 value 값이 비디오라면 파일 활성화
-	        }
-	    });
-		
 	});
 
 	function getDetail() {
@@ -33,21 +17,53 @@
 	}
 	
 	function getDetailCB(data){
+		//화면 오픈 후 detail 세팅
 		console.log('detail data --> ', data);
-		
-		if(data.result.video_tp_cd == 'T01') {
-			$(".youtube_check").prop("checked", true);
-			$(".custom-file-input").attr("disabled", true);
-            $("#url").attr("disabled", false);
-		}else {
-			$(".video_check").prop("checked", true);
-			$(".custom-file-input").attr("disabled", false);
-        	$("#url").attr("disabled", true);
-		}
+		$("#video_tp_cd").val(data.result.video_tp_cd) ;
 		$("#title").val(data.result.title) ;
 		$("#writer").val(data.result.writer);
 		$("#url").val(data.result.url);
 		$("#attach_file_name").text(data.result.upload_file_name);
+		if($("#video_tp_cd").val() == "T01"){
+			$(".youtube_check").attr("checked", true);
+		}else {
+			$(".video_check").attr("checked", true);
+		}
+
+		
+		//상세페이지 오픈 시 발생
+	        if($(".youtube_check").is(":checked")) {
+	            $(".custom-file-input").attr("disabled", true);
+	            $("#url").attr("disabled", false);
+	            $("#url").val(data.result.url);
+	            // radio 버튼의 value 값이 유뷰트라면 파일 비활성화
+	 
+	        }else if($(".video_check").is(":checked")) {
+	        	$(".custom-file-input").attr("disabled", false);
+	        	$("#url").attr("disabled", true);
+	        	$("#url").val('');
+	              // radio 버튼의 value 값이 비디오라면 파일 활성화
+	        }
+		
+		
+	      	//버튼 클릭 이벤트 발생 - 기존데이터 초기화, 원복   ++썸네일, 동영상 파일 name 저장되도록
+	        $("input:radio[name=online-lecture_class]").click(function(){
+		        if($(".youtube_check").is(":checked")){
+		            // radio 버튼의 value 값이 유튜브라면 파일 비활성화
+		            $(".custom-file-input").attr("disabled", true);
+		            $("#url").attr("disabled", false);
+		            $("#url").val(data.result.url);
+		 
+		        }else if($(".video_check").is(":checked")) {
+		            // radio 버튼의 value 값이 비디오라면 파일 활성화
+		        	$(".custom-file-input").attr("disabled", false);
+		        	$("#url").attr("disabled", true);
+		        	$("#url").val('');
+		        }
+		    });
+		
+		
+		
 	}
 
 	function modification() {
@@ -64,7 +80,7 @@
 			}
 		}
 		formData.append("online_id", $("#online_id").val());
-		formData.append("video_tp_cd", $("#video_tp_cd").val());
+		formData.append("video_tp_cd", $("#video_tp_cd:checked").val());
 		formData.append("title", $("#title").val());
 		formData.append("writer", $("#writer").val());
 		formData.append("url", $("#url").val());

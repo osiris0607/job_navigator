@@ -1,13 +1,17 @@
 package com.anchordata.webframework.controller.admin.notification;
 
 
+import java.io.File;
 import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.anchordata.webframework.service.solar.faq.FAQSearchVO;
@@ -166,6 +170,7 @@ public class AdminOnlineController {
 	*/
 	@RequestMapping("/admin/api/solar/notification/online/search/detail")
 	public ModelAndView detail(@ModelAttribute OnlineVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000004");
 		OnlineVO result = onlineService.detail(vo);
 		mv.addObject("result", result);
 		mv.setViewName("jsonView");
@@ -178,6 +183,7 @@ public class AdminOnlineController {
 	*/
 	@RequestMapping("/admin/api/ess/notification/online/search/detail")
 	public ModelAndView essDetail(@ModelAttribute OnlineVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000003");
 		OnlineVO result = onlineService.detail(vo);
 		mv.addObject("result", result);
 		mv.setViewName("jsonView");
@@ -190,6 +196,7 @@ public class AdminOnlineController {
 	*/
 	@RequestMapping("/admin/api/solar/notification/online/modification")
 	public ModelAndView modification(@ModelAttribute OnlineVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000004");
 		mv.addObject( "result", onlineService.modification(vo) );
 		mv.setViewName("jsonView");
 		return mv;
@@ -200,6 +207,7 @@ public class AdminOnlineController {
 	 */
 	@RequestMapping("/admin/api/ess/notification/online/modification")
 	public ModelAndView essModification(@ModelAttribute OnlineVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000003");
 		mv.addObject( "result", onlineService.modification(vo) );
 		mv.setViewName("jsonView");
 		return mv;
@@ -211,6 +219,7 @@ public class AdminOnlineController {
 	 */
 	@RequestMapping("/admin/api/solar/notification/online/withdrawal")
 	public ModelAndView withdrawal(@ModelAttribute OnlineVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000004");
 		mv.addObject("result", onlineService.withdrawal(vo));
 		mv.setViewName("jsonView");
 		return mv;
@@ -221,13 +230,51 @@ public class AdminOnlineController {
 	 */
 	@RequestMapping("/admin/api/ess/notification/online/withdrawal")
 	public ModelAndView essWithdrawal(@ModelAttribute OnlineVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000003");
 		mv.addObject("result", onlineService.withdrawal(vo));
 		mv.setViewName("jsonView");
 		return mv;
 	}
 	
 	
+	/**
+	 * 
+	 * 첨부파일 upload
+	 * 
+	 * */
+	@GetMapping("/uploadAjax")
+	public void uploadAjax() {
+		System.out.println(":: [uploadAjax] :: ");
+	}
 	
 	
+	@PostMapping("/uploadAjaxAction")
+	public void uploadAjaxPost(MultipartFile[] uploadFile) {
+		System.out.println("update ajax post......");
+		
+		String uploadFolder = "d:\\UPLOAD_FILE";
+		
+		for(MultipartFile multipartFile : uploadFile) {
+			System.out.println("=====================");
+			System.out.println("Upload File Name :: " + multipartFile.getOriginalFilename());
+			System.out.println("Upload File Size :: " + multipartFile.getSize());
+			
+			String uploadFileName = multipartFile.getOriginalFilename();
+			
+			//IE has file path
+			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
+			System.out.println("only file name :: " + uploadFileName);
+			
+			File saveFile = new File(uploadFolder, uploadFileName);
+			
+			try {
+				multipartFile.transferTo(saveFile);
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println(e.getMessage());
+				
+			}
+		}
+	}
 	
 }

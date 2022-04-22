@@ -53,6 +53,7 @@
 			var index = 1;
 			var str = "";
 			$.each(data.result, function(key, value) {
+				console.log('value', value);
 				str += "<tr>";
 				str += "	<td>" + index + "</td>";
 				str += "	<td><a href='/admin/rdt/ess/notification/training/detail?training_id=" + value.training_id + "'>" + value.title + "</a></td>";

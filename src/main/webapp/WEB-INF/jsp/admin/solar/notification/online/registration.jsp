@@ -84,7 +84,7 @@
 			/* DB에 온라인강의 정보 저장 */
 			$.ajax({
 			    type : "POST",
-			    url : "/admin/api/ess/notification/online/registration",
+			    url : "/admin/api/solar/notification/online/registration",
 			    data : formData,
 			    processData: false,
 			    contentType: false,
@@ -93,7 +93,7 @@
 			    	var jsonData = JSON.parse(data);
 			        if (jsonData.result == 1) {
 			            alert("등록 되었습니다.");
-			            location.href = "/admin/rdt/ess/notification/online/searchList";
+			            location.href = "/admin/rdt/solar/notification/online/searchList";
 			        } else {
 			            alert("등록에 실패하였습니다. 다시 시도해 주시기 바랍니다.");
 			        }
@@ -141,7 +141,7 @@
 		if (confirm('등록 하시겠습니까?')) {
 			$.ajax({
 			    type : "POST",
-			    url : "/admin/api/ess/notification/online/registration",
+			    url : "/admin/api/solar/notification/online/registration",
 			    data : formData,
 			    processData: false,
 			    contentType: false,
@@ -150,7 +150,7 @@
 			    	var jsonData = JSON.parse(data);
 			        if (jsonData.result == 1) {
 			            alert("등록 되었습니다.");
-			            location.href = "/admin/rdt/ess/notification/online/searchList";
+			            location.href = "/admin/rdt/solar/notification/online/searchList";
 			        } else {
 			            alert("등록에 실패하였습니다. 다시 시도해 주시기 바랍니다.");
 			        }
@@ -168,8 +168,8 @@
   
 <!--페이지 루트-->
 <div class="page-nation container">
-	<a href="/admin/rdt/ess/home/management"><i class="nav-icon fa fa-home mr5"></i>홈화면</a><span class="route_icon"></span>
-	<a href="/admin/rdt/ess/notification/trend/searchList">알림/정보</a><span class="route_icon"></span>
+	<a href="/admin/rdt/solar/home/management"><i class="nav-icon fa fa-home mr5"></i>홈화면</a><span class="route_icon"></span>
+	<a href="/admin/rdt/solar/notification/trend/searchList">알림/정보</a><span class="route_icon"></span>
 	<a href="javascript:void(0);">온라인 강의</a>
 </div>
 
@@ -257,7 +257,7 @@
                     <div class="industry-trend-view_btns">
                         <a href="javascript:void(0);" class="blue_btn ok_back_btn btn" onclick='$(".youtube_check").is(":checked") ? registrationYoutube() : registrationVideo()'>등록</a>
                         <div class="fr">
-                            <a href="/admin/rdt/ess/notification/online/searchList" class="gray_btn btn list_back_btn">목록</a>
+                            <a href="/admin/rdt/solar/notification/online/searchList" class="gray_btn btn list_back_btn">목록</a>
                         </div>
                     </div>                 
                 </div>

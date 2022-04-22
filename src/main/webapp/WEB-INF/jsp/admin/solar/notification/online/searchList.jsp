@@ -20,7 +20,7 @@ $(document).ready(function() {
 
   function searchList(pageNo) {
 		var comAjax = new ComAjax();
-		comAjax.setUrl("<c:url value='/admin/api/ess/notification/online/search/paging' />");
+		comAjax.setUrl("<c:url value='/admin/api/solar/notification/online/search/paging' />");
 		comAjax.setCallback("searchListCB");
 		comAjax.addParam("pageIndex", pageNo);
 		comAjax.addParam("orderby", "ONLINE_ID DESC");
@@ -66,7 +66,7 @@ $(document).ready(function() {
 				str += "	</div>";
 				str += 		"<div class='videoContent' id='videoContent' value='"+value.online_id+"'>";
 				
-				str += "	<a class='videoTitle' href='/admin/rdt/ess/notification/online/detail?online_id="+value.online_id+"'>"+value.title+"</a>";
+				str += "	<a class='videoTitle' href='/admin/rdt/solar/notification/online/detail?online_id="+value.online_id+"'>"+value.title+"</a>";
 				str += "	</div>";
 				str += "</div>";
 				
@@ -79,7 +79,7 @@ $(document).ready(function() {
 
 <!--페이지 루트-->
 <div class="page-nation container">
-	<a href="/admin/rdt/ess/home/management"><i class="nav-icon fa fa-home mr5"></i>홈화면</a><span class="route_icon"></span>
+	<a href="/admin/rdt/solar/home/management"><i class="nav-icon fa fa-home mr5"></i>홈화면</a><span class="route_icon"></span>
 	<a href="javascript:void(0)">알림/정보</a><span class="route_icon"></span>
 	<a href="javascript:void(0)">온라인 강의</a>
 </div>
@@ -104,9 +104,9 @@ $(document).ready(function() {
 								<option value="등록일">등록일</option>
                             </select>                        
 							
-                            <input type="text" maxlength="40" class="form-control online_search brc-on-focusd-inline-block fl ml5" placeholder="검색할 제목을 입력하세요" id="search_text" /> 
-                            <button class="blue_btn2 fl btn ml5" onclick="searchList(1);">검색</button>                            
-                            <a href="/admin/rdt/ess/notification/online/registration" class="btn blue_btn fr">등록</a>
+                            <input type="text" maxlength="40" class="form-control online_search brc-on-focusd-inline-block fl ml5" placeholder="검색어를 입력하세요" id="search_text" /> 
+                            <button class="blue_btn2 fl btn ml5">검색</button>                            
+                            <a href="/admin/rdt/solar/notification/online/registration" class="btn blue_btn fr">등록</a>
                         </div>
                       <!--리스트 상단 검색결과--> 
 					<!-- Youtube openApi -->
@@ -124,11 +124,6 @@ $(document).ready(function() {
 								</ul>
 						    </nav>   
 					    </div>   
-					</div>
-				</div>
-			</div>
-		</div>
-    </div><!--body-container-->
                 
 			</div>    
 		</div>
