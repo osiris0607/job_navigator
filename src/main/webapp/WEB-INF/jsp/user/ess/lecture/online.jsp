@@ -85,6 +85,7 @@
 			$.each(data.result, function(key, value) { //key : index
 			    				
 								console.log('*[value.video_tp_cd] : ', value.video_tp_cd);
+								console.log('*[value.upload_file_name] : ', value.upload_file_name);
 								/*
 									T01 : 유투브
 									T02 : 파일다운로드
@@ -106,34 +107,34 @@
 								str += "    <div class='videoThumb'>";
 								str += "        <iframe src='https://www.youtube.com/embed/"+ playlist +"' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen=''></iframe>";
 								str += "    </div>";
-								str += "    <div class='"+className+"'/>";
+								str += "    <div class='videoContent "+className+"'/>";
 								str += "</div>";
                                 
 								} 
-								// else {
-								//	//VIDEO
-								//	str += "<div class='boxWrap'>";
-								//	str += " <div class='videoThumb'>";
-								//	str += "  <img src='data:image/png;base64,"
-								//			+ value.upload_file_image
-								//			+ "' alt='"
-								//			+ unescapeHtml(value.upload_file_name)
-								//			+ "'>";
-								//	str += " </div>";
-								//	str += " <div class='videoContent'>";
-								//	str += "  <p class='videoTitle'>"
-								//			+ value.title + "</p>";
-								//	str += "  <p class='videoSummary'></span><span class='en'>"
-								//			+ value.reg_date + "</span></p>"
-								//	str += "  <br>"
-								//	str += "  <a href='' download class='moviedown_btn'>다운로드</a> ";
-								//	str += "  <ul class='videoOwner'>  ";
-								//	str += "   <li>" + value.writer + "</li>  ";
-								//	str += "  </ul>  ";
-								//	str += " </div>";
-								//	str += "</div>";
-                                //
-								//}
+								else {
+								//VIDEO
+								str += "<div class='boxWrap'>";
+								str += " <div class='videoThumb'>";
+								str += "  <img src='data:image/png;base64,"
+										+ value.upload_file_image
+										+ "' alt='"
+										+ unescapeHtml(value.upload_file_name)
+										+ "'>";
+								str += " </div>";
+								str += " <div class='videoContent'>";
+								str += "  <p class='videoTitle'>"
+										+ value.title + "</p>";
+								str += "  <p class='videoSummary'></span><span class='en'>"
+										+ value.reg_date + "</span></p>"
+								str += "  <br>"
+								str += "  <a href='' download class='moviedown_btn'>다운로드</a> ";
+								str += "  <ul class='videoOwner'>  ";
+								str += "   <li>" + value.writer + "</li>  ";
+								str += "  </ul>  ";
+								str += " </div>";
+								str += "</div>";
+                                
+								}
 
 							}); //end value
 
