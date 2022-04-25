@@ -1282,7 +1282,7 @@ video::-webkit-media-controls-volume-slider {display: none !important;}
 .boxWrap {position: relative; overflow: hidden; width: 100%; padding: 30px; margin-bottom: 30px; border: 1px solid #d1d1d1; box-sizing: border-box;}
 .boxWrap .videoThumb {float: left; margin-right: 20px;}
 /* .boxWrap .videoThumb img, .boxWrap .videoThumb iframe, .videoThumb video {max-width: 240px; height: 150px;} */
-.boxWrap .videoThumb img, .boxWrap .videoThumb iframe, .videoThumb video {width: 300px; height: 150px;}
+.boxWrap .videoThumb img, .boxWrap .videoThumb iframe, .videoThumb video {width: 300px; height: 150px; object-fit: scale-down;}
 .boxWrap .videoContent {position: relative; overflow: hidden; height: 150px;}
 .boxWrap .videoContent .videoSummary {color: #666666; font-size: 15px;	margin: 0;}
 .boxWrap .videoContent .videoSummary span.en {padding: 0;}

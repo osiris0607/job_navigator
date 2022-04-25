@@ -4,7 +4,7 @@
 
   
 <script type='text/javascript'>
-
+	var detailData;
 	$(document).ready(function() {
 
 		getDetail();
@@ -20,6 +20,8 @@
 	}
 	
 	function getDetailCB(data){
+		detailData = data.result;
+		
 		$("#title").val(data.result.title) ;
 		$("#enforcement_agency").val(data.result.enforcement_agency);
 		$("#address").val(data.result.address);
@@ -83,7 +85,8 @@
 	function withdrawal() {
 		var formData = new FormData();
 		formData.append("training_id", $("#training_id").val());
-		
+		formData.append("upload_file_id", detailData.upload_file_id);
+
 		if (confirm('삭제 하시겠습니까?')) {
 			$.ajax({
 			    type : "POST",
@@ -208,7 +211,7 @@
             <div class="industry-trend-view_btns">
                 <a href="javascript:void(0)" class="blue_btn ok_back_btn btn" onclick="modification();">수정</a>
                 <div class="fr">
-                    <a href="/admin/api/solar/notification/training/searchList" class="gray_btn list_back_btn btn">목록</a>
+                    <a href="/admin/rdt/solar/notification/training/searchList" class="gray_btn list_back_btn btn">목록</a>
                     <a href="javascript:void(0)" class="gray_btn list_back_btn btn" onclick="withdrawal();">삭제</a>
                 </div>
             </div>

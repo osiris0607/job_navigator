@@ -23,15 +23,16 @@
 					<li class="result">전체 <em id="search_count">0</em>건
 					</li>
 					<li><label for="edu_search" class="hidden">검색</label> 
-					<input type="text" id="edu_search" placeholder="검색어"></li>
+						<input type="text" id="edu_search" placeholder="온라인 강의를 검색해 보세요."></li>
 					<li>
 						<button type="submit" onclick="searchList(1);">검색</button>
 					</li>
 				</ul>
-				
+
 				<!-- Youtube openApi -->
+					
+				
 				<ul class="accodion" id="ul_body"></ul>
-	
 				<input type="hidden" id="pageIndex" name="pageIndex" />
 				<div class="pagination" id="pageNavi"></div>
 			</fieldset>
@@ -40,28 +41,27 @@
   </div>
   
 <script type="text/javascript">
-  
-  
-  $(document).ready(function () {
-	 searchList(1);
-	 
+	$(document).ready(function() {
+		searchList(1);
 
-  });
-
-  function searchList(pageNo) {
+	});
+	
+	function searchList(pageNo) {
 		var comAjax = new ComAjax();
+		
+		console.log($("#edu_search").val());
 		comAjax.setUrl("<c:url value='/user/api/solar/lecture/online/search/paging' />");
 		comAjax.setCallback("searchListCB");
 		comAjax.addParam("pageIndex", pageNo);
-		comAjax.addParam("orderby", "ONLINE_ID DESC");
-
+		comAjax.addParam("orderby", "REG_DATE DESC");
+		
+		comAjax.addParam("title", $("#edu_search").val());
 		comAjax.ajax();
 	}
 
-  function searchListCB(data) {
-	 // console.log('####', data);
+	function searchListCB(data) {
 		var videoList = data.result;
-	  var total = data.totalCount;
+		var total = data.totalCount;
 		var body = $("#ul_body");
 		body.empty();
 		$("#pageNavi").empty();
@@ -70,96 +70,130 @@
 			body.append(str);
 		} else {
 			var params = {
-					divId : "pageNavi",
-					pageIndex : "pageIndex",
-					totalCount : total,
-					eventName : "searchList"
-				};
+				divId : "pageNavi",
+				pageIndex : "pageIndex",
+				totalCount : total,
+				eventName : "searchList"
+			};
 
 			gfnRenderPagingMain(params);
 			$("#search_count").text(total);
-			
+
 			var str = "";
 			var videoIdList;
 			var playlist;
-			$.each(data.result, function(key, value) {   //key : index
-				videoIdList = value.url.split('/');
-				playlist = videoIdList[videoIdList.length-1];
-				
-				/* 등록된 DB count만큼 박스 출력 */
-				str += "<div class='boxWrap'>";
-				str += "	<div class='videoThumb'>";
-				if(playlist != null && playlist != '') {
-					str += "	<iframe src='https://www.youtube.com/embed/"+ playlist +"' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen=''></iframe>";
-				}else {
-					//유튜브가 아닌 파일 다운로드
-					str += "<img src='/assets/img/no_image.jpg'>";
-				}
-				str += "	</div>";
-				str += 		"<div class='videoContenttest' id='videoContent' value='"+value.online_id+"'>";
-				str += "	</div>";
-				str += "</div>";
-			
-			
-				/* Youtube API 호출 */
-					$.getJSON(
-							  "https://www.googleapis.com/youtube/v3/videos", { 
-								  part: 'snippet, statistics',
-								  maxResults: 50, 
-								  id: playlist,
-								  key: 'AIzaSyDP37HANaDbBKYx9s95DVj7qNZMV3DJMbU' 
-							},
-				
-				
-				
-				function (data) {
-					//if(data.items.length > 0) {
-					var output;
-						$.each(data.items, function (i, item) {
-							var a = value.url.split('/');
-							var b = a[a.length-1];
-							var c = value.online_id;
-							console.log(b);
-							if(item.id == b) {
-								console.log(item.id, c);
-								item.online_id = c;
-							
-							}
-							console.log(item);
-							var valueCd =  $("#videoContent").val();
-							console.log('value -----> ', $("#videoContent").val());
-							if(valueCd == '2') {
-								console.log('ddddddddddddddddd');
-							}
-							console.log('value ', value);
-							
-							if(value.online_id == item.online_id) {
-								console.log('999999999999999999');
-								vTitle = item.snippet.title; 
-								vDate = item.snippet.publishedAt; 
-								vDe = item.snippet.description; 
-								vTh = item.snippet.channelTitle; 
-								vCnt = item.statistics.viewCount;
-								vCount = vCnt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');  //천의자리 ,추가
-								vDateFormat = vDate.toString().replace('T', ' ').substring(0, 10);  //date format yyyy-mm-dd
-								output = '<p class="videoTitle">' + vTitle + '</p><p class="videoSummary">' +vCount+' views ' + vDateFormat +  '</p><ul class="videoOwner"><li>' + vTh + '</li></ul>'; 
+			/* 등록된 DB count만큼 박스 출력 */
+			$.each(data.result, function(key, value) { //key : index
+			    				
+								//console.log('*[value.video_tp_cd] : ', value.video_tp_cd);
+								//console.log('*[value.upload_file_name] : ', value.upload_file_name);
+								/*
+									T01 : 유투브
+									T02 : 파일다운로드
+									
+								*/
+								//YOUTUBE
+								if (value.video_tp_cd == 'T01') {
+									
+									videoIdList = value.url.split('/');
+									playlist = videoIdList[videoIdList.length - 1];
+									//console.log('*[playlist] ID: ', playlist);
+									
+									className = "videoContenttest" + "_" + playlist;
 								
-								if(playlist != null && playlist != '') {
-									$(".videoContenttest").append(output);
+									/**** youtube api 호출 ****/
+	                                callApiData(playlist);
+
+								str += "<div class='boxWrap'>";
+								str += "    <div class='videoThumb'>";
+								str += "        <iframe src='https://www.youtube.com/embed/"+ playlist +"' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen=''></iframe>";
+								str += "    </div>";
+								str += "    <div class='videoContent "+className+"'/>";
+								str += "</div>";
+                                
+								} 
+								else {
+								//VIDEO
+								
+								str += "<div class='boxWrap'>";
+								str += " <div class='videoThumb'>";
+								str += "  <img src='data:image/png;base64,"
+										+ value.upload_file_image
+										+ "' alt='"
+										+ unescapeHtml(value.upload_file_name)
+										+ "'>";
+								str += " </div>";
+								str += " <div class='videoContent'>";
+								str += "  <p class='videoTitle'>"
+										+ value.title + "</p>";
+								str += "  <p class='videoSummary'></span><span class='en'>"
+										+ value.reg_date + "</span></p>";
+								str += "  <br>";
+								
+								
+								
+								console.log('value.file_name --> ', value.file_name);
+								str += "<form id='frm' method='post'>";
+								str += "<input type='hidden' name='fileName' value='"+value.file_name+"'>"
+								str += "</form>"
+								
+								str += "  <a href='#' onclick='go_search()' class='moviedown_btn'>다운로드</a> ";
+								str += "  <ul class='videoOwner'>  ";
+								str += "   <li>" + value.writer + "</li>  ";
+								str += "  </ul>  ";
+								str += " </div>";
+								str += "</div>";
+                                
+								
 								}
-							}	
-								
-								/*output= '<li>'+vTitle+'<iframe src=\"//www.youtube.com/embed/'+vId+'\"></iframe></li>';*/ 
-								
-								
-								
-						}) //end each
-					//}  //end if
-				}   //end function
-			); //end getJSON
-			});
-			
+
+							}); //end value
+
 			body.append(str);
+		}
 	}
-  }
+
+	function callApiData(playlist) {
+
+		$.getJSON("https://www.googleapis.com/youtube/v3/videos", {
+			part : 'snippet, statistics',
+			maxResults : 50,
+			id : playlist,
+			key : 'AIzaSyDP37HANaDbBKYx9s95DVj7qNZMV3DJMbU'
+		}, function(data) {
+			
+			console.log('data', data);
+			/*
+				title -> vTitle
+				channelTitle -> vTh
+				viewCount -> vCount
+				publishedAt -> vDateFormat
+			*/
+			
+			//var output;
+			$.each(data.items, function(i, item) {
+				
+			vTitle = data.items[0].snippet.title; //제목
+			vTh = data.items[0].snippet.channelTitle; //채널명
+			vCnt = data.items[0].statistics.viewCount; //조회수
+			vCount = vCnt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); //조회수 - 천의자리 ,추가
+			vDate = data.items[0].snippet.publishedAt; //등록일자
+			vDateFormat = vDate.toString().replace('T', ' ').substring(0,10); //등록일자 format yyyy-mm-dd
+
+			output = '<p class="videoTitle">' + vTitle + '</p><p class="videoSummary">' + vCount + ' views ' + vDateFormat + '</p>' + 
+					'<ul class="videoOwner"><li>' + vTh + '</li></ul>';
+			className = ".videoContenttest" + "_" + playlist;
+			$(className).append(output);
+				
+			}) //end each
+		} //end function
+		); //end getJSON
+
+	}
+	
+	function go_search(){
+		console.log('goSearch');
+		$("#frm").attr("action","/user/rdt/lecture/fileDown").submit(); 
+	}
+
 </script>

@@ -28,6 +28,7 @@ public class OnlineVO {
 	private String upload_file_id = "";
 	private String upload_file_name = "";
 	private byte[] upload_file_image;
+	private String file_name = "";
 	private String reg_date = "";
 	
 	@JsonIgnore
@@ -137,6 +138,14 @@ public class OnlineVO {
 
 	public void setUpload_file_image(byte[] upload_file_image) {
 		this.upload_file_image = upload_file_image;
+	}
+	
+	public String getFile_name() {
+		return file_name;
+	}
+
+	public void setFile_name(String file_name) {
+		this.file_name = file_name;
 	}
 
 	public static long getSerialversionuid() {

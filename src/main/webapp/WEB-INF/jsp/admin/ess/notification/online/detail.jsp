@@ -24,6 +24,7 @@
 		$("#writer").val(data.result.writer);
 		$("#url").val(data.result.url);
 		$("#attach_file_name").text(data.result.upload_file_name);
+		$("#attach_file_video_name").text(data.result.file_name);
 		if($("#video_tp_cd").val() == "T01"){
 			$(".youtube_check").attr("checked", true);
 		}else {
@@ -63,6 +64,17 @@
 	}
 
 	function modification() {
+		console.log("old fileName", $("#attach_file_video_name").text());
+		var inputFile = $("input[name='attach_file_video']");
+		var files = inputFile[0].files;
+		console.log('new files : ', files);
+		
+		var fileData = new FormData;
+		fileData.append("fileName", $("#attach_file_video_name").text());
+		for(var i = 0; i < files.length; i++) {
+			fileData.append("uploadFile", files[i]);
+		}
+
 		var formData = new FormData();
 
 		var chkVal = ["video_tp_cd", "title", "writer"];
@@ -82,13 +94,35 @@
 		formData.append("url", $("#url").val());
 
 		formData.append("upload_file_id", $("#upload_file_id").val());
-
+		formData.append("file_name", files[0].name);
+		
 		if ( $("#attach_file")[0].files[0] != undefined && $("#attach_file")[0].files[0] != "") {
 			formData.append("attach_file", $("#attach_file")[0].files[0]);
 		}
-
 		if (confirm('수정 하시겠습니까?')) {
-			$.ajax({
+			
+		  $.ajax({
+		    type : "POST",
+		    url : "/updateAjaxAction",
+		    data : fileData,
+		    processData: false,
+		    contentType: false,
+		    mimeType: 'multipart/form-data',
+		    success : function(data) {
+		    	var jsonData = JSON.parse(data);
+		        if (jsonData.result == 1) {
+		            alert("수정 되었습니다.");
+		            location.href = "/admin/rdt/ess/notification/online/searchList";
+		        } else {
+		            alert("수정에 실패하였습니다. 다시 시도해 주시기 바랍니다.");
+		        }
+		    },
+		    error : function(err) {
+		        alert(err.status);
+		    }
+		  });
+			
+			 $.ajax({
 			    type : "POST",
 			    url : "/admin/api/ess/notification/online/modification",
 			    data : formData,
@@ -108,15 +142,38 @@
 			        alert(err.status);
 			    }
 			});
-		}
+		  }
 	}
 
 	function withdrawal() {
 		var formData = new FormData();
+		var fileData = new FormData();
+		
 		formData.append("online_id", $("#online_id").val());
+		fileData.append("fileName", $("#attach_file_video_name").text());
 		
 		if (confirm('삭제 하시겠습니까?')) {
+			console.log('fileData --> ', fileData);
 			$.ajax({
+			    type : "POST",
+			    url : "/deleteAjaxAction",
+			    data : fileData,
+			    processData: false,
+			    contentType: false,
+			    success : function(data) {
+			    	var jsonData = JSON.parse(data);
+			        if (jsonData.result == 1) {
+			            alert("파일 삭제 되었습니다.");
+			        } else {
+			            alert("삭제에 실패하였습니다. 다시 시도해 주시기 바랍니다.");
+			        }
+			    },
+			    error : function(err) {
+			        alert(err.status);
+			    }
+			});
+			
+			 $.ajax({
 			    type : "POST",
 			    url : "/admin/api/ess/notification/online/withdrawal",
 			    data : formData,
@@ -143,7 +200,7 @@
   
 <!--페이지 루트-->
 <input type="hidden" id="upload_file_id" name="upload_file_id" value="${vo.upload_file_id}" />
-<input type="hidden" id="online_id" name="training_id" value="${vo.online_id}" />
+<input type="hidden" id="online_id" name="online_id" value="${vo.online_id}" />
 <div class="page-nation container">
 	<a href="/admin/rdt/ess/home/management"><i class="nav-icon fa fa-home mr5"></i>홈화면</a><span class="route_icon"></span>
 	<a href="/admin/rdt/ess/notification/trend/searchList">알림/정보</a><span class="route_icon"></span>

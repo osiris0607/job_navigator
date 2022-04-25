@@ -98,6 +98,8 @@ public class OnlineService {
 	@Transactional
 	public int withdrawal(OnlineVO vo) throws Exception {
 		// 연관된 File 삭제
+		
+		System.out.println("vo.getUpload_file_id :::: " + vo.getUpload_file_id());
 		if (vo.getUpload_file_id() != null && vo.getUpload_file_id() != "") {
 			UploadFileVO uploadFileVO = new UploadFileVO();
 			uploadFileVO.setFile_id(Integer.parseInt(vo.getUpload_file_id()));
@@ -118,6 +120,9 @@ public class OnlineService {
 
 		if (vo.getTitle() != null && vo.getTitle().isEmpty() != true) {
 			search.put("title", vo.getTitle());
+		}
+		if (vo.getWriter() != null && vo.getWriter().isEmpty() != true) {
+			search.put("writer", vo.getWriter());
 		}
 		if (vo.getReg_date() != null && vo.getReg_date().isEmpty() != true) {
 			search.put("reg_date", vo.getReg_date());
@@ -143,6 +148,9 @@ public class OnlineService {
 
 		if (vo.getTitle() != null && vo.getTitle().isEmpty() != true) {
 			search.put("title", vo.getTitle());
+		}
+		if (vo.getWriter() != null && vo.getWriter().isEmpty() != true) {
+			search.put("writer", vo.getWriter());
 		}
 		if (vo.getReg_date() != null && vo.getReg_date().isEmpty() != true) {
 			search.put("reg_date", vo.getReg_date());

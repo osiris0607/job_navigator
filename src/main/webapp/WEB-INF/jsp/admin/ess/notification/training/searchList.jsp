@@ -4,7 +4,6 @@
 
   
 <script type='text/javascript'>
-
 		
 	$(document).ready(function() {
 		$("#search_text").on("keydown", function(key) {

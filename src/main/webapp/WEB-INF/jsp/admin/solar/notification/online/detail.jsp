@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
+	var detailData;
 <script type='text/javascript'>
 
 	$(document).ready(function() {
@@ -24,6 +25,7 @@
 		$("#writer").val(data.result.writer);
 		$("#url").val(data.result.url);
 		$("#attach_file_name").text(data.result.upload_file_name);
+		$("#attach_file_video_name").text(data.result.file_name);
 		if($("#video_tp_cd").val() == "T01"){
 			$(".youtube_check").attr("checked", true);
 		}else {
@@ -35,30 +37,26 @@
 	        if($(".youtube_check").is(":checked")) {
 	            $(".custom-file-input").attr("disabled", true);
 	            $("#url").attr("disabled", false);
-	            $("#url").val(data.result.url);
 	            // radio 버튼의 value 값이 유뷰트라면 파일 비활성화
 	 
 	        }else if($(".video_check").is(":checked")) {
 	        	$(".custom-file-input").attr("disabled", false);
 	        	$("#url").attr("disabled", true);
-	        	$("#url").val('');
 	              // radio 버튼의 value 값이 비디오라면 파일 활성화
 	        }
 		
 		
-	      	//버튼 클릭 이벤트 발생 - 기존데이터 초기화, 원복   ++썸네일, 동영상 파일 name 저장되도록
+	      	//버튼 클릭 이벤트 발생 - ++썸네일, 동영상 파일 name 저장되도록
 	        $("input:radio[name=online-lecture_class]").click(function(){
 		        if($(".youtube_check").is(":checked")){
 		            // radio 버튼의 value 값이 유튜브라면 파일 비활성화
 		            $(".custom-file-input").attr("disabled", true);
 		            $("#url").attr("disabled", false);
-		            $("#url").val(data.result.url);
 		 
 		        }else if($(".video_check").is(":checked")) {
 		            // radio 버튼의 value 값이 비디오라면 파일 활성화
 		        	$(".custom-file-input").attr("disabled", false);
 		        	$("#url").attr("disabled", true);
-		        	$("#url").val('');
 		        }
 		    });
 		
@@ -67,6 +65,15 @@
 	}
 
 	function modification() {
+		var inputFile = $("input[name='attach_file_video']");
+		var files = inputFile[0].files;
+		
+		var fileData = new FormData;
+		fileData.append("fileName", $("#attach_file_video_name").text());
+		for(var i = 0; i < files.length; i++) {
+			fileData.append("uploadFile", files[i]);
+		}
+
 		var formData = new FormData();
 
 		var chkVal = ["video_tp_cd", "title", "writer"];
@@ -87,12 +94,44 @@
 
 		formData.append("upload_file_id", $("#upload_file_id").val());
 
+		//console.log($("#attach_file_video_name").text());
+		//console.log(files);
+		
+		console.log(files.length);
+		//동영상 파일 수정 안한경우
+		 if(files.length > 0) {
+			formData.append("file_name", files[0].name);
+		}else {
+			formData.append("file_name", $("#attach_file_video_name").text());
+		}
+		
 		if ( $("#attach_file")[0].files[0] != undefined && $("#attach_file")[0].files[0] != "") {
 			formData.append("attach_file", $("#attach_file")[0].files[0]);
 		}
-
 		if (confirm('수정 하시겠습니까?')) {
-			$.ajax({
+			
+		  $.ajax({
+		    type : "POST",
+		    url : "/updateAjaxAction",
+		    data : fileData,
+		    processData: false,
+		    contentType: false,
+		    mimeType: 'multipart/form-data',
+		    success : function(data) {
+		    	var jsonData = JSON.parse(data);
+		        if (jsonData.result == 1) {
+		            alert("수정 되었습니다.");
+		            location.href = "/admin/rdt/solar/notification/online/searchList";
+		        } else {
+		            alert("수정에 실패하였습니다. 다시 시도해 주시기 바랍니다.");
+		        }
+		    },
+		    error : function(err) {
+		        alert(err.status);
+		    }
+		  });
+			
+			 $.ajax({
 			    type : "POST",
 			    url : "/admin/api/solar/notification/online/modification",
 			    data : formData,
@@ -112,15 +151,42 @@
 			        alert(err.status);
 			    }
 			});
-		}
+		  }
 	}
 
 	function withdrawal() {
+		
+		console.log('$("#upload_file_id").val() --> ', $("#upload_file_id").val());
 		var formData = new FormData();
+		var fileData = new FormData();
+		
 		formData.append("online_id", $("#online_id").val());
+		formData.append("upload_file_id", $("#upload_file_id").val());
+		
+		fileData.append("fileName", $("#attach_file_video_name").text());
 		
 		if (confirm('삭제 하시겠습니까?')) {
+			console.log('fileData --> ', fileData);
 			$.ajax({
+			    type : "POST",
+			    url : "/deleteAjaxAction",
+			    data : fileData,
+			    processData: false,
+			    contentType: false,
+			    success : function(data) {
+			    	var jsonData = JSON.parse(data);
+			        if (jsonData.result == 1) {
+			            alert("파일 삭제 되었습니다.");
+			        } else {
+			            alert("삭제에 실패하였습니다. 다시 시도해 주시기 바랍니다.");
+			        }
+			    },
+			    error : function(err) {
+			        alert(err.status);
+			    }
+			});
+			
+			 $.ajax({
 			    type : "POST",
 			    url : "/admin/api/solar/notification/online/withdrawal",
 			    data : formData,
@@ -147,7 +213,7 @@
   
 <!--페이지 루트-->
 <input type="hidden" id="upload_file_id" name="upload_file_id" value="${vo.upload_file_id}" />
-<input type="hidden" id="online_id" name="training_id" value="${vo.online_id}" />
+<input type="hidden" id="online_id" name="online_id" value="${vo.online_id}" />
 <div class="page-nation container">
 	<a href="/admin/rdt/solar/home/management"><i class="nav-icon fa fa-home mr5"></i>홈화면</a><span class="route_icon"></span>
 	<a href="/admin/rdt/solar/notification/trend/searchList">알림/정보</a><span class="route_icon"></span>
@@ -168,8 +234,8 @@
                         <tr>							
                             <th class="w20 jop_write_table_title">강의 자료 유형</th>
                             <td class="w80">								
-								<input type="radio" name="online-lecture_class" class="ml10 youtube_check" id="video_tp_cd" value="T01" title="강의 자료 유형"/>YOUTUBE
-								<input type="radio" name="online-lecture_class" class="ml10 video_check" id="video_tp_cd" value="T02" title="강의 자료 유형" />VIDEO								
+								<input type="radio" name="online-lecture_class" class="ml10 youtube_check" id="video_tp_cd" value="T01" title="강의 자료 유형" disabled/>YOUTUBE
+								<input type="radio" name="online-lecture_class" class="ml10 video_check" id="video_tp_cd" value="T02" title="강의 자료 유형" disabled/>VIDEO								
                             </td>									
                         </tr>
                     </table>

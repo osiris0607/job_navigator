@@ -7,7 +7,19 @@
 	
 	$(document).ready(function() {
 		
+		//상세페이지 오픈 시 발생
+		 if($(".youtube_check").is(":checked")) {
+	            $(".custom-file-input").attr("disabled", true);
+	            $("#url").attr("disabled", false);
+	            // radio 버튼의 value 값이 유뷰트라면 파일 비활성화
+	 
+	        }else if($(".video_check").is(":checked")) {
+	        	$(".custom-file-input").attr("disabled", false);
+	        	$("#url").attr("disabled", true);
+	              // radio 버튼의 value 값이 비디오라면 파일 활성화
+	        }
 		
+		//버튼 클릭 이벤트 발생 - ++썸네일, 동영상 파일 name 저장되도록
 		$("input:radio[name=online-lecture_class]").click(function(){
 	        if($(".youtube_check").is(":checked")){
 	            // radio 버튼의 value 값이 유뷰트라면 파일 비활성화
@@ -25,15 +37,11 @@
 	
 	/* VIDEO 등록 */
 	function registrationVideo() {
-		console.log('videoooo');
-		console.log($(".video_check").is(':checked'));
-		
+		 
 		var formData = new FormData();
 		var fileData = new FormData();
 		var inputFile = $("input[name='attach_file_video']");
 		var files = inputFile[0].files;
-		
-		console.log('files --> ', files);
 		
 		/* 필수체크 유효성 검사 */
 		var chkVal = ["video_tp_cd", "title", "writer"];
@@ -51,6 +59,7 @@
 		formData.append("title", $("#title").val());
 		formData.append("writer", $("#writer").val());
 		formData.append("url", $("#url").val());
+		formData.append("file_name", files[0].name);
 
 		if ( $("#attach_file")[0].files[0] != undefined && $("#attach_file")[0].files[0] != "") {
 			formData.append("attach_file", $("#attach_file")[0].files[0]);
@@ -187,7 +196,7 @@
                         <tr>							
                             <th class="w20 jop_write_table_title">강의 자료 유형</th>
                             <td class="w80">								
-								<input type="radio" name="online-lecture_class" class="ml10 youtube_check" id="video_tp_cd" value="T01" title="강의 자료 유형"/>YOUTUBE
+								<input type="radio" name="online-lecture_class" class="ml10 youtube_check" id="video_tp_cd" value="T01" title="강의 자료 유형" checked/>YOUTUBE
 								<input type="radio" name="online-lecture_class" class="ml10 video_check" id="video_tp_cd" value="T02" title="강의 자료 유형" />VIDEO								
                             </td>									
                         </tr>
@@ -204,11 +213,11 @@
 					</table>
 
 					<table class="job_write common_table">
-						<caption>작성자</caption>				
+						<caption>영상출처</caption>				
 						<tr>
-							<th class="w20 jop_write_table_writer"><span class="icon_box"><span class="necessary_icon">*</span>작성자</span></th>								
+							<th class="w20 jop_write_table_writer"><span class="icon_box"><span class="necessary_icon">*</span>영상출처</span></th>								
 							<td class="w80">
-								<input type="text" class="form-control brc-on-focusd-inline-block w30" id="writer" title="작성자">
+								<input type="text" class="form-control brc-on-focusd-inline-block w30" id="writer" title="영상출처">
 							</td>
 						</tr>
 					</table>
@@ -230,8 +239,8 @@
 							<td class="w80">
                                 <div class="job_file_upload w90"> 
                                     <div class="custom-file w100">
-                                        <input type="file" class="custom-file-input" id="attach_file" name="attach_file">
-                                        <label class="custom-file-label custom-control-label-write-company" for="attach_file" id="attach_file_name">선택된 파일 없음</label>
+                                        <input type="file" class="custom-file-input" id="attach_file" name="attach_file" accept=".jpg, .png"  >
+                                        <label class="custom-file-label custom-control-label-write-company" for="attach_file" id="attach_file_name" placeholder="(1MB 이내)"></label>
                                     </div>                                    
                                 </div>
                             </td>
@@ -245,7 +254,7 @@
 							<td class="w80">
                                 <div class="job_file_upload w90"> 
                                     <div class="custom-file w100">
-                                        <input type="file" class="custom-file-input" id="attach_file_video" name="attach_file_video">
+                                        <input type="file" class="custom-file-input" id="attach_file_video" name="attach_file_video" accept=".mp4" >
                                         <label class="custom-file-label" for="attach_file_video" id="attach_file_video_name">선택된 파일 없음</label>
                                     </div>
                                 </div>

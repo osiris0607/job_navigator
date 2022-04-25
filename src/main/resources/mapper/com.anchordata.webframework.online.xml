@@ -13,6 +13,7 @@
 		<result property ="upload_file_id"			column="UPLOAD_FILE_ID"	/>
 		<result property ="upload_file_name"		column="UPLOAD_FILE_NAME"	/>
 		<result property ="upload_file_image"		column="UPLOAD_FILE_IMAGE"	/>
+		<result property ="file_name"				column="FILE_NAME"	/>
 		<result property ="reg_date"				column="REG_DATE"	/>
 		
 		<result property ="total_count"				column="TOTAL_COUNT"	/>
@@ -27,6 +28,7 @@
 			, JOB_GB
 			, VIDEO_TP_CD
 			, UPLOAD_FILE_ID
+			, FILE_NAME
 		) 
 		VALUES (
 			#{url}
@@ -35,19 +37,24 @@
 			, #{job_gb}
 			, #{video_tp_cd}
 			, #{upload_file_id}
+			, #{file_name}
 		);
 	</insert>
 	
 	
 	<update id="updateInfo" parameterType="OnlineVO">
 		UPDATE LECTURE_ONLINE  SET   
-			URL = #{url}
-			, TITLE = #{title}
+			TITLE = #{title}
 			,	WRITER = #{writer}
-			,   VIDEO_TP_CD = #{video_tp_cd}
 			,	REG_DATE = NOW()
+			<if test="url != null and url != '' ">
+			,	URL = #{url}
+			</if>
+			<if test="file_name != null and file_name != '' ">
+			,	FILE_NAME = #{file_name}
+			</if>
 			<if test="upload_file_id != null and upload_file_id != '' ">
-				,	UPLOAD_FILE_ID = #{upload_file_id}
+			,	UPLOAD_FILE_ID = #{upload_file_id}
 			</if>
 		WHERE 
 			ONLINE_ID = #{online_id}
@@ -86,18 +93,24 @@
 					ESS_UPLOAD_FILE 
 					</if> 
 				WHERE FIlE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_IMAGE
+			, FILE_NAME
 		FROM
 			LECTURE_ONLINE A
 		WHERE
 			<if test='job_gb != null and job_gb != "" '>
 				JOB_GB = #{job_gb}
 			</if>
-			<if test='title != null and title != "" '>
-				AND TITLE LIKE CONCAT('%',#{title},'%')
-			</if>
-			<if test='reg_date != null and reg_date != "" '>
-				AND DATE_FORMAT(REG_DATE,'%Y-%m-%d') = #{reg_date}
-			</if>
+			<choose>
+				<when test='title != null and title != ""'>
+					AND TITLE LIKE CONCAT('%',#{title},'%')
+				</when>
+				<when test='writer != null and writer != ""'>
+					AND WRITER LIKE CONCAT('%',#{writer},'%')
+				</when>		
+				<when test='reg_date != null and reg_date != ""'>
+					AND DATE_FORMAT(REG_DATE,'%Y-%m-%d') = #{reg_date}
+				</when>		
+			</choose>
 		<include refid="common.pagingPost"/>
 	</select>
 	
@@ -139,12 +152,25 @@
 					ESS_UPLOAD_FILE 
 					</if> 
 				WHERE FIlE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_IMAGE
+			, FILE_NAME
 		FROM
 			LECTURE_ONLINE A
 		WHERE
 			<if test='job_gb != null and job_gb != "" '>
 				JOB_GB = #{job_gb}
 			</if>
+			<choose>
+				<when test='title != null and title != ""'>
+					AND TITLE LIKE CONCAT('%',#{title},'%')
+				</when>
+				<when test='writer != null and writer != ""'>
+					AND WRITER LIKE CONCAT('%',#{writer},'%')
+				</when>		
+				<when test='reg_date != null and reg_date != ""'>
+					AND DATE_FORMAT(REG_DATE,'%Y-%m-%d') = #{reg_date}
+				</when>		
+			</choose>
+			
 	</select>
 	
 	<select id="selectDetail" parameterType="OnlineVO"  resultMap="online">
@@ -172,6 +198,7 @@
 					ESS_UPLOAD_FILE 
 					</if> 
 				WHERE FIlE_ID = A.UPLOAD_FILE_ID) AS UPLOAD_FILE_IMAGE
+			, FILE_NAME
 		FROM
 			LECTURE_ONLINE A
 		WHERE

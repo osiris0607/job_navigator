@@ -24,16 +24,17 @@
 				<ul class="searchWrap reference">
 					<li class="result">전체 <em id="search_count">0</em>건
 					</li>
-					<li><label for="edu_search" class="hidden">검색</label> <input
-						type="text" id="edu_search" placeholder="검색할 제목을 입력하세요"></li>
+					<li><label for="edu_search" class="hidden">검색</label> 
+						<input type="text" id="edu_search" placeholder="온라인 강의를 검색해 보세요."></li>
 					<li>
 						<button type="submit" onclick="searchList(1);">검색</button>
 					</li>
 				</ul>
 
 				<!-- Youtube openApi -->
+					
+				
 				<ul class="accodion" id="ul_body"></ul>
-
 				<input type="hidden" id="pageIndex" name="pageIndex" />
 				<div class="pagination" id="pageNavi"></div>
 			</fieldset>
@@ -46,15 +47,17 @@
 		searchList(1);
 
 	});
-
+	
 	function searchList(pageNo) {
 		var comAjax = new ComAjax();
-		comAjax
-				.setUrl("<c:url value='/user/api/ess/lecture/online/search/paging' />");
+		
+		console.log($("#edu_search").val());
+		comAjax.setUrl("<c:url value='/user/api/ess/lecture/online/search/paging' />");
 		comAjax.setCallback("searchListCB");
 		comAjax.addParam("pageIndex", pageNo);
-		comAjax.addParam("orderby", "ONLINE_ID DESC");
-
+		comAjax.addParam("orderby", "REG_DATE DESC");
+		
+		comAjax.addParam("title", $("#edu_search").val());
 		comAjax.ajax();
 	}
 
@@ -84,8 +87,8 @@
 			/* 등록된 DB count만큼 박스 출력 */
 			$.each(data.result, function(key, value) { //key : index
 			    				
-								console.log('*[value.video_tp_cd] : ', value.video_tp_cd);
-								console.log('*[value.upload_file_name] : ', value.upload_file_name);
+								//console.log('*[value.video_tp_cd] : ', value.video_tp_cd);
+								//console.log('*[value.upload_file_name] : ', value.upload_file_name);
 								/*
 									T01 : 유투브
 									T02 : 파일다운로드
@@ -96,7 +99,7 @@
 									
 									videoIdList = value.url.split('/');
 									playlist = videoIdList[videoIdList.length - 1];
-									console.log('*[playlist] ID: ', playlist);
+									//console.log('*[playlist] ID: ', playlist);
 									
 									className = "videoContenttest" + "_" + playlist;
 								
@@ -113,6 +116,7 @@
 								} 
 								else {
 								//VIDEO
+								
 								str += "<div class='boxWrap'>";
 								str += " <div class='videoThumb'>";
 								str += "  <img src='data:image/png;base64,"
@@ -125,15 +129,24 @@
 								str += "  <p class='videoTitle'>"
 										+ value.title + "</p>";
 								str += "  <p class='videoSummary'></span><span class='en'>"
-										+ value.reg_date + "</span></p>"
-								str += "  <br>"
-								str += "  <a href='' download class='moviedown_btn'>다운로드</a> ";
+										+ value.reg_date + "</span></p>";
+								str += "  <br>";
+								
+								
+								
+								console.log('value.file_name --> ', value.file_name);
+								str += "<form id='frm' method='post'>";
+								str += "<input type='hidden' name='fileName' value='"+value.file_name+"'>"
+								str += "</form>"
+								
+								str += "  <a href='#' onclick='go_search()' class='moviedown_btn'>다운로드</a> ";
 								str += "  <ul class='videoOwner'>  ";
 								str += "   <li>" + value.writer + "</li>  ";
 								str += "  </ul>  ";
 								str += " </div>";
 								str += "</div>";
                                 
+								
 								}
 
 							}); //end value
@@ -179,5 +192,11 @@
 		); //end getJSON
 
 	}
+	
+	function go_search(){
+		console.log('goSearch');
+		$("#frm").attr("action","/user/rdt/lecture/fileDown").submit(); 
+	}
+
 </script>
 
