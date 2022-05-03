@@ -139,7 +139,7 @@
 								str += "<input type='hidden' name='fileName' value='"+value.file_name+"'>"
 								str += "</form>"
 								
-								str += "  <a href='#' onclick='go_search()' class='moviedown_btn'>다운로드</a> ";
+								str += "  <a href='#' onclick='go_search(\"" + value.file_name + "\")' class='moviedown_btn'>다운로드</a> ";
 								str += "  <ul class='videoOwner'>  ";
 								str += "   <li>" + value.writer + "</li>  ";
 								str += "  </ul>  ";
@@ -193,9 +193,9 @@
 
 	}
 	
-	function go_search(){
-		console.log('goSearch');
-		$("#frm").attr("action","/user/rdt/lecture/fileDown").submit(); 
+	function go_search(value){
+		console.log('goSearch', value);
+		$("#frm").attr("action","/user/rdt/lecture/fileDown?fileName="+value+"").submit(); 
 	}
 
 </script>

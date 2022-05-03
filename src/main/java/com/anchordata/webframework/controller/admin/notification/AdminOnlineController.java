@@ -410,7 +410,7 @@ public class AdminOnlineController {
 	public String fileDown(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		System.out.println("fileDown api");
 	    //업로드한 파일이 있는 경로
-	    String realPath = "D:\\UPLOAD_FILE\\";
+	    String realPath = "D:\\UPLOAD_FILE";
 	     
 	    // 파일 이름이 파라미터로 넘어오지 않으면 리다이렉트 시킨다.
 	    if(request.getParameter("fileName") == null || "".equals(request.getParameter("fileName"))){
