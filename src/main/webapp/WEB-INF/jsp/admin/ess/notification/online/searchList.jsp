@@ -4,7 +4,6 @@
 
 <script type="text/javascript">
   
-  
 $(document).ready(function() {
 	$("#search_text").on("keydown", function(key) {
         //키의 코드가 13번일 경우 (13번은 엔터키)
@@ -16,7 +15,6 @@ $(document).ready(function() {
 	searchList(1);
 	
 });
-
 
   function searchList(pageNo) {
 		var comAjax = new ComAjax();
@@ -48,7 +46,7 @@ $(document).ready(function() {
 		body.empty();
 		$("#pageNavi").empty();
 		if (total == 0) {
-			var str = "<div>조회된 결과가 없습니다.</div>";
+			var str = "<div class='boxWrap'><p class='text_c'>조회된 결과가 없습니다.</p></div>";
 			body.append(str);
 		} else {
 			var params = {
@@ -58,7 +56,7 @@ $(document).ready(function() {
 					eventName : "searchList"
 				};
 
-			gfnRenderPagingMain(params);
+			gfnRenderPaging(params);
 			$("#search_count").text(total);
 		
 			var str = "";
@@ -66,7 +64,7 @@ $(document).ready(function() {
 			var playlist;
 			/* 등록된 DB count만큼 박스 출력 */
 			$.each(data.result, function(key, value) { //key : index
-			    				
+				var date = formatDate(value.reg_date);
 								//console.log('*[value.video_tp_cd] : ', value.video_tp_cd);
 								//console.log('*[value.upload_file_name] : ', value.upload_file_name);
 								/*
@@ -109,7 +107,7 @@ $(document).ready(function() {
 								str += "	<a class='videoTitle' href='/admin/rdt/ess/notification/online/detail?online_id="+value.online_id+"'>"+value.title+"</a>";
 
 								str += "  <p class='videoSummary'></span><span class='en'>"
-										+ value.reg_date + "</span></p>";
+										+ date + "</span></p>";
 								str += "  <br>";
 								str += "  <ul class='videoOwner'>  ";
 								str += "   <li>" + value.writer + "</li>  ";
@@ -193,6 +191,12 @@ $(document).ready(function() {
                             </select>                        
 							
                             <input type="text" maxlength="40" class="form-control online_search brc-on-focusd-inline-block fl ml5" placeholder="검색어를 입력하세요" id="search_text" /> 
+                            <div class="datepicker_area fl ml5">
+								<input type="text" id="join_datepicker1" class="datepicker form-control w_110" placeholder="시작일" />					
+								<span>~</span>								
+								<input type="text" id="join_datepicker2" class="datepicker form-control w_110" placeholder="종료일" />				   
+							</div>
+                            
                             <button class="blue_btn2 fl btn ml5" onclick="searchList(1);">검색</button>                            
                             <a href="/admin/rdt/ess/notification/online/registration" class="btn blue_btn fr">등록</a>
                         </div>
@@ -201,40 +205,12 @@ $(document).ready(function() {
 						<div class="accodion" id="list_body"></div>
 					
 					
-					<div class="Page_navigation">
-                            <nav class="bgc-white mt-3 d-flex radius-1 position-center" aria-label="Page navigation example">
-							    <ul class="pagination nav-tabs-scroll is-scrollable p-2 mb-0">
-									<li class="page-item mr-2 active">
-										<a class="w-5 h-5 pt-2 page-link text-center rounded-circle" href="/admin/rdt/ess/notification/online/searchList">
-										1
-										</a>
-									</li>
-								</ul>
-						    </nav>   
-					    </div>   
-					</div>
-				</div>
-			</div>
+							<div class="Page_navigation">
+							<div id="pageNavi"></div>
+								<input type="hidden" id="pageIndex" name="pageIndex"/>
+						</div>  
+               	 	</div>
 		</div>
-    </div><!--body-container-->
-                
-			</div>    
-		</div>
-	</div>	
-</div>	
+	</div>
+</div>
 		
-<style>
-/* admin에서 style.css가 안먹고있어서 임시로 스타일 적용 */
-.boxWrap {position: relative; overflow: hidden; width: 100%; padding: 30px; margin-bottom: 30px; border: 1px solid #d1d1d1; box-sizing: border-box;}
-.boxWrap .videoThumb {float: left; margin-right: 20px;}
-.boxWrap .videoThumb img, .boxWrap .videoThumb iframe, .videoThumb video {width: 300px; height: 150px; object-fit: scale-down;}
-.boxWrap .videoContent {position: relative; overflow: hidden; height: 150px;}
-.boxWrap .videoContent .videoSummary {color: #666666; font-size: 15px;	margin: 0;}
-.boxWrap .videoContent .videoSummary span.en {padding: 0;}
-.boxWrap .videoContent .videoOwner {position: absolute; bottom: 0; overflow: hidden; margin: 0;}
-.boxWrap .videoContent .videoTitle {display: block; margin-bottom: 10px; font-size: 16px; font-weight: 700; line-height: 1.4;color: #333;display: -webkit-box; display: -ms-flexbox;margin-top:1px; max-height:60px; overflow:hidden; vertical-align:top; text-overflow: ellipsis; word-break:break-all; -webkit-box-orient:vertical; -webkit-line-clamp:2;padding: 0;}
-.boxWrap .videoContent .videoOwner li {float: left; height: 24px; margin-right: 20px; font-size: 15px; line-height: 24px;}
-
-.Page_navigation{position: relative;margin: 40px 0 20px 0;height: 30px;}
-.Page_navigation .position-center{position: absolute;left:50%;top: 0 !important;transform: translate(-50%, -50%);}
-</style>

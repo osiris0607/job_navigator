@@ -1251,7 +1251,7 @@ body{overflow-x:hidden;}
 /*20220414 추가*/
 .ml20{margin-left: 20px;}
 .mr20{margin-right: 20px;}
-.movie_search{margin-bottom: 30px;float: right;overflow: hidden;}
+.movie_search{margin-bottom: 30px;overflow: hidden;}
 a.moviedown_btn{width: 104px;height: 38px;line-height: 38px;margin-top: 5px;color: #fff;font-style: normal;font-size: 15px;font-weight: 700;
 background: #d02e39;overflow: hidden;display: block;text-align: center;font-family: Arial;}
 .boxWrap .videoThumb img, .boxWrap .videoThumb iframe, .videoThumb video {max-width: 240px;height: 150px;}

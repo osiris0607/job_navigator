@@ -48,7 +48,6 @@
 
 			gfnRenderPaging(params);
 
-
 			$("#search_count").text(total);
 			var index = 1;
 			var str = "";

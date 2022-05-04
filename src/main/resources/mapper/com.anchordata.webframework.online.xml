@@ -75,7 +75,7 @@
 			,	TITLE
 			,	WRITER
 			,   VIDEO_TP_CD
-			,	DATE_FORMAT(REG_DATE,'%Y-%m-%d') AS REG_DATE
+			,	REG_DATE
 			,	UPLOAD_FILE_ID
 			,	(SELECT NAME FROM 
 					<if test='job_gb.equals("D000004")'>
@@ -135,7 +135,7 @@
 			,	TITLE
 			,	WRITER
 			,   VIDEO_TP_CD
-			,	DATE_FORMAT(REG_DATE,'%Y-%m-%d') AS REG_DATE
+			,	REG_DATE
 			,	(SELECT NAME FROM 
 					<if test='job_gb.equals("D000004")'>
 					SUN_UPLOAD_FILE 

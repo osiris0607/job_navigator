@@ -20,21 +20,24 @@
 				<li>교육&middot;자격증</li>
 				<li>온라인 강의</li>
 			</ul>
+			
 			<fieldset>
-				<ul class="searchWrap reference">
+				
+				<ul class="searchWrap movie_search">
 					<li class="result">전체 <em id="search_count">0</em>건
 					</li>
-					<li><label for="edu_search" class="hidden">검색</label> 
-						<input type="text" id="edu_search" placeholder="온라인 강의를 검색해 보세요."></li>
 					<li>
-						<button type="submit" onclick="searchList(1);">검색</button>
+					  <label for="edu_search" class="hidden">검색</label>	
+					  <input type="text" id="edu_search" placeholder="온라인 강의를 검색해 보세요.">
 					</li>
+					<li>
+					  <button type="submit" onclick="searchList(1);">검색</button>
+					</li>			
 				</ul>
 
 				<!-- Youtube openApi -->
-					
-				
 				<ul class="accodion" id="ul_body"></ul>
+				
 				<input type="hidden" id="pageIndex" name="pageIndex" />
 				<div class="pagination" id="pageNavi"></div>
 			</fieldset>
@@ -51,7 +54,6 @@
 	function searchList(pageNo) {
 		var comAjax = new ComAjax();
 		
-		console.log($("#edu_search").val());
 		comAjax.setUrl("<c:url value='/user/api/ess/lecture/online/search/paging' />");
 		comAjax.setCallback("searchListCB");
 		comAjax.addParam("pageIndex", pageNo);
@@ -86,7 +88,7 @@
 			var playlist;
 			/* 등록된 DB count만큼 박스 출력 */
 			$.each(data.result, function(key, value) { //key : index
-			    				
+				var date = formatDate(value.reg_date);				
 								//console.log('*[value.video_tp_cd] : ', value.video_tp_cd);
 								//console.log('*[value.upload_file_name] : ', value.upload_file_name);
 								/*
@@ -129,7 +131,7 @@
 								str += "  <p class='videoTitle'>"
 										+ value.title + "</p>";
 								str += "  <p class='videoSummary'></span><span class='en'>"
-										+ value.reg_date + "</span></p>";
+										+ date + "</span></p>";
 								str += "  <br>";
 								
 								

@@ -230,7 +230,7 @@
 							<td class="w80 txt_r">                
                             <div class="job_file_upload w87"> 
                                 <div class="custom-file w100">
-                                    <input type="file" class="custom-file-input custom-file-input-write-company" id="attach_file" name="attach_file">
+                                    <input type="file" class="custom-file-input custom-file-input-write-company" id="attach_file" name="attach_file" accept=".jpg, .png">
                                     <label class="custom-file-label custom-control-label-write-company" for="attach_file" id="attach_file_name">선택된 파일 없음</label>
                                 </div>
                             </div>                               
