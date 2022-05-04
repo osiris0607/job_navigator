@@ -241,6 +241,7 @@ public class AdminOnlineController {
 	@RequestMapping("/admin/api/ess/notification/online/withdrawal")
 	public ModelAndView essWithdrawal(@ModelAttribute OnlineVO vo, ModelAndView mv) throws Exception {
 		vo.setJob_gb("D000003");
+		System.out.println("Controller upload_file_id :: " + vo.getUpload_file_id());
 		mv.addObject("result", onlineService.withdrawal(vo));
 		mv.setViewName("jsonView");
 		return mv;
@@ -293,13 +294,14 @@ public class AdminOnlineController {
 	 * 
 	 * */
 	@PostMapping("/updateAjaxAction")
-	public ResponseEntity<String> updateAjaxPost(String fileName, MultipartFile[] uploadFile) {
-		System.out.println("old ajax post......" + fileName);
+	public ResponseEntity<String> updateAjaxPost(String fileName, String oldFileName, MultipartFile[] uploadFile) {
+		System.out.println("old ajax post......" + oldFileName);
+		System.out.println("new ajax post......" + fileName);
 		
 		//기존 파일 삭제
 		File oldFile;
 		try {
-			oldFile = new File("d:\\UPLOAD_FILE\\"+URLDecoder.decode(fileName, "UTF-8"));
+			oldFile = new File("d:\\UPLOAD_FILE\\"+URLDecoder.decode(oldFileName, "UTF-8"));
 			
 			System.out.println("deleteFile :;: " + oldFile);
 			
@@ -410,7 +412,7 @@ public class AdminOnlineController {
 	public String fileDown(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		System.out.println("fileDown api");
 	    //업로드한 파일이 있는 경로
-	    String realPath = "D:\\UPLOAD_FILE";
+	    String realPath = "D:\\UPLOAD_FILE\\";
 	     
 	    // 파일 이름이 파라미터로 넘어오지 않으면 리다이렉트 시킨다.
 	    if(request.getParameter("fileName") == null || "".equals(request.getParameter("fileName"))){

@@ -2,11 +2,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
-	var detailData;
 <script type='text/javascript'>
-
+	var detailData;
+	var oldFileName;
+	var newFileName;
+	
 	$(document).ready(function() {
 		getDetail();
+		
+		/* 영상파일 수정 시 기존영상을 삭제하고 새로운 영상 등록 */
+		$("#attach_file_video").on('change',function(){
+			  oldFileName = detailData.file_name;
+			  newFileName = $("#attach_file_video_name").text();
+		});
 	});
 
 	function getDetail() {
@@ -18,9 +26,11 @@
 	}
 	
 	function getDetailCB(data){
+		detailData = data.result;
+		
 		//화면 오픈 후 detail 세팅
 		console.log('detail data --> ', data);
-		$("#video_tp_cd").val(data.result.video_tp_cd) ;
+		$("#video_tp_cd").val(data.result.video_tp_cd);
 		$("#title").val(data.result.title) ;
 		$("#writer").val(data.result.writer);
 		$("#url").val(data.result.url);
@@ -64,12 +74,16 @@
 		
 	}
 
-	function modification() {
+	/* VIDEO 수정 */
+	function modificationVideo() {
+		console.log("old fileName", $("#attach_file_video_name").text());
 		var inputFile = $("input[name='attach_file_video']");
 		var files = inputFile[0].files;
+		console.log('new files : ', files);
 		
 		var fileData = new FormData;
-		fileData.append("fileName", $("#attach_file_video_name").text());
+		fileData.append("oldFileName", oldFileName);
+		fileData.append("fileName", newFileName);
 		for(var i = 0; i < files.length; i++) {
 			fileData.append("uploadFile", files[i]);
 		}
@@ -86,24 +100,16 @@
 				return false;
 			}
 		}
+		
+		console.log('$("#attach_file_video_name").val() -----> ', newFileName);
 		formData.append("online_id", $("#online_id").val());
 		formData.append("video_tp_cd", $("#video_tp_cd:checked").val());
 		formData.append("title", $("#title").val());
 		formData.append("writer", $("#writer").val());
 		formData.append("url", $("#url").val());
 
-		formData.append("upload_file_id", $("#upload_file_id").val());
-
-		//console.log($("#attach_file_video_name").text());
-		//console.log(files);
-		
-		console.log(files.length);
-		//동영상 파일 수정 안한경우
-		 if(files.length > 0) {
-			formData.append("file_name", files[0].name);
-		}else {
-			formData.append("file_name", $("#attach_file_video_name").text());
-		}
+		formData.append("upload_file_id", detailData.upload_file_id);
+		formData.append("file_name", $("#attach_file_video_name").text());
 		
 		if ( $("#attach_file")[0].files[0] != undefined && $("#attach_file")[0].files[0] != "") {
 			formData.append("attach_file", $("#attach_file")[0].files[0]);
@@ -154,15 +160,57 @@
 		  }
 	}
 
-	function withdrawal() {
-		
-		console.log('$("#upload_file_id").val() --> ', $("#upload_file_id").val());
+	/* YOUTUBE 수정 */
+	function modificationYoutube() {
 		var formData = new FormData();
-		var fileData = new FormData();
+
+		var chkVal = ["video_tp_cd", "title", "writer"];
+		for (var i = 0; i < chkVal.length; i++) 
+		{
+			if ($("#" + chkVal[i]).val() == "" ) {
+				console.log(chkVal[i]);
+				alert($("#" + chkVal[i]).attr("title") + "은(는) 필수입력입니다.");
+				$("#" + chkVal[i]).focus();
+				return false;
+			}
+		}
 		
 		formData.append("online_id", $("#online_id").val());
-		formData.append("upload_file_id", $("#upload_file_id").val());
+		formData.append("video_tp_cd", $("#video_tp_cd:checked").val());
+		formData.append("title", $("#title").val());
+		formData.append("writer", $("#writer").val());
+		formData.append("url", $("#url").val());
+
 		
+		if (confirm('수정 하시겠습니까?')) {
+			 $.ajax({
+			    type : "POST",
+			    url : "/admin/api/solar/notification/online/modification",
+			    data : formData,
+			    processData: false,
+			    contentType: false,
+			    mimeType: 'multipart/form-data',
+			    success : function(data) {
+			    	var jsonData = JSON.parse(data);
+			        if (jsonData.result == 1) {
+			            alert("수정 되었습니다.");
+			            location.href = "/admin/rdt/solar/notification/online/searchList";
+			        } else {
+			            alert("수정에 실패하였습니다. 다시 시도해 주시기 바랍니다.");
+			        }
+			    },
+			    error : function(err) {
+			        alert(err.status);
+			    }
+			});
+		  }
+	}
+	
+	function withdrawalVideo() {
+		var formData = new FormData();
+		var fileData = new FormData();
+		formData.append("online_id", $("#online_id").val());
+		formData.append("upload_file_id", detailData.upload_file_id);
 		fileData.append("fileName", $("#attach_file_video_name").text());
 		
 		if (confirm('삭제 하시겠습니까?')) {
@@ -186,6 +234,34 @@
 			    }
 			});
 			
+			 $.ajax({
+			    type : "POST",
+			    url : "/admin/api/solar/notification/online/withdrawal",
+			    data : formData,
+			    processData: false,
+			    contentType: false,
+			    mimeType: 'multipart/form-data',
+			    success : function(data) {
+			    	var jsonData = JSON.parse(data);
+			        if (jsonData.result == 1) {
+			            alert("삭제 되었습니다.");
+			            location.href = "/admin/rdt/solar/notification/online/searchList";
+			        } else {
+			            alert("삭제 실패했습니다. 다시 시도해 주시기 바랍니다.");
+			        }
+			    },
+			    error : function(err) {
+			        alert(err.status);
+			    }
+			});
+		}
+	}
+
+	function withdrawalYoutube() {
+		var formData = new FormData();
+		formData.append("online_id", $("#online_id").val());
+		
+		if (confirm('삭제 하시겠습니까?')) {
 			 $.ajax({
 			    type : "POST",
 			    url : "/admin/api/solar/notification/online/withdrawal",
@@ -251,11 +327,11 @@
 					</table>
 
 					<table class="job_write common_table">
-						<caption>작성자</caption>				
+						<caption>영상출처</caption>				
 						<tr>
-							<th class="w20 jop_write_table_writer"><span class="icon_box"><span class="necessary_icon">*</span>작성자</span></th>								
+							<th class="w20 jop_write_table_writer"><span class="icon_box"><span class="necessary_icon">*</span>영상출처</span></th>								
 							<td class="w80">
-								<input type="text" class="form-control brc-on-focusd-inline-block w30" id="writer" title="작성자">
+								<input type="text" class="form-control brc-on-focusd-inline-block w30" id="writer" title="영상출처">
 							</td>
 						</tr>
 					</table>
@@ -274,14 +350,14 @@
 						<caption>썸네일 이미지</caption>				
 						<tr>
 							<th class="w20 jop_write_table_url">썸네일 이미지<br/>(jpg, png만 가능)</th>								
-							<td class="w80">
-                                <div class="job_file_upload w90"> 
-                                    <div class="custom-file w100">
-                                        <input type="file" class="custom-file-input" id="attach_file" name="attach_file">
-                                        <label class="custom-file-label custom-control-label-write-company" for="attach_file" id="attach_file_name">선택된 파일 없음</label>
-                                    </div>                                    
+							<td class="w80 txt_r">                
+                            <div class="job_file_upload w87"> 
+                                <div class="custom-file w100">
+                                    <input type="file" class="custom-file-input custom-file-input-write-company" id="attach_file" name="attach_file">
+                                    <label class="custom-file-label custom-control-label-write-company" for="attach_file" id="attach_file_name">선택된 파일 없음</label>
                                 </div>
-                            </td>
+                            </div>                               
+                     	 	</td>
 						</tr>
 					</table>
 
@@ -289,23 +365,23 @@
 						<caption>동영상 파일</caption>				
 						<tr>
 							<th class="w20 jop_write_table_url">동영상 파일<br />(mp4)</th>								
-							<td class="w80">
-                                <div class="job_file_upload w90"> 
-                                    <div class="custom-file w100">
-                                        <input type="file" class="custom-file-input" id="attach_file_video" name="attach_file_video">
-                                        <label class="custom-file-label" for="attach_file_video" id="attach_file_video_name">선택된 파일 없음</label>
-                                    </div>
+							<td class="w80 txt_r">                
+                            <div class="job_file_upload w87"> 
+                                <div class="custom-file w100">
+                                    <input type="file" class="custom-file-input custom-file-input-write-company" id="attach_file_video"  name="attach_file_video" accept=".mp4">
+                                    <label class="custom-file-label custom-control-label-write-company" for="attach_file_video" id="attach_file_video_name">선택된 파일 없음</label>
                                 </div>
-                            </td>
+                            </div>                               
+                     	 	</td>
 						</tr>
 					</table>
                     
                     
                     <div class="industry-trend-view_btns">
-                <a href="javascript:void(0)" class="blue_btn ok_back_btn btn" onclick="modification();">수정</a>
+                <a href="javascript:void(0)" class="blue_btn ok_back_btn btn" onclick='$(".youtube_check").is(":checked") ? modificationYoutube() : modificationVideo()'>수정</a>
                 <div class="fr">
                     <a href="/admin/rdt/solar/notification/online/searchList" class="gray_btn list_back_btn btn">목록</a>
-                    <a href="javascript:void(0)" class="gray_btn list_back_btn btn" onclick="withdrawal();">삭제</a>
+                    <a href="javascript:void(0)" class="gray_btn list_back_btn btn" onclick='$(".youtube_check").is(":checked") ? withdrawalYoutube() : withdrawalVideo()'>삭제</a>
                 </div>
             </div>           
                 </div>

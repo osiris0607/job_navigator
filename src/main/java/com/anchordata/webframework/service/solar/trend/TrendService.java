@@ -15,6 +15,7 @@ package com.anchordata.webframework.service.solar.trend;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -62,18 +63,29 @@ public class TrendService {
 	@Transactional
 	public int modification(TrendVO vo) throws Exception {
 		// 첨부 파일이 있으면 변경
-		if (vo.getAttach_file() != null && vo.getAttach_file().getSize() > 0 ) {
-			// 나머지 정보는 Upload File Table에 저장
-			String fileName = vo.getAttach_file().getOriginalFilename();
-			UploadFileVO uploadFileVO  = new UploadFileVO();
-			uploadFileVO.setName(fileName);
-			uploadFileVO.setBinary_content(vo.getAttach_file().getBytes());
+		if (StringUtils.isEmpty(vo.getUpload_file_id()) == false) {
+			UploadFileVO uploadFileVO = new UploadFileVO();
+			uploadFileVO.setFile_id(Integer.parseInt(vo.getUpload_file_id()));
+
+			if (vo.getAttach_file() != null && vo.getAttach_file().getSize() > 0) {
+				String fileName = vo.getAttach_file().getOriginalFilename();
+				uploadFileVO.setName(fileName);
+				uploadFileVO.setBinary_content(vo.getAttach_file().getBytes());
+			}
 			uploadFileVO.setJob_gb(vo.getJob_gb());
-			uploadFileService.registration(uploadFileVO);
-			
-			vo.setUpload_file_id(Integer.toString(uploadFileVO.getFile_id()));
+			uploadFileService.modification(uploadFileVO);
 		} else {
-			vo.setUpload_file_id("");
+			if (vo.getAttach_file() != null && vo.getAttach_file().getSize() > 0) {
+				// 나머지 정보는 Upload File Table에 저장
+				String fileName = vo.getAttach_file().getOriginalFilename();
+				UploadFileVO uploadFileVO = new UploadFileVO();
+				uploadFileVO.setName(fileName);
+				uploadFileVO.setBinary_content(vo.getAttach_file().getBytes());
+				uploadFileVO.setJob_gb(vo.getJob_gb());
+				uploadFileService.registration(uploadFileVO);
+
+				vo.setUpload_file_id(Integer.toString(uploadFileVO.getFile_id()));
+			}
 		}
 		return trendDao.updateInfo(vo);
 	}
@@ -84,6 +96,14 @@ public class TrendService {
 	@Transactional
 	public int withdrawal(TrendVO vo) throws Exception {
 		// 실제 데이터 삭제가 아니라 Flag만 바꾼다.
+		// 연관된 File 삭제
+				System.out.println("vo.getUpload_file_id :::: " + vo.getUpload_file_id());
+				if (vo.getUpload_file_id() != null && vo.getUpload_file_id() != "") {
+					UploadFileVO uploadFileVO = new UploadFileVO();
+					uploadFileVO.setFile_id(Integer.parseInt(vo.getUpload_file_id()));
+					uploadFileVO.setJob_gb(vo.getJob_gb());
+					uploadFileService.withdrawal(uploadFileVO);
+				}
 		return trendDao.deleteInfo(vo);
 	}
 	

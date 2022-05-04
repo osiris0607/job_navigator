@@ -206,6 +206,7 @@ public class AdminTrendController {
 	 */
 	@RequestMapping("/admin/api/solar/notification/trend/withdrawal")
 	public ModelAndView withdrawal(@ModelAttribute TrendVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000004");
 		mv.addObject("result", trendService.withdrawal(vo));
 		mv.setViewName("jsonView");
 		return mv;
@@ -216,6 +217,7 @@ public class AdminTrendController {
 	 */
 	@RequestMapping("/admin/api/ess/notification/trend/withdrawal")
 	public ModelAndView essWithdrawal(@ModelAttribute TrendVO vo, ModelAndView mv) throws Exception {
+		vo.setJob_gb("D000003");
 		mv.addObject("result", trendService.withdrawal(vo));
 		mv.setViewName("jsonView");
 		return mv;

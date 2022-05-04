@@ -63,7 +63,7 @@
 
       var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
        //var maxSize = 20971520;  //20MB
-      var maxSize = 52428800;  //50MB
+      var maxSize = 1048576000;  //1GB(1000MB * 1024 * 1024)
 
       if(fileSize >= maxSize){
         alert('파일 사이즈 초과');

@@ -7,7 +7,7 @@
   
 <script type='text/javascript'>
 	var oEditors = [];
-
+	var detailData;
 	$(document).ready(function() {
 		nhn.husky.EZCreator.createInIFrame({
 			oAppRef : oEditors,
@@ -45,6 +45,8 @@
 	}
 	
 	function getDetailCB(data){
+		detailData = data.result;
+		
 		console.log('data --> ', data);
 		$("#title").val(data.result.title) ;
 		$("#writer").val(data.result.writer);
@@ -76,6 +78,7 @@
 			formData.append("writer",$("#writer").val());
 		}
 		formData.append("explanation", oEditors.getById["explanation"].getIR());
+		formData.append("upload_file_id", detailData.upload_file_id);
 		if ( $("#attach_file")[0].files[0] != undefined && $("#attach_file")[0].files[0] != "") {
 			formData.append("attach_file", $("#attach_file")[0].files[0]);
 		}
@@ -107,6 +110,7 @@
 	function withdrawal() {
 		var formData = new FormData();
 		formData.append("trend_id", $("#trend_id").val());
+		formData.append("upload_file_id", detailData.upload_file_id);
 		
 		if (confirm('삭제 하시겠습니까?')) {
 			$.ajax({

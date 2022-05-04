@@ -63,6 +63,7 @@ public class OnlineService {
 	 */
 	@Transactional
 	public int modification(OnlineVO vo) throws Exception {
+		System.out.println("UPDATE vo.getUpload_file_id :::: " + vo.getUpload_file_id());
 		// 첨부 파일이 있으면 변경
 		if (StringUtils.isEmpty(vo.getUpload_file_id()) == false) {
 			UploadFileVO uploadFileVO = new UploadFileVO();

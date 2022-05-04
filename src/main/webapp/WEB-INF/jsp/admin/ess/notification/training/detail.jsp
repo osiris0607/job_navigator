@@ -53,7 +53,7 @@
 		formData.append("contact", $("#contact").val());
 		formData.append("home_page", $("#home_page").val());
 
-		formData.append("upload_file_id", $("#upload_file_id").val());
+		formData.append("upload_file_id", detailData.upload_file_id);
 		formData.append("attach_file_description", $("#attach_file_description").val());
 
 		if ( $("#attach_file")[0].files[0] != undefined && $("#attach_file")[0].files[0] != "") {

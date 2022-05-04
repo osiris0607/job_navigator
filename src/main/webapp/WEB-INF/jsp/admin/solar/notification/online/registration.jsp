@@ -85,9 +85,6 @@
 			            alert("저장에 실패하였습니다. 다시 시도해 주시기 바랍니다.");
 			        }
 			    },
-			    error : function(err) {
-			        alert(err.status);
-			    }
 			});
 			
 			/* DB에 온라인강의 정보 저장 */
@@ -131,17 +128,11 @@
 			}
 		}
 	
-		console.log('video_tp_cd : ', $("#video_tp_cd:checked").val());
-		console.log('title : ', $("#title").val());
-		console.log('writer : ', $("#writer").val());
-		console.log('url : ', $("#url").val());
-		console.log('attach_file : ', $("#attach_file")[0].files[0]);
-		
 		formData.append("video_tp_cd", $("#video_tp_cd").val());
 		formData.append("title", $("#title").val());
 		formData.append("writer", $("#writer").val());
 		formData.append("url", $("#url").val());
-
+		
 		if ( $("#attach_file")[0].files[0] != undefined && $("#attach_file")[0].files[0] != "") {
 			formData.append("attach_file", $("#attach_file")[0].files[0]);
 		}
@@ -236,14 +227,14 @@
 						<caption>썸네일 이미지</caption>				
 						<tr>
 							<th class="w20 jop_write_table_url">썸네일 이미지<br/>(jpg, png만 가능)</th>								
-							<td class="w80">
-                                <div class="job_file_upload w90"> 
-                                    <div class="custom-file w100">
-                                        <input type="file" class="custom-file-input" id="attach_file" name="attach_file" accept=".jpg, .png"  >
-                                        <label class="custom-file-label custom-control-label-write-company" for="attach_file" id="attach_file_name" placeholder="(1MB 이내)"></label>
-                                    </div>                                    
+							<td class="w80 txt_r">                
+                            <div class="job_file_upload w87"> 
+                                <div class="custom-file w100">
+                                    <input type="file" class="custom-file-input custom-file-input-write-company" id="attach_file" name="attach_file">
+                                    <label class="custom-file-label custom-control-label-write-company" for="attach_file" id="attach_file_name">선택된 파일 없음</label>
                                 </div>
-                            </td>
+                            </div>                               
+                     	 	</td>	
 						</tr>
 					</table>
 
@@ -251,14 +242,14 @@
 						<caption>동영상 파일</caption>				
 						<tr>
 							<th class="w20 jop_write_table_url">동영상 파일<br />(mp4)</th>								
-							<td class="w80">
-                                <div class="job_file_upload w90"> 
-                                    <div class="custom-file w100">
-                                        <input type="file" class="custom-file-input" id="attach_file_video" name="attach_file_video" accept=".mp4" >
-                                        <label class="custom-file-label" for="attach_file_video" id="attach_file_video_name">선택된 파일 없음</label>
-                                    </div>
+							<td class="w80 txt_r">                
+                            <div class="job_file_upload w87"> 
+                                <div class="custom-file w100">
+                                    <input type="file" class="custom-file-input custom-file-input-write-company" id="attach_file_video"  name="attach_file_video" accept=".mp4">
+                                    <label class="custom-file-label custom-control-label-write-company" for="attach_file_video" id="attach_file_video_name">선택된 파일 없음</label>
                                 </div>
-                            </td>
+                            </div>                               
+                     	 	</td>	
 						</tr>
 					</table>
                     
