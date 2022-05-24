@@ -1321,3 +1321,164 @@ background: #fff !important; border-radius: 5px !important; padding: 0 !importan
 .datepicker_area .form-control, .list_search_end_box  .ace-select, .list_search_end_box  input, .list_search_end_box  button, .list_search_end_box  .btn{height: 38px !important;}
 .custom-file-input{cursor: pointer;}
 .custom-file-input:disabled{cursor: default;}
+
+
+/* 0524 추가 */
+/*잡내비게이터 페이지*/
+.navi_index_box_area{min-width: 100%;}
+.jobnavigator_page{max-width: 100% !important;min-width: 1420px !important;}
+.jobnavigator_page header{position: initial;height: 74px;}
+.jobnavigator_page header .headerWrap h1.energy_main_logo{background: none !important;width: 100%;position: initial;padding-top: 15px;margin-left: 20px;text-align: center;}
+.jobnavigator_page header .headerWrap h1.energy_main_logo a{display: inline-block;}
+.jobnavigator_page header .headerWrap h1.energy_main_logo a:first-child{margin-right: 10px;}
+
+/*nav*/
+.jobnavigator_page nav{border-top: 1px solid #d1d1d1;border-bottom: 1px solid #d1d1d1;width: 100%;z-index: 99999999;}
+nav .energy_main_nav{width: 1420px;margin: 0 auto;}
+nav .energy_main_nav > li{float: left;width: 20%;text-align: center;position: relative;}
+nav .energy_main_nav > li > a{padding: 18px 0;display: block;font-size: 1.25rem;color: #000;position: relative;}
+nav .energy_main_nav > li > a:hover{color: #b8000d;}
+nav .energy_main_nav > li > a:hover:after{content:'';display: block;position: absolute;bottom: 0;left: 0;width: 100%;}
+.navi_index_box_area{padding-top: 30px;}
+
+/*navi - 2depth*/
+.jobnavigator_page #gnb{max-width:100%;position: relative;}
+.jobnavigator_page #gnb .jobnavigatorMenu {width: 1420px;margin: 0 auto;height: 60px;}
+.jobnavigator_page #gnb .jobnavigatorMenu > li {float: left;width: 20%;text-align: center;position: relative;}
+.jobnavigator_page #gnb .jobnavigatorMenu > li:after{content:'';position: absolute;right: 0;top: 38%;width: 2px;height: 18px;background: #d1d1d1;}
+.jobnavigator_page #gnb .jobnavigatorMenu > li:last-child:after{border: 0;width: 0;}
+.jobnavigator_page #gnb .jobnavigatorMenu > li > a {display: block;font-size: 1.25rem;color:#000;line-height: 60px;}
+.jobnavigator_page #gnb .jobnavigatorMenu > li > a.on{color: #cb0000;}
+.jobnavigator_page #gnb .jobnavigatorMenu>li>a:hover, .jobnavigator_page #gnb .jobnavigatorMenu>li>a:focus, .jobnavigator_page #gnb .jobnavigatorMenu>li>a:active{color:#cb0000;}
+.jobnavigator_page #gnb .jobnavigatorMenu > li:last-child .jobnavigatorsubMenu{border-right: 1px solid #d1d1d1;}
+.jobnavigator_page #gnb .jobnavigatorsubMenu {position:absolute;left: 0;top:60px;width: 100%;z-index: 9999;width:100%;border-left: 1px solid #d1d1d1;height: 415px !important;}
+.jobnavigator_page #gnb .jobnavigatorsubMenu li {font-size:16px;display:block;width:100%;text-align:left;}
+.jobnavigator_page #gnb .jobnavigatorsubMenu li:first-child a{margin-top: 20px;}
+.jobnavigator_page #gnb .jobnavigatorsubMenu li a{color:#404040;margin: 15px 30px 15px 30px;display: block;position: relative;font-size: 1.125rem;}
+.jobnavigator_page #gnb .jobnavigatorsubMenu li a:hover, .jobnavigator_page #gnb .jobnavigatorsubMenu li a:focus{color:#fff !important;padding-left: 18px;}
+.jobnavigator_page #gnb .jobnavigatorsubMenu li a:hover:before, .jobnavigator_page #gnb .jobnavigatorsubMenu li a:focus:before{content:'\f105';font-family: 'FontAwesome';position: absolute;left: 0;top: 4px;font-size: 1.125rem;color: #fff !important;width: 100%;}
+.jobnavigator_page #gnb .jobnavigatorsubMenu li a:active{color:#fff;}
+.jobnavigatorMenu > li.on > a{color: #cb0000 !important;}
+.jobnavigator_page #subMenuBg {position: absolute;left: 0;top: 61px;width: 100%;z-index: 999;background-color:#fff;border-bottom: 1px solid #d1d1d1;height: 414px;}
+.selected{background: #d01a1a;}
+.selected a{color: rgba(255,255,255,0.6) !important;}
+.selected a:hover{color: rgba(255,255,255,1) !important;}
+
+/*연관기관*/
+.energy_job_navi_relation_box{width: 100%;height: 64px;border-top: 5px solid #003668;padding-top: 15px;}
+.energy_job_navi_relation_box ul{width: 1420px;margin: 0 auto;}
+.energy_job_navi_relation_box ul li{float: left;text-align: center;width: 25%;}
+.energy_job_navi_relation_box ul li a{display: inline-block;}
+.navi_index_box_area{padding-top: 30px;}
+
+
+
+
+/*잡내비-채용정보*/
+.sub_contents .sub_top_area{width: 100%;margin-bottom: 50px;padding: 50px 0 80px 0;position: relative;background: url('../images/sub_top_bg.png') center 0 #fcfcfc no-repeat;position: relative;}
+.sub_contents .sub_top_area:before{content:'';width: 100%;border-bottom: 5px solid #003668;position: absolute;left: 0;bottom: 0;z-index: 1;}
+/*sub_상단*/
+.sub_route_area .sub_route{margin: 5px 0;}
+.sub_route_area {width: 1420px;margin: 0 auto;text-align: center;}
+.sub_route_area .sub_route li{display: inline-block;position: relative;padding-right: 15px;padding-left: 8px;}
+.sub_route_area .sub_route li:after{position: absolute;right: 0;top: 5px;content:'\f105';font-family: 'FontAwesome';}
+.sub_route_area .sub_route li:last-child:after{display: none;}
+.sub_route_area .sub_route .home img{margin-top: 5px;display: inline-block;}
+.sub_title{font-size: 2.125rem;color: #000;margin-top: 10px;font-weight: 500;}
+.tab_submenu{text-align: center;}
+.tab_submenu li{display: inline-block;margin-right: 30px;text-align: center;font-size: 1.125rem;}
+.tab_submenu{width: 1420px;position: absolute;left: 50%;bottom: 0;transform:translate(-50%, 0);overflow: hidden;background: #c22a2a;padding: 10px 0;z-index: 2;}
+.tab_submenu li a{color: rgba(255,255,255,0.6);}
+.tab_submenu li a:hover, .tab_submenu li a.on{color: rgba(255,255,255,1);}
+
+
+/*서브 컨텐츠*/
+.sub_contents_main_area{padding-bottom: 50px;}
+.sub_contents_main{width: 1420px;margin: 0 auto;border: 1px solid #d1d1d1;padding: 50px;box-sizing: border-box;}
+.sub_contents_main div, .sub_contents_main ul, .sub_contents_main li, .sub_contents_main span, .sub_contents_main section{box-sizing: border-box;}
+table.list, table.list2 {width: 100%; border-top: 2px solid #cea195; border-bottom: 1px solid #d1d1d1;}
+table {border-spacing: 0px; border: 0px; border-collapse: collapse;}
+caption {text-indent: -99999999999px; line-height: 0;}
+.hide, caption, legend {line-height: 0; font-size: 1px; overflow: hidden;}
+table tbody {counter-reset: rowNumber;}
+table tr {counter-increment: rowNumber;}
+table.list2 th {padding: 14px 0px 12px; border-bottom: 1px solid #d1d1d1 !important; border-left: 1px solid #d1d1d1 !important; border-right: 1px solid #d1d1d1 !important; font-size: 15px; font-weight: bold; text-align: center; vertical-align: middle; line-height: 1.4em; background-color: #fff8f8;   color: #555;}
+table.list2 tbody td {padding: 10px 12px; border: 1px solid #d1d1d1; border-top: 0; font-size: 15px; color: #4d4d4d !important; line-height: 1.4em; vertical-align: middle; word-break: break-all;}
+table.list th {padding: 14px 0px 12px; border: 1px solid #c9c9c9; border-bottom: 3px double #c9c9c9; font-size: 15px; font-weight: bold; text-align: center; vertical-align: middle; line-height: 1.4em; color: #555; background-color: #fff8f8;}
+table.list tbody td {padding: 10px 8px; border: 1px solid #c9c9c9; border-top: 0; font-size: 15px; color: #4d4d4d !important; text-align: center;
+line-height: 1.4em; vertical-align: middle; word-break: break-all;}
+.mt50{margin-top: 20px;}
+.sub_contents_main table input{font-size: 1rem;}
+.employinfor_table input, .employinfor_table button{display: inline-block; height: 35px;}
+.employment_area_popup_btn{line-height: 1rem !important; padding: 0 10px 1px 10px; background: #454545 !important;color: #fff !important;font-size: 14px !important;font-style: normal;}
+.w80{width: 80%;}
+.mr10{margin-right: 10px;}
+.employinfor_table input[type=radio], .employinfor_table input[type=checkbox]{margin-right: 5px;}
+.employinfor_table input[type=radio]+label, .employinfor_table input[type=checkbox]+label{margin-right: 10px;}
+.datepicker_area{margin-bottom: 5px;}
+.sub_top_infotext{padding: 30px;background: #f4f5f9;border: 1px solid #e1e1e1;}
+.sub_top_infotext li:before{content:'\f00c';font-family: 'FontAwesome';display: inline-block;margin-right: 10px;}
+.w_100{width: 100px;}
+.w_140{width: 140px;}
+.w_60{width: 60px;}
+
+/*달력*/
+button.ui-datepicker-trigger {cursor: pointer; margin-left: 1px; width: 32px; height: 32px; border-radius: 5px; -webkit-border-radius: 5px;
+    -moz-border-radius: 5px; background-color: #eee !important; border: 2px solid #d1d1d1; background: url("../images/calendar-alt-regular.svg") 52%/52% no-repeat #eee !important;vertical-align: middle;margin-left: 2px;}
+.ui-datepicker-year, .ui-datepicker-month{background: url('../images/btn/arrow_down.png') #fff no-repeat right 50%;}
+.ui-datepicker-year, .ui-datepicker-month, .ui-datepicker-prev, .ui-datepicker-next{height: 38px;}
+.ui-datepicker-prev, .ui-datepicker-next{margin-top: 7px;position: relative;background: #fff;border: 1px solid #d1d1d1;}
+.ui-datepicker-prev:after{position: absolute;left: 50%;top: 50%;content:'\f104';font-family: 'FontAwesome';transform:translate(-50%, -50%);}
+.ui-datepicker-next:after{position: absolute;left: 50%;top: 50%;content:'\f105';font-family: 'FontAwesome';transform:translate(-50%, -50%);}
+.ui-datepicker-prev{margin-left: 10px;}
+.ui-datepicker-next{margin-right: 10px;}
+.ui-datepicker-prev:hover, .ui-datepicker-next:hover{border: 1px solid #d1d1d1;background: #d1d1d1;cursor: pointer;}
+.employinfor_table{margin: 20px 0;}
+.button_area{width: 100%;text-align: center !important;margin: 20px 0 50px 0;}
+.serach_btn{height: 48px;width: 204px;font-size: 1rem;}
+.result_number{margin-bottom: 5px;}
+.result_number em{color: #134cb7;}
+.search_result .month_money:before{content:'월급';display: inline-block;color: #fff;text-align: center;font-size: 0.875rem;padding: 3px 5px;background: green;border-radius: 5px;margin-right: 5px;}
+.search_result .year_money:before{content:'연봉';display: inline-block;color: #fff;text-align: center;font-size: 0.875rem;padding: 3px 5px;background: #2d77d8;border-radius: 5px;margin-right: 5px;}
+.search_result .an{display: block;overflow: hidden; text-overflow: ellipsis; display: -webkit-box;
+    -webkit-line-clamp: 1; -webkit-box-orient: vertical; word-wrap: break-word;text-align: center;margin-bottom: 5px;max-height: 2.2em;}
+.search_result .info{overflow : hidden; text-overflow : ellipsis;word-wrap : break-word; display : -webkit-box; -webkit-line-clamp : 1; -webkit-box-orient: vertical;padding: 5px 0;max-height: 2.2em;}
+.search_result .month .week{color: green;text-align: center;font-size: 0.875rem;padding: 3px 5px;background: #fff;border: 1px solid green;border-radius: 5px;margin-left: 5px;line-height: 1em;}
+.search_result .year .week{color: #2d77d8;text-align: center;font-size: 0.875rem;padding: 3px 5px;background: #fff;border: 1px solid #2d77d8;border-radius: 5px;margin-left: 5px;line-height: 1em;}
+.search_result .edu span{display: block;}
+.no_result{text-align: center;padding: 20px;border-top: 1px solid #d1d1d1;margin-top: 1px;}
+.b_f{color: #134cb7;}
+.sub_contents_main h3{margin-top: 50px;margin-bottom: 5px;color: #000;font-weight: 500;}
+.sub_contents_main h3:before{content:'';display: inline-block;font-size: 0.875rem;color: #c22a2a;margin-right: 5px;background: url('../images/bullet.gif') 0 0 no-repeat;width: 10px;height: 10px;}
+.listback_btn{height: 48px; margin: 0 2px 0 4px; line-height: 48px; color: #333 !important;; font-style: normal; font-size: 15px; font-weight: 700; background: #eee !important;width: 204px;}
+.list_btn_area{margin-bottom: 0;}
+.employment_area_del_btn{line-height: 1rem !important; padding: 0 10px 1px 10px; background: #ddd !important; color: #777 !important;    font-size: 14px !important;}
+.job_class{width: auto;padding-right: 50px;}
+
+/*card-list*/
+.list_search_card_area, .list_search_table {padding-top: 5px;}
+.list_search_card li{float: left;padding-right: 1%;width: 25%;margin-bottom: 20px;}
+.list_search_card li:nth-child(4n){padding-right: 0;}
+.list_search_card li a{border: 1px solid #d1d1d1;padding: 20px;display: block;height: 270px;position: relative;border-top: 2px solid #cea195;}
+.list_search_card li a span{display: block;text-align: left;}
+.company_day{position: absolute;bottom: 0;left: 0;border-top: 1px solid #d1d1d1;padding: 10px 20px;width: 100%;}
+.company_day span{float: left;}
+.company_day span.company_until{float: right;}
+.list_search_card li a span.company_name{font-size: 1.125rem;font-weight: 500;margin-top: 10px;margin-bottom: 5px;line-height: 1.4em;overflow: hidden;
+    text-overflow: ellipsis; word-wrap: break-word; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; padding: 5px 0; max-height: 3em;}
+.list_search_card li a span.company_detail{color: #777;font-size: 1rem;line-height: 1.4em;overflow: hidden;  text-overflow: ellipsis;   word-wrap: break-word;   display: -webkit-box;   -webkit-line-clamp: 2;   -webkit-box-orient: vertical;   padding: 5px 0;   max-height: 3em;}
+.company_logo{width: 90%;height: 100px;margin: 0 auto;text-align: center !important;}
+.company_logo:after{display:inline-block; height:100%; content:""; vertical-align:middle;}
+.company_logo img{width: auto;max-height: 100px;vertical-align:middle;}
+.fl{float: left;}
+.fr{float: right;}
+.result{margin-top: 5px;}
+button.list_btn{width: 32px;height: 32px;text-indent: -99999999999999999999px;border: 0;}
+.list_other span{display: inline-block;background: url('../images/button_list.gif') 0 0 no-repeat;padding: 0 !important;margin: 0;}
+.list_other:hover span, .list_on span{background: url('../images/button_list_on.gif') 0 0 no-repeat !important;}
+.card_other span{display: inline-block;background: url('../images/button_card.gif') 0 0 no-repeat;}
+.card_other:hover span, .card_on span{background: url('../images/button_card_on.gif') 0 0 no-repeat;}
+
+.list_search_table{display: none;}
+
+

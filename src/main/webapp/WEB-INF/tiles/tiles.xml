@@ -16,6 +16,12 @@
 		<put-attribute name="footer"		value="/WEB-INF/layout/user/ess/footer.jsp" />
 	</definition>
 	
+	<definition name="jobnavi_user" template="/WEB-INF/layout/user/jobnavi/template.jsp">
+		<put-attribute name="header"		value="/WEB-INF/layout/user/jobnavi/header.jsp" />
+		<put-attribute name="headerSide"	value="/WEB-INF/layout/user/jobnavi/headerSide.jsp" />
+		<put-attribute name="body" 			value="" />
+	</definition>
+	
 	<definition name="admin" template="/WEB-INF/layout/admin/solar/template.jsp">
 		<put-attribute name="header"		value="/WEB-INF/layout/admin/solar/header.jsp" />
 		<put-attribute name="headerSide"	value="/WEB-INF/layout/admin/solar/headerSide.jsp" />
@@ -43,11 +49,17 @@
 	<definition name="*/*.ess_user" extends="ess_user">
         <put-attribute name="body" 			value="/WEB-INF/jsp/user/{1}/{2}.jsp"/>
     </definition>
+    <definition name="*/*.jobnavi_user" extends="jobnavi_user">
+        <put-attribute name="body" 			value="/WEB-INF/jsp/user/{1}/{2}.jsp"/>
+    </definition>
     
    	<definition name="*/*/*.sun_user" extends="sun_user">
         <put-attribute name="body" 			value="/WEB-INF/jsp/user/{1}/{2}/{3}.jsp"/>
     </definition>
    	<definition name="*/*/*.ess_user" extends="ess_user">
+        <put-attribute name="body" 			value="/WEB-INF/jsp/user/{1}/{2}/{3}.jsp"/>
+    </definition>
+   	<definition name="*/*/*.jobnavi_user" extends="jobnavi_user">
         <put-attribute name="body" 			value="/WEB-INF/jsp/user/{1}/{2}/{3}.jsp"/>
     </definition>
 
@@ -146,5 +158,6 @@
 	<definition name="user/gate" template="/WEB-INF/jsp/user/gate/gate.jsp"></definition>
 	<definition name="admin/gate" template="/WEB-INF/jsp/admin/gate/gate.jsp"></definition>
 	<definition name="user/gateMobile" template="/WEB-INF/jsp/user/gate/gateMobile.jsp"></definition>	
+	<definition name="user/jobnavi" template="/WEB-INF/jsp/user/jobnavi/employInfo.jsp"></definition>	
 	
 </tiles-definitions>
