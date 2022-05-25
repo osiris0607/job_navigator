@@ -8,7 +8,13 @@ function callApi() {
 	    dataType : "xml",
 	   	success : function(data) {
 		   	console.log('data : ', data);
-		   
+		   	//$.each(data.documentElement, function(key, value) {
+		   	//	console.log(key, value);
+		   	//});
+		   	
+		   	$(data).find('wanted').each(function() {
+		   		console.log($(this));
+		   	});
 	    },
 	    error : function(err) {
 	        alert(err.status);

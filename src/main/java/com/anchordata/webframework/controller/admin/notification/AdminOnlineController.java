@@ -417,7 +417,7 @@ public class AdminOnlineController {
 	    // 파일 이름이 파라미터로 넘어오지 않으면 리다이렉트 시킨다.
 	    if(request.getParameter("fileName") == null || "".equals(request.getParameter("fileName"))){
 	       // response.sendRedirect("/uploadResult");
-	    	System.out.println("파일 이름 파라미터로 안넘어옴!!!!!!!!");
+	    	System.out.println("파일 이름 null");
 	    }else{
 	        // 파라미터로 받은 파일 이름.
 	        String requestFileNameAndPath = request.getParameter("fileName");
