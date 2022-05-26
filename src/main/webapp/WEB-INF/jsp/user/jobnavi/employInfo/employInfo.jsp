@@ -8,20 +8,120 @@ function callApi() {
 	    dataType : "xml",
 	   	success : function(data) {
 		   	console.log('data : ', data);
-		   	//$.each(data.documentElement, function(key, value) {
-		   	//	console.log(key, value);
-		   	//});
-		   	
-		   	$(data).find('wanted').each(function() {
-		   		console.log($(this));
-		   	});
+		   	$(data).find("wantedRoot").each(function(){        
+		    	totalCnt = $(this).find("total").text();
+		    	
+		    	$(data).find('wanted').each(function() {
+		    		wantedAuthNo = $(this).find("wantedAuthNo").text();
+		    		company = $(this).find("company").text();
+		    		title = $(this).find("title").text();
+		    		salTpNm = $(this).find("salTpNm").text();
+		    		sal = $(this).find("sal").text();
+		    		minSal = $(this).find("minSal").text();
+		    		maxSal = $(this).find("maxSal").text();
+		    		region = $(this).find("region").text();
+		    		holidayTpNm = $(this).find("holidayTpNm").text();
+		    		minEdubg = $(this).find("minEdubg").text();
+		    		maxEdubg = $(this).find("maxEdubg").text();
+		    		career = $(this).find("career").text();
+		    		regDt = $(this).find("regDt").text();
+		    		closeDt = $(this).find("closeDt").text();
+		    		infoSvc = $(this).find("infoSvc").text();
+		    		smodifyDtm = $(this).find("smodifyDtm").text();
+		    		zipCd = $(this).find("zipCd").text();
+		    		strtnmCd = $(this).find("strtnmCd").text();
+		    		basicAddr = $(this).find("basicAddr").text();
+		    		detailAddr = $(this).find("detailAddr").text();
+		    		busino = $(this).find("busino").text();
+		    		empTpCd = $(this).find("empTpCd").text();
+		    		jobsCd = $(this).find("jobsCd").text();
+		    		prefCd = $(this).find("prefCd").text();
+		    		
+		    		console.log('company : ', company);
+		    		
+		    		var employInfoList = new Array();
+		    		for(var i = 0; i < 10; i++ ) {
+		    			var data = new Object();
+		    			
+		    			data.wantedAuthNo = wantedAuthNo;
+		    			data.company = company;
+		    			data.title = title;
+		    			data.salTpNm = salTpNm;
+		    			data.sal = sal;
+		    			data.minSal = minSal;
+		    			data.maxSal = maxSal;
+		    			data.region = region;
+		    			data.holidayTpNm = holidayTpNm;
+		    			data.minEdubg = minEdubg;
+		    			data.maxEdubg = maxEdubg;
+		    			data.career = career;
+		    			data.regDt = regDt;
+		    			data.closeDt = closeDt;
+		    			data.infoSvc = infoSvc;
+		    			data.smodifyDtm = smodifyDtm;
+		    			data.zipCd = zipCd;
+		    			data.strtnmCd = strtnmCd;
+		    			data.basicAddr = basicAddr;
+		    			data.detailAddr = detailAddr;
+		    			data.busino = busino;
+		    			data.empTpCd = empTpCd;
+		    			data.jobsCd = jobsCd;
+		    			data.prefCd = prefCd;
+		    			
+		    			employInfoList.push(data);
+		    		}
+		    		
+		    		
+		    		//console.log(data);
+				   	searchList(data);
+		    		
+		    		
+		    		
+		    		
+		    	});
+		    	
+		    });
 	    },
 	    error : function(err) {
 	        alert(err.status);
 	    }
 	});
 	
-	
+	function searchList(data) {
+		
+		
+		var body = $("#bodyList");
+		body.empty();
+		
+		if(totalCnt == 0) {
+			var str = "조회된 결과가 없습니다.";
+			body.append(str);
+		}else {
+			var str = "";
+			
+			$.each(data, function() {
+				
+			
+			str += "<tr>"
+			str += "<td><a href='jobnavi_employinfor_view.html'><span>"+data.company+"</span></a></td>"
+			str += "<td>"
+			str += "	<a href='jobnavi_employinfor_view.html'>"
+			str += "		<span class='an'>"+data.title+"</span>"
+			str += "		<span class='info month'>"
+			str += "			<span class='week week_4'>"+data.holidayTpNm+"</span>"
+			str += "			<span class='month_money'>"+data.sal+" | "+data.basicAddr+"</span>"									
+			str += "		</span>"
+			str += "	</a>"
+			str += "</td>"
+			str += "<td class='edu'><span>"+data.minEdubg+"</span><span>"+data.career+"</span></td>"
+			str += "<td>"+data.regDt+"</td>"
+			str += "<td>"+data.closeDt+"</td>	"					
+			str += "</tr>"
+				body.append(str);
+			
+			});
+		}
+	}
  
  
 }
@@ -75,7 +175,7 @@ function callApi() {
 							<col style="width:30%;">
 							<col style="width:70%;">
 						</colgroup>
-						<tbody>
+						<tbody id="bodyCard">
 						<tr>
 							<th scope="row">근무지역</th>
 							<td>
@@ -360,163 +460,14 @@ function callApi() {
 							</colgroup>
 							<thead>
 							<tr>
-								<th>최사명</th>
+								<th>회사명</th>
 								<th>채용제목/임금/근무지역/근무형태</th>
 								<th>학력/경력</th>
 								<th>등록일</th>
 								<th>마감일</th>
 							</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<td><a href="jobnavi_employinfor_view.html"><span>㈜앵커데이터</span></a></td>
-									<td>
-										<a href="jobnavi_employinfor_view.html">
-											<span class="an">즐겁게 일할 수 있는 IT 개발자 모집즐겁게 일할 수 있는 IT 개발자 모집즐겁게 일할 수 있는 IT 개발자 모집즐겁게 일할 수 있는 IT 개발자 모집즐겁게 일할 수 있는 IT 개발자 모집즐겁게 일할 수 있는 IT 개발자 모집즐겁게 일할 수 있는 IT 개발자 모집즐겁게 일할 수 있는 IT 개발자 모집즐겁게 일할 수 있는 IT 개발자 모집즐겁게 일할 수 있는 IT 개발자 모집즐겁게 일할 수 있는 IT 개발자 모집즐겁게 일할 수 있는 IT 개발자 모집즐겁게 일할 수 있는 IT 개발자 모집</span>
-											<span class="info month">
-												<span class="week week_4">주 4일</span>
-												<span class="month_money">500만원 | 서울시 금천구 서부샛길서울시 금천구 서부샛길서울시 금천구 서부샛길서울시 금천구 서부샛길서울시 금천구 서부샛길서울시 금천구 서부샛길서울시 금천구 서부샛길샛길서울시 금천구 서부샛길서울시 금천구 서부샛길서울시 금천구 서부샛길샛길서울시 금천구 서부샛길서울시 금천구 서부샛길서울시 금천구 서부샛길샛길서울시 금천구 서부샛길서울시 금천구 서부샛길서울시 금천구 서부샛길샛길서울시 금천구 서부샛길서울시 금천구 서부샛길서울시 금천구 서부샛길샛길서울시 금천구 서부샛길서울시 금천구 서부샛길서울시 금천구 서부샛길샛길서울시 금천구 서부샛길서울시 금천구 서부샛길서울시 금천구 서부샛길샛길서울시 금천구 서부샛길서울시 금천구 서부샛길서울시 금천구 서부샛길샛길서울시 금천구 서부샛길서울시 금천구 서부샛길서울시 금천구 서부샛길</span>									
-											</span>
-										</a>
-									</td>
-									<td class="edu"><span>학력무관</span><span>경력 5년</span></td>
-									<td>22-04-21</td>
-									<td>채용시까지</td>							
-								</tr>
-								<tr>
-									<td><a href="jobnavi_employinfor_view.html"><span>㈜이노싱크컨설팅</span></a></td>
-									<td>
-										<a href="jobnavi_employinfor_view.html">
-											<span class="an">공공사업 기획자 모집</span>
-											<span class="info year">
-												<span class="week week_5">주 5일</span>
-												<span class="year_money">9,000만원 | 서울시 금천구 서부샛길</span>									
-											</span>
-										</a>
-									</td>
-									<td class="edu"><span>대졸(4년)</span><span>경력무관</span></td>
-									<td>22-04-21</td>
-									<td>22-05-31</td>							
-								</tr>
-								<tr>
-									<td><a href="jobnavi_employinfor_view.html"><span>OCI</span></a></td>
-									<td>
-										<a href="jobnavi_employinfor_view.html">
-											<span class="an">OCI 창원 공장 태양광 부품 생산직 직원 모집..</span>
-											<span class="info year">
-												<span class="week week_4">주 4일</span>
-												<span class="year_money">4,500만원 | 경상남도 창원시 공장…</span>									
-											</span>
-										</a>
-									</td>
-									<td class="edu"><span>대졸(2~3년)</span><span>경력무관</span></td>
-									<td>22-05-21</td>
-									<td>채용시까지<span class="day">(22-05-21)</span></td>							
-								</tr>	
-								<tr>
-									<td><a href="jobnavi_employinfor_view.html"><span>OCI</span></a></td>
-									<td>
-										<a href="jobnavi_employinfor_view.html">
-											<span class="an">OCI 창원 공장 태양광 부품 생산직 직원 모집..</span>
-											<span class="info year">
-												<span class="week week_4">주 4일</span>
-												<span class="year_money">4,500만원 | 경상남도 창원시 공장…</span>									
-											</span>
-										</a>
-									</td>
-									<td class="edu"><span>대졸(2~3년)</span><span>경력무관</span></td>
-									<td>22-05-21</td>
-									<td>채용시까지<span class="day">(22-05-21)</span></td>							
-								</tr>	
-								<tr>
-									<td><a href="jobnavi_employinfor_view.html"><span>OCI</span></a></td>
-									<td>
-										<a href="jobnavi_employinfor_view.html">
-											<span class="an">OCI 창원 공장 태양광 부품 생산직 직원 모집..</span>
-											<span class="info year">
-												<span class="week week_4">주 4일</span>
-												<span class="year_money">4,500만원 | 경상남도 창원시 공장…</span>									
-											</span>
-										</a>
-									</td>
-									<td class="edu"><span>대졸(2~3년)</span><span>경력무관</span></td>
-									<td>22-05-21</td>
-									<td>채용시까지<span class="day">(22-05-21)</span></td>							
-								</tr>	
-								<tr>
-									<td><a href="jobnavi_employinfor_view.html"><span>OCI</span></a></td>
-									<td>
-										<a href="jobnavi_employinfor_view.html">
-											<span class="an">OCI 창원 공장 태양광 부품 생산직 직원 모집..</span>
-											<span class="info year">
-												<span class="week week_4">주 4일</span>
-												<span class="year_money">4,500만원 | 경상남도 창원시 공장…</span>									
-											</span>
-										</a>
-									</td>
-									<td class="edu"><span>대졸(2~3년)</span><span>경력무관</span></td>
-									<td>22-05-21</td>
-									<td>채용시까지<span class="day">(22-05-21)</span></td>							
-								</tr>	
-								<tr>
-									<td><a href="jobnavi_employinfor_view.html"><span>OCI</span></a></td>
-									<td>
-										<a href="jobnavi_employinfor_view.html">
-											<span class="an">OCI 창원 공장 태양광 부품 생산직 직원 모집..</span>
-											<span class="info year">
-												<span class="week week_4">주 4일</span>
-												<span class="year_money">4,500만원 | 경상남도 창원시 공장…</span>									
-											</span>
-										</a>
-									</td>
-									<td class="edu"><span>대졸(2~3년)</span><span>경력무관</span></td>
-									<td>22-05-21</td>
-									<td>채용시까지<span class="day">(22-05-21)</span></td>							
-								</tr>
-								<tr>
-									<td><a href="jobnavi_employinfor_view.html"><span>OCI</span></a></td>
-									<td>
-										<a href="jobnavi_employinfor_view.html">
-											<span class="an">OCI 창원 공장 태양광 부품 생산직 직원 모집..</span>
-											<span class="info year">
-												<span class="week week_4">주 4일</span>
-												<span class="year_money">4,500만원 | 경상남도 창원시 공장…</span>									
-											</span>
-										</a>
-									</td>
-									<td class="edu"><span>대졸(2~3년)</span><span>경력무관</span></td>
-									<td>22-05-21</td>
-									<td>채용시까지<span class="day">(22-05-21)</span></td>							
-								</tr>
-								<tr>
-									<td><a href="jobnavi_employinfor_view.html"><span>OCI</span></a></td>
-									<td>
-										<span class="an">OCI 창원 공장 태양광 부품 생산직 직원 모집..</span>
-										<span class="info year">
-											<span class="week week_4">주 4일</span>
-											<span class="year_money">4,500만원 | 경상남도 창원시 공장…</span>									
-										</span>
-									</td>
-									<td class="edu"><span>대졸(2~3년)</span><span>경력무관</span></td>
-									<td>22-05-21</td>
-									<td>채용시까지<span class="day">(22-05-21)</span></td>							
-								</tr>
-								<tr>
-									<td><a href="jobnavi_employinfor_view.html"><span>OCI</span></a></td>
-									<td>
-										<a href="jobnavi_employinfor_view.html">
-											<span class="an">OCI 창원 공장 태양광 부품 생산직 직원 모집..</span>
-											<span class="info year">
-												<span class="week week_4">주 4일</span>
-												<span class="year_money">4,500만원 | 경상남도 창원시 공장…</span>									
-											</span>
-										</a>
-									</td>
-									<td class="edu"><span>대졸(2~3년)</span><span>경력무관</span></td>
-									<td>22-05-21</td>
-									<td>채용시까지<span class="day">(22-05-21)</span></td>							
-								</tr>
-							</tbody>
+							<tbody id="bodyList"></tbody>
 						</table>
 
 						<div class="no_result">조회된 내용이 없습니다.</div>
