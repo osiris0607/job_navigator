@@ -28,5 +28,14 @@ public class UserJobNaviController {
 		return mv;
 	}
 	
+	/**
+	 * jobnavigator_채용정보 상세
+	 */
+	@RequestMapping("/user/rdt/jobnavi/employinfo/detail")
+	public ModelAndView rdtEmployInfoDetail(@ModelAttribute JobVO vo, ModelAndView mv) throws Exception {
+		mv.setViewName("jobnavi/employInfo/employInfoDetail.jobnavi_user");
+		return mv;
+	}
+	
 	
 }

@@ -23,4 +23,5 @@
   <script src="<c:url value='/assets/js/jquery-3.3.1.min.js'/>"></script>
   <script src="<c:url value='/assets/js/swiper.js'/>"></script>
   <script src="<c:url value='/assets/js/jquery-ui.js'/>"></script>
+  <script src="<c:url value='/assets/js/jquery.xml2json.js'/>"></script>
 </head>

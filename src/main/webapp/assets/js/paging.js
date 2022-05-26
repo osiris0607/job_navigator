@@ -121,6 +121,7 @@ function _movePage(value, eventName){
 
 
 function gfnRenderPagingMain(params){
+	console.log('paging params : ', params);
 	var divId = params.divId; // 페이징이 그려질 div id
 	gfv_pageIndex = params.pageIndex; // 현재 위치가 저장될 input 태그
 	var totalCount = params.totalCount; // 전체 조회 건수

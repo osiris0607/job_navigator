@@ -103,6 +103,7 @@
 
 	function detailPopup(id) {
 		$.each(licenseList, function(key, value) {
+			console.log(key, value);
 			if (value.license_id == id){
 				// Info
 				var str = "";

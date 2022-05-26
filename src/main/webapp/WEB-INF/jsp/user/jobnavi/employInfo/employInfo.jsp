@@ -1,130 +1,252 @@
 <script>
-function callApi() {
+function xmlToJson(xml) {    
+	var obj = $.xml2json(xml);    
+	return obj;
+}
+
+function setParam() {
+
+	
+	//희망임금 salTp
+	var hopeSal = $('input[name=Hope]:checked').val();
+	
+	//희망임금 시급 - minPay, maxPay       ?????????????????????????????
+	var minPay = $('#Hope_money1').val();
+	var maxPay = $('#Hope_money2').val();
+	
+	//30'만원' 이상 50'만원' 이하 : 300000 ~ 500000, default 0
+	 if(minPay != '' && maxPay == '') {
+		 console.log('최소만 있음')
+		 minPay + 50000;
+		 maxPay = 0;
+		 
+		 console.log(typeof(minPay));
+	}else if(maxPay != '' && minPay == '') {
+		console.log('최대만 있음')
+		maxPay + 10000;
+		minPay = 0;
+	}else if(minPay != '' && maxPay != '') {
+		console.log('둘다 있음')
+		minPay + 10000;
+		maxPay + 10000;
+	}
+	 
+	console.log('minPay : ', minPay);
+	console.log('maxPay : ', maxPay);
+	
+	
+	
+	//학력
+	var chkEduList = [];
+	var strEdu = "";
+	var education = $('.education_check:checked').each(function() {
+		var chkEdu = $(this).val();
+		chkEduList.push(chkEdu);
+	});
+	
+	//04|05|06|07..
+	strEdu = chkEduList.join('|');
+	
+	
+	//경력
+	var chkCareerList = [];
+	var strCareer = "";
+	var career = $('input[name=history]:checked').each(function() {
+		var chkCareer = $(this).val();
+		chkCareerList.push(chkCareer);
+	});
+	
+	strCareer = chkCareerList.join('|');
+	
+	//경력 - 최소, 최대 개월
+	var minHis = $('#employment_money1').val();
+	var maxHis = $('#employment_money2').val();
+	
+	
+	//우대조건
+	var prefCd = $('input[name=preferential]:checked').val();
+	
+	//장애인 채용희망
+	var chkPrefList = [];
+	var strPref = "";
+	var pref = $('input[name=pref]:checked').each(function() {
+		var chkPref = $(this).val();
+		chkPrefList.push(chkPref);
+	});
+	
+	strPref = chkPrefList.join('|');
+	
+	
+	//등록기간
+	var regDate = $('input[name=period]:checked').val();
+	
+	//검색키워드
+	var keyword = $('#search_keyword').val();
+	
+	
+	
+	/* 
+	희망임금	salTp minPay maxPay
+	학력		education  
+	경력		career
+	우대조건	prefCd
+	장애인 채용희망	pref
+	등록기간	regDate	
+	검색키워드	keyword
+	*/
+	
+	//체크값 없으면 파라미터 빼기
+	
+	var sendParam = ""; //파라미터 세팅
+	sendParam += "&";
+	sendParam += "salTp=" + hopeSal;
+	sendParam += "&";
+	sendParam += "minPay=" + minPay;
+	sendParam += "&";
+	sendParam += "maxPay=" + maxPay;
+	sendParam += "&";
+	sendParam += "education=" + strEdu;
+	sendParam += "&";
+	sendParam += "career=" + strCareer;
+	sendParam += "&";
+	sendParam += "minCareerM=" + minHis;
+	sendParam += "&";
+	sendParam += "maxCareerM=" + maxHis;
+	sendParam += "&";
+	sendParam += "prefCd=" + prefCd;
+	sendParam += "&";
+	sendParam += "pref=" + strPref;
+	sendParam += "&";
+	sendParam += "regDate=" + regDate;
+	sendParam += "&";
+	sendParam += "keyword=" + keyword;
+	
+	
+	
+	console.log(sendParam);
+	return sendParam;
+}
+
+
+function callApi(pageNo) {
 	alert('검색버튼 클릭');
+	
+	
+	var sendParam = setParam();
+	console.log('callAPI set Param : ', sendParam);
+		
+	
 	
 	$.ajax({
 	    method : "GET",
-	    url : "https://cors-anywhere.herokuapp.com/http://openapi.work.go.kr/opi/opi/opia/wantedApi.do?authKey=WNL2TXYFS6V5PWORTT5QZ2VR1HK&callTp=L&returnType=XML&startPage=1&display=10",
+	    url : "https://cors-anywhere.herokuapp.com/http://openapi.work.go.kr/opi/opi/opia/wantedApi.do?authKey=WNL2TXYFS6V5PWORTT5QZ2VR1HK&callTp=L&returnType=XML&startPage="+pageNo+"&display=12"+sendParam,
 	    dataType : "xml",
 	   	success : function(data) {
-		   	console.log('data : ', data);
-		   	$(data).find("wantedRoot").each(function(){        
-		    	totalCnt = $(this).find("total").text();
-		    	
-		    	$(data).find('wanted').each(function() {
-		    		wantedAuthNo = $(this).find("wantedAuthNo").text();
-		    		company = $(this).find("company").text();
-		    		title = $(this).find("title").text();
-		    		salTpNm = $(this).find("salTpNm").text();
-		    		sal = $(this).find("sal").text();
-		    		minSal = $(this).find("minSal").text();
-		    		maxSal = $(this).find("maxSal").text();
-		    		region = $(this).find("region").text();
-		    		holidayTpNm = $(this).find("holidayTpNm").text();
-		    		minEdubg = $(this).find("minEdubg").text();
-		    		maxEdubg = $(this).find("maxEdubg").text();
-		    		career = $(this).find("career").text();
-		    		regDt = $(this).find("regDt").text();
-		    		closeDt = $(this).find("closeDt").text();
-		    		infoSvc = $(this).find("infoSvc").text();
-		    		smodifyDtm = $(this).find("smodifyDtm").text();
-		    		zipCd = $(this).find("zipCd").text();
-		    		strtnmCd = $(this).find("strtnmCd").text();
-		    		basicAddr = $(this).find("basicAddr").text();
-		    		detailAddr = $(this).find("detailAddr").text();
-		    		busino = $(this).find("busino").text();
-		    		empTpCd = $(this).find("empTpCd").text();
-		    		jobsCd = $(this).find("jobsCd").text();
-		    		prefCd = $(this).find("prefCd").text();
-		    		
-		    		console.log('company : ', company);
-		    		
-		    		var employInfoList = new Array();
-		    		for(var i = 0; i < 10; i++ ) {
-		    			var data = new Object();
-		    			
-		    			data.wantedAuthNo = wantedAuthNo;
-		    			data.company = company;
-		    			data.title = title;
-		    			data.salTpNm = salTpNm;
-		    			data.sal = sal;
-		    			data.minSal = minSal;
-		    			data.maxSal = maxSal;
-		    			data.region = region;
-		    			data.holidayTpNm = holidayTpNm;
-		    			data.minEdubg = minEdubg;
-		    			data.maxEdubg = maxEdubg;
-		    			data.career = career;
-		    			data.regDt = regDt;
-		    			data.closeDt = closeDt;
-		    			data.infoSvc = infoSvc;
-		    			data.smodifyDtm = smodifyDtm;
-		    			data.zipCd = zipCd;
-		    			data.strtnmCd = strtnmCd;
-		    			data.basicAddr = basicAddr;
-		    			data.detailAddr = detailAddr;
-		    			data.busino = busino;
-		    			data.empTpCd = empTpCd;
-		    			data.jobsCd = jobsCd;
-		    			data.prefCd = prefCd;
-		    			
-		    			employInfoList.push(data);
-		    		}
-		    		
-		    		
-		    		//console.log(data);
-				   	searchList(data);
-		    		
-		    		
-		    		
-		    		
-		    	});
-		    	
-		    });
+	   		var obj = xmlToJson(data);
+	   		searchList(obj) //리스트 call
+	   		searchCard(obj) //카드 call
 	    },
 	    error : function(err) {
 	        alert(err.status);
 	    }
 	});
-	
-	function searchList(data) {
+}	
+	function searchCard(value) {
+		console.log('searchCard data : ', value);
 		
+		var body = $("#bodyCard");
+		body.empty();
+		
+		if(value.total == 0) {
+			var str = "조회된 결과가 없습니다.";
+			body.append(str);
+		}else {
+			//페이지 그려진 이후 call
+			 var params = {
+					divId : "pageNavi",
+					pageIndex : "pageIndex",
+					totalCount : value.total,
+					eventName : "callApi"
+				};
+
+			gfnRenderPagingMain(params);
+
+			$("#search_count").text(value.total);
+			
+			
+			var str = "";
+			var data = value.wanted;
+			console.log('data : ', data);
+			
+			$.each(data, function(key, value) {
+			str +="	<li>"
+			str +="	<a href='/user/rdt/jobnavi/employinfo/detail?wantedAuthNo="+value.wantedAuthNo+"'>"
+			str +="		<span class='company_logo'>"+value.company+"</span>"
+			str +="		<span class='company_name'>"+value.company+"</span>"
+			str +="		<span class='company_detail'>"+value.title+"</span>"
+			str +="		<span class='company_day clearfix'>"
+			str +="			<span class='company_histroy'>"+value.career+"</span>"
+			str +="			<span class='company_until'>"+value.closeDt+"</span>"
+			str +="		</span>"
+			str +="	</a>"
+			str +="</li>"
+			
+			});
+			body.append(str);
+		}
+	}
+ 
+	
+	function searchList(value) {
+		console.log('searchList data : ', value);
 		
 		var body = $("#bodyList");
 		body.empty();
 		
-		if(totalCnt == 0) {
+		if(value.total == 0) {
 			var str = "조회된 결과가 없습니다.";
 			body.append(str);
 		}else {
+			//페이지 그려진 이후 call
+			 var params = {
+					divId : "pageNavi",
+					pageIndex : "pageIndex",
+					totalCount : value.total,
+					eventName : "callApi"
+				};
+
+			gfnRenderPagingMain(params);
+
+			$("#search_count").text(value.total);
+			
+			
 			var str = "";
+			var data = value.wanted;
+			console.log('data : ', data);
 			
-			$.each(data, function() {
-				
-			
+			$.each(data, function(key, value) {
 			str += "<tr>"
-			str += "<td><a href='jobnavi_employinfor_view.html'><span>"+data.company+"</span></a></td>"
+			str += "<td><a href='jobnavi_employinfor_view.html'><span>"+value.company+"</span></a></td>"
 			str += "<td>"
-			str += "	<a href='jobnavi_employinfor_view.html'>"
-			str += "		<span class='an'>"+data.title+"</span>"
+			str += "	<a href='/user/rdt/jobnavi/employinfo/detail?wantedAuthNo="+value.wantedAuthNo+"'>"
+			str += "		<span class='an'>"+value.title+"</span>"
 			str += "		<span class='info month'>"
-			str += "			<span class='week week_4'>"+data.holidayTpNm+"</span>"
-			str += "			<span class='month_money'>"+data.sal+" | "+data.basicAddr+"</span>"									
+			str += "			<span class='week week_4'>"+value.holidayTpNm+"</span>"
+			str += "			<span class='month_money'>"+value.sal+" | "+value.basicAddr+"</span>"									
 			str += "		</span>"
 			str += "	</a>"
 			str += "</td>"
-			str += "<td class='edu'><span>"+data.minEdubg+"</span><span>"+data.career+"</span></td>"
-			str += "<td>"+data.regDt+"</td>"
-			str += "<td>"+data.closeDt+"</td>	"					
+			str += "<td class='edu'><span>"+value.minEdubg+"</span><span>"+value.career+"</span></td>"
+			str += "<td>"+value.regDt+"</td>"
+			str += "<td>"+value.closeDt+"</td>	"					
 			str += "</tr>"
-				body.append(str);
 			
 			});
+			body.append(str);
 		}
 	}
  
  
-}
 </script>
   <div id="wrap" class="jobnavigator_page">
 <!--컨텐츠 시작-->
@@ -175,7 +297,7 @@ function callApi() {
 							<col style="width:30%;">
 							<col style="width:70%;">
 						</colgroup>
-						<tbody id="bodyCard">
+						<tbody>
 						<tr>
 							<th scope="row">근무지역</th>
 							<td>
@@ -209,7 +331,7 @@ function callApi() {
 						<tr>
 							<th scope="row">희망임금</th>
 							<td>	
-								<input type="radio" id="Hope_all" name="Hope" checked /><label for="Hope_all">관계없음</label>
+								<input type="radio" id="Hope_all" name="Hope" value="" checked /><label for="Hope_all">관계없음</label>
 								<input type="radio" id="Hope_radio1" name="Hope" value="Y"/><label for="Hope_radio1">연봉</label>
 								<input type="radio" id="Hope_radio2" name="Hope" value="M" /><label for="Hope_radio2">월급</label>
 								<input type="radio" id="Hope_radio3" name="Hope" value="D" /><label for="Hope_radio3">일급</label>
@@ -223,7 +345,7 @@ function callApi() {
 						<tr>
 							<th scope="row">학력</th>
 							<td>
-								<input type="checkbox" class="allCheck" id="allCheck" /><label for="allCheck">전체</label>
+								<input type="checkbox" class="education_check" id="education0" value="" /><label for="education0">전체</label>
 								<input type="checkbox" id="education1" class="education_check" value="03"/><label for="education1">고졸</label>
 								<input type="checkbox" id="education2" class="education_check" value="04" /><label for="education2">대졸(2~3년)</label>
 								<input type="checkbox" id="education3" class="education_check" value="05" /><label for="education3">대졸(4년)</label>
@@ -246,18 +368,18 @@ function callApi() {
 						<tr>
 							<th scope="row">우대조건</th>
 							<td>
-								<input type="radio" name="preferential" id="preferential_all" checked /><label for="preferential_all">전체</label>
-								<input type="radio" name="preferential" id="preferential1" /><label for="preferential1">청년층</label>
-								<input type="radio" name="preferential" id="preferential2" /><label for="preferential2">고령자</label>
-								<input type="radio" name="preferential" id="preferential3" /><label for="preferential3">여성</label>
+								<input type="radio" name="preferential" id="preferential_all" value="" checked /><label for="preferential_all">전체</label>
+								<input type="radio" name="preferential" id="preferential1" value="13" /><label for="preferential1">청년층</label>
+								<input type="radio" name="preferential" id="preferential2" value="B" /><label for="preferential2">고령자</label>
+								<input type="radio" name="preferential" id="preferential3" value="12" /><label for="preferential3">여성</label>
 							</td>
 						</tr>
 						<tr>
 							<th scope="row">장애인 채용희망</th>
 							<td>
-								<input type="checkbox" id="disabled1" value="Y" /><label for="disabled1">장애인 병행채용</label>
-								<input type="checkbox" id="disabled2" /><label for="disabled2">장애인 우대</label>
-								<input type="checkbox" id="disabled3" value="D" /><label for="disabled3">장애인만 채용</label>
+								<input type="checkbox" id="disabled1" name="pref" value="Y" /><label for="disabled1">장애인 병행채용</label>
+								<input type="checkbox" id="disabled2" name="pref" value="" /><label for="disabled2">장애인 우대</label>
+								<input type="checkbox" id="disabled3" name="pref" value="D" /><label for="disabled3">장애인만 채용</label>
 							</td>
 						</tr>
 						<tr>
@@ -270,7 +392,7 @@ function callApi() {
 									<input type="text" id="join_datepicker2" class="datepicker w_140" placeholder="종료일" disabled />
 									<label for="join_datepicker2" class="hidden">종료일</label>
 								</div>	
-								<input type="radio" name="period" id="period_all" checked /><label for="period_all">전체</label>
+								<input type="radio" name="period" id="period_all" value="" checked /><label for="period_all">전체</label>
 								<input type="radio" name="period" id="period1" value="D-0" /><label for="period1">오늘</label>
 								<input type="radio" name="period" id="period2" value="D-3" /><label for="period2">3일</label>
 								<input type="radio" name="period" id="period3" value="W-1" /><label for="period3">1주 이내</label>
@@ -286,167 +408,21 @@ function callApi() {
 						</tr>					
 						</tbody>
 					</table>
-					<div class="button_area"><button type="submit" class="serach_btn" onclick="callApi();">검색</button></div>
+					<div class="button_area"><button type="submit" class="serach_btn" onclick="callApi(1);">검색</button></div>
+					<div class="button_area"><button type="submit" class="serach_btn" onclick="setParam();">파라미터세팅</button></div>
 					
 					<ul class="result_number clearfix">
-						<li class="result fl">검색건수 : 총 <em>9,999</em>건</li>
+						<li class="result fl">검색건수 <em id="search_count">0</em>건</li>
 						<li class="fr list_btn_area">
 							<button type="button" class="card_other list_btn card_on"><span>다른 리스트 형식으로 보기</span></button>
 							<button type="button" class="list_other list_btn"><span>다른 리스트 형식으로 보기</span></button>							
 						</li>
 					</ul>
 					<div class="list_search_card_area">
-						<ul class="clearfix list_search_card">
-							<li>
-								<a href="jobnavi_employinfor_view.html">
-									<span class="company_logo"><img src="/assets/images/jobnavi_employinfor/list_logo/gpfmc_logo.gif" alt="가평군시설관리공단" /></span>
-									<span class="company_name">가평군시설관리공단가평군시설관리공단가평군시설관리공단가평군시설관리공단</span>
-									<span class="company_detail">2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고</span>
-									<span class="company_day clearfix">
-										<span class="company_histroy">&nbsp;</span>
-										<span class="company_until">(~05.30)</span>
-									</span>
-								</a>
-							</li>
-							<li>
-								<a href="jobnavi_employinfor_view.html">
-									<span class="company_logo"><img src="/assets/images/jobnavi_employinfor/list_logo/cj_jedang.png" alt="cj제일제당" /></span>
-									<span class="company_name">가평군시설관리공단</span>
-									<span class="company_detail">2022년 일반직[사무기술] 및 계약직 채용 공고</span>
-									<span class="company_day clearfix">
-										<span class="company_histroy">신입, 경력</span>
-										<span class="company_until">(~05.30)</span>
-									</span>
-								</a>
-							</li>
-							<li>
-								<a href="jobnavi_employinfor_view.html">
-									<span class="company_logo"><img src="/assets/images/jobnavi_employinfor/list_logo/gpfmc_logo.gif" alt="가평군시설관리공단" /></span>
-									<span class="company_name">가평군시설관리공단가평군시설관리공단가평군시설관리공단가평군시설관리공단</span>
-									<span class="company_detail">2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고</span>
-									<span class="company_day clearfix">
-										<span class="company_histroy">신입, 경력</span>
-										<span class="company_until">(~05.30)</span>
-									</span>
-								</a>
-							</li>
-							<li>
-								<a href="jobnavi_employinfor_view.html">
-									<span class="company_logo"><img src="/assets/images/jobnavi_employinfor/list_logo/cj_jedang.png" alt="cj제일제당" /></span>
-									<span class="company_name">가평군시설관리공단</span>
-									<span class="company_detail">2022년 일반직[사무기술] 및 계약직 채용 공고</span>
-									<span class="company_day clearfix">
-										<span class="company_histroy">신입, 경력</span>
-										<span class="company_until">(~05.30)</span>
-									</span>
-								</a>
-							</li>
-							<li>
-								<a href="jobnavi_employinfor_view.html">
-									<span class="company_logo"><img src="/assets/images/jobnavi_employinfor/list_logo/gpfmc_logo.gif" alt="가평군시설관리공단" /></span>
-									<span class="company_name">가평군시설관리공단가평군시설관리공단가평군시설관리공단가평군시설관리공단</span>
-									<span class="company_detail">2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고</span>
-									<span class="company_day clearfix">
-										<span class="company_histroy">신입, 경력</span>
-										<span class="company_until">(~05.30)</span>
-									</span>
-								</a>
-							</li>
-							<li>
-								<a href="jobnavi_employinfor_view.html">
-									<span class="company_logo"><img src="/assets/images/jobnavi_employinfor/list_logo/cj_jedang.png" alt="cj제일제당" /></span>
-									<span class="company_name">가평군시설관리공단</span>
-									<span class="company_detail">2022년 일반직[사무기술] 및 계약직 채용 공고</span>
-									<span class="company_day clearfix">
-										<span class="company_histroy">신입, 경력</span>
-										<span class="company_until">(~05.30)</span>
-									</span>
-								</a>
-							</li>
-							<li>
-								<a href="jobnavi_employinfor_view.html">
-									<span class="company_logo"><img src="/assets/images/jobnavi_employinfor/list_logo/gpfmc_logo.gif" alt="가평군시설관리공단" /></span>
-									<span class="company_name">가평군시설관리공단가평군시설관리공단가평군시설관리공단가평군시설관리공단</span>
-									<span class="company_detail">2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고</span>
-									<span class="company_day clearfix">
-										<span class="company_histroy">&nbsp;</span>
-										<span class="company_until">(~05.30)</span>
-									</span>
-								</a>
-							</li>
-							<li>
-								<a href="jobnavi_employinfor_view.html">
-									<span class="company_logo"><img src="/assets/images/jobnavi_employinfor/list_logo/cj_jedang.png" alt="cj제일제당" /></span>
-									<span class="company_name">가평군시설관리공단</span>
-									<span class="company_detail">2022년 일반직[사무기술] 및 계약직 채용 공고</span>
-									<span class="company_day clearfix">
-										<span class="company_histroy">신입, 경력</span>
-										<span class="company_until">(~05.30)</span>
-									</span>
-								</a>
-							</li>
-							<li>
-								<a href="jobnavi_employinfor_view.html">
-									<span class="company_logo"><img src="/assets/images/jobnavi_employinfor/list_logo/gpfmc_logo.gif" alt="가평군시설관리공단" /></span>
-									<span class="company_name">가평군시설관리공단가평군시설관리공단가평군시설관리공단가평군시설관리공단</span>
-									<span class="company_detail">2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고</span>
-									<span class="company_day clearfix">
-										<span class="company_histroy">신입, 경력</span>
-										<span class="company_until">(~05.30)</span>
-									</span>
-								</a>
-							</li>
-							<li>
-								<a href="jobnavi_employinfor_view.html">
-									<span class="company_logo"><img src="/assets/images/jobnavi_employinfor/list_logo/cj_jedang.png" alt="cj제일제당" /></span>
-									<span class="company_name">가평군시설관리공단</span>
-									<span class="company_detail">2022년 일반직[사무기술] 및 계약직 채용 공고</span>
-									<span class="company_day clearfix">
-										<span class="company_histroy">신입, 경력</span>
-										<span class="company_until">(~05.30)</span>
-									</span>
-								</a>
-							</li>
-							<li>
-								<a href="jobnavi_employinfor_view.html">
-									<span class="company_logo"><img src="/assets/images/jobnavi_employinfor/list_logo/gpfmc_logo.gif" alt="가평군시설관리공단" /></span>
-									<span class="company_name">가평군시설관리공단가평군시설관리공단가평군시설관리공단가평군시설관리공단</span>
-									<span class="company_detail">2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고2022년 일반직[사무기술] 및 계약직 채용 공고</span>
-									<span class="company_day clearfix">
-										<span class="company_histroy">신입, 경력</span>
-										<span class="company_until">(~05.30)</span>
-									</span>
-								</a>
-							</li>
-							<li>
-								<a href="jobnavi_employinfor_view.html">
-									<span class="company_logo"><img src="/assets/images/jobnavi_employinfor/list_logo/cj_jedang.png" alt="cj제일제당" /></span>
-									<span class="company_name">가평군시설관리공단</span>
-									<span class="company_detail">2022년 일반직[사무기술] 및 계약직 채용 공고</span>
-									<span class="company_day clearfix">
-										<span class="company_histroy">신입, 경력</span>
-										<span class="company_until">(~05.30)</span>
-									</span>
-								</a>
-							</li>
-						</ul>
+						<ul class="clearfix list_search_card" id="bodyCard"></ul>
 
-						<div class="pagination">
-							<ul>
-								<li><button class="prev [no]"><i class="fa fa-angle-left" aria-hidden="true"></i></button></li>
-								<li><a href="" class="loca">1</a></li>
-								<li><a href="">2</a></li>
-								<li><a href="">3</a></li>
-								<li><a href="">4</a></li>
-								<li><a href="">5</a></li>
-								<li><a href="">6</a></li>
-								<li><a href="">7</a></li>
-								<li><a href="">8</a></li>
-								<li><a href="">99</a></li>
-								<li><a href="">999</a></li>
-								<li><button class="next [no]"><i class="fa fa-angle-right" aria-hidden="true"></i></button></li>
-							</ul>
-						</div>
+						<input type="hidden" id="pageIndex" name="pageIndex" />
+						<div class="pagination" id="pageNavi"></div>
 					</div>
 					<div class="list_search_table">
 						<table class="list search_result">
@@ -470,24 +446,8 @@ function callApi() {
 							<tbody id="bodyList"></tbody>
 						</table>
 
-						<div class="no_result">조회된 내용이 없습니다.</div>
 
-						<div class="pagination">
-							<ul>
-								<li><button class="prev [no]"><i class="fa fa-angle-left" aria-hidden="true"></i></button></li>
-								<li><a href="" class="loca">1</a></li>
-								<li><a href="">2</a></li>
-								<li><a href="">3</a></li>
-								<li><a href="">4</a></li>
-								<li><a href="">5</a></li>
-								<li><a href="">6</a></li>
-								<li><a href="">7</a></li>
-								<li><a href="">8</a></li>
-								<li><a href="">99</a></li>
-								<li><a href="">999</a></li>
-								<li><button class="next [no]"><i class="fa fa-angle-right" aria-hidden="true"></i></button></li>
-							</ul>
-						</div>
+						
 					</div>
 				</article>
 			</section>

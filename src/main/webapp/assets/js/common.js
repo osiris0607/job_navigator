@@ -120,7 +120,7 @@ $(function(){
 	
 	//희망임금-시급
 	$("input[name='Hope']").on('click',function(){		
-		if($('input:radio[id="Hope_radio4"]').is(":checked") == true){
+		if($('input:radio[id="Hope_all"]').is(":checked") == false){
 			$('#Hope_money1, #Hope_money2').attr('disabled', false);	
 		}else{            		
 			$('#Hope_money1, #Hope_money2').attr('disabled', true);		 
