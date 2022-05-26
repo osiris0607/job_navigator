@@ -260,10 +260,13 @@ public class AdminOnlineController {
 	
 	
 	@PostMapping("/uploadAjaxAction")
-	public void uploadAjaxPost(MultipartFile[] uploadFile) {
+	public void uploadAjaxPost(MultipartFile[] uploadFile, HttpServletRequest request) {
 		System.out.println("update ajax post......");
 		
-		String uploadFolder = "d:\\UPLOAD_FILE";
+		
+		String uploadFolder = request.getSession().getServletContext().getRealPath("/files");
+		
+		//String uploadFolder = "//files";
 		
 		for(MultipartFile multipartFile : uploadFile) {
 			System.out.println("=====================");
@@ -294,14 +297,15 @@ public class AdminOnlineController {
 	 * 
 	 * */
 	@PostMapping("/updateAjaxAction")
-	public ResponseEntity<String> updateAjaxPost(String fileName, String oldFileName, MultipartFile[] uploadFile) {
+	public ResponseEntity<String> updateAjaxPost(HttpServletRequest request, String fileName, String oldFileName, MultipartFile[] uploadFile) {
 		System.out.println("old ajax post......" + oldFileName);
 		System.out.println("new ajax post......" + fileName);
 		
 		//기존 파일 삭제
 		File oldFile;
 		try {
-			oldFile = new File("d:\\UPLOAD_FILE\\"+URLDecoder.decode(oldFileName, "UTF-8"));
+			String realPath = request.getSession().getServletContext().getRealPath("/files/");
+			oldFile = new File(realPath+URLDecoder.decode(oldFileName, "UTF-8"));
 			
 			System.out.println("deleteFile :;: " + oldFile);
 			
@@ -322,7 +326,7 @@ public class AdminOnlineController {
 		
 		
 		//파일 저장 폴더
-		String uploadFolder = "d:\\UPLOAD_FILE";
+		String uploadFolder = request.getSession().getServletContext().getRealPath("/files");
 		
 		for(MultipartFile multipartFile : uploadFile) {
 			
@@ -384,9 +388,9 @@ public class AdminOnlineController {
 		
 		File deleteFile;
 		try {
-			deleteFile = new File("d:\\UPLOAD_FILE\\"+URLDecoder.decode(fileName, "UTF-8"));
-			
-			System.out.println("deleteFile :;: " + deleteFile);
+			String realPath = request.getSession().getServletContext().getRealPath("/files/");
+			deleteFile = new File(realPath+URLDecoder.decode(fileName, "UTF-8"));
+			System.out.println("realPath : " + realPath);
 			
 			if (deleteFile.exists()) {
 				deleteFile.delete();
@@ -412,7 +416,7 @@ public class AdminOnlineController {
 	public String fileDown(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		System.out.println("fileDown api");
 	    //업로드한 파일이 있는 경로
-	    String realPath = "D:\\UPLOAD_FILE\\";
+		String realPath = request.getSession().getServletContext().getRealPath("/files/");
 	     
 	    // 파일 이름이 파라미터로 넘어오지 않으면 리다이렉트 시킨다.
 	    if(request.getParameter("fileName") == null || "".equals(request.getParameter("fileName"))){
@@ -456,6 +460,7 @@ public class AdminOnlineController {
 	        // 파일패스 및 파일명을 지정한다.
 	        //  String filePathAndName = pageContext.getServletContext().getRealPath("/") + UTF8FileNameAndPath;
 	        String filePathAndName = realPath + UTF8FileNameAndPath;
+	        
 	        File file = new File(filePathAndName);
 	         
 	        // 버퍼 크기 설정
