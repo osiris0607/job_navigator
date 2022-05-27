@@ -33,7 +33,9 @@ function callApiDetail() {
 function detailInfo(value) {
 	console.log('detail value : ', value);
 	var corpInfo = value.corpInfo;
+	var wantedInfo = value.wantedInfo;
 	
+	//기업정보
 	$("#corpNm").text(unescapeHtml(corpInfo.corpNm));
 	$("#reperNm").text(unescapeHtml(corpInfo.reperNm));
 	$("#capitalAmt").text(unescapeHtml(corpInfo.capitalAmt));
@@ -44,11 +46,39 @@ function detailInfo(value) {
 	$("#corpAddr").text(unescapeHtml(corpInfo.corpAddr));
 	$("#homePg").text(unescapeHtml(corpInfo.homePg));
 	
-	
-	
-	
-	
-	
+	//모집요강
+	$("#jobsNm").text(unescapeHtml(wantedInfo.jobsNm));
+	$("#relJobsNm").text(unescapeHtml(wantedInfo.relJobsNm));
+	$("#jobCont").text(unescapeHtml(wantedInfo.jobCont));
+	$("#empTpNm").text(unescapeHtml(wantedInfo.empTpNm));
+	$("#collectPsncnt").text(unescapeHtml(wantedInfo.collectPsncnt));
+	$("#salTpNm").text(unescapeHtml(wantedInfo.salTpNm));
+	$("#enterTpNm").text(unescapeHtml(wantedInfo.enterTpNm));
+	$("#eduNm").text(unescapeHtml(wantedInfo.eduNm));
+	$("#srchKeywordNm").text(unescapeHtml(''));
+
+	//우대사항
+	$("#forLang").text(unescapeHtml(wantedInfo.forLang));
+	$("#major").text(unescapeHtml(wantedInfo.major));
+	$("#certificate").text(unescapeHtml(wantedInfo.certificate));
+	$("#mltsvcExcHope").text(unescapeHtml(wantedInfo.mltsvcExcHope));
+	$("#compAbl").text(unescapeHtml(wantedInfo.compAbl));
+	$("#pfCond").text(unescapeHtml(wantedInfo.pfCond));
+	$("#etcPfCond").text(unescapeHtml(wantedInfo.etcPfCond));
+
+	//전형방법
+	$("#selMthd").text(unescapeHtml(wantedInfo.selMthd));
+	$("#rcptMthd").text(unescapeHtml(wantedInfo.rcptMthd));
+	$("#submitDoc").text(unescapeHtml(wantedInfo.submitDoc));
+
+	//근무환경 및 복리후생
+	$("#workRegion").text(unescapeHtml(wantedInfo.workRegion));
+	$("#nearLine").text(unescapeHtml(wantedInfo.nearLine));
+	$("#workdayWorkhrCont").text(unescapeHtml(wantedInfo.workdayWorkhrCont));
+	$("#fourIns").text(unescapeHtml(wantedInfo.fourIns));
+	$("#retirepay").text(unescapeHtml(wantedInfo.retirepay));
+	$("#etcWelfare").text(unescapeHtml(wantedInfo.etcWelfare));
+
 	
 	
 }
@@ -145,47 +175,45 @@ function detailInfo(value) {
 						<tbody>
 							<tr>
 								<th scope="row">모집요강</th>
-								<td><span class="b_f">건축안전, 환경 및 품질 기술자(141106)</span></td>	
+								<td><span class="b_f" id="jobsNm"></span></td>	
 							</tr>				
 							<tr>
 								<th scope="row">관련직종</th>
-								<td><span>-</span></td>	
+								<td><span id="relJobsNm"></span></td>	
 							</tr>
 							<tr>
 								<th scope="row">직무내용</th>
-								<td><span>건설현장 안전관리자 구함</span></td>	
+								<td><span id="jobCont"></span></td>	
 							</tr>
 							<tr>
 								<th scope="row">접수마감일</th>
-								<td><span>2022년 6월 8일</span><span class="d-day">D-15</span></td>	
+								<td><span id="receiptCloseDt"></span><span class="d-day"> D-15</span></td>	
 							</tr>
 							<tr>
 								<th scope="row">고용경력조건태</th>
-								<td><span>기간의 정함이 없는 구로계약 / 파견근로 비희망</span></td>	
+								<td><span id="empTpNm"></span></td>	
 							</tr>
 							<tr>
 								<th scope="row">모집인원</th>
-								<td><span>1</span>명 <span class="b_f ml10">지원현황 : 총<span>3</span>명 (고용센터 알선 : <span>0</span>명, 이메일 입사지원 <span>3</span>명)</span></td>	
+								<td><span id="collectPsncnt"></span>명 <span class="b_f ml10">지원현황 : 총<span>3</span>명 (고용센터 알선 : <span>0</span>명, 이메일 입사지원 <span>3</span>명)</span></td>	
 							</tr>
 							<tr>
 								<th scope="row">임금조건</th>
 								<td>
-									<span>연봉 3000만원 이상</span>
-									<span>상여금 : 0% (미포함)</span>
-									<span>면접 후 재조정 가능</span>
+									<span id="salTpNm"></span>
 								</td>	
 							</tr>
 							<tr>
 								<th scope="row">경력조건</th>
-								<td><span>관계없음</span></td>	
+								<td><span id="enterTpNm"></span></td>	
 							</tr>
 							<tr>
 								<th scope="row">학력</th>
-								<td><span>대졸(2~3년)</span></td>	
+								<td><span id="eduNm"></span></td>	
 							</tr>
 							<tr>
 								<th scope="row">키워드</th>
-								<td><span>-</span></td>	
+								<td><span id="srchKeywordNm"></span></td>	
 							</tr>
 						</tbody>
 					</table>
@@ -200,39 +228,37 @@ function detailInfo(value) {
 						<tbody>
 							<tr>
 								<th scope="row">외국어능력</th>
-								<td><span>-</span></td>	
+								<td><span id="forLang"></span></td>	
 							</tr>				
 							<tr>
 								<th scope="row">전공</th>
-								<td><span>-</span></td>	
+								<td><span id="major"></span></td>	
 							</tr>
 							<tr>
 								<th scope="row">자격면허</th>
 								<td class="d_b">
-									<span>건설안전기사</span>
-									<span>건설안전산업기사</span>
-									<span>기타 : 산업안전기사, 산업안전산업기사</span>
+									<span id="certificate"></span>
 								</td>	
 							</tr>
 							<tr>
 								<th scope="row">병역특례채용희망</th>
-								<td><span>비희망</span></td>	
+								<td><span id="mltsvcExcHope"></span></td>	
 							</tr>
 							<tr>
 								<th scope="row">컴퓨터활용능력</th>
-								<td><span>문서작성, 프리젠테이션</span></td>	
+								<td><span id="compAbl"></span></td>	
 							</tr>						
 							<tr>
 								<th scope="row">우대조건</th>
-								<td><span>-</span></td>	
+								<td><span id="pfCond"></span></td>	
 							</tr>
 							<tr>
 								<th scope="row">장애인 채용희망</th>
-								<td><span>비희망</span></td>	
+								<td><span></span></td>	
 							</tr>
 							<tr>
 								<th scope="row">기타 우대사항</th>
-								<td><span>건설안전, 산업안전 기사 또는 산업기사 자격증 소지자</span></td>	
+								<td><span id="etcPfCond"></span></td>	
 							</tr>
 						</tbody>
 					</table>
@@ -247,11 +273,11 @@ function detailInfo(value) {
 						<tbody>
 							<tr>
 								<th scope="row">전형방법</th>
-								<td><span class="b_f">서류, 면접</span></td>	
+								<td><span class="b_f" id="selMthd"></span></td>	
 							</tr>				
 							<tr>
 								<th scope="row">접수방법</th>
-								<td><span>방문, 우편, 팩스, E-mail</span></td>	
+								<td><span id="rcptMthd"></span></td>	
 							</tr>
 							<tr>
 								<th scope="row">제출서류양식첨부</th>
@@ -259,7 +285,7 @@ function detailInfo(value) {
 							</tr>
 							<tr>
 								<th scope="row">제출서류 준비물</th>
-								<td><span>이력서, 자기소개서<br />※ 정부민원포털<span class="b_f"><a href="https://www.gov.kr/portal/main" target="_blank">(www.minwon.go.kr)</a></span>에서 주민등록등초본 등 각종 제증명 발급 가능</span></td>	
+								<td><span id="submitDoc"><br />※ 정부민원포털<span class="b_f"><a href="https://www.gov.kr/portal/main" target="_blank">(www.minwon.go.kr)</a></span>에서 주민등록등초본 등 각종 제증명 발급 가능</span></td>	
 							</tr>
 						</tbody>
 					</table>
@@ -275,7 +301,7 @@ function detailInfo(value) {
 						<tbody>
 							<tr>
 								<th scope="row" colspan="2">근무예정지</th>
-								<td><span class="b_f">서울시 영등포구 문래동 20길 56</span></td>	
+								<td><span class="b_f" id="workRegion"></span></td>	
 							</tr>				
 							<tr>
 								<th scope="row" colspan="2">소속산업단지</th>
@@ -283,32 +309,30 @@ function detailInfo(value) {
 							</tr>
 							<tr>
 								<th scope="row" colspan="2">인근전철역</th>
-								<td><span>-</span></td>	
+								<td><span id="nearLine"></span></td>	
 							</tr>
 							<tr>
 								<th scope="row" colspan="2">근무시간/형태</th>
 								<td class="d_b">
-									<span>평일 : 0700~1600</span>
-									<span>기타 (월 6일 휴무)</span>
-									<span>주소정근로시간 : 40시간</span>
+									<span id="workdayWorkhrCont"></span>
 								</td>	
 							</tr>
 							<tr>
 								<th scope="col" rowspan="4">복리후생</th>
 								<th>연금4대보험</th>
-								<td><span>국민연금, 산재보험, 건강보험</span></td>	
+								<td><span id="fourIns"></span></td>	
 							</tr>
 							<tr>							
 								<th>퇴직금</th>
-								<td><span>퇴직금</span></td>	
+								<td><span id="retirepay"></span></td>	
 							</tr>
 							<tr>							
 								<th>기타복리후생</th>
-								<td><span>기숙사, 중식제공(또는 중식비 지원), 기타(4대보험)</span></td>	
+								<td><span id="etcWelfare"></span></td>	
 							</tr>
 							<tr>							
 								<th>장애인편의시설</th>
-								<td><span>-</span></td>	
+								<td><span id="disableCvntl"></span></td>	
 							</tr>
 						</tbody>
 					</table>
