@@ -103,17 +103,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		
 		http.authorizeRequests() 
-		.antMatchers("/user/rdt/login/adminLogin").access("hasIpAddress('172.20.50.83')")
-		.antMatchers("/user/rdt/login/adminLogin").access("hasIpAddress('222.106.84.35')"
-		);
+		.antMatchers("/user/rdt/login/adminLogin").access("hasIpAddress('172.20.50.83') or hasIpAddress('222.106.84.34')");
+		//.antMatchers("/user/rdt/login/adminLogin").access("hasIpAddress('222.106.84.35')"
+		
 		
 		http.authorizeRequests()
 		.antMatchers("/member/**").access("hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')")
 		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
-		.antMatchers("/admin/**").access("hasIpAddress('172.20.50.83')")
-		.antMatchers("/admin/**").access("hasIpAddress('222.106.84.35')"
+		.antMatchers("/admin/**").access("hasIpAddress('172.20.50.83') or hasIpAddress('222.106.84.34')");
+		//.antMatchers("/admin/**").access("hasIpAddress('222.106.84.35')"
 		
-		);
+		
 		
 		
 		
