@@ -9,7 +9,14 @@
 		<result property ="code"				column="CODE"	/>
 		<result property ="full_addr"			column="FULL_ADDR"	/>
 		<result property ="addr"				column="ADDR"	/>
-		
+		<result property ="region_cd"			column="REGION_CD"	/>
+	</resultMap>
+	
+	<resultMap id="occupation" type="UtilOccupationVO">
+		<result property ="master_id"			column="MASTER_ID"	/>
+		<result property ="category_id"			column="CATEGORY_ID"	/>
+		<result property ="occupation_cd"		column="OCCUPATION_CD"	/>
+		<result property ="name"				column="NAME"	/>
 	</resultMap>
 	
 	<insert id="insertAdministrativeDistrict" parameterType="UtilAdministrativeDistrictVO">
@@ -37,11 +44,20 @@
 			,	CODE
 			,	FULL_ADDR
 			,	ADDR
+			,   REGION_CD
 		FROM
 			ADMINISTRATIVE_DISTRICT
 	</select>
 	
-	
+	<select id="selectOccupationAllList" resultMap="occupation">
+		SELECT
+			MASTER_ID
+			,   CATEGORY_ID
+			,	OCCUPATION_CD
+			,	NAME
+		FROM
+			OCCUPATION
+	</select>
 	
 	
 	

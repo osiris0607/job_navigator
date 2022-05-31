@@ -11,52 +11,39 @@
  *******************************************************************************/
 package com.anchordata.webframework.service.util;
 
-public class UtilAdministrativeDistrictVO {
+public class UtilOccupationVO {
 
+	
+	//채용정보 - 희망지역
 	private String master_id = "";
-	private String parent_id = "";
-	private String code = "";
-	private String full_addr = "";
-	private String addr = "";
-	private String region_cd = "";  //채용정보 - 근무지역 코드
-
+	private String category_id = "";
+	private String occupation_cd = "";
+	private String name = "";
 	
 	
-	public String getParent_id() {
-		return parent_id;
-	}
 	public String getMaster_id() {
 		return master_id;
 	}
 	public void setMaster_id(String master_id) {
 		this.master_id = master_id;
 	}
-	public void setParent_id(String parent_id) {
-		this.parent_id = parent_id;
+	public String getCategory_id() {
+		return category_id;
 	}
-	public String getCode() {
-		return code;
+	public void setCategory_id(String category_id) {
+		this.category_id = category_id;
 	}
-	public void setCode(String code) {
-		this.code = code;
+	public String getOccupation_cd() {
+		return occupation_cd;
 	}
-	public String getFull_addr() {
-		return full_addr;
+	public void setOccupation_cd(String occupation_cd) {
+		this.occupation_cd = occupation_cd;
 	}
-	public void setFull_addr(String full_addr) {
-		this.full_addr = full_addr;
+	public String getName() {
+		return name;
 	}
-	public String getAddr() {
-		return addr;
-	}
-	public void setAddr(String addr) {
-		this.addr = addr;
-	}
-	public String getRegion_cd() {
-		return region_cd;
-	}
-	public void setRegion_cd(String region_cd) {
-		this.region_cd = region_cd;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	

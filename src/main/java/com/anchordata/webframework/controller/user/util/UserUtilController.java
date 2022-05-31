@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.anchordata.webframework.base.util.SGISOpenAPI;
 import com.anchordata.webframework.service.util.UtilAdministrativeDistrictVO;
+import com.anchordata.webframework.service.util.UtilOccupationVO;
 import com.anchordata.webframework.service.util.UtilService;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -90,4 +91,15 @@ public class UserUtilController {
 		return mv;
 	}
 	
+	
+	/**
+	* 채용정보 희망직종 ALL
+	*/
+	@RequestMapping("/user/api/util/employInfo/occupation/all")
+		public ModelAndView searchOccupationAllList(ModelAndView mv) throws Exception {
+		List<UtilOccupationVO> resList = utilService.selectOccupationAllList();
+		mv.addObject("result", resList);
+		mv.setViewName("jsonView");
+		return mv;
+	}
 }

@@ -1,53 +1,282 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <script>
 function xmlToJson(xml) {    
 	var obj = $.xml2json(xml);    
 	return obj;
 }
 
-function setParam() {
+$(document).ready(function() {
 
 	
-	//희망임금 salTp
-	var hopeSal = $('input[name=Hope]:checked').val();
+	// 해정 구역 정보 Click
+ 	$("#working_area1").change(function(){
+ 		var selector_regionId =  $("#working_area1").val();
+ 		selector_regionChange(selector_regionId);
+	});
 	
-	//희망임금 시급 - minPay, maxPay       ?????????????????????????????
+ 	$("#hope_occupation1").change(function(){
+ 		var selector_occupationId =  $("#hope_occupation1").val();
+ 		console.log('id : ', selector_occupationId);
+ 		selector_occupationChange(selector_occupationId);
+	});
+	selectorInit();
+	getselector_regionList();
+	getselector_occupationList();
+});
+
+
+function getselector_regionList() {
+	var comAjax = new ComAjax();
+	comAjax.setUrl("<c:url value='/user/api/util/openapi/sgis/administrativeDistrict/all' />");
+	comAjax.setCallback("getselector_regionListCB");
+	comAjax.ajax();
+}
+
+function getselector_occupationList() {
+	var comAjax = new ComAjax();
+	comAjax.setUrl("<c:url value='/user/api/util/employInfo/occupation/all' />");
+	comAjax.setCallback("getselector_occupationListCB");
+	comAjax.ajax();
+}
+
+function getselector_regionListCB(data) {
+	console.log('region data : ', data);
+	
+	var str = "";
+	selector_regionList = data.result;
+	var selector_region = $("#working_area1"); 
+	selector_region.empty();
+
+	str += "<option value=''>지역</option>";
+	$.each(selector_regionList, function(key, value) {
+		if (value.master_id == "D000001") {
+			str += "<option value=\"" + value.code + "\">" + value.addr + "</option>";
+		}
+	});
+	selector_region.append(str); 
+}
+
+function getselector_occupationListCB(data) {
+	console.log('occupation data : ', data);
+	
+	var str = "";
+	selector_occupationList = data.result;
+	var selector_occupation = $("#hope_occupation1");
+	selector_occupation.empty();
+
+	str += "<option value=''>선택</option>";
+	$.each(selector_occupationList, function(key, value) {
+		if (value.master_id == "D000001") {
+			str += "<option value=\"" + value.occupation_cd + "\">" + value.name + "</option>";
+		}
+	});
+	selector_occupation.append(str); 
+}
+
+function selector_regionChange(selector_regionId){
+	var str = "";
+	var selector_regionDetail = $("#working_area2"); 
+	selector_regionDetail.empty();
+
+	str += "<option value=''>지역 세부</option>";
+	$.each(selector_regionList, function(key, value) {
+		if (value.master_id == "D000002" && value.parent_id == selector_regionId ) {
+			str += "<option value=\"" + value.region_cd + "\">" + value.addr + "</option>";
+		}
+	});
+	
+	selector_regionDetail.append(str); 
+}
+
+function selector_occupationChange(selector_occupationId){
+	var str = "";
+	var selector_occupationDetail = $("#hope_occupation2"); 
+	selector_occupationDetail.empty();
+	console.log(selector_occupationId);
+	str += "<option value=''>직종 세부</option>";
+	$.each(selector_occupationList, function(key, value) {
+		//console.log('key, value', key, value);
+		if (value.master_id == "D000002" && value.category_id == selector_occupationId ) {
+			str += "<option value=\"" + value.occupation_cd + "\">" + value.name + "</option>";
+		}
+	});
+	
+	selector_occupationDetail.append(str); 
+}
+function selectorInit() {
+	str = "";
+	var selector_regionDetail = $("#working_area2");
+	selector_regionDetail.empty();
+	str += '<option value="">지역 세부</option>';
+	selector_regionDetail.append(str); 
+	
+	str = "";
+	var selector_occupationDetail = $("#hope_occupation2");
+	selector_occupationDetail.empty();
+	str += '<option value="">직종 세부</option>';
+	selector_occupationDetail.append(str); 
+}
+
+function setParam() {
+
+	//지역
+	var region = $('#working_area1 option:selected').val();
+	var regionDetail = $('#working_area2 option:selected').val();
+	
+	//지역 세부가 없으면 지역만으로 검색 - 파라미터로 보낼 value값 변환(워크넷 코드로)
+	if(regionDetail == '') {
+		switch(region) {
+			case '11':
+				console.log('서울');
+				region = '11000'
+			break;
+			case '21':
+				console.log('부산');
+				region = '26000'
+			break;
+			case '22':
+				console.log('대구');
+				region = '27000'
+			break;
+			case '23':
+				console.log('인천');
+				region = '28000'
+			break;			
+			case '24':
+				console.log('광주');
+				region = '29000'
+			break;
+			case '25':
+				console.log('대전');
+				region = '30000'
+			break;
+			case '26':
+				console.log('울산');
+				region = '31000'
+			break;
+			case '29':
+				console.log('세종');
+				region = '36110'
+			break;
+			case '31':
+				console.log('경기도');
+				region = '41000'
+			break;
+			case '32':
+				console.log('강원도');
+				region = '42000'
+			break;
+			case '33':
+				console.log('충청북도');
+				region = '43000'
+				break;
+			case '34':
+				console.log('충청남도');
+				region = '44000'
+				break;
+			case '35':
+				console.log('전라북도');
+				region = '45000'
+				break;
+			case '36':
+				console.log('전라남도');
+				region = '46000'
+				break;
+			case '37':
+				console.log('경상북도');
+				region = '47000'
+				break;
+			case '38':
+				console.log('경상남도');
+				region = '48000'
+				break;
+			case '39':
+				console.log('제주도');
+				region = '50000'
+				break;
+		default:
+			region = '';
+				
+		}
+		
+	}else {
+		region = $('#working_area2 option:selected').val();
+	}
+	
+	/* ======================================================================= */
+	//희망직종
+	var occupation = $('#hope_occupation1 option:selected').val();
+	var occupationDetail = $('#hope_occupation2 option:selected').val();
+	
+	//if(occupationDetail == '') {
+	//	alert('희망직종 세부 선택 필수');
+	//	return;
+	//}else {
+		occupation = $('#hope_occupation2 option:selected').val();
+	//}
+	
+	//console.log('region : ', region);
+	//console.log('occupation : ', occupation);
+
+	/* ======================================================================= */
+	//희망임금 salTp
+	
+	var hopeSal = $('input[name=Hope]:checked').val();
+	//console.log('hopeSal : ', hopeSal);
+	//희망임금 시급 - minPay, maxPay 
 	var minPay = $('#Hope_money1').val();
 	var maxPay = $('#Hope_money2').val();
 	
-	//30'만원' 이상 50'만원' 이하 : 300000 ~ 500000, default 0
-	 if(minPay != '' && maxPay == '') {
-		 console.log('최소만 있음')
-		 minPay + 50000;
-		 maxPay = 0;
-		 
-		 console.log(typeof(minPay));
-	}else if(maxPay != '' && minPay == '') {
-		console.log('최대만 있음')
-		maxPay + 10000;
-		minPay = 0;
-	}else if(minPay != '' && maxPay != '') {
-		console.log('둘다 있음')
-		minPay + 10000;
-		maxPay + 10000;
+	if(hopeSal == '') {
+		//조건 미입력, 관계없음, 최소, 최대 급여 미입력
+		minPay = '';
+		maxPay = '';
+	}else {
+		if(minPay == '' && maxPay == '') {
+			//둘다 입력 안하면
+			alert('최소급여 또는 최대급여를 필수로 입력');
+		}else {
+		//30'만원' 이상 50'만원' 이하 : 300000 ~ 500000, default 0
+			var plusWon = '0000';
+			
+			 if(minPay != '' && maxPay == '') {
+				 console.log('최소만 있음')
+				 minPay = minPay.concat(plusWon);
+				 maxPay ='';
+				 
+			}else if(maxPay != '' && minPay == '') {
+				console.log('최대만 있음')
+				maxPay = maxPay.concat(plusWon);
+				minPay = '';
+			}else if(minPay != '' && maxPay != '') {
+				console.log('둘다 있음')
+				minPay = minPay.concat(plusWon);
+				maxPay = maxPay.concat(plusWon);
+			}
+		}
 	}
-	 
-	console.log('minPay : ', minPay);
-	console.log('maxPay : ', maxPay);
+	//console.log('minPay : ', minPay);
+	//console.log('maxPay : ', maxPay);
 	
 	
-	
-	//학력
-	var chkEduList = [];
-	var strEdu = "";
-	var education = $('.education_check:checked').each(function() {
-		var chkEdu = $(this).val();
-		chkEduList.push(chkEdu);
-	});
-	
+	/* ======================================================================= */
+	//학력  :  전체 체크시 처리?????????????????
+	//학력무관(00) 입력시 다수 항목 입력 불가
+	var eduCheck = $('.education_check:checked').val();
+		var chkEduList = [];
+		var strEdu = "";
+		var education = $('.education_check:checked').each(function() {
+			var chkEdu = $(this).val();
+			chkEduList.push(chkEdu);
+		});
 	//04|05|06|07..
 	strEdu = chkEduList.join('|');
 	
-	
+	/* ======================================================================= */
 	//경력
 	var chkCareerList = [];
 	var strCareer = "";
@@ -62,11 +291,15 @@ function setParam() {
 	var minHis = $('#employment_money1').val();
 	var maxHis = $('#employment_money2').val();
 	
-	
+	console.log('minHis : ', minHis);
+	console.log('maxHis : ', maxHis);
+	/* ======================================================================= */
 	//우대조건
 	var prefCd = $('input[name=preferential]:checked').val();
 	
+	/* ======================================================================= */
 	//장애인 채용희망
+	//장애인 우대 ?????????????????????? value값 명시X
 	var chkPrefList = [];
 	var strPref = "";
 	var pref = $('input[name=pref]:checked').each(function() {
@@ -76,10 +309,10 @@ function setParam() {
 	
 	strPref = chkPrefList.join('|');
 	
-	
+	/* ======================================================================= */
 	//등록기간
 	var regDate = $('input[name=period]:checked').val();
-	
+	/* ======================================================================= */
 	//검색키워드
 	var keyword = $('#search_keyword').val();
 	
@@ -95,9 +328,13 @@ function setParam() {
 	검색키워드	keyword
 	*/
 	
-	//체크값 없으면 파라미터 빼기
+	//체크값 없으면 파라미터 value=''
 	
 	var sendParam = ""; //파라미터 세팅
+	sendParam += "&";
+	sendParam += "region=" + region;
+	sendParam += "&";
+	sendParam += "occupation=" + occupation;
 	sendParam += "&";
 	sendParam += "salTp=" + hopeSal;
 	sendParam += "&";
@@ -170,13 +407,12 @@ function callApi(pageNo) {
 				};
 
 			gfnRenderPagingMain(params);
-
 			$("#search_count").text(value.total);
 			
 			
 			var str = "";
 			var data = value.wanted;
-			console.log('data : ', data);
+			console.log('paging data : ', data);
 			
 			$.each(data, function(key, value) {
 			str +="	<li>"
@@ -216,13 +452,12 @@ function callApi(pageNo) {
 				};
 
 			gfnRenderPagingMain(params);
-
 			$("#search_count").text(value.total);
 			
 			
 			var str = "";
 			var data = value.wanted;
-			console.log('data : ', data);
+			console.log('paging data : ', data);
 			
 			$.each(data, function(key, value) {
 			str += "<tr>"
@@ -302,30 +537,18 @@ function callApi(pageNo) {
 							<th scope="row">근무지역</th>
 							<td>
 								<label for="working_area1" class="hidden">근무지역</label>
-								<select name="working_area1" id="working_area1" class="job_class">
-									<option value="선택">선택</option>
-									<option value="서울">서울</option>
-								</select>
+								<select name="working_area1" id="working_area1" class="job_class"></select>
 								<label for="working_area2" class="hidden">근무지역</label>
-								<select name="working_area2" id="working_area2" class="job_class">
-									<option value="">선택</option>
-									<option value="종로구">종로구</option>
-								</select>
+								<select name="working_area2" id="working_area2" class="job_class"></select>
 							</td>						
 						</tr>
 						<tr>
 							<th scope="row">희망직종</th>
 							<td>
 								<label for="hope_occupation1" class="hidden">근무지역</label>
-								<select name="hope_occupation1" id="hope_occupation1" class="job_class">
-									<option value="선택">선택</option>
-									<option value="경영·사무·금융·보험">경영·사무·금융·보험</option>
-								</select>
+								<select name="hope_occupation1" id="hope_occupation1" class="job_class"></select>
 								<label for="hope_occupation2" class="hidden">근무지역</label>
-								<select name="hope_occupation2" id="hope_occupation2" class="job_class">
-									<option value="">선택</option>
-									<option value="행정·경영·금융·보험 관리직">행정·경영·금융·보험 관리직</option>
-								</select>
+								<select name="hope_occupation2" id="hope_occupation2" class="job_class"></select>
 							</td>
 						</tr>
 						<tr>
@@ -421,8 +644,7 @@ function callApi(pageNo) {
 					<div class="list_search_card_area">
 						<ul class="clearfix list_search_card" id="bodyCard"></ul>
 
-						<input type="hidden" id="pageIndex" name="pageIndex" />
-						<div class="pagination" id="pageNavi"></div>
+					<!-- pagination -->
 					</div>
 					<div class="list_search_table">
 						<table class="list search_result">
@@ -444,11 +666,14 @@ function callApi(pageNo) {
 							</tr>
 							</thead>
 							<tbody id="bodyList"></tbody>
+							
 						</table>
-
-
 						
+						<!-- pagination -->
 					</div>
+					<!-- pagination -->
+					<input type="hidden" id="pageIndex" name="pageIndex" />
+						<div class="pagination" id="pageNavi"></div>
 				</article>
 			</section>
 		</article>

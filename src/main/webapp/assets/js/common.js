@@ -123,8 +123,37 @@ $(function(){
 		if($('input:radio[id="Hope_all"]').is(":checked") == false){
 			$('#Hope_money1, #Hope_money2').attr('disabled', false);	
 		}else{            		
-			$('#Hope_money1, #Hope_money2').attr('disabled', true);		 
+			$('#Hope_money1, #Hope_money2').attr('disabled', true);
+			$('#Hope_money1, #Hope_money2').val('');
 		 }		
+	});
+
+	//학력 - 학력무관(00) 입력시 다수 항목 입력 불가
+	$('#education6').on('click',function(){		
+		if($('#education6').is(":checked") == true){
+			//체크박스 비활성화
+			$("input#education1").attr("disabled", true);
+			$("input#education2").attr("disabled", true);
+			$("input#education3").attr("disabled", true);
+			$("input#education4").attr("disabled", true);
+			$("input#education5").attr("disabled", true);
+			
+			//체크박스 초기화
+			$("input#education1").prop("checked", false); 
+			$("input#education2").prop("checked", false); 
+			$("input#education3").prop("checked", false); 
+			$("input#education4").prop("checked", false); 
+			$("input#education5").prop("checked", false); 
+		}else {
+			$("input#education1").attr("disabled", false);
+			$("input#education2").attr("disabled", false);
+			$("input#education3").attr("disabled", false);
+			$("input#education4").attr("disabled", false);
+			$("input#education5").attr("disabled", false);
+			
+			
+			
+		}
 	});
 
 	//경력 - 개월 디세이블 해제	
@@ -133,6 +162,7 @@ $(function(){
 			$('#employment_money1, #employment_money2').attr('disabled', false);	
 		}else{            		
 			$('#employment_money1, #employment_money2').attr('disabled', true);		 
+			$('#employment_money1, #employment_money2').val('');
 		 }		
 	});
 

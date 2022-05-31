@@ -20,7 +20,9 @@ public class UtilDao extends BaseDao {
 		return update(mapper.concat("insertAdministrativeDistrict"), params);
 	}
 	
-	
+	public List<UtilOccupationVO> selectOccupationAllList() throws Exception{
+		return selectList(mapper.concat("selectOccupationAllList"));
+	}
 	
 	
 }

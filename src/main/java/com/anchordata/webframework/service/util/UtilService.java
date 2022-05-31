@@ -33,6 +33,13 @@ public class UtilService {
 		return result;
 	}
 	
+	/**
+	 * 희망직종 all List  
+	 */
+	public List<UtilOccupationVO> selectOccupationAllList() throws Exception {
+		List<UtilOccupationVO> result = dao.selectOccupationAllList();
+		return result;
+	}
 	
 	
 	
