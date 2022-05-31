@@ -337,7 +337,7 @@ function detailInfo(value) {
 						</tbody>
 					</table>
 
-					<div class="button_area list_btn_area"><button type="button" class="listback_btn" onClick="history.back()">목록</button></div>
+					<div class="button_area list_btn_area"><button type="button" class="listback_btn" onClick="history.go(-1)">목록</button></div>
 
 				</article>
 			</section>

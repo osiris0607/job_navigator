@@ -26,6 +26,9 @@ $(document).ready(function() {
 	selectorInit();
 	getselector_regionList();
 	getselector_occupationList();
+	
+	
+	callApi(1);
 });
 
 
@@ -363,20 +366,18 @@ function setParam() {
 	console.log(sendParam);
 	return sendParam;
 }
-
-
+var url;
 function callApi(pageNo) {
 	alert('검색버튼 클릭');
 	
-	
 	var sendParam = setParam();
 	console.log('callAPI set Param : ', sendParam);
-		
+	url = 'https://cors-anywhere.herokuapp.com/http://openapi.work.go.kr/opi/opi/opia/wantedApi.do?authKey=WNL2TXYFS6V5PWORTT5QZ2VR1HK&callTp=L&returnType=XML&startPage='+pageNo+'&display=12'+sendParam;
 	
 	
 	$.ajax({
 	    method : "GET",
-	    url : "https://cors-anywhere.herokuapp.com/http://openapi.work.go.kr/opi/opi/opia/wantedApi.do?authKey=WNL2TXYFS6V5PWORTT5QZ2VR1HK&callTp=L&returnType=XML&startPage="+pageNo+"&display=12"+sendParam,
+	    url : url,
 	    dataType : "xml",
 	   	success : function(data) {
 	   		var obj = xmlToJson(data);
@@ -415,6 +416,8 @@ function callApi(pageNo) {
 			console.log('paging data : ', data);
 			
 			$.each(data, function(key, value) {
+				
+				console.log('to detail url : ', url);
 			str +="	<li>"
 			str +="	<a href='/user/rdt/jobnavi/employinfo/detail?wantedAuthNo="+value.wantedAuthNo+"'>"
 			str +="		<span class='company_logo'>"+value.company+"</span>"
