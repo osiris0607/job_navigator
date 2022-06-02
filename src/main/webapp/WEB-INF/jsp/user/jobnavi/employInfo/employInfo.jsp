@@ -9,8 +9,18 @@ function xmlToJson(xml) {    
 	return obj;
 }
 
-$(document).ready(function() {
 
+function callFunction() {
+	console.log('클릭클릭');
+	
+	callApiDetail();
+	$("#listInfo").hide();
+	$("#detailInfo").show();
+	
+}
+$(document).ready(function() {
+	$("#listInfo").show();
+	$("#detailInfo").hide();
 	
 	// 해정 구역 정보 Click
  	$("#working_area1").change(function(){
@@ -410,16 +420,16 @@ function callApi(pageNo) {
 			gfnRenderPagingMain(params);
 			$("#search_count").text(value.total);
 			
-			
+			var pageIndex = value.startPage;
 			var str = "";
 			var data = value.wanted;
-			console.log('paging data : ', data);
+			var idkey = 'K151422206020143';
 			
 			$.each(data, function(key, value) {
-				
 				console.log('to detail url : ', url);
 			str +="	<li>"
-			str +="	<a href='/user/rdt/jobnavi/employinfo/detail?wantedAuthNo="+value.wantedAuthNo+"'>"
+			//str +="	<a href='/user/rdt/jobnavi/employinfo/detail?wantedAuthNo="+value.wantedAuthNo+"' class='on_detail'>"
+			str +="	<a href='#' onclick='callFunction();'>"
 			str +="		<span class='company_logo'>"+value.company+"</span>"
 			str +="		<span class='company_name'>"+value.company+"</span>"
 			str +="		<span class='company_detail'>"+value.title+"</span>"
@@ -460,7 +470,6 @@ function callApi(pageNo) {
 			
 			var str = "";
 			var data = value.wanted;
-			console.log('paging data : ', data);
 			
 			$.each(data, function(key, value) {
 			str += "<tr>"
@@ -520,6 +529,7 @@ function callApi(pageNo) {
 		<!--//서브 탑-->
 		
 		<!--//서브 컨텐츠-->
+		<div id="listInfo">
 		<article class="sub_contents_main_area">
 			<section class="sub_contents_main">
 				<article class="sub_top_infotext">
@@ -680,6 +690,12 @@ function callApi(pageNo) {
 				</article>
 			</section>
 		</article>
+		</div>
+		  <div id="detailInfo">
+			<jsp:include page="employInfoDetail.jsp">
+				<jsp:param value="K151152206020242" name="wantedAuthNo"/>
+			</jsp:include>
+		</div>
 		<!--//서브 컨텐츠-->
 	</section>
 	

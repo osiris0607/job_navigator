@@ -1,3 +1,5 @@
+
+
 <script>
 function xmlToJson(xml) {    
 	var obj = $.xml2json(xml);    
@@ -5,13 +7,16 @@ function xmlToJson(xml) {    
 }
 
 $(document).ready(function() {
-	callApiDetail();
+	//callApiDetail();
+	
 });
 
 function callApiDetail() {
 	var detailUrl = $(location).attr('search');
 	var param = detailUrl.split('=');
-	var id = param[1];
+	console.log(param);
+	//var id = param[1];
+	var id = 'K151422206020143';
 	
 	
 	console.log('id key :', id);
@@ -88,35 +93,6 @@ function detailInfo(value) {
 <!--컨텐츠 시작-->
 	<!--서브 탑-->
 	<section class="sub_contents" id="navi_index_menu">
-		<article class="sub_top_area">
-			<section class="sub_route_area">
-				<article class="sub_title_area">
-					<h2 class="sub_title">채용정보</h2>
-				</article>	
-				<article class="sub_route">
-					<ul>
-						<li><a href="./index.html" title="home" class="home"><img src="/assets/images/btn/breadcrumb_home.png" alt="홈"></a></li>
-						<li><a href="./jobnavi_employinfor.html" title="채용정보">채용정보</a></li>
-						<li><a href="./jobnavi_employinfor.html" title="채용목록">채용목록</a></li>
-					</ul>
-				</article>			
-			</section>
-			<section class="tab_submenu">
-				<ul class="clearfix">
-					<li><a href="./jobnavi_employinfor.html" title="채용정보 바로가기" class="on">채용정보</a></li>
-					<li><a href="" title="직업정보 바로가기">직업정보</a></li>
-					<li><a href="" title="학과정보 바로가기">학과정보</a></li>
-					<li><a href="" title="강소기업 바로가기">강소기업</a></li>
-					<li><a href="" title="직업전망 바로가기">직업전망</a></li>
-					<li><a href="" title="채용행사 바로가기">채용행사</a></li>
-					<li><a href="" title="직업사전 바로가기">직업사전</a></li>
-					<li><a href="" title="표준직무기술서 바로가기">표준직무기술서</a></li>
-					<li><a href="" title="직무데이터사전 바로가기">직무데이터사전</a></li>
-				</ul>			
-			</section>
-		</article>		
-		<!--//서브 탑-->
-		
 		<!--//서브 컨텐츠-->
 		<article class="sub_contents_main_area">	
 			<section class="sub_contents_main">
