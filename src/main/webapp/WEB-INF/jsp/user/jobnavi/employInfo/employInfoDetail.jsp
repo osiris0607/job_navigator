@@ -7,7 +7,7 @@ function xmlToJson(xml) {    
 }
 
 $(document).ready(function() {
-	//callApiDetail();
+	callApiDetail();
 	
 });
 
@@ -15,8 +15,8 @@ function callApiDetail() {
 	var detailUrl = $(location).attr('search');
 	var param = detailUrl.split('=');
 	console.log(param);
-	//var id = param[1];
-	var id = 'K151422206020143';
+	var id = param[1];
+	//var id = 'K151422206020143';
 	
 	
 	console.log('id key :', id);
@@ -312,8 +312,7 @@ function detailInfo(value) {
 							</tr>
 						</tbody>
 					</table>
-
-					<div class="button_area list_btn_area"><button type="button" class="listback_btn" onClick="history.go(-1)">목록</button></div>
+					<div class="button_area list_btn_area"><a href="/user/rdt/jobnavi/employinfo"><button type="button" class="listback_btn">목록</button></a></div>
 
 				</article>
 			</section>

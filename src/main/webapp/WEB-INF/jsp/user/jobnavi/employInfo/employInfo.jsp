@@ -13,14 +13,14 @@ function xmlToJson(xml) {    
 function callFunction() {
 	console.log('클릭클릭');
 	
-	callApiDetail();
-	$("#listInfo").hide();
-	$("#detailInfo").show();
+	//callApiDetail();
+	//$("#listInfo").hide();
+	//$("#detailInfo").show();
 	
 }
 $(document).ready(function() {
-	$("#listInfo").show();
-	$("#detailInfo").hide();
+	//$("#listInfo").show();
+	//$("#detailInfo").hide();
 	
 	// 해정 구역 정보 Click
  	$("#working_area1").change(function(){
@@ -423,13 +423,13 @@ function callApi(pageNo) {
 			var pageIndex = value.startPage;
 			var str = "";
 			var data = value.wanted;
-			var idkey = 'K151422206020143';
+			//var idkey = 'K151422206020143';
 			
 			$.each(data, function(key, value) {
 				console.log('to detail url : ', url);
 			str +="	<li>"
-			//str +="	<a href='/user/rdt/jobnavi/employinfo/detail?wantedAuthNo="+value.wantedAuthNo+"' class='on_detail'>"
-			str +="	<a href='#' onclick='callFunction();'>"
+			str +="	<a href='/user/rdt/jobnavi/employinfo/detail?wantedAuthNo="+value.wantedAuthNo+"' class='on_detail'>"
+			//str +="	<a href='#' onclick='callFunction();'>"
 			str +="		<span class='company_logo'>"+value.company+"</span>"
 			str +="		<span class='company_name'>"+value.company+"</span>"
 			str +="		<span class='company_detail'>"+value.title+"</span>"
@@ -691,11 +691,11 @@ function callApi(pageNo) {
 			</section>
 		</article>
 		</div>
-		  <div id="detailInfo">
+		<%--   <div id="detailInfo">
 			<jsp:include page="employInfoDetail.jsp">
 				<jsp:param value="K151152206020242" name="wantedAuthNo"/>
 			</jsp:include>
-		</div>
+		</div> --%>
 		<!--//서브 컨텐츠-->
 	</section>
 	
